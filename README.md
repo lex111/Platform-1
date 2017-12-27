@@ -1,6 +1,7 @@
 # DocsPen
 
 [![Build Status](https://semaphoreci.com/api/v1/docspen/platform/branches/master/shields_badge.svg)](https://semaphoreci.com/docspen/platform)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5aeeae9df8b7eb42f21f/maintainability)](https://codeclimate.com/github/DocsPen/Platform/maintainability)
 
 
 ## Introduction
