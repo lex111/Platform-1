@@ -1,24 +1,25 @@
-<?php namespace DocsPen\Repos;
+<?php
 
-use DocsPen\Tag;
+namespace DocsPen\Repos;
+
 use DocsPen\Entity;
 use DocsPen\Services\PermissionService;
+use DocsPen\Tag;
 
 /**
- * Class TagRepo
- * @package DocsPen\Repos
+ * Class TagRepo.
  */
 class TagRepo
 {
-
     protected $tag;
     protected $entity;
     protected $permissionService;
 
     /**
      * TagRepo constructor.
-     * @param Tag $attr
-     * @param Entity $ent
+     *
+     * @param Tag               $attr
+     * @param Entity            $ent
      * @param PermissionService $ps
      */
     public function __construct(Tag $attr, Entity $ent, PermissionService $ps)
@@ -30,9 +31,11 @@ class TagRepo
 
     /**
      * Get an entity instance of its particular type.
+     *
      * @param $entityType
      * @param $entityId
      * @param string $action
+     *
      * @return \Illuminate\Database\Eloquent\Model|null|static
      */
     public function getEntity($entityType, $entityId, $action = 'view')
@@ -40,19 +43,24 @@ class TagRepo
         $entityInstance = $this->entity->getEntityInstance($entityType);
         $searchQuery = $entityInstance->where('id', '=', $entityId)->with('tags');
         $searchQuery = $this->permissionService->enforceEntityRestrictions($entityType, $searchQuery, $action);
+
         return $searchQuery->first();
     }
 
     /**
      * Get all tags for a particular entity.
+     *
      * @param string $entityType
-     * @param int $entityId
+     * @param int    $entityId
+     *
      * @return mixed
      */
     public function getForEntity($entityType, $entityId)
     {
         $entity = $this->getEntity($entityType, $entityId);
-        if ($entity === null) return collect();
+        if ($entity === null) {
+            return collect();
+        }
 
         return $entity->tags;
     }
@@ -60,7 +68,9 @@ class TagRepo
     /**
      * Get tag name suggestions from scanning existing tag names.
      * If no search term is given the 50 most popular tag names are provided.
+     *
      * @param $searchTerm
+     *
      * @return array
      */
     public function getNameSuggestions($searchTerm = false)
@@ -68,12 +78,13 @@ class TagRepo
         $query = $this->tag->select('*', \DB::raw('count(*) as count'))->groupBy('name');
 
         if ($searchTerm) {
-            $query = $query->where('name', 'LIKE', $searchTerm . '%')->orderBy('name', 'desc');
+            $query = $query->where('name', 'LIKE', $searchTerm.'%')->orderBy('name', 'desc');
         } else {
             $query = $query->orderBy('count', 'desc')->take(50);
         }
 
         $query = $this->permissionService->filterRestrictedEntityRelations($query, 'tags', 'entity_id', 'entity_type');
+
         return $query->get(['name'])->pluck('name');
     }
 
@@ -81,8 +92,10 @@ class TagRepo
      * Get tag value suggestions from scanning existing tag values.
      * If no search is given the 50 most popular values are provided.
      * Passing a tagName will only find values for a tags with a particular name.
+     *
      * @param $searchTerm
      * @param $tagName
+     *
      * @return array
      */
     public function getValueSuggestions($searchTerm = false, $tagName = false)
@@ -90,21 +103,26 @@ class TagRepo
         $query = $this->tag->select('*', \DB::raw('count(*) as count'))->groupBy('value');
 
         if ($searchTerm) {
-            $query = $query->where('value', 'LIKE', $searchTerm . '%')->orderBy('value', 'desc');
+            $query = $query->where('value', 'LIKE', $searchTerm.'%')->orderBy('value', 'desc');
         } else {
             $query = $query->orderBy('count', 'desc')->take(50);
         }
 
-        if ($tagName !== false) $query = $query->where('name', '=', $tagName);
+        if ($tagName !== false) {
+            $query = $query->where('name', '=', $tagName);
+        }
 
         $query = $this->permissionService->filterRestrictedEntityRelations($query, 'tags', 'entity_id', 'entity_type');
+
         return $query->get(['value'])->pluck('value');
     }
 
     /**
-     * Save an array of tags to an entity
+     * Save an array of tags to an entity.
+     *
      * @param Entity $entity
-     * @param array $tags
+     * @param array  $tags
+     *
      * @return array|\Illuminate\Database\Eloquent\Collection
      */
     public function saveTagsToEntity(Entity $entity, $tags = [])
@@ -112,7 +130,9 @@ class TagRepo
         $entity->tags()->delete();
         $newTags = [];
         foreach ($tags as $tag) {
-            if (trim($tag['name']) === '') continue;
+            if (trim($tag['name']) === '') {
+                continue;
+            }
             $newTags[] = $this->newInstanceFromInput($tag);
         }
 
@@ -121,7 +141,9 @@ class TagRepo
 
     /**
      * Create a new Tag instance from user input.
+     *
      * @param $input
+     *
      * @return Tag
      */
     protected function newInstanceFromInput($input)
@@ -130,7 +152,7 @@ class TagRepo
         $value = isset($input['value']) ? trim($input['value']) : '';
         // Any other modification or cleanup required can go here
         $values = ['name' => $name, 'value' => $value];
+
         return $this->tag->newInstance($values);
     }
-
 }

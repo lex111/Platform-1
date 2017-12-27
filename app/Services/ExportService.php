@@ -1,4 +1,6 @@
-<?php namespace DocsPen\Services;
+<?php
+
+namespace DocsPen\Services;
 
 use DocsPen\Book;
 use DocsPen\Chapter;
@@ -7,11 +9,11 @@ use DocsPen\Repos\EntityRepo;
 
 class ExportService
 {
-
     protected $entityRepo;
 
     /**
      * ExportService constructor.
+     *
      * @param $entityRepo
      */
     public function __construct(EntityRepo $entityRepo)
@@ -22,101 +24,121 @@ class ExportService
     /**
      * Convert a page to a self-contained HTML file.
      * Includes required CSS & image content. Images are base64 encoded into the HTML.
+     *
      * @param Page $page
+     *
      * @return mixed|string
      */
     public function pageToContainedHtml(Page $page)
     {
         $this->entityRepo->renderPage($page);
         $pageHtml = view('pages/export', [
-            'page' => $page
+            'page' => $page,
         ])->render();
+
         return $this->containHtml($pageHtml);
     }
 
     /**
      * Convert a chapter to a self-contained HTML file.
+     *
      * @param Chapter $chapter
+     *
      * @return mixed|string
      */
     public function chapterToContainedHtml(Chapter $chapter)
     {
         $pages = $this->entityRepo->getChapterChildren($chapter);
-        $pages->each(function($page) {
+        $pages->each(function ($page) {
             $page->html = $this->entityRepo->renderPage($page);
         });
         $html = view('chapters/export', [
             'chapter' => $chapter,
-            'pages' => $pages
+            'pages'   => $pages,
         ])->render();
+
         return $this->containHtml($html);
     }
 
     /**
      * Convert a book to a self-contained HTML file.
+     *
      * @param Book $book
+     *
      * @return mixed|string
      */
     public function bookToContainedHtml(Book $book)
     {
         $bookTree = $this->entityRepo->getBookChildren($book, true, true);
         $html = view('books/export', [
-            'book' => $book,
-            'bookChildren' => $bookTree
+            'book'         => $book,
+            'bookChildren' => $bookTree,
         ])->render();
+
         return $this->containHtml($html);
     }
 
     /**
      * Convert a page to a PDF file.
+     *
      * @param Page $page
+     *
      * @return mixed|string
      */
     public function pageToPdf(Page $page)
     {
         $this->entityRepo->renderPage($page);
         $html = view('pages/pdf', [
-            'page' => $page
+            'page' => $page,
         ])->render();
+
         return $this->htmlToPdf($html);
     }
 
     /**
      * Convert a chapter to a PDF file.
+     *
      * @param Chapter $chapter
+     *
      * @return mixed|string
      */
     public function chapterToPdf(Chapter $chapter)
     {
         $pages = $this->entityRepo->getChapterChildren($chapter);
-        $pages->each(function($page) {
+        $pages->each(function ($page) {
             $page->html = $this->entityRepo->renderPage($page);
         });
         $html = view('chapters/export', [
             'chapter' => $chapter,
-            'pages' => $pages
+            'pages'   => $pages,
         ])->render();
+
         return $this->htmlToPdf($html);
     }
 
     /**
-     * Convert a book to a PDF file
+     * Convert a book to a PDF file.
+     *
      * @param Book $book
+     *
      * @return string
      */
     public function bookToPdf(Book $book)
     {
         $bookTree = $this->entityRepo->getBookChildren($book, true, true);
         $html = view('books/export', [
-            'book' => $book,
-            'bookChildren' => $bookTree
+            'book'         => $book,
+            'bookChildren' => $bookTree,
         ])->render();
+
         return $this->htmlToPdf($html);
     }
 
     /**
      * Convert normal webpage HTML to a PDF.
+     *
      * @param $html
+     *
      * @return string
      */
     protected function htmlToPdf($html)
@@ -129,14 +151,18 @@ class ExportService
         } else {
             $pdf = \DomPDF::loadHTML($containedHtml);
         }
+
         return $pdf->output();
     }
 
     /**
      * Bundle of the contents of a html file to be self-contained.
+     *
      * @param $htmlContent
-     * @return mixed|string
+     *
      * @throws \Exception
+     *
+     * @return mixed|string
      */
     protected function containHtml($htmlContent)
     {
@@ -163,7 +189,10 @@ class ExportService
                     $pathString = public_path(trim($relString, '/'));
                 }
 
-                if ($isLocal && !file_exists($pathString)) continue;
+                if ($isLocal && !file_exists($pathString)) {
+                    continue;
+                }
+
                 try {
                     if ($isLocal) {
                         $imageContent = file_get_contents($pathString);
@@ -173,9 +202,11 @@ class ExportService
                         $imageContent = curl_exec($ch);
                         $err = curl_error($ch);
                         curl_close($ch);
-                        if ($err) throw new \Exception("Image fetch failed, Received error: " . $err);
+                        if ($err) {
+                            throw new \Exception('Image fetch failed, Received error: '.$err);
+                        }
                     }
-                    $imageEncoded = 'data:image/' . pathinfo($pathString, PATHINFO_EXTENSION) . ';base64,' . base64_encode($imageContent);
+                    $imageEncoded = 'data:image/'.pathinfo($pathString, PATHINFO_EXTENSION).';base64,'.base64_encode($imageContent);
                     $newImageString = str_replace($srcString, $imageEncoded, $oldImgString);
                 } catch (\ErrorException $e) {
                     $newImageString = '';
@@ -207,7 +238,9 @@ class ExportService
     /**
      * Converts the page contents into simple plain text.
      * This method filters any bad looking content to provide a nice final output.
+     *
      * @param Page $page
+     *
      * @return mixed
      */
     public function pageToPlainText(Page $page)
@@ -220,34 +253,40 @@ class ExportService
         $text = preg_replace('/(\x0A|\xA0|\x0A|\r|\n){2,}/su', "\n\n", $text);
         $text = html_entity_decode($text);
         // Add title
-        $text = $page->name . "\n\n" . $text;
+        $text = $page->name."\n\n".$text;
+
         return $text;
     }
 
     /**
      * Convert a chapter into a plain text string.
+     *
      * @param Chapter $chapter
+     *
      * @return string
      */
     public function chapterToPlainText(Chapter $chapter)
     {
-        $text = $chapter->name . "\n\n";
-        $text .= $chapter->description . "\n\n";
+        $text = $chapter->name."\n\n";
+        $text .= $chapter->description."\n\n";
         foreach ($chapter->pages as $page) {
             $text .= $this->pageToPlainText($page);
         }
+
         return $text;
     }
 
     /**
      * Convert a book into a plain text string.
+     *
      * @param Book $book
+     *
      * @return string
      */
     public function bookToPlainText(Book $book)
     {
         $bookTree = $this->entityRepo->getBookChildren($book, true, true);
-        $text = $book->name . "\n\n";
+        $text = $book->name."\n\n";
         foreach ($bookTree as $bookChild) {
             if ($bookChild->isA('chapter')) {
                 $text .= $this->chapterToPlainText($bookChild);
@@ -255,19 +294,7 @@ class ExportService
                 $text .= $this->pageToPlainText($bookChild);
             }
         }
+
         return $text;
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-

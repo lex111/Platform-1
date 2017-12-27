@@ -1,4 +1,6 @@
-<?php namespace DocsPen\Http\Controllers;
+<?php
+
+namespace DocsPen\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -8,6 +10,7 @@ class SettingController extends Controller
 {
     /**
      * Display a listing of the settings.
+     *
      * @return Response
      */
     public function index()
@@ -23,7 +26,9 @@ class SettingController extends Controller
 
     /**
      * Update the specified settings in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function update(Request $request)
@@ -33,13 +38,15 @@ class SettingController extends Controller
 
         // Cycles through posted settings and update them
         foreach ($request->all() as $name => $value) {
-            if (strpos($name, 'setting-') !== 0) continue;
+            if (strpos($name, 'setting-') !== 0) {
+                continue;
+            }
             $key = str_replace('setting-', '', trim($name));
             Setting::put($key, $value);
         }
 
         session()->flash('success', trans('settings.settings_save_success'));
+
         return redirect('/settings');
     }
-
 }

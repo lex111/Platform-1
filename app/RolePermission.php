@@ -1,5 +1,6 @@
-<?php namespace DocsPen;
+<?php
 
+namespace DocsPen;
 
 class RolePermission extends Model
 {
@@ -8,12 +9,14 @@ class RolePermission extends Model
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'permission_role','permission_id', 'role_id');
+        return $this->belongsToMany(Role::class, 'permission_role', 'permission_id', 'role_id');
     }
 
     /**
      * Get the permission object by name.
+     *
      * @param $name
+     *
      * @return mixed
      */
     public static function getByName($name)

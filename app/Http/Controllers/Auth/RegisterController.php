@@ -5,17 +5,17 @@ namespace DocsPen\Http\Controllers\Auth;
 use DocsPen\Exceptions\ConfirmationEmailException;
 use DocsPen\Exceptions\SocialSignInException;
 use DocsPen\Exceptions\UserRegistrationException;
+use DocsPen\Http\Controllers\Controller;
 use DocsPen\Repos\UserRepo;
 use DocsPen\Services\EmailConfirmationService;
 use DocsPen\Services\SocialAuthService;
 use DocsPen\SocialAccount;
 use DocsPen\User;
 use Exception;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Validator;
-use DocsPen\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -47,9 +47,9 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param SocialAuthService $socialAuthService
+     * @param SocialAuthService        $socialAuthService
      * @param EmailConfirmationService $emailConfirmationService
-     * @param UserRepo $userRepo
+     * @param UserRepo                 $userRepo
      */
     public function __construct(SocialAuthService $socialAuthService, EmailConfirmationService $emailConfirmationService, UserRepo $userRepo)
     {
@@ -65,20 +65,22 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|min:6',
         ]);
     }
 
     /**
      * Check whether or not registrations are allowed in the app settings.
+     *
      * @throws UserRegistrationException
      */
     protected function checkRegistrationAllowed()
@@ -90,21 +92,26 @@ class RegisterController extends Controller
 
     /**
      * Show the application registration form.
+     *
      * @return Response
      */
     public function getRegister()
     {
         $this->checkRegistrationAllowed();
         $socialDrivers = $this->socialAuthService->getActiveDrivers();
+
         return view('auth.register', ['socialDrivers' => $socialDrivers]);
     }
 
     /**
      * Handle a registration request for the application.
+     *
      * @param Request|\Illuminate\Http\Request $request
-     * @return Response
+     *
      * @throws UserRegistrationException
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return Response
      */
     public function postRegister(Request $request)
     {
@@ -118,36 +125,42 @@ class RegisterController extends Controller
         }
 
         $userData = $request->all();
+
         return $this->registerUser($userData);
     }
 
     /**
      * Create a new user instance after a valid registration.
-     * @param  array  $data
+     *
+     * @param array $data
+     *
      * @return User
      */
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
 
     /**
      * The registrations flow for all users.
-     * @param array $userData
+     *
+     * @param array                    $userData
      * @param bool|false|SocialAccount $socialAccount
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
      * @throws UserRegistrationException
      * @throws ConfirmationEmailException
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     protected function registerUser(array $userData, $socialAccount = false)
     {
         if (setting('registration-restrict')) {
             $restrictedEmailDomains = explode(',', str_replace(' ', '', setting('registration-restrict')));
-            $userEmailDomain = $domain = substr(strrchr($userData['email'], "@"), 1);
+            $userEmailDomain = $domain = substr(strrchr($userData['email'], '@'), 1);
             if (!in_array($userEmailDomain, $restrictedEmailDomains)) {
                 throw new UserRegistrationException(trans('auth.registration_email_domain_invalid'), '/register');
             }
@@ -172,6 +185,7 @@ class RegisterController extends Controller
 
         auth()->login($newUser);
         session()->flash('success', trans('auth.register_success'));
+
         return redirect($this->redirectPath());
     }
 
@@ -186,9 +200,12 @@ class RegisterController extends Controller
 
     /**
      * Confirms an email via a token and logs the user into the system.
+     *
      * @param $token
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
      * @throws UserRegistrationException
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function confirmEmail($token)
     {
@@ -199,12 +216,14 @@ class RegisterController extends Controller
         auth()->login($user);
         session()->flash('success', trans('auth.email_confirm_success'));
         $this->emailConfirmationService->deleteConfirmationsByUser($user);
+
         return redirect($this->redirectPath);
     }
 
     /**
      * Shows a notice that a user's email address has not been confirmed,
      * Also has the option to re-send the confirmation email.
+     *
      * @return \Illuminate\View\View
      */
     public function showAwaitingConfirmation()
@@ -213,14 +232,16 @@ class RegisterController extends Controller
     }
 
     /**
-     * Resend the confirmation email
+     * Resend the confirmation email.
+     *
      * @param Request $request
+     *
      * @return \Illuminate\View\View
      */
     public function resendConfirmation(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email|exists:users,email'
+            'email' => 'required|email|exists:users,email',
         ]);
         $user = $this->userRepo->getByEmail($request->get('email'));
 
@@ -228,34 +249,42 @@ class RegisterController extends Controller
             $this->emailConfirmationService->sendConfirmation($user);
         } catch (Exception $e) {
             session()->flash('error', trans('auth.email_confirm_send_error'));
+
             return redirect('/register/confirm');
         }
 
         session()->flash('success', trans('auth.email_confirm_resent'));
+
         return redirect('/register/confirm');
     }
 
     /**
      * Redirect to the social site for authentication intended to register.
+     *
      * @param $socialDriver
+     *
      * @return mixed
      */
     public function socialRegister($socialDriver)
     {
         $this->checkRegistrationAllowed();
         session()->put('social-callback', 'register');
+
         return $this->socialAuthService->startRegister($socialDriver);
     }
 
     /**
      * The callback for social login services.
+     *
      * @param $socialDriver
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
      * @throws SocialSignInException
      * @throws UserRegistrationException
      * @throws \DocsPen\Exceptions\SocialDriverNotConfigured
      * @throws ConfirmationEmailException
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function socialCallback($socialDriver, Request $request)
     {
@@ -267,19 +296,26 @@ class RegisterController extends Controller
         if ($request->has('error') && $request->has('error_description')) {
             throw new SocialSignInException(trans('errors.social_login_bad_response', [
                 'socialAccount' => $socialDriver,
-                'error' => $request->get('error_description'),
+                'error'         => $request->get('error_description'),
             ]), '/login');
         }
 
         $action = session()->pull('social-callback');
-        if ($action == 'login') return $this->socialAuthService->handleLoginCallback($socialDriver);
-        if ($action == 'register') return $this->socialRegisterCallback($socialDriver);
+        if ($action == 'login') {
+            return $this->socialAuthService->handleLoginCallback($socialDriver);
+        }
+        if ($action == 'register') {
+            return $this->socialRegisterCallback($socialDriver);
+        }
+
         return redirect()->back();
     }
 
     /**
      * Detach a social account from a user.
+     *
      * @param $socialDriver
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function detachSocialAccount($socialDriver)
@@ -289,11 +325,14 @@ class RegisterController extends Controller
 
     /**
      * Register a new user after a registration callback.
+     *
      * @param $socialDriver
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
      * @throws ConfirmationEmailException
      * @throws UserRegistrationException
      * @throws \DocsPen\Exceptions\SocialDriverNotConfigured
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     protected function socialRegisterCallback($socialDriver)
     {
@@ -302,11 +341,11 @@ class RegisterController extends Controller
 
         // Create an array of the user data to create a new user instance
         $userData = [
-            'name' => $socialUser->getName(),
-            'email' => $socialUser->getEmail(),
-            'password' => str_random(30)
+            'name'     => $socialUser->getName(),
+            'email'    => $socialUser->getEmail(),
+            'password' => str_random(30),
         ];
+
         return $this->registerUser($userData, $socialAccount);
     }
-
 }

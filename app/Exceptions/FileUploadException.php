@@ -1,4 +1,7 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
+namespace DocsPen\Exceptions;
 
-class FileUploadException extends PrettyException {}
+class FileUploadException extends PrettyException
+{
+}

@@ -1,4 +1,6 @@
-<?php namespace DocsPen;
+<?php
+
+namespace DocsPen;
 
 class Setting extends Model
 {

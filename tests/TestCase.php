@@ -1,4 +1,6 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 use DocsPen\Book;
 use DocsPen\Chapter;
@@ -18,6 +20,7 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Set the current user context to be an admin.
+     *
      * @return $this
      */
     public function asAdmin()
@@ -27,18 +30,22 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Get the current admin user.
+     *
      * @return mixed
      */
-    public function getAdmin() {
-        if($this->admin === null) {
+    public function getAdmin()
+    {
+        if ($this->admin === null) {
             $adminRole = Role::getSystemRole('admin');
             $this->admin = $adminRole->users->first();
         }
+
         return $this->admin;
     }
 
     /**
      * Set the current user context to be an editor.
+     *
      * @return $this
      */
     public function asEditor()
@@ -46,52 +53,65 @@ abstract class TestCase extends BaseTestCase
         return $this->actingAs($this->getEditor());
     }
 
-
     /**
      * Get a editor user.
+     *
      * @return mixed
      */
-    public function getEditor() {
-        if($this->editor === null) {
+    public function getEditor()
+    {
+        if ($this->editor === null) {
             $editorRole = Role::getRole('editor');
             $this->editor = $editorRole->users->first();
         }
+
         return $this->editor;
     }
 
     /**
      * Create and return a new book.
+     *
      * @param array $input
+     *
      * @return Book
      */
-    public function newBook($input = ['name' => 'test book', 'description' => 'My new test book']) {
+    public function newBook($input = ['name' => 'test book', 'description' => 'My new test book'])
+    {
         return $this->app[EntityRepo::class]->createFromInput('book', $input, false);
     }
 
     /**
-     * Create and return a new test chapter
+     * Create and return a new test chapter.
+     *
      * @param array $input
-     * @param Book $book
+     * @param Book  $book
+     *
      * @return Chapter
      */
-    public function newChapter($input = ['name' => 'test chapter', 'description' => 'My new test chapter'], Book $book) {
+    public function newChapter($input, Book $book)
+    {
         return $this->app[EntityRepo::class]->createFromInput('chapter', $input, $book);
     }
 
     /**
-     * Create and return a new test page
+     * Create and return a new test page.
+     *
      * @param array $input
+     *
      * @return Chapter
      */
-    public function newPage($input = ['name' => 'test page', 'html' => 'My new test page']) {
+    public function newPage($input = ['name' => 'test page', 'html' => 'My new test page'])
+    {
         $book = Book::first();
         $entityRepo = $this->app[EntityRepo::class];
         $draftPage = $entityRepo->getDraftPage($book);
+
         return $entityRepo->publishPageDraft($draftPage, $input);
     }
 
     /**
      * Quickly sets an array of settings.
+     *
      * @param $settingsArray
      */
     protected function setSettings($settingsArray)

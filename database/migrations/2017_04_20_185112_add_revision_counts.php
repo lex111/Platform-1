@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddRevisionCounts extends Migration
 {
@@ -22,8 +22,8 @@ class AddRevisionCounts extends Migration
         });
 
         // Update revision count
-        $pTable = DB::getTablePrefix() . 'pages';
-        $rTable = DB::getTablePrefix() . 'page_revisions';
+        $pTable = DB::getTablePrefix().'pages';
+        $rTable = DB::getTablePrefix().'page_revisions';
         DB::statement("UPDATE ${pTable} SET ${pTable}.revision_count=(SELECT count(*) FROM ${rTable} WHERE ${rTable}.page_id=${pTable}.id)");
     }
 

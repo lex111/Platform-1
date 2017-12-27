@@ -1,18 +1,20 @@
-<?php namespace Tests;
+<?php
 
-use DocsPen\Role;
-use DocsPen\Tag;
+namespace Tests;
+
 use DocsPen\Page;
 use DocsPen\Services\PermissionService;
+use DocsPen\Tag;
 
 class TagTest extends BrowserKitTest
 {
-
     protected $defaultTagCount = 20;
 
     /**
      * Get an instance of a page that has many tags.
+     *
      * @param Tag[]|bool $tags
+     *
      * @return mixed
      */
     protected function getPageWithTags($tags = false)
@@ -24,6 +26,7 @@ class TagTest extends BrowserKitTest
         }
 
         $page->tags()->saveMany($tags);
+
         return $page;
     }
 
@@ -34,11 +37,11 @@ class TagTest extends BrowserKitTest
         // Add some other tags to check they don't interfere
         factory(Tag::class, $this->defaultTagCount)->create();
 
-        $this->asAdmin()->get("/ajax/tags/get/page/" . $page->id)
+        $this->asAdmin()->get('/ajax/tags/get/page/'.$page->id)
             ->shouldReturnJson();
 
         $json = json_decode($this->response->getContent());
-        $this->assertTrue(count($json) === $this->defaultTagCount, "Returned JSON item count is not as expected");
+        $this->assertTrue(count($json) === $this->defaultTagCount, 'Returned JSON item count is not as expected');
     }
 
     public function test_tag_name_suggestions()
@@ -98,5 +101,4 @@ class TagTest extends BrowserKitTest
         $this->asAdmin()->get('/ajax/tags/suggest/names?search=co')->seeJsonEquals(['color', 'country']);
         $this->asEditor()->get('/ajax/tags/suggest/names?search=co')->seeJsonEquals([]);
     }
-
 }

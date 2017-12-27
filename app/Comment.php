@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace DocsPen;
 
@@ -9,6 +9,7 @@ class Comment extends Ownable
 
     /**
      * Get the entity that this comment belongs to.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
     public function entity()

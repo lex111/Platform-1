@@ -2,7 +2,6 @@
 
 return [
 
-
     'method' => env('AUTH_METHOD', 'standard'),
 
     /*
@@ -17,7 +16,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard'     => 'web',
         'passwords' => 'users',
     ],
 
@@ -40,12 +39,12 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'users',
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver'   => 'token',
             'provider' => 'users',
         ],
     ],
@@ -70,7 +69,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => env('AUTH_METHOD', 'standard') === 'standard' ? 'eloquent' : env('AUTH_METHOD'),
-            'model' => DocsPen\User::class,
+            'model'  => DocsPen\User::class,
         ],
 
         // 'users' => [
@@ -101,9 +100,9 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'email' => 'emails.password',
-            'table' => 'password_resets',
-            'expire' => 60,
+            'email'    => 'emails.password',
+            'table'    => 'password_resets',
+            'expire'   => 60,
         ],
     ],
 

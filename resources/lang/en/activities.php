@@ -2,7 +2,7 @@
 
 return [
 
-    /**
+    /*
      * Activity text strings.
      * Is used for all the text within activity logs & notifications.
      */

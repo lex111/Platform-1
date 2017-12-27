@@ -2,8 +2,8 @@
 
 namespace DocsPen\Notifications;
 
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class ResetPassword extends Notification
 {
@@ -17,7 +17,7 @@ class ResetPassword extends Notification
     /**
      * Create a notification instance.
      *
-     * @param  string  $token
+     * @param string $token
      */
     public function __construct($token)
     {
@@ -27,7 +27,8 @@ class ResetPassword extends Notification
     /**
      * Get the notification's channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array|string
      */
     public function via($notifiable)
@@ -42,10 +43,10 @@ class ResetPassword extends Notification
      */
     public function toMail()
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(trans('auth.email_reset_subject', ['appName' => setting('app-name')]))
             ->line(trans('auth.email_reset_text'))
-            ->action(trans('auth.reset_password'), baseUrl('password/reset/' . $this->token))
+            ->action(trans('auth.reset_password'), baseUrl('password/reset/'.$this->token))
             ->line(trans('auth.email_reset_not_requested'));
     }
 }

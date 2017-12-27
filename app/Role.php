@@ -1,9 +1,9 @@
-<?php namespace DocsPen;
+<?php
 
+namespace DocsPen;
 
 class Role extends Model
 {
-
     protected $fillable = ['display_name', 'description'];
 
     /**
@@ -16,6 +16,7 @@ class Role extends Model
 
     /**
      * Get all related JointPermissions.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function jointPermissions()
@@ -33,20 +34,26 @@ class Role extends Model
 
     /**
      * Check if this role has a permission.
+     *
      * @param $permissionName
+     *
      * @return bool
      */
     public function hasPermission($permissionName)
     {
         $permissions = $this->getRelationValue('permissions');
         foreach ($permissions as $permission) {
-            if ($permission->getRawAttribute('name') === $permissionName) return true;
+            if ($permission->getRawAttribute('name') === $permissionName) {
+                return true;
+            }
         }
+
         return false;
     }
 
     /**
      * Add a permission to this role.
+     *
      * @param RolePermission $permission
      */
     public function attachPermission(RolePermission $permission)
@@ -56,6 +63,7 @@ class Role extends Model
 
     /**
      * Detach a single permission from this role.
+     *
      * @param RolePermission $permission
      */
     public function detachPermission(RolePermission $permission)
@@ -65,7 +73,9 @@ class Role extends Model
 
     /**
      * Get the role object for the specified role.
+     *
      * @param $roleName
+     *
      * @return Role
      */
     public static function getRole($roleName)
@@ -75,7 +85,9 @@ class Role extends Model
 
     /**
      * Get the role object for the specified system role.
+     *
      * @param $roleName
+     *
      * @return Role
      */
     public static function getSystemRole($roleName)
@@ -84,12 +96,12 @@ class Role extends Model
     }
 
     /**
-     * Get all visible roles
+     * Get all visible roles.
+     *
      * @return mixed
      */
     public static function visible()
     {
         return static::where('hidden', '=', false)->orderBy('name')->get();
     }
-
 }

@@ -1,4 +1,7 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
+namespace DocsPen\Exceptions;
 
-class SocialSignInException extends NotifyException {}
+class SocialSignInException extends NotifyException
+{
+}

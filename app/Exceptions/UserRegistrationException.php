@@ -1,4 +1,7 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
+namespace DocsPen\Exceptions;
 
-class UserRegistrationException extends NotifyException {}
+class UserRegistrationException extends NotifyException
+{
+}

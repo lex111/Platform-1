@@ -1,9 +1,11 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
+
 use DocsPen\User;
 
 class LdapTest extends BrowserKitTest
 {
-
     protected $mockLdap;
     protected $mockUser;
     protected $resourceId = 'resource-test';
@@ -11,7 +13,9 @@ class LdapTest extends BrowserKitTest
     public function setUp()
     {
         parent::setUp();
-        if (!defined('LDAP_OPT_REFERRALS')) define('LDAP_OPT_REFERRALS', 1);
+        if (!defined('LDAP_OPT_REFERRALS')) {
+            define('LDAP_OPT_REFERRALS', 1);
+        }
         app('config')->set(['auth.method' => 'ldap', 'services.ldap.base_dn' => 'dc=ldap,dc=local', 'auth.providers.users.driver' => 'ldap']);
         $this->mockLdap = \Mockery::mock(\DocsPen\Services\Ldap::class);
         $this->app['DocsPen\Services\Ldap'] = $this->mockLdap;
@@ -27,8 +31,8 @@ class LdapTest extends BrowserKitTest
             ->with($this->resourceId, config('services.ldap.base_dn'), \Mockery::type('string'), \Mockery::type('array'))
             ->andReturn(['count' => 1, 0 => [
                 'uid' => [$this->mockUser->name],
-                'cn' => [$this->mockUser->name],
-                'dn' => ['dc=test' . config('services.ldap.base_dn')]
+                'cn'  => [$this->mockUser->name],
+                'dn'  => ['dc=test'.config('services.ldap.base_dn')],
             ]]);
         $this->mockLdap->shouldReceive('bind')->times(6)->andReturn(true);
 
@@ -50,14 +54,14 @@ class LdapTest extends BrowserKitTest
     {
         $this->mockLdap->shouldReceive('connect')->once()->andReturn($this->resourceId);
         $this->mockLdap->shouldReceive('setVersion')->once();
-        $ldapDn = 'cn=test-user,dc=test' . config('services.ldap.base_dn');
+        $ldapDn = 'cn=test-user,dc=test'.config('services.ldap.base_dn');
         $this->mockLdap->shouldReceive('setOption')->times(2);
         $this->mockLdap->shouldReceive('searchAndGetEntries')->times(2)
             ->with($this->resourceId, config('services.ldap.base_dn'), \Mockery::type('string'), \Mockery::type('array'))
             ->andReturn(['count' => 1, 0 => [
-                'cn' => [$this->mockUser->name],
-                'dn' => $ldapDn,
-                'mail' => [$this->mockUser->email]
+                'cn'   => [$this->mockUser->name],
+                'dn'   => $ldapDn,
+                'mail' => [$this->mockUser->email],
             ]]);
         $this->mockLdap->shouldReceive('bind')->times(3)->andReturn(true);
 
@@ -80,8 +84,8 @@ class LdapTest extends BrowserKitTest
             ->with($this->resourceId, config('services.ldap.base_dn'), \Mockery::type('string'), \Mockery::type('array'))
             ->andReturn(['count' => 1, 0 => [
                 'uid' => [$this->mockUser->name],
-                'cn' => [$this->mockUser->name],
-                'dn' => ['dc=test' . config('services.ldap.base_dn')]
+                'cn'  => [$this->mockUser->name],
+                'dn'  => ['dc=test'.config('services.ldap.base_dn')],
             ]]);
         $this->mockLdap->shouldReceive('bind')->times(3)->andReturn(true, true, false);
 
@@ -111,7 +115,7 @@ class LdapTest extends BrowserKitTest
     public function test_user_edit_form()
     {
         $editUser = $this->getNormalUser();
-        $this->asAdmin()->visit('/settings/users/' . $editUser->id)
+        $this->asAdmin()->visit('/settings/users/'.$editUser->id)
             ->see('Edit User')
             ->dontSee('Password')
             ->type('test_auth_id', '#external_auth_id')
@@ -129,8 +133,7 @@ class LdapTest extends BrowserKitTest
     public function test_non_admins_cannot_change_auth_id()
     {
         $testUser = $this->getNormalUser();
-        $this->actingAs($testUser)->visit('/settings/users/' . $testUser->id)
+        $this->actingAs($testUser)->visit('/settings/users/'.$testUser->id)
             ->dontSee('External Authentication');
     }
-
 }

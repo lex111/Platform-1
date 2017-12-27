@@ -1,4 +1,6 @@
-<?php namespace DocsPen\Http\Middleware;
+<?php
+
+namespace DocsPen\Http\Middleware;
 
 use Carbon\Carbon;
 use Closure;
@@ -8,8 +10,9 @@ class Localization
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -19,7 +22,9 @@ class Localization
             $locale = $defaultLang;
             $availableLocales = config('app.locales');
             foreach ($request->getLanguages() as $lang) {
-                if (!in_array($lang, $availableLocales)) continue;
+                if (!in_array($lang, $availableLocales)) {
+                    continue;
+                }
                 $locale = $lang;
                 break;
             }
@@ -28,6 +33,7 @@ class Localization
         }
         app()->setLocale($locale);
         Carbon::setLocale($locale);
+
         return $next($request);
     }
 }

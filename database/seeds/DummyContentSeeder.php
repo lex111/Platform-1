@@ -22,9 +22,9 @@ class DummyContentSeeder extends Seeder
         $viewerUser->attachRole($role);
 
         factory(\DocsPen\Book::class, 20)->create(['created_by' => $editorUser->id, 'updated_by' => $editorUser->id])
-            ->each(function($book) use ($editorUser) {
+            ->each(function ($book) use ($editorUser) {
                 $chapters = factory(\DocsPen\Chapter::class, 5)->create(['created_by' => $editorUser->id, 'updated_by' => $editorUser->id])
-                    ->each(function($chapter) use ($editorUser, $book){
+                    ->each(function ($chapter) use ($editorUser, $book) {
                         $pages = factory(\DocsPen\Page::class, 5)->make(['created_by' => $editorUser->id, 'updated_by' => $editorUser->id, 'book_id' => $book->id]);
                         $chapter->pages()->saveMany($pages);
                     });
@@ -33,7 +33,7 @@ class DummyContentSeeder extends Seeder
                 $book->pages()->saveMany($pages);
             });
 
-        $largeBook = factory(\DocsPen\Book::class)->create(['name' => 'Large book' . str_random(10), 'created_by' => $editorUser->id, 'updated_by' => $editorUser->id]);
+        $largeBook = factory(\DocsPen\Book::class)->create(['name' => 'Large book'.str_random(10), 'created_by' => $editorUser->id, 'updated_by' => $editorUser->id]);
         $pages = factory(\DocsPen\Page::class, 200)->make(['created_by' => $editorUser->id, 'updated_by' => $editorUser->id]);
         $chapters = factory(\DocsPen\Chapter::class, 50)->make(['created_by' => $editorUser->id, 'updated_by' => $editorUser->id]);
         $largeBook->pages()->saveMany($pages);

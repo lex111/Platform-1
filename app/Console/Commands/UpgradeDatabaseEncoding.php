@@ -23,7 +23,6 @@ class UpgradeDatabaseEncoding extends Command
 
     /**
      * Create a new command instance.
-     *
      */
     public function __construct()
     {
@@ -46,7 +45,7 @@ class UpgradeDatabaseEncoding extends Command
         $tables = DB::select('SHOW TABLES');
         $this->line('ALTER DATABASE `'.$database.'` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;');
         $this->line('USE `'.$database.'`;');
-        $key = 'Tables_in_' . $database;
+        $key = 'Tables_in_'.$database;
         foreach ($tables as $table) {
             $tableName = $table->$key;
             $this->line('ALTER TABLE `'.$tableName.'` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;');

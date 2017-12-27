@@ -1,16 +1,17 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
+namespace DocsPen\Exceptions;
 
 class NotifyException extends \Exception
 {
-
     public $message;
     public $redirectLocation;
 
     /**
      * NotifyException constructor.
+     *
      * @param string $message
-     * @param string    $redirectLocation
+     * @param string $redirectLocation
      */
     public function __construct($message, $redirectLocation)
     {

@@ -1,12 +1,12 @@
-<?php namespace DocsPen\Providers;
+<?php
 
+namespace DocsPen\Providers;
 
 use Illuminate\Pagination\PaginationServiceProvider as IlluminatePaginationServiceProvider;
 use Illuminate\Pagination\Paginator;
 
 class PaginationServiceProvider extends IlluminatePaginationServiceProvider
 {
-
     /**
      * Register the service provider.
      *

@@ -1,5 +1,6 @@
-<?php namespace DocsPen\Services\Facades;
+<?php
 
+namespace DocsPen\Services\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -10,5 +11,8 @@ class Images extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'images'; }
+    protected static function getFacadeAccessor()
+    {
+        return 'images';
+    }
 }

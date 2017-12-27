@@ -1,4 +1,6 @@
-<?php namespace DocsPen\Providers;
+<?php
+
+namespace DocsPen\Providers;
 
 use DocsPen\Services\SettingService;
 use DocsPen\Setting;
@@ -15,12 +17,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Custom validation methods
-        Validator::extend('is_image', function($attribute, $value, $parameters, $validator) {
+        Validator::extend('is_image', function ($attribute, $value, $parameters, $validator) {
             $imageMimes = ['image/png', 'image/bmp', 'image/gif', 'image/jpeg', 'image/jpg', 'image/tiff', 'image/webp'];
+
             return in_array($value->getMimeType(), $imageMimes);
         });
 
-        \Blade::directive('icon', function($expression) {
+        \Blade::directive('icon', function ($expression) {
             return "<?php echo icon($expression); ?>";
         });
 
@@ -35,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(SettingService::class, function($app) {
+        $this->app->singleton(SettingService::class, function ($app) {
             return new SettingService($app->make(Setting::class), $app->make('Illuminate\Contracts\Cache\Repository'));
         });
     }

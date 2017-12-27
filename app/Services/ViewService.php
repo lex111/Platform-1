@@ -1,4 +1,6 @@
-<?php namespace DocsPen\Services;
+<?php
+
+namespace DocsPen\Services;
 
 use DocsPen\Entity;
 use DocsPen\View;
@@ -10,7 +12,8 @@ class ViewService
 
     /**
      * ViewService constructor.
-     * @param View $view
+     *
+     * @param View              $view
      * @param PermissionService $permissionService
      */
     public function __construct(View $view, PermissionService $permissionService)
@@ -21,24 +24,29 @@ class ViewService
 
     /**
      * Add a view to the given entity.
+     *
      * @param Entity $entity
+     *
      * @return int
      */
     public function add(Entity $entity)
     {
         $user = user();
-        if ($user === null || $user->isDefault()) return 0;
+        if ($user === null || $user->isDefault()) {
+            return 0;
+        }
         $view = $entity->views()->where('user_id', '=', $user->id)->first();
         // Add view if model exists
         if ($view) {
             $view->increment('views');
+
             return $view->views;
         }
 
         // Otherwise create new view count
         $entity->views()->save($this->view->create([
             'user_id' => $user->id,
-            'views' => 1
+            'views'   => 1,
         ]));
 
         return 1;
@@ -46,8 +54,9 @@ class ViewService
 
     /**
      * Get the entities with the most views.
-     * @param int $count
-     * @param int $page
+     *
+     * @param int              $count
+     * @param int              $page
      * @param bool|false|array $filterModel
      */
     public function getPopular($count = 10, $page = 0, $filterModel = false)
@@ -60,7 +69,7 @@ class ViewService
 
         if ($filterModel && is_array($filterModel)) {
             $query->whereIn('viewable_type', $filterModel);
-        } else if ($filterModel) {
+        } elseif ($filterModel) {
             $query->where('viewable_type', '=', get_class($filterModel));
         }
 
@@ -69,24 +78,31 @@ class ViewService
 
     /**
      * Get all recently viewed entities for the current user.
-     * @param int $count
-     * @param int $page
+     *
+     * @param int         $count
+     * @param int         $page
      * @param Entity|bool $filterModel
+     *
      * @return mixed
      */
     public function getUserRecentlyViewed($count = 10, $page = 0, $filterModel = false)
     {
         $user = user();
-        if ($user === null || $user->isDefault()) return collect();
+        if ($user === null || $user->isDefault()) {
+            return collect();
+        }
 
         $query = $this->permissionService
             ->filterRestrictedEntityRelations($this->view, 'views', 'viewable_id', 'viewable_type');
 
-        if ($filterModel) $query = $query->where('viewable_type', '=', get_class($filterModel));
+        if ($filterModel) {
+            $query = $query->where('viewable_type', '=', get_class($filterModel));
+        }
         $query = $query->where('user_id', '=', $user->id);
 
         $viewables = $query->with('viewable')->orderBy('updated_at', 'desc')
             ->skip($count * $page)->take($count)->get()->pluck('viewable');
+
         return $viewables;
     }
 
@@ -97,5 +113,4 @@ class ViewService
     {
         $this->view->truncate();
     }
-
 }

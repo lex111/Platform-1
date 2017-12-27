@@ -1,11 +1,12 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 use DocsPen\Notifications\ConfirmEmail;
 use Illuminate\Support\Facades\Notification;
 
 class AuthTest extends BrowserKitTest
 {
-
     public function test_auth_working()
     {
         $this->visit('/')
@@ -55,7 +56,6 @@ class AuthTest extends BrowserKitTest
             ->seeInDatabase('users', ['name' => $user->name, 'email' => $user->email]);
     }
 
-
     public function test_confirmed_registration()
     {
         // Fake notifications
@@ -89,12 +89,12 @@ class AuthTest extends BrowserKitTest
 
         // Get confirmation and confirm notification matches
         $emailConfirmation = \DB::table('email_confirmations')->where('user_id', '=', $dbUser->id)->first();
-        Notification::assertSentTo($dbUser, ConfirmEmail::class, function($notification, $channels) use ($emailConfirmation) {
+        Notification::assertSentTo($dbUser, ConfirmEmail::class, function ($notification, $channels) use ($emailConfirmation) {
             return $notification->token === $emailConfirmation->token;
         });
-        
+
         // Check confirmation email confirmation activation.
-        $this->visit('/register/confirm/' . $emailConfirmation->token)
+        $this->visit('/register/confirm/'.$emailConfirmation->token)
             ->seePageIs('/')
             ->see($user->name)
             ->notSeeInDatabase('email_confirmations', ['token' => $emailConfirmation->token])
@@ -190,7 +190,7 @@ class AuthTest extends BrowserKitTest
         $this->asAdmin()
             ->visit('/settings/users')
             ->click($user->name)
-            ->seePageIs('/settings/users/' . $user->id)
+            ->seePageIs('/settings/users/'.$user->id)
             ->see($user->email)
             ->type('Barry Scott', '#name')
             ->press('Save')
@@ -202,7 +202,7 @@ class AuthTest extends BrowserKitTest
     public function test_user_password_update()
     {
         $user = $this->getNormalUser();
-        $userProfilePage = '/settings/users/' . $user->id;
+        $userProfilePage = '/settings/users/'.$user->id;
         $this->asAdmin()
             ->visit($userProfilePage)
             ->type('newpassword', '#password')
@@ -215,8 +215,8 @@ class AuthTest extends BrowserKitTest
             ->press('Save')
             ->seePageIs('/settings/users');
 
-            $userPassword = \DocsPen\User::find($user->id)->password;
-            $this->assertTrue(\Hash::check('newpassword', $userPassword));
+        $userPassword = \DocsPen\User::find($user->id)->password;
+        $this->assertTrue(\Hash::check('newpassword', $userPassword));
     }
 
     public function test_user_deletion()
@@ -225,7 +225,7 @@ class AuthTest extends BrowserKitTest
         $user = $this->getEditor($userDetails->toArray());
 
         $this->asAdmin()
-            ->visit('/settings/users/' . $user->id)
+            ->visit('/settings/users/'.$user->id)
             ->click('Delete User')
             ->see($user->name)
             ->press('Confirm')
@@ -240,10 +240,10 @@ class AuthTest extends BrowserKitTest
         $this->assertEquals(1, $adminRole->users()->count());
         $user = $adminRole->users->first();
 
-        $this->asAdmin()->visit('/settings/users/' . $user->id)
+        $this->asAdmin()->visit('/settings/users/'.$user->id)
             ->click('Delete User')
             ->press('Confirm')
-            ->seePageIs('/settings/users/' . $user->id)
+            ->seePageIs('/settings/users/'.$user->id)
             ->see('You cannot delete the only admin');
     }
 
@@ -259,7 +259,6 @@ class AuthTest extends BrowserKitTest
 
     public function test_reset_password_flow()
     {
-
         Notification::fake();
 
         $this->visit('/login')->click('Forgot Password?')
@@ -269,7 +268,7 @@ class AuthTest extends BrowserKitTest
             ->see('A password reset link has been sent to admin@admin.com');
 
         $this->seeInDatabase('password_resets', [
-            'email' => 'admin@admin.com'
+            'email' => 'admin@admin.com',
         ]);
 
         $user = \DocsPen\User::where('email', '=', 'admin@admin.com')->first();
@@ -277,12 +276,12 @@ class AuthTest extends BrowserKitTest
         Notification::assertSentTo($user, \DocsPen\Notifications\ResetPassword::class);
         $n = Notification::sent($user, \DocsPen\Notifications\ResetPassword::class);
 
-        $this->visit('/password/reset/' . $n->first()->token)
+        $this->visit('/password/reset/'.$n->first()->token)
             ->see('Reset Password')
             ->submitForm('Reset Password', [
-                'email' => 'admin@admin.com',
-                'password' => 'randompass',
-                'password_confirmation' => 'randompass'
+                'email'                 => 'admin@admin.com',
+                'password'              => 'randompass',
+                'password_confirmation' => 'randompass',
             ])->seePageIs('/')
             ->see('Your password has been successfully reset');
     }
@@ -296,9 +295,11 @@ class AuthTest extends BrowserKitTest
     }
 
     /**
-     * Perform a login
+     * Perform a login.
+     *
      * @param string $email
      * @param string $password
+     *
      * @return $this
      */
     protected function login($email, $password)

@@ -3,12 +3,12 @@
 namespace DocsPen\Http\Controllers;
 
 use DocsPen\Ownable;
+use DocsPen\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use DocsPen\User;
 
 abstract class Controller extends BaseController
 {
@@ -51,11 +51,14 @@ abstract class Controller extends BaseController
      */
     protected function preventAccessForDemoUsers()
     {
-        if (config('app.env') === 'demo') $this->showPermissionError();
+        if (config('app.env') === 'demo') {
+            $this->showPermissionError();
+        }
     }
 
     /**
      * Adds the page title into the view.
+     *
      * @param $title
      */
     public function setPageTitle($title)
@@ -81,7 +84,9 @@ abstract class Controller extends BaseController
 
     /**
      * Checks for a permission.
+     *
      * @param string $permissionName
+     *
      * @return bool|\Illuminate\Http\RedirectResponse
      */
     protected function checkPermission($permissionName)
@@ -89,41 +94,54 @@ abstract class Controller extends BaseController
         if (!user() || !user()->can($permissionName)) {
             $this->showPermissionError();
         }
+
         return true;
     }
 
     /**
      * Check the current user's permissions against an ownable item.
+     *
      * @param $permission
      * @param Ownable $ownable
+     *
      * @return bool
      */
     protected function checkOwnablePermission($permission, Ownable $ownable)
     {
-        if (userCan($permission, $ownable)) return true;
+        if (userCan($permission, $ownable)) {
+            return true;
+        }
+
         return $this->showPermissionError();
     }
 
     /**
      * Check if a user has a permission or bypass if the callback is true.
+     *
      * @param $permissionName
      * @param $callback
+     *
      * @return bool
      */
     protected function checkPermissionOr($permissionName, $callback)
     {
         $callbackResult = $callback();
-        if ($callbackResult === false) $this->checkPermission($permissionName);
+        if ($callbackResult === false) {
+            $this->checkPermission($permissionName);
+        }
+
         return true;
     }
 
     /**
      * Send back a json error message.
+     *
      * @param string $messageText
-     * @param int $statusCode
+     * @param int    $statusCode
+     *
      * @return mixed
      */
-    protected function jsonError($messageText = "", $statusCode = 500)
+    protected function jsonError($messageText = '', $statusCode = 500)
     {
         return response()->json(['message' => $messageText], $statusCode);
     }
@@ -131,8 +149,9 @@ abstract class Controller extends BaseController
     /**
      * Create the response for when a request fails validation.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  array  $errors
+     * @param \Illuminate\Http\Request $request
+     * @param array                    $errors
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function buildFailedValidationResponse(Request $request, array $errors)
@@ -145,5 +164,4 @@ abstract class Controller extends BaseController
             ->withInput($request->input())
             ->withErrors($errors, $this->errorBag());
     }
-
 }

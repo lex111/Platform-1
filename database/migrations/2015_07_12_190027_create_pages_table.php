@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreatePagesTable extends Migration
 {
@@ -17,8 +17,10 @@ class CreatePagesTable extends Migration
         $requiresISAM = strpos($mysqlVersion, '5.5') === 0;
 
         Schema::create('pages', function (Blueprint $table) use ($requiresISAM) {
-            if($requiresISAM) $table->engine = 'MyISAM';
-            
+            if ($requiresISAM) {
+                $table->engine = 'MyISAM';
+            }
+
             $table->increments('id');
             $table->integer('book_id');
             $table->integer('chapter_id');

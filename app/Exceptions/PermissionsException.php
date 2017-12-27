@@ -1,6 +1,9 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
+namespace DocsPen\Exceptions;
 
 use Exception;
 
-class PermissionsException extends Exception {}
+class PermissionsException extends Exception
+{
+}

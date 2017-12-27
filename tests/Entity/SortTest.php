@@ -1,4 +1,6 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 use DocsPen\Book;
 use DocsPen\Page;
@@ -23,7 +25,7 @@ class SortTest extends TestCase
         $resp = $this->get($this->book->getUrl());
         $resp->assertSee($draft->name);
 
-        $resp = $this->get($this->book->getUrl() . '/sort');
+        $resp = $this->get($this->book->getUrl().'/sort');
         $resp->assertDontSee($draft->name);
     }
 
@@ -33,11 +35,11 @@ class SortTest extends TestCase
         $currentBook = $page->book;
         $newBook = \DocsPen\Book::where('id', '!=', $currentBook->id)->first();
 
-        $resp = $this->asAdmin()->get($page->getUrl() . '/move');
+        $resp = $this->asAdmin()->get($page->getUrl().'/move');
         $resp->assertSee('Move Page');
 
-        $movePageResp = $this->put($page->getUrl() . '/move', [
-            'entity_selection' => 'book:' . $newBook->id
+        $movePageResp = $this->put($page->getUrl().'/move', [
+            'entity_selection' => 'book:'.$newBook->id,
         ]);
         $page = \DocsPen\Page::find($page->id);
 
@@ -56,11 +58,11 @@ class SortTest extends TestCase
         $pageToCheck = $chapter->pages->first();
         $newBook = \DocsPen\Book::where('id', '!=', $currentBook->id)->first();
 
-        $chapterMoveResp = $this->asAdmin()->get($chapter->getUrl() . '/move');
+        $chapterMoveResp = $this->asAdmin()->get($chapter->getUrl().'/move');
         $chapterMoveResp->assertSee('Move Chapter');
 
-        $moveChapterResp = $this->put($chapter->getUrl() . '/move', [
-            'entity_selection' => 'book:' . $newBook->id
+        $moveChapterResp = $this->put($chapter->getUrl().'/move', [
+            'entity_selection' => 'book:'.$newBook->id,
         ]);
 
         $chapter = \DocsPen\Chapter::find($chapter->id);
@@ -87,30 +89,30 @@ class SortTest extends TestCase
         // Create request data
         $reqData = [
             [
-                'id' => $chapterToMove->id,
-                'sort' => 0,
+                'id'            => $chapterToMove->id,
+                'sort'          => 0,
                 'parentChapter' => false,
-                'type' => 'chapter',
-                'book' => $newBook->id
-            ]
+                'type'          => 'chapter',
+                'book'          => $newBook->id,
+            ],
         ];
         foreach ($pagesToMove as $index => $page) {
             $reqData[] = [
-                'id' => $page->id,
-                'sort' => $index,
+                'id'            => $page->id,
+                'sort'          => $index,
                 'parentChapter' => $index === count($pagesToMove) - 1 ? $chapterToMove->id : false,
-                'type' => 'page',
-                'book' => $newBook->id
+                'type'          => 'page',
+                'book'          => $newBook->id,
             ];
         }
 
-        $sortResp = $this->asAdmin()->put($newBook->getUrl() . '/sort', ['sort-tree' => json_encode($reqData)]);
+        $sortResp = $this->asAdmin()->put($newBook->getUrl().'/sort', ['sort-tree' => json_encode($reqData)]);
         $sortResp->assertRedirect($newBook->getUrl());
         $sortResp->assertStatus(302);
         $this->assertDatabaseHas('chapters', [
-            'id' => $chapterToMove->id,
-            'book_id' => $newBook->id,
-            'priority' => 0
+            'id'       => $chapterToMove->id,
+            'book_id'  => $newBook->id,
+            'priority' => 0,
         ]);
         $this->assertTrue($newBook->chapters()->count() === 1);
         $this->assertTrue($newBook->chapters()->first()->pages()->count() === 1);
@@ -119,5 +121,4 @@ class SortTest extends TestCase
         $checkResp = $this->get(Page::find($checkPage->id)->getUrl());
         $checkResp->assertSee($newBook->name);
     }
-
 }

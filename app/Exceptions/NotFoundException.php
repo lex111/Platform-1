@@ -1,10 +1,12 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
+namespace DocsPen\Exceptions;
 
-class NotFoundException extends PrettyException {
-
+class NotFoundException extends PrettyException
+{
     /**
      * NotFoundException constructor.
+     *
      * @param string $message
      */
     public function __construct($message = 'Item not found')

@@ -1,21 +1,23 @@
-<?php namespace DocsPen\Repos;
+<?php
+
+namespace DocsPen\Repos;
 
 use DocsPen\Comment;
 use DocsPen\Entity;
 
 /**
- * Class CommentRepo
- * @package DocsPen\Repos
+ * Class CommentRepo.
  */
-class CommentRepo {
-
+class CommentRepo
+{
     /**
-     * @var Comment $comment
+     * @var Comment
      */
     protected $comment;
 
     /**
      * CommentRepo constructor.
+     *
      * @param Comment $comment
      */
     public function __construct(Comment $comment)
@@ -25,7 +27,9 @@ class CommentRepo {
 
     /**
      * Get a comment by ID.
+     *
      * @param $id
+     *
      * @return Comment|\Illuminate\Database\Eloquent\Model
      */
     public function getById($id)
@@ -35,11 +39,13 @@ class CommentRepo {
 
     /**
      * Create a new comment on an entity.
+     *
      * @param Entity $entity
-     * @param array $data
+     * @param array  $data
+     *
      * @return Comment
      */
-    public function create (Entity $entity, $data = [])
+    public function create(Entity $entity, $data = [])
     {
         $userId = user()->id;
         $comment = $this->comment->newInstance($data);
@@ -47,25 +53,31 @@ class CommentRepo {
         $comment->updated_by = $userId;
         $comment->local_id = $this->getNextLocalId($entity);
         $entity->comments()->save($comment);
+
         return $comment;
     }
 
     /**
      * Update an existing comment.
+     *
      * @param Comment $comment
-     * @param array $input
+     * @param array   $input
+     *
      * @return mixed
      */
     public function update($comment, $input)
     {
         $comment->updated_by = user()->id;
         $comment->update($input);
+
         return $comment;
     }
 
     /**
      * Delete a comment from the system.
+     *
      * @param Comment $comment
+     *
      * @return mixed
      */
     public function delete($comment)
@@ -75,13 +87,18 @@ class CommentRepo {
 
     /**
      * Get the next local ID relative to the linked entity.
+     *
      * @param Entity $entity
+     *
      * @return int
      */
     protected function getNextLocalId(Entity $entity)
     {
         $comments = $entity->comments(false)->orderBy('local_id', 'desc')->first();
-        if ($comments === null) return 1;
+        if ($comments === null) {
+            return 1;
+        }
+
         return $comments->local_id + 1;
     }
 }

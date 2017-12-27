@@ -1,10 +1,14 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 class AttachmentTest extends BrowserKitTest
 {
     /**
-     * Get a test file that can be uploaded
+     * Get a test file that can be uploaded.
+     *
      * @param $fileName
+     *
      * @return \Illuminate\Http\UploadedFile
      */
     protected function getTestFile($fileName)
@@ -14,24 +18,29 @@ class AttachmentTest extends BrowserKitTest
 
     /**
      * Uploads a file with the given name.
+     *
      * @param $name
      * @param int $uploadedTo
+     *
      * @return string
      */
     protected function uploadFile($name, $uploadedTo = 0)
     {
         $file = $this->getTestFile($name);
+
         return $this->call('POST', '/attachments/upload', ['uploaded_to' => $uploadedTo], [], ['file' => $file], []);
     }
 
     /**
      * Get the expected upload path for a file.
+     *
      * @param $fileName
+     *
      * @return string
      */
     protected function getUploadPath($fileName)
     {
-        return 'uploads/files/' . Date('Y-m-M') . '/' . $fileName;
+        return 'uploads/files/'.date('Y-m-M').'/'.$fileName;
     }
 
     /**
@@ -54,13 +63,13 @@ class AttachmentTest extends BrowserKitTest
         $fileName = 'upload_test_file.txt';
 
         $expectedResp = [
-            'name' => $fileName,
+            'name'       => $fileName,
             'uploaded_to'=> $page->id,
-            'extension' => 'txt',
-            'order' => 1,
+            'extension'  => 'txt',
+            'order'      => 1,
             'created_by' => $admin->id,
             'updated_by' => $admin->id,
-            'path' => $this->getUploadPath($fileName)
+            'path'       => $this->getUploadPath($fileName),
         ];
 
         $this->uploadFile($fileName, $page->id);
@@ -94,20 +103,20 @@ class AttachmentTest extends BrowserKitTest
         $this->asAdmin();
 
         $this->call('POST', 'attachments/link', [
-            'link' => 'https://example.com',
-            'name' => 'Example Attachment Link',
+            'link'        => 'https://example.com',
+            'name'        => 'Example Attachment Link',
             'uploaded_to' => $page->id,
         ]);
 
         $expectedResp = [
-            'path' => 'https://example.com',
-            'name' => 'Example Attachment Link',
+            'path'        => 'https://example.com',
+            'name'        => 'Example Attachment Link',
             'uploaded_to' => $page->id,
-            'created_by' => $admin->id,
-            'updated_by' => $admin->id,
-            'external' => true,
-            'order' => 1,
-            'extension' => ''
+            'created_by'  => $admin->id,
+            'updated_by'  => $admin->id,
+            'external'    => true,
+            'order'       => 1,
+            'extension'   => '',
         ];
 
         $this->assertResponseOk();
@@ -126,23 +135,23 @@ class AttachmentTest extends BrowserKitTest
         $this->asAdmin();
 
         $this->call('POST', 'attachments/link', [
-            'link' => 'https://example.com',
-            'name' => 'Example Attachment Link',
+            'link'        => 'https://example.com',
+            'name'        => 'Example Attachment Link',
             'uploaded_to' => $page->id,
         ]);
 
         $attachmentId = \DocsPen\Attachment::first()->id;
 
-        $this->call('PUT', 'attachments/' . $attachmentId, [
+        $this->call('PUT', 'attachments/'.$attachmentId, [
             'uploaded_to' => $page->id,
-            'name' => 'My new attachment name',
-            'link' => 'https://test.example.com'
+            'name'        => 'My new attachment name',
+            'link'        => 'https://test.example.com',
         ]);
 
         $expectedResp = [
-            'path' => 'https://test.example.com',
-            'name' => 'My new attachment name',
-            'uploaded_to' => $page->id
+            'path'        => 'https://test.example.com',
+            'name'        => 'My new attachment name',
+            'uploaded_to' => $page->id,
         ];
 
         $this->assertResponseOk();
@@ -159,17 +168,17 @@ class AttachmentTest extends BrowserKitTest
         $fileName = 'deletion_test.txt';
         $this->uploadFile($fileName, $page->id);
 
-        $filePath = base_path('storage/' . $this->getUploadPath($fileName));
+        $filePath = base_path('storage/'.$this->getUploadPath($fileName));
 
-        $this->assertTrue(file_exists($filePath), 'File at path ' . $filePath . ' does not exist');
+        $this->assertTrue(file_exists($filePath), 'File at path '.$filePath.' does not exist');
 
         $attachmentId = \DocsPen\Attachment::first()->id;
-        $this->call('DELETE', 'attachments/' . $attachmentId);
+        $this->call('DELETE', 'attachments/'.$attachmentId);
 
         $this->dontSeeInDatabase('attachments', [
-            'name' => $fileName
+            'name' => $fileName,
         ]);
-        $this->assertFalse(file_exists($filePath), 'File at path ' . $filePath . ' was not deleted as expected');
+        $this->assertFalse(file_exists($filePath), 'File at path '.$filePath.' was not deleted as expected');
 
         $this->deleteUploads();
     }
@@ -181,19 +190,19 @@ class AttachmentTest extends BrowserKitTest
         $fileName = 'deletion_test.txt';
         $this->uploadFile($fileName, $page->id);
 
-        $filePath = base_path('storage/' . $this->getUploadPath($fileName));
+        $filePath = base_path('storage/'.$this->getUploadPath($fileName));
 
-        $this->assertTrue(file_exists($filePath), 'File at path ' . $filePath . ' does not exist');
+        $this->assertTrue(file_exists($filePath), 'File at path '.$filePath.' does not exist');
         $this->seeInDatabase('attachments', [
-            'name' => $fileName
+            'name' => $fileName,
         ]);
 
         $this->call('DELETE', $page->getUrl());
 
         $this->dontSeeInDatabase('attachments', [
-            'name' => $fileName
+            'name' => $fileName,
         ]);
-        $this->assertFalse(file_exists($filePath), 'File at path ' . $filePath . ' was not deleted as expected');
+        $this->assertFalse(file_exists($filePath), 'File at path '.$filePath.' was not deleted as expected');
 
         $this->deleteUploads();
     }

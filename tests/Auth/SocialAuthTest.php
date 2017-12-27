@@ -1,8 +1,9 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 class SocialAuthTest extends BrowserKitTest
 {
-
     public function test_social_registration()
     {
         // http://docs.mockery.io/en/latest/reference/startup_methods.html
@@ -37,7 +38,7 @@ class SocialAuthTest extends BrowserKitTest
         config([
             'GOOGLE_APP_ID' => 'abc123', 'GOOGLE_APP_SECRET' => '123abc',
             'GITHUB_APP_ID' => 'abc123', 'GITHUB_APP_SECRET' => '123abc',
-            'APP_URL' => 'http://localhost'
+            'APP_URL'       => 'http://localhost',
         ]);
 
         $mockSocialite = \Mockery::mock('Laravel\Socialite\Contracts\Factory');
@@ -67,11 +68,10 @@ class SocialAuthTest extends BrowserKitTest
 
         // Test social callback with matching social account
         \DB::table('social_accounts')->insert([
-            'user_id' => $this->getAdmin()->id,
-            'driver' => 'github',
-            'driver_id' => 'logintest123'
+            'user_id'   => $this->getAdmin()->id,
+            'driver'    => 'github',
+            'driver_id' => 'logintest123',
         ]);
         $this->visit('/login/service/github/callback')->seePageIs('/');
     }
-
 }

@@ -1,10 +1,12 @@
-<?php namespace DocsPen\Services;
+<?php
 
-use DocsPen\Notifications\ConfirmEmail;
-use DocsPen\Repos\UserRepo;
+namespace DocsPen\Services;
+
 use Carbon\Carbon;
 use DocsPen\Exceptions\ConfirmationEmailException;
 use DocsPen\Exceptions\UserRegistrationException;
+use DocsPen\Notifications\ConfirmEmail;
+use DocsPen\Repos\UserRepo;
 use DocsPen\User;
 use Illuminate\Database\Connection as Database;
 
@@ -15,6 +17,7 @@ class EmailConfirmationService
 
     /**
      * EmailConfirmationService constructor.
+     *
      * @param Database $db
      * @param UserRepo $users
      */
@@ -27,7 +30,9 @@ class EmailConfirmationService
     /**
      * Create new confirmation for a user,
      * Also removes any existing old ones.
+     *
      * @param User $user
+     *
      * @throws ConfirmationEmailException
      */
     public function sendConfirmation(User $user)
@@ -44,27 +49,33 @@ class EmailConfirmationService
 
     /**
      * Creates a new email confirmation in the database and returns the token.
+     *
      * @param User $user
+     *
      * @return string
      */
     public function createEmailConfirmation(User $user)
     {
         $token = $this->getToken();
         $this->db->table('email_confirmations')->insert([
-            'user_id' => $user->id,
-            'token' => $token,
+            'user_id'    => $user->id,
+            'token'      => $token,
             'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'updated_at' => Carbon::now(),
         ]);
+
         return $token;
     }
 
     /**
      * Gets an email confirmation by looking up the token,
      * Ensures the token has not expired.
+     *
      * @param string $token
-     * @return array|null|\stdClass
+     *
      * @throws UserRegistrationException
+     *
+     * @return array|null|\stdClass
      */
     public function getEmailConfirmationFromToken($token)
     {
@@ -79,16 +90,20 @@ class EmailConfirmationService
         if (Carbon::now()->subDay()->gt(new Carbon($emailConfirmation->created_at))) {
             $user = $this->users->getById($emailConfirmation->user_id);
             $this->sendConfirmation($user);
+
             throw new UserRegistrationException(trans('errors.email_confirmation_expired'), '/register/confirm');
         }
 
         $emailConfirmation->user = $this->users->getById($emailConfirmation->user_id);
+
         return $emailConfirmation;
     }
 
     /**
      * Delete all email confirmations that belong to a user.
+     *
      * @param User $user
+     *
      * @return mixed
      */
     public function deleteConfirmationsByUser(User $user)
@@ -98,6 +113,7 @@ class EmailConfirmationService
 
     /**
      * Creates a unique token within the email confirmation database.
+     *
      * @return string
      */
     protected function getToken()
@@ -106,8 +122,7 @@ class EmailConfirmationService
         while ($this->db->table('email_confirmations')->where('token', '=', $token)->exists()) {
             $token = str_random(25);
         }
+
         return $token;
     }
-
-
 }
