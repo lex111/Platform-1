@@ -1,5 +1,6 @@
-<?php namespace DocsPen;
+<?php 
 
+namespace DocsPen;
 
 class Chapter extends Entity
 {
@@ -9,6 +10,7 @@ class Chapter extends Entity
 
     /**
      * Get the book this chapter is within.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function book()
@@ -18,7 +20,9 @@ class Chapter extends Entity
 
     /**
      * Get the pages that this chapter contains.
+     *
      * @param string $dir
+     *
      * @return mixed
      */
     public function pages($dir = 'ASC')
@@ -28,31 +32,36 @@ class Chapter extends Entity
 
     /**
      * Get the url of this chapter.
+     *
      * @param string|bool $path
+     *
      * @return string
      */
     public function getUrl($path = false)
     {
         $bookSlug = $this->getAttribute('bookSlug') ? $this->getAttribute('bookSlug') : $this->book->slug;
         if ($path !== false) {
-            return baseUrl('/books/' . urlencode($bookSlug) . '/chapter/' . urlencode($this->slug) . '/' . trim($path, '/'));
+            return baseUrl('/books/'.urlencode($bookSlug).'/chapter/'.urlencode($this->slug).'/'.trim($path, '/'));
         }
-        return baseUrl('/books/' . urlencode($bookSlug) . '/chapter/' . urlencode($this->slug));
+        return baseUrl('/books/'.urlencode($bookSlug).'/chapter/'.urlencode($this->slug));
     }
 
     /**
      * Get an excerpt of this chapter's description to the specified length or less.
+     *
      * @param int $length
+     *
      * @return string
      */
     public function getExcerpt($length = 100)
     {
         $description = $this->description;
-        return strlen($description) > $length ? substr($description, 0, $length-3) . '...' : $description;
+        return strlen($description) > $length ? substr($description, 0, $length - 3) . '...' : $description;
     }
 
     /**
      * Return a generalised, common raw query that can be 'unioned' across entities.
+     *
      * @return string
      */
     public function entityRawQuery()
