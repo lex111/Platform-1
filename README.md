@@ -8,7 +8,7 @@ DocsPen is an online documentation or wiki system that provides a pleasant and s
 
 Feel free to create issues to request new features or to report bugs and problems. Just please follow the template given when creating the issue.
 
-Pull requests are very welcome. If the scope of your pull request is very large it may be best to open the pull request early or create an issue for it to discuss how it will fit in to the project and plan out the merge.
+Pull requests are very welcome. If the scope of your pull request is very large it may be best to open the pull request early or create an issue for it to discuss how it will fit into the project and plan out the merge.
 
 ## The Stack
 
