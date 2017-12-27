@@ -1,8 +1,9 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 class LanguageTest extends TestCase
 {
-
     protected $langs;
 
     /**
@@ -33,7 +34,6 @@ class LanguageTest extends TestCase
 
     public function test_js_endpoint_for_each_language()
     {
-
         $visibleKeys = ['common', 'components', 'entities', 'errors'];
 
         $this->asEditor();
@@ -52,6 +52,7 @@ class LanguageTest extends TestCase
         foreach ($this->langs as $lang) {
             foreach ($files as $file) {
                 $loadError = false;
+
                 try {
                     $translations = trans(str_replace('.php', '', $file), [], $lang);
                 } catch (\Exception $e) {
@@ -61,5 +62,4 @@ class LanguageTest extends TestCase
             }
         }
     }
-
 }

@@ -1,4 +1,6 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 class UserProfileTest extends BrowserKitTest
 {
@@ -13,7 +15,7 @@ class UserProfileTest extends BrowserKitTest
     public function test_profile_page_shows_name()
     {
         $this->asAdmin()
-            ->visit('/user/' . $this->user->id)
+            ->visit('/user/'.$this->user->id)
             ->see($this->user->name);
     }
 
@@ -22,7 +24,7 @@ class UserProfileTest extends BrowserKitTest
         $content = $this->createEntityChainBelongingToUser($this->user, $this->user);
 
         $this->asAdmin()
-            ->visit('/user/' . $this->user->id)
+            ->visit('/user/'.$this->user->id)
             // Check the recently created page is shown
             ->see($content['page']->name)
             // Check the recently created chapter is shown
@@ -35,7 +37,7 @@ class UserProfileTest extends BrowserKitTest
     {
         $newUser = $this->getNewBlankUser();
 
-        $this->asAdmin()->visit('/user/' . $newUser->id)
+        $this->asAdmin()->visit('/user/'.$newUser->id)
             ->see($newUser->name)
             ->seeInElement('#content-counts', '0 Books')
             ->seeInElement('#content-counts', '0 Chapters')
@@ -43,7 +45,7 @@ class UserProfileTest extends BrowserKitTest
 
         $this->createEntityChainBelongingToUser($newUser, $newUser);
 
-        $this->asAdmin()->visit('/user/' . $newUser->id)
+        $this->asAdmin()->visit('/user/'.$newUser->id)
             ->see($newUser->name)
             ->seeInElement('#content-counts', '1 Book')
             ->seeInElement('#content-counts', '1 Chapter')
@@ -58,7 +60,7 @@ class UserProfileTest extends BrowserKitTest
         \Activity::add($entities['book'], 'book_update', $entities['book']->id);
         \Activity::add($entities['page'], 'page_create', $entities['book']->id);
 
-        $this->asAdmin()->visit('/user/' . $newUser->id)
+        $this->asAdmin()->visit('/user/'.$newUser->id)
             ->seeInElement('#recent-activity', 'updated book')
             ->seeInElement('#recent-activity', 'created page')
             ->seeInElement('#recent-activity', $entities['page']->name);
@@ -73,7 +75,7 @@ class UserProfileTest extends BrowserKitTest
         \Activity::add($entities['page'], 'page_create', $entities['book']->id);
 
         $this->asAdmin()->visit('/')->clickInElement('#recent-activity', $newUser->name)
-            ->seePageIs('/user/' . $newUser->id)
+            ->seePageIs('/user/'.$newUser->id)
             ->see($newUser->name);
     }
 
@@ -88,10 +90,10 @@ class UserProfileTest extends BrowserKitTest
     public function test_guest_profile_cannot_be_deleted()
     {
         $guestUser = \DocsPen\User::getDefault();
-        $this->asAdmin()->visit('/settings/users/' . $guestUser->id . '/delete')
+        $this->asAdmin()->visit('/settings/users/'.$guestUser->id.'/delete')
             ->see('Delete User')->see('Guest')
             ->press('Confirm')
-            ->seePageIs('/settings/users/' . $guestUser->id)
+            ->seePageIs('/settings/users/'.$guestUser->id)
             ->see('cannot delete the guest user');
     }
 

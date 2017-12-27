@@ -1,9 +1,9 @@
-<?php namespace Tests;
+<?php
 
+namespace Tests;
 
 class ActivityTrackingTest extends BrowserKitTest
 {
-
     public function test_recently_viewed_books()
     {
         $books = \DocsPen\Book::all()->take(10);

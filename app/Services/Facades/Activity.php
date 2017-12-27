@@ -1,5 +1,6 @@
-<?php namespace DocsPen\Services\Facades;
+<?php
 
+namespace DocsPen\Services\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -10,5 +11,8 @@ class Activity extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'activity'; }
+    protected static function getFacadeAccessor()
+    {
+        return 'activity';
+    }
 }

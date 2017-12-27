@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace DocsPen;
 
@@ -8,6 +8,7 @@ class Attachment extends Ownable
 
     /**
      * Get the downloadable file name for this upload.
+     *
      * @return mixed|string
      */
     public function getFileName()
@@ -15,11 +16,13 @@ class Attachment extends Ownable
         if (str_contains($this->name, '.')) {
             return $this->name;
         }
-        return $this->name . '.' . $this->extension;
+
+        return $this->name.'.'.$this->extension;
     }
 
     /**
      * Get the page this file was uploaded to.
+     *
      * @return Page
      */
     public function page()
@@ -29,11 +32,11 @@ class Attachment extends Ownable
 
     /**
      * Get the url of this file.
+     *
      * @return string
      */
     public function getUrl()
     {
         return baseUrl('/attachments/'.$this->id);
     }
-
 }

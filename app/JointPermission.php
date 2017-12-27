@@ -1,4 +1,6 @@
-<?php namespace DocsPen;
+<?php
+
+namespace DocsPen;
 
 class JointPermission extends Model
 {
@@ -6,6 +8,7 @@ class JointPermission extends Model
 
     /**
      * Get the role that this points to.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function role()
@@ -15,6 +18,7 @@ class JointPermission extends Model
 
     /**
      * Get the entity this points to.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
     public function entity()

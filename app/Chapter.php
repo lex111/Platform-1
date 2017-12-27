@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace DocsPen;
 
@@ -43,6 +43,7 @@ class Chapter extends Entity
         if ($path !== false) {
             return baseUrl('/books/'.urlencode($bookSlug).'/chapter/'.urlencode($this->slug).'/'.trim($path, '/'));
         }
+
         return baseUrl('/books/'.urlencode($bookSlug).'/chapter/'.urlencode($this->slug));
     }
 
@@ -56,7 +57,8 @@ class Chapter extends Entity
     public function getExcerpt($length = 100)
     {
         $description = $this->description;
-        return strlen($description) > $length ? substr($description, 0, $length - 3) . '...' : $description;
+
+        return strlen($description) > $length ? substr($description, 0, $length - 3).'...' : $description;
     }
 
     /**
@@ -68,5 +70,4 @@ class Chapter extends Entity
     {
         return "'DocsPen\\\\Chapter' as entity_type, id, id as entity_id, slug, name, {$this->textField} as text, '' as html, book_id, priority, '0' as chapter_id, '0' as draft, created_by, updated_by, updated_at, created_at";
     }
-
 }

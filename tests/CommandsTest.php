@@ -1,4 +1,6 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 use DocsPen\JointPermission;
 use DocsPen\Page;
@@ -6,7 +8,6 @@ use DocsPen\Repos\EntityRepo;
 
 class CommandsTest extends TestCase
 {
-
     public function test_clear_views_command()
     {
         $this->asEditor();
@@ -15,16 +16,16 @@ class CommandsTest extends TestCase
         $this->get($page->getUrl());
 
         $this->assertDatabaseHas('views', [
-            'user_id' => $this->getEditor()->id,
+            'user_id'     => $this->getEditor()->id,
             'viewable_id' => $page->id,
-            'views' => 1
+            'views'       => 1,
         ]);
 
         $exitCode = \Artisan::call('docspen:clear-views');
         $this->assertTrue($exitCode === 0, 'Command executed successfully');
 
         $this->assertDatabaseMissing('views', [
-            'user_id' => $this->getEditor()->id
+            'user_id' => $this->getEditor()->id,
         ]);
     }
 
@@ -35,17 +36,16 @@ class CommandsTest extends TestCase
         \Activity::add($page, 'page_update', $page->book->id);
 
         $this->assertDatabaseHas('activities', [
-            'key' => 'page_update',
+            'key'       => 'page_update',
             'entity_id' => $page->id,
-            'user_id' => $this->getEditor()->id
+            'user_id'   => $this->getEditor()->id,
         ]);
 
         $exitCode = \Artisan::call('docspen:clear-activity');
         $this->assertTrue($exitCode === 0, 'Command executed successfully');
 
-
         $this->assertDatabaseMissing('activities', [
-            'key' => 'page_update'
+            'key' => 'page_update',
         ]);
     }
 
@@ -59,11 +59,11 @@ class CommandsTest extends TestCase
 
         $this->assertDatabaseHas('page_revisions', [
             'page_id' => $page->id,
-            'type' => 'version'
+            'type'    => 'version',
         ]);
         $this->assertDatabaseHas('page_revisions', [
             'page_id' => $page->id,
-            'type' => 'update_draft'
+            'type'    => 'update_draft',
         ]);
 
         $exitCode = \Artisan::call('docspen:clear-revisions');
@@ -71,11 +71,11 @@ class CommandsTest extends TestCase
 
         $this->assertDatabaseMissing('page_revisions', [
             'page_id' => $page->id,
-            'type' => 'version'
+            'type'    => 'version',
         ]);
         $this->assertDatabaseHas('page_revisions', [
             'page_id' => $page->id,
-            'type' => 'update_draft'
+            'type'    => 'update_draft',
         ]);
 
         $exitCode = \Artisan::call('docspen:clear-revisions', ['--all' => true]);
@@ -83,7 +83,7 @@ class CommandsTest extends TestCase
 
         $this->assertDatabaseMissing('page_revisions', [
             'page_id' => $page->id,
-            'type' => 'update_draft'
+            'type'    => 'update_draft',
         ]);
     }
 

@@ -1,12 +1,9 @@
-<?php namespace Tests;
+<?php
 
-use DocsPen\JointPermission;
-use DocsPen\Page;
-use DocsPen\Repos\EntityRepo;
+namespace Tests;
 
 class HomepageTest extends TestCase
 {
-
     public function test_default_homepage_visible()
     {
         $this->asEditor();

@@ -1,15 +1,15 @@
-<?php namespace DocsPen\Repos;
+<?php
 
+namespace DocsPen\Repos;
 
 use DocsPen\Exceptions\PermissionsException;
-use DocsPen\RolePermission;
 use DocsPen\Role;
+use DocsPen\RolePermission;
 use DocsPen\Services\PermissionService;
 use Setting;
 
 class PermissionsRepo
 {
-
     protected $permission;
     protected $role;
     protected $permissionService;
@@ -18,8 +18,9 @@ class PermissionsRepo
 
     /**
      * PermissionsRepo constructor.
-     * @param RolePermission $permission
-     * @param Role $role
+     *
+     * @param RolePermission    $permission
+     * @param Role              $role
      * @param PermissionService $permissionService
      */
     public function __construct(RolePermission $permission, Role $role, PermissionService $permissionService)
@@ -31,6 +32,7 @@ class PermissionsRepo
 
     /**
      * Get all the user roles from the system.
+     *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getAllRoles()
@@ -40,7 +42,9 @@ class PermissionsRepo
 
     /**
      * Get all the roles except for the provided one.
+     *
      * @param Role $role
+     *
      * @return mixed
      */
     public function getAllRolesExcept(Role $role)
@@ -50,7 +54,9 @@ class PermissionsRepo
 
     /**
      * Get a role via its ID.
+     *
      * @param $id
+     *
      * @return mixed
      */
     public function getRoleById($id)
@@ -60,7 +66,9 @@ class PermissionsRepo
 
     /**
      * Save a new role into the system.
+     *
      * @param array $roleData
+     *
      * @return Role
      */
     public function saveNewRole($roleData)
@@ -76,14 +84,17 @@ class PermissionsRepo
         $permissions = isset($roleData['permissions']) ? array_keys($roleData['permissions']) : [];
         $this->assignRolePermissions($role, $permissions);
         $this->permissionService->buildJointPermissionForRole($role);
+
         return $role;
     }
 
     /**
      * Updates an existing role.
      * Ensure Admin role always has all permissions.
+     *
      * @param $roleId
      * @param $roleData
+     *
      * @throws PermissionsException
      */
     public function updateRole($roleId, $roleData)
@@ -105,7 +116,8 @@ class PermissionsRepo
 
     /**
      * Assign an list of permission names to an role.
-     * @param Role $role
+     *
+     * @param Role  $role
      * @param array $permissionNameArray
      */
     public function assignRolePermissions(Role $role, $permissionNameArray = [])
@@ -123,8 +135,10 @@ class PermissionsRepo
      * Check it's not an admin role or set as default before deleting.
      * If an migration Role ID is specified the users assign to the current role
      * will be added to the role of the specified id.
+     *
      * @param $roleId
      * @param $migrateRoleId
+     *
      * @throws PermissionsException
      */
     public function deleteRole($roleId, $migrateRoleId)
@@ -134,7 +148,7 @@ class PermissionsRepo
         // Prevent deleting admin role or default registration role.
         if ($role->system_name && in_array($role->system_name, $this->systemRoles)) {
             throw new PermissionsException(trans('errors.role_system_cannot_be_deleted'));
-        } else if ($role->id == setting('registration-role')) {
+        } elseif ($role->id == setting('registration-role')) {
             throw new PermissionsException(trans('errors.role_registration_default_cannot_delete'));
         }
 
@@ -149,5 +163,4 @@ class PermissionsRepo
         $this->permissionService->deleteJointPermissionsForRole($role);
         $role->delete();
     }
-
 }

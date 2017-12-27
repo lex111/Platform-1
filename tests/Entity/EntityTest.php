@@ -1,4 +1,6 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 use DocsPen\Book;
 use DocsPen\Chapter;
@@ -8,7 +10,6 @@ use DocsPen\Repos\UserRepo;
 
 class EntityTest extends BrowserKitTest
 {
-
     public function test_entity_creation()
     {
         // Test Creation
@@ -29,7 +30,7 @@ class EntityTest extends BrowserKitTest
             ->visit($book->getUrl())
             // Check link works correctly
             ->click('Delete')
-            ->seePageIs($book->getUrl() . '/delete')
+            ->seePageIs($book->getUrl().'/delete')
             // Ensure the book name is show to user
             ->see($book->name)
             ->press('Confirm')
@@ -39,16 +40,16 @@ class EntityTest extends BrowserKitTest
 
     public function bookUpdate(Book $book)
     {
-        $newName = $book->name . ' Updated';
+        $newName = $book->name.' Updated';
         $this->asAdmin()
             // Go to edit screen
-            ->visit($book->getUrl() . '/edit')
+            ->visit($book->getUrl().'/edit')
             ->see($book->name)
             // Submit new name
             ->type($newName, '#name')
             ->press('Save Book')
             // Check page url and text
-            ->seePageIs($book->getUrl() . '-updated')
+            ->seePageIs($book->getUrl().'-updated')
             ->see($newName);
 
         return Book::find($book->id);
@@ -56,12 +57,12 @@ class EntityTest extends BrowserKitTest
 
     public function test_book_sort_page_shows()
     {
-        $books =  Book::all();
+        $books = Book::all();
         $bookToSort = $books[0];
         $this->asAdmin()
             ->visit($bookToSort->getUrl())
             ->click('Sort')
-            ->seePageIs($bookToSort->getUrl() . '/sort')
+            ->seePageIs($bookToSort->getUrl().'/sort')
             ->seeStatusCode(200)
             ->see($bookToSort->name)
             // Ensure page shows other books
@@ -70,12 +71,12 @@ class EntityTest extends BrowserKitTest
 
     public function test_book_sort_item_returns_book_content()
     {
-        $books =  Book::all();
+        $books = Book::all();
         $bookToSort = $books[0];
         $firstPage = $bookToSort->pages[0];
         $firstChapter = $bookToSort->chapters[0];
         $this->asAdmin()
-            ->visit($bookToSort->getUrl() . '/sort-item')
+            ->visit($bookToSort->getUrl().'/sort-item')
             // Ensure book details are returned
             ->see($bookToSort->name)
             ->see($firstPage->name)
@@ -100,13 +101,12 @@ class EntityTest extends BrowserKitTest
             ->submitForm('Toggle Book View')
             ->seePageIs('/books')
             ->pageHasElement('.featured-image-container');
-
     }
 
     public function pageCreation($chapter)
     {
         $page = factory(Page::class)->make([
-            'name' => 'My First Page'
+            'name' => 'My First Page',
         ]);
 
         $this->asAdmin()
@@ -122,40 +122,42 @@ class EntityTest extends BrowserKitTest
             ->type($page->html, '#html')
             ->press('Save Page')
             // Check redirect and page
-            ->seePageIs($chapter->book->getUrl() . '/page/my-first-page')
+            ->seePageIs($chapter->book->getUrl().'/page/my-first-page')
             ->see($page->name);
 
         $page = Page::where('slug', '=', 'my-first-page')->where('chapter_id', '=', $chapter->id)->first();
+
         return $page;
     }
 
     public function chapterCreation(Book $book)
     {
         $chapter = factory(Chapter::class)->make([
-            'name' => 'My First Chapter'
+            'name' => 'My First Chapter',
         ]);
 
         $this->asAdmin()
             // Navigate to chapter create page
             ->visit($book->getUrl())
             ->click('New Chapter')
-            ->seePageIs($book->getUrl() . '/chapter/create')
+            ->seePageIs($book->getUrl().'/chapter/create')
             // Fill out form
             ->type($chapter->name, '#name')
             ->type($chapter->description, '#description')
             ->press('Save Chapter')
             // Check redirect and landing page
-            ->seePageIs($book->getUrl() . '/chapter/my-first-chapter')
+            ->seePageIs($book->getUrl().'/chapter/my-first-chapter')
             ->see($chapter->name)->see($chapter->description);
 
         $chapter = Chapter::where('slug', '=', 'my-first-chapter')->where('book_id', '=', $book->id)->first();
+
         return $chapter;
     }
 
     public function bookCreation()
     {
         $book = factory(Book::class)->make([
-            'name' => 'My First Book'
+            'name' => 'My First Book',
         ]);
         $this->asAdmin()
             ->visit('/books')
@@ -181,6 +183,7 @@ class EntityTest extends BrowserKitTest
         $this->assertRegExp($expectedPattern, $this->currentUri, "Did not land on expected page [$expectedPattern].\n");
 
         $book = Book::where('slug', '=', 'my-first-book')->first();
+
         return $book;
     }
 
@@ -244,7 +247,7 @@ class EntityTest extends BrowserKitTest
     {
         $page = Page::first();
         $pageUrl = $page->getUrl();
-        $newPageUrl = '/books/' . $page->book->slug . '/page/super-test-page';
+        $newPageUrl = '/books/'.$page->book->slug.'/page/super-test-page';
         // Need to save twice since revisions are not generated in seeder.
         $this->asAdmin()->visit($pageUrl)
             ->clickInElement('#content', 'Edit')
@@ -271,7 +274,7 @@ class EntityTest extends BrowserKitTest
         $page = Page::orderBy('updated_at', 'asc')->first();
         $this->asAdmin()->visit('/')
             ->dontSeeInElement('#recently-updated-pages', $page->name);
-        $this->visit($page->getUrl() . '/edit')
+        $this->visit($page->getUrl().'/edit')
             ->press('Save Page')
             ->visit('/')
             ->seeInElement('#recently-updated-pages', $page->name);
@@ -281,21 +284,19 @@ class EntityTest extends BrowserKitTest
     {
         $entityRepo = app(EntityRepo::class);
         $book = $entityRepo->createFromInput('book', [
-            'name' => 'КНИГА'
+            'name' => 'КНИГА',
         ]);
 
         $this->assertEquals('книга', $book->slug);
     }
 
-
     public function test_slug_format()
     {
         $entityRepo = app(EntityRepo::class);
         $book = $entityRepo->createFromInput('book', [
-            'name' => 'PartA / PartB / PartC'
+            'name' => 'PartA / PartB / PartC',
         ]);
 
         $this->assertEquals('parta-partb-partc', $book->slug);
     }
-
 }

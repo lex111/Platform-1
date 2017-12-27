@@ -8,7 +8,6 @@ use Illuminate\Console\Command;
 
 class DeleteUsers extends Command
 {
-
     /**
      * The name and signature of the console command.
      *
@@ -42,8 +41,7 @@ class DeleteUsers extends Command
             $totalUsers = User::count();
             $users = $this->user->where('system_name', '=', null)->with('roles')->get();
             foreach ($users as $user) {
-                if ($user->hasRole('admin'))
-                {
+                if ($user->hasRole('admin')) {
                     // don't delete users with "admin" role
                     continue;
                 }

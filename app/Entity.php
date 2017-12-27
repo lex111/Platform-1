@@ -1,17 +1,19 @@
-<?php namespace DocsPen;
+<?php
 
+namespace DocsPen;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Entity extends Ownable
 {
-
     public $textField = 'description';
 
     /**
      * Compares this entity to another given entity.
      * Matches by comparing class and id.
+     *
      * @param $entity
+     *
      * @return bool
      */
     public function matches($entity)
@@ -21,14 +23,18 @@ class Entity extends Ownable
 
     /**
      * Checks if an entity matches or contains another given entity.
+     *
      * @param Entity $entity
+     *
      * @return bool
      */
-    public function matchesOrContains(Entity $entity)
+    public function matchesOrContains(self $entity)
     {
         $matches = [get_class($this), $this->id] === [get_class($entity), $entity->id];
 
-        if ($matches) return true;
+        if ($matches) {
+            return true;
+        }
 
         if (($entity->isA('chapter') || $entity->isA('page')) && $this->isA('book')) {
             return $entity->book_id === $this->id;
@@ -43,6 +49,7 @@ class Entity extends Ownable
 
     /**
      * Gets the activity objects for this entity.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function activity()
@@ -60,6 +67,7 @@ class Entity extends Ownable
 
     /**
      * Get the Tag models that have been user assigned to this entity.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function tags()
@@ -68,18 +76,22 @@ class Entity extends Ownable
     }
 
     /**
-     * Get the comments for an entity
+     * Get the comments for an entity.
+     *
      * @param bool $orderByCreated
+     *
      * @return MorphMany
      */
     public function comments($orderByCreated = true)
     {
         $query = $this->morphMany(Comment::class, 'entity');
+
         return $orderByCreated ? $query->orderBy('created_at', 'asc') : $query;
     }
 
     /**
      * Get the related search terms.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function searchTerms()
@@ -97,8 +109,10 @@ class Entity extends Ownable
 
     /**
      * Check if this entity has a specific restriction set against it.
+     *
      * @param $role_id
      * @param $action
+     *
      * @return bool
      */
     public function hasRestriction($role_id, $action)
@@ -109,6 +123,7 @@ class Entity extends Ownable
 
     /**
      * Get the entity jointPermissions this is connected to.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function jointPermissions()
@@ -119,7 +134,9 @@ class Entity extends Ownable
     /**
      * Allows checking of the exact class, Used to check entity type.
      * Cleaner method for is_a.
+     *
      * @param $type
+     *
      * @return bool
      */
     public static function isA($type)
@@ -129,6 +146,7 @@ class Entity extends Ownable
 
     /**
      * Get entity type.
+     *
      * @return mixed
      */
     public static function getType()
@@ -138,7 +156,9 @@ class Entity extends Ownable
 
     /**
      * Get an instance of an entity of the given type.
+     *
      * @param $type
+     *
      * @return Entity
      */
     public static function getEntityInstance($type)
@@ -146,25 +166,31 @@ class Entity extends Ownable
         $types = ['Page', 'Book', 'Chapter'];
         $className = str_replace([' ', '-', '_'], '', ucwords($type));
         if (!in_array($className, $types)) {
-            return null;
+            return;
         }
 
-        return app('DocsPen\\' . $className);
+        return app('DocsPen\\'.$className);
     }
 
     /**
      * Gets a limited-length version of the entities name.
+     *
      * @param int $length
+     *
      * @return string
      */
     public function getShortName($length = 25)
     {
-        if (strlen($this->name) <= $length) return $this->name;
-        return substr($this->name, 0, $length - 3) . '...';
+        if (strlen($this->name) <= $length) {
+            return $this->name;
+        }
+
+        return substr($this->name, 0, $length - 3).'...';
     }
 
     /**
      * Get the body text of this entity.
+     *
      * @return mixed
      */
     public function getText()
@@ -174,15 +200,23 @@ class Entity extends Ownable
 
     /**
      * Return a generalised, common raw query that can be 'unioned' across entities.
+     *
      * @return string
      */
-    public function entityRawQuery(){return '';}
+    public function entityRawQuery()
+    {
+        return '';
+    }
 
     /**
-     * Get the url of this entity
+     * Get the url of this entity.
+     *
      * @param $path
+     *
      * @return string
      */
-    public function getUrl($path){return '/';}
-
+    public function getUrl($path)
+    {
+        return '/';
+    }
 }

@@ -4,8 +4,7 @@ Route::get('/translations', 'HomeController@getTranslations');
 
 // Authenticated routes...
 Route::group(['middleware' => 'auth'], function () {
-
-    Route::group(['prefix' => 'pages'], function() {
+    Route::group(['prefix' => 'pages'], function () {
         Route::get('/recently-created', 'PageController@showRecentlyCreated');
         Route::get('/recently-updated', 'PageController@showRecentlyUpdated');
     });
@@ -73,14 +72,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/{bookSlug}/chapter/{chapterSlug}/permissions', 'ChapterController@restrict');
         Route::get('/{bookSlug}/chapter/{chapterSlug}/delete', 'ChapterController@showDelete');
         Route::delete('/{bookSlug}/chapter/{chapterSlug}', 'ChapterController@destroy');
-
     });
 
     // User Profile routes
     Route::get('/user/{userId}', 'UserController@showProfilePage');
 
     // Image routes
-    Route::group(['prefix' => 'images'], function() {
+    Route::group(['prefix' => 'images'], function () {
         // Get for user images
         Route::get('/user/all', 'ImageController@getAllForUserType');
         Route::get('/user/all/{page}', 'ImageController@getAllForUserType');
@@ -111,7 +109,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/ajax/page/{id}', 'PageController@ajaxDestroy');
 
     // Tag routes (AJAX)
-    Route::group(['prefix' => 'ajax/tags'], function() {
+    Route::group(['prefix' => 'ajax/tags'], function () {
         Route::get('/get/{entityType}/{entityId}', 'TagController@getForEntity');
         Route::get('/suggest/names', 'TagController@getNameSuggestions');
         Route::get('/suggest/values', 'TagController@getValueSuggestions');
@@ -138,7 +136,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/custom-head-content', 'HomeController@customHeadContent');
 
     // Settings
-    Route::group(['prefix' => 'settings'], function() {
+    Route::group(['prefix' => 'settings'], function () {
         Route::get('/', 'SettingController@index')->name('settings');
         Route::post('/', 'SettingController@update');
 
@@ -161,7 +159,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/roles/{id}', 'PermissionController@editRole');
         Route::put('/roles/{id}', 'PermissionController@updateRole');
     });
-
 });
 
 // Social auth routes

@@ -33,11 +33,11 @@ class ForgotPasswordController extends Controller
         parent::__construct();
     }
 
-
     /**
      * Send a reset link to the given user.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function sendResetLinkEmail(Request $request)
@@ -54,6 +54,7 @@ class ForgotPasswordController extends Controller
         if ($response === Password::RESET_LINK_SENT) {
             $message = trans('auth.reset_password_sent_success', ['email' => $request->get('email')]);
             session()->flash('success', $message);
+
             return back()->with('status', trans($response));
         }
 
@@ -64,5 +65,4 @@ class ForgotPasswordController extends Controller
             ['email' => trans($response)]
         );
     }
-
 }

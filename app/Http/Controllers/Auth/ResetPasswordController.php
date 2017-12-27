@@ -36,13 +36,15 @@ class ResetPasswordController extends Controller
     /**
      * Get the response for a successful password reset.
      *
-     * @param  string  $response
+     * @param string $response
+     *
      * @return \Illuminate\Http\Response
      */
     protected function sendResetResponse($response)
     {
         $message = trans('auth.reset_password_success');
         session()->flash('success', $message);
+
         return redirect($this->redirectPath())
             ->with('status', trans($response));
     }

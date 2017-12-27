@@ -1,28 +1,34 @@
-<?php namespace Tests;
+<?php
 
-class CommentSettingTest extends BrowserKitTest {
-  protected $page;
+namespace Tests;
 
-  public function setUp() {
-      parent::setUp();
-      $this->page = \DocsPen\Page::first();
-  }
+class CommentSettingTest extends BrowserKitTest
+{
+    protected $page;
 
-  public function test_comment_disable () {
-    $this->asAdmin();
+    public function setUp()
+    {
+        parent::setUp();
+        $this->page = \DocsPen\Page::first();
+    }
 
-    $this->setSettings(['app-disable-comments' => 'true']);
+    public function test_comment_disable()
+    {
+        $this->asAdmin();
 
-    $this->asAdmin()->visit($this->page->getUrl())
+        $this->setSettings(['app-disable-comments' => 'true']);
+
+        $this->asAdmin()->visit($this->page->getUrl())
     ->pageNotHasElement('.comments-list');
-  }
+    }
 
-  public function test_comment_enable () {
-    $this->asAdmin();
+    public function test_comment_enable()
+    {
+        $this->asAdmin();
 
-    $this->setSettings(['app-disable-comments' => 'false']);
+        $this->setSettings(['app-disable-comments' => 'false']);
 
-    $this->asAdmin()->visit($this->page->getUrl())
+        $this->asAdmin()->visit($this->page->getUrl())
     ->pageHasElement('.comments-list');
-  }
+    }
 }

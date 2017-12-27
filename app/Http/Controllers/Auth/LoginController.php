@@ -42,7 +42,7 @@ class LoginController extends Controller
      * Create a new controller instance.
      *
      * @param SocialAuthService $socialAuthService
-     * @param UserRepo $userRepo
+     * @param UserRepo          $userRepo
      */
     public function __construct(SocialAuthService $socialAuthService, UserRepo $userRepo)
     {
@@ -62,19 +62,25 @@ class LoginController extends Controller
     /**
      * Overrides the action when a user is authenticated.
      * If the user authenticated but does not exist in the user table we create them.
-     * @param Request $request
+     *
+     * @param Request         $request
      * @param Authenticatable $user
-     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws AuthException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     protected function authenticated(Request $request, Authenticatable $user)
     {
         // Explicitly log them out for now if they do no exist.
-        if (!$user->exists) auth()->logout($user);
+        if (!$user->exists) {
+            auth()->logout($user);
+        }
 
         if (!$user->exists && $user->email === null && !$request->filled('email')) {
             $request->flash();
             session()->flash('request-email', true);
+
             return redirect('/login');
         }
 
@@ -97,12 +103,15 @@ class LoginController extends Controller
 
         $path = session()->pull('url.intended', '/');
         $path = baseUrl($path, true);
+
         return redirect($path);
     }
 
     /**
      * Show the application login form.
+     *
      * @param Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function getLogin(Request $request)
@@ -112,8 +121,8 @@ class LoginController extends Controller
 
         if ($request->has('email')) {
             session()->flashInput([
-                'email' => $request->get('email'),
-                'password' => (config('app.env') === 'demo') ? $request->get('password', '') : ''
+                'email'    => $request->get('email'),
+                'password' => (config('app.env') === 'demo') ? $request->get('password', '') : '',
             ]);
         }
 
@@ -122,12 +131,15 @@ class LoginController extends Controller
 
     /**
      * Redirect to the relevant social site.
+     *
      * @param $socialDriver
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function getSocialLogin($socialDriver)
     {
         session()->put('social-callback', 'login');
+
         return $this->socialAuthService->startLogIn($socialDriver);
     }
 }

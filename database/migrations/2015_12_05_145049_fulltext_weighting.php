@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class FulltextWeighting extends Migration
 {
@@ -25,13 +25,13 @@ class FulltextWeighting extends Migration
      */
     public function down()
     {
-        Schema::table('pages', function(Blueprint $table) {
+        Schema::table('pages', function (Blueprint $table) {
             $table->dropIndex('name_search');
         });
-        Schema::table('books', function(Blueprint $table) {
+        Schema::table('books', function (Blueprint $table) {
             $table->dropIndex('name_search');
         });
-        Schema::table('chapters', function(Blueprint $table) {
+        Schema::table('chapters', function (Blueprint $table) {
             $table->dropIndex('name_search');
         });
     }

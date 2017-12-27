@@ -1,4 +1,7 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
+namespace DocsPen\Exceptions;
 
-class SocialDriverNotConfigured extends PrettyException {}
+class SocialDriverNotConfigured extends PrettyException
+{
+}

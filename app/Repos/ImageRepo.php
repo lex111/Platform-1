@@ -1,17 +1,16 @@
-<?php namespace DocsPen\Repos;
+<?php
 
+namespace DocsPen\Repos;
 
 use DocsPen\Image;
 use DocsPen\Page;
 use DocsPen\Services\ImageService;
 use DocsPen\Services\PermissionService;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Setting;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ImageRepo
 {
-
     protected $image;
     protected $imageService;
     protected $restrictionService;
@@ -19,10 +18,11 @@ class ImageRepo
 
     /**
      * ImageRepo constructor.
-     * @param Image $image
-     * @param ImageService $imageService
+     *
+     * @param Image             $image
+     * @param ImageService      $imageService
      * @param PermissionService $permissionService
-     * @param Page $page
+     * @param Page              $page
      */
     public function __construct(Image $image, ImageService $imageService, PermissionService $permissionService, Page $page)
     {
@@ -32,10 +32,11 @@ class ImageRepo
         $this->page = $page;
     }
 
-
     /**
      * Get an image with the given id.
+     *
      * @param $id
+     *
      * @return mixed
      */
     public function getById($id)
@@ -46,9 +47,11 @@ class ImageRepo
     /**
      * Execute a paginated query, returning in a standard format.
      * Also runs the query through the restriction system.
+     *
      * @param $query
      * @param int $page
      * @param int $pageSize
+     *
      * @return array
      */
     private function returnPaginated($query, $page = 0, $pageSize = 24)
@@ -64,16 +67,18 @@ class ImageRepo
 
         return [
             'images'  => $returnImages,
-            'hasMore' => $hasMore
+            'hasMore' => $hasMore,
         ];
     }
 
     /**
      * Gets a load images paginated, filtered by image type.
-     * @param string $type
-     * @param int $page
-     * @param int $pageSize
+     *
+     * @param string   $type
+     * @param int      $page
+     * @param int      $pageSize
      * @param bool|int $userFilter
+     *
      * @return array
      */
     public function getPaginatedByType($type, $page = 0, $pageSize = 24, $userFilter = false)
@@ -89,28 +94,33 @@ class ImageRepo
 
     /**
      * Search for images by query, of a particular type.
+     *
      * @param string $type
-     * @param int $page
-     * @param int $pageSize
+     * @param int    $page
+     * @param int    $pageSize
      * @param string $searchTerm
+     *
      * @return array
      */
-    public function searchPaginatedByType($type, $page = 0, $pageSize = 24, $searchTerm)
+    public function searchPaginatedByType($type, $page, $pageSize, $searchTerm)
     {
-        $images = $this->image->where('type', '=', strtolower($type))->where('name', 'LIKE', '%' . $searchTerm . '%');
+        $images = $this->image->where('type', '=', strtolower($type))->where('name', 'LIKE', '%'.$searchTerm.'%');
+
         return $this->returnPaginated($images, $page, $pageSize);
     }
 
     /**
      * Get gallery images with a particular filter criteria such as
      * being within the current book or page.
+     *
      * @param int $pagination
      * @param int $pageSize
      * @param $filter
      * @param $pageId
+     *
      * @return array
      */
-    public function getGalleryFiltered($pagination = 0, $pageSize = 24, $filter, $pageId)
+    public function getGalleryFiltered($pagination, $pageSize, $filter, $pageId)
     {
         $images = $this->image->where('type', '=', 'gallery');
 
@@ -128,22 +138,27 @@ class ImageRepo
 
     /**
      * Save a new image into storage and return the new image.
+     *
      * @param UploadedFile $uploadFile
-     * @param  string $type
-     * @param int $uploadedTo
+     * @param string       $type
+     * @param int          $uploadedTo
+     *
      * @return Image
      */
     public function saveNew(UploadedFile $uploadFile, $type, $uploadedTo = 0)
     {
         $image = $this->imageService->saveNewFromUpload($uploadFile, $type, $uploadedTo);
         $this->loadThumbs($image);
+
         return $image;
     }
 
     /**
      * Update the details of an image via an array of properties.
+     *
      * @param Image $image
      * @param array $updateDetails
+     *
      * @return Image
      */
     public function updateImageDetails(Image $image, $updateDetails)
@@ -151,31 +166,34 @@ class ImageRepo
         $image->fill($updateDetails);
         $image->save();
         $this->loadThumbs($image);
+
         return $image;
     }
 
-
     /**
      * Destroys an Image object along with its files and thumbnails.
+     *
      * @param Image $image
+     *
      * @return bool
      */
     public function destroyImage(Image $image)
     {
         $this->imageService->destroyImage($image);
+
         return true;
     }
 
-
     /**
      * Load thumbnails onto an image object.
+     *
      * @param Image $image
      */
     private function loadThumbs(Image $image)
     {
         $image->thumbs = [
             'gallery' => $this->getThumbnail($image, 150, 150),
-            'display' => $this->getThumbnail($image, 840, 0, true)
+            'display' => $this->getThumbnail($image, 840, 0, true),
         ];
     }
 
@@ -185,9 +203,10 @@ class ImageRepo
      * Checks the cache then storage to avoid creating / accessing the filesystem on every check.
      *
      * @param Image $image
-     * @param int $width
-     * @param int $height
-     * @param bool $keepRatio
+     * @param int   $width
+     * @param int   $height
+     * @param bool  $keepRatio
+     *
      * @return string
      */
     public function getThumbnail(Image $image, $width = 220, $height = 220, $keepRatio = false)
@@ -196,9 +215,8 @@ class ImageRepo
             return $this->imageService->getThumbnail($image, $width, $height, $keepRatio);
         } catch (FileNotFoundException $exception) {
             $image->delete();
+
             return [];
         }
     }
-
-
 }

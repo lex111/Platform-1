@@ -1,8 +1,9 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 class PublicActionTest extends BrowserKitTest
 {
-
     public function test_app_not_public()
     {
         $this->setSettings(['app-public' => 'false']);
@@ -68,15 +69,15 @@ class PublicActionTest extends BrowserKitTest
             ->seePageIs($chapter->getUrl('/create-page'));
 
         $this->submitForm('Continue', [
-            'name' => 'My guest page'
+            'name' => 'My guest page',
         ])->seePageIs($chapter->book->getUrl('/page/my-guest-page/edit'));
 
         $user = \DocsPen\User::getDefault();
         $this->seeInDatabase('pages', [
-            'name' => 'My guest page',
+            'name'       => 'My guest page',
             'chapter_id' => $chapter->id,
             'created_by' => $user->id,
-            'updated_by' => $user->id
+            'updated_by' => $user->id,
         ]);
     }
 
@@ -89,5 +90,4 @@ class PublicActionTest extends BrowserKitTest
         $this->forceVisit('/cats/dogs/hippos');
         $this->dontSee($page->name);
     }
-
 }

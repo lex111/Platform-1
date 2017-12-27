@@ -1,3 +1,7 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
-class LdapException extends PrettyException {}
+namespace DocsPen\Exceptions;
+
+class LdapException extends PrettyException
+{
+}

@@ -1,4 +1,6 @@
-<?php namespace DocsPen\Http\Controllers;
+<?php
+
+namespace DocsPen\Http\Controllers;
 
 use Activity;
 use DocsPen\Repos\CommentRepo;
@@ -13,7 +15,8 @@ class CommentController extends Controller
 
     /**
      * CommentController constructor.
-     * @param EntityRepo $entityRepo
+     *
+     * @param EntityRepo  $entityRepo
      * @param CommentRepo $commentRepo
      */
     public function __construct(EntityRepo $entityRepo, CommentRepo $commentRepo)
@@ -24,10 +27,12 @@ class CommentController extends Controller
     }
 
     /**
-     * Save a new comment for a Page
-     * @param Request $request
-     * @param integer $pageId
-     * @param null|integer $commentId
+     * Save a new comment for a Page.
+     *
+     * @param Request  $request
+     * @param int      $pageId
+     * @param null|int $commentId
+     *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function savePageComment(Request $request, $pageId, $commentId = null)
@@ -54,13 +59,16 @@ class CommentController extends Controller
         $this->checkPermission('comment-create-all');
         $comment = $this->commentRepo->create($page, $request->only(['html', 'text', 'parent_id']));
         Activity::add($page, 'commented_on', $page->book->id);
+
         return view('comments/comment', ['comment' => $comment]);
     }
 
     /**
      * Update an existing comment.
+     *
      * @param Request $request
-     * @param integer $commentId
+     * @param int     $commentId
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function update(Request $request, $commentId)
@@ -75,12 +83,15 @@ class CommentController extends Controller
         $this->checkOwnablePermission('comment-update', $comment);
 
         $comment = $this->commentRepo->update($comment, $request->only(['html', 'text']));
+
         return view('comments/comment', ['comment' => $comment]);
     }
 
     /**
      * Delete a comment from the system.
-     * @param integer $id
+     *
+     * @param int $id
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
@@ -88,6 +99,7 @@ class CommentController extends Controller
         $comment = $this->commentRepo->getById($id);
         $this->checkOwnablePermission('comment-delete', $comment);
         $this->commentRepo->delete($comment);
+
         return response()->json(['message' => trans('entities.comment_deleted')]);
     }
 }

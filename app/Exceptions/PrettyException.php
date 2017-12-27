@@ -1,3 +1,7 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
-class PrettyException extends \Exception {}
+namespace DocsPen\Exceptions;
+
+class PrettyException extends \Exception
+{
+}

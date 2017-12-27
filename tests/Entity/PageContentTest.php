@@ -1,11 +1,12 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 use DocsPen\Page;
 use DocsPen\Repos\EntityRepo;
 
 class PageContentTest extends TestCase
 {
-
     public function test_page_includes()
     {
         $page = Page::first();
@@ -27,7 +28,7 @@ class PageContentTest extends TestCase
         $pageContent->assertSee('Hello, This is a test');
         $pageContent->assertSee('This is a second block of content');
 
-        $page->html = $originalHtml . " Well {{@{$secondPage->id}#section2}}";
+        $page->html = $originalHtml." Well {{@{$secondPage->id}#section2}}";
         $page->save();
 
         $pageContent = $this->get($page->getUrl());
@@ -59,11 +60,11 @@ class PageContentTest extends TestCase
         $entityRepo->updatePage($page, $page->book_id, ['name' => 'updated page', 'html' => '<p>new content</p>', 'summary' => 'page revision testing']);
         $pageRevision = $page->revisions->last();
 
-        $revisionView = $this->get($page->getUrl() . '/revisions/' . $pageRevision->id);
+        $revisionView = $this->get($page->getUrl().'/revisions/'.$pageRevision->id);
         $revisionView->assertStatus(200);
         $revisionView->assertSee('new content');
 
-        $revisionView = $this->get($page->getUrl() . '/revisions/' . $pageRevision->id . '/changes');
+        $revisionView = $this->get($page->getUrl().'/revisions/'.$pageRevision->id.'/changes');
         $revisionView->assertStatus(200);
         $revisionView->assertSee('new content');
     }
@@ -76,16 +77,15 @@ class PageContentTest extends TestCase
         $page = Page::first();
         $entityRepo->updatePage($page, $page->book_id, ['name' => 'updated page abc123', 'html' => '<p>new contente def456</p>', 'summary' => 'initial page revision testing']);
         $entityRepo->updatePage($page, $page->book_id, ['name' => 'updated page again', 'html' => '<p>new content</p>', 'summary' => 'page revision testing']);
-        $page =  Page::find($page->id);
-
+        $page = Page::find($page->id);
 
         $pageView = $this->get($page->getUrl());
         $pageView->assertDontSee('abc123');
         $pageView->assertDontSee('def456');
 
         $revToRestore = $page->revisions()->where('name', 'like', '%abc123')->first();
-        $restoreReq = $this->get($page->getUrl() . '/revisions/' . $revToRestore->id . '/restore');
-        $page =  Page::find($page->id);
+        $restoreReq = $this->get($page->getUrl().'/revisions/'.$revToRestore->id.'/restore');
+        $page = Page::find($page->id);
 
         $restoreReq->assertStatus(302);
         $restoreReq->assertRedirect($page->getUrl());
@@ -94,5 +94,4 @@ class PageContentTest extends TestCase
         $pageView->assertSee('abc123');
         $pageView->assertSee('def456');
     }
-
 }

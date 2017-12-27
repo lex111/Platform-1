@@ -1,5 +1,6 @@
-<?php namespace DocsPen;
+<?php
 
+namespace DocsPen;
 
 class Page extends Entity
 {
@@ -12,17 +13,20 @@ class Page extends Entity
 
     /**
      * Converts this page into a simplified array.
+     *
      * @return mixed
      */
     public function toSimpleArray()
     {
         $array = array_intersect_key($this->toArray(), array_flip($this->simpleAttributes));
         $array['url'] = $this->getUrl();
+
         return $array;
     }
 
     /**
      * Get the book this page sits in.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function book()
@@ -32,6 +36,7 @@ class Page extends Entity
 
     /**
      * Get the chapter that this page is in, If applicable.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function chapter()
@@ -41,6 +46,7 @@ class Page extends Entity
 
     /**
      * Check if this page has a chapter.
+     *
      * @return bool
      */
     public function hasChapter()
@@ -50,6 +56,7 @@ class Page extends Entity
 
     /**
      * Get the associated page revisions, ordered by created date.
+     *
      * @return mixed
      */
     public function revisions()
@@ -59,6 +66,7 @@ class Page extends Entity
 
     /**
      * Get the attachments assigned to this page.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function attachments()
@@ -68,7 +76,9 @@ class Page extends Entity
 
     /**
      * Get the url for this page.
+     *
      * @param string|bool $path
+     *
      * @return string
      */
     public function getUrl($path = false)
@@ -78,31 +88,37 @@ class Page extends Entity
         $idComponent = $this->draft ? $this->id : urlencode($this->slug);
 
         if ($path !== false) {
-            return baseUrl('/books/' . urlencode($bookSlug) . $midText . $idComponent . '/' . trim($path, '/'));
+            return baseUrl('/books/'.urlencode($bookSlug).$midText.$idComponent.'/'.trim($path, '/'));
         }
 
-        return baseUrl('/books/' . urlencode($bookSlug) . $midText . $idComponent);
+        return baseUrl('/books/'.urlencode($bookSlug).$midText.$idComponent);
     }
 
     /**
      * Get an excerpt of this page's content to the specified length.
+     *
      * @param int $length
+     *
      * @return mixed
      */
     public function getExcerpt($length = 100)
     {
-        $text = strlen($this->text) > $length ? substr($this->text, 0, $length-3) . '...' : $this->text;
+        $text = strlen($this->text) > $length ? substr($this->text, 0, $length - 3).'...' : $this->text;
+
         return mb_convert_encoding($text, 'UTF-8');
     }
 
     /**
      * Return a generalised, common raw query that can be 'unioned' across entities.
+     *
      * @param bool $withContent
+     *
      * @return string
      */
     public function entityRawQuery($withContent = false)
-    {   $htmlQuery = $withContent ? 'html' : "'' as html";
+    {
+        $htmlQuery = $withContent ? 'html' : "'' as html";
+
         return "'DocsPen\\\\Page' as entity_type, id, id as entity_id, slug, name, {$this->textField} as text, {$htmlQuery}, book_id, priority, chapter_id, draft, created_by, updated_by, updated_at, created_at";
     }
-
 }

@@ -1,11 +1,12 @@
-<?php namespace Tests;
+<?php
 
-use DocsPen\Page;
+namespace Tests;
+
 use DocsPen\Comment;
+use DocsPen\Page;
 
 class CommentTest extends TestCase
 {
-
     public function test_add_comment()
     {
         $this->asAdmin();
@@ -21,11 +22,11 @@ class CommentTest extends TestCase
         $pageResp->assertSee($comment->text);
 
         $this->assertDatabaseHas('comments', [
-            'local_id' => 1,
-            'entity_id' => $page->id,
+            'local_id'    => 1,
+            'entity_id'   => $page->id,
             'entity_type' => 'DocsPen\\Page',
-            'text' => $comment->text,
-            'parent_id' => 2
+            'text'        => $comment->text,
+            'parent_id'   => 2,
         ]);
     }
 
@@ -49,8 +50,8 @@ class CommentTest extends TestCase
         $resp->assertDontSee($comment->text);
 
         $this->assertDatabaseHas('comments', [
-            'text' => $newText,
-            'entity_id' => $page->id
+            'text'      => $newText,
+            'entity_id' => $page->id,
         ]);
     }
 
@@ -68,7 +69,7 @@ class CommentTest extends TestCase
         $resp->assertStatus(200);
 
         $this->assertDatabaseMissing('comments', [
-            'id' => $comment->id
+            'id' => $comment->id,
         ]);
     }
 }

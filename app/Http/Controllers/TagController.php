@@ -1,15 +1,17 @@
-<?php namespace DocsPen\Http\Controllers;
+<?php
+
+namespace DocsPen\Http\Controllers;
 
 use DocsPen\Repos\TagRepo;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
-
     protected $tagRepo;
 
     /**
      * TagController constructor.
+     *
      * @param $tagRepo
      */
     public function __construct(TagRepo $tagRepo)
@@ -19,32 +21,40 @@ class TagController extends Controller
     }
 
     /**
-     * Get all the Tags for a particular entity
+     * Get all the Tags for a particular entity.
+     *
      * @param $entityType
      * @param $entityId
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function getForEntity($entityType, $entityId)
     {
         $tags = $this->tagRepo->getForEntity($entityType, $entityId);
+
         return response()->json($tags);
     }
 
     /**
      * Get tag name suggestions from a given search term.
+     *
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function getNameSuggestions(Request $request)
     {
         $searchTerm = $request->get('search', false);
         $suggestions = $this->tagRepo->getNameSuggestions($searchTerm);
+
         return response()->json($suggestions);
     }
 
     /**
      * Get tag value suggestions from a given search term.
+     *
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function getValueSuggestions(Request $request)
@@ -52,7 +62,7 @@ class TagController extends Controller
         $searchTerm = $request->get('search', false);
         $tagName = $request->get('name', false);
         $suggestions = $this->tagRepo->getValueSuggestions($searchTerm, $tagName);
+
         return response()->json($suggestions);
     }
-
 }

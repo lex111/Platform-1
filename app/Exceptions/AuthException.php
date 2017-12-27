@@ -1,4 +1,7 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
+namespace DocsPen\Exceptions;
 
-class AuthException extends PrettyException {}
+class AuthException extends PrettyException
+{
+}

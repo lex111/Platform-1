@@ -6,8 +6,12 @@ if (env('CACHE_DRIVER') === 'memcached') {
     $memcachedServers = explode(',', trim(env('MEMCACHED_SERVERS', '127.0.0.1:11211:100'), ','));
     foreach ($memcachedServers as $index => $memcachedServer) {
         $memcachedServerDetails = explode(':', $memcachedServer);
-        if (count($memcachedServerDetails) < 2) $memcachedServerDetails[] = '11211';
-        if (count($memcachedServerDetails) < 3) $memcachedServerDetails[] = '100';
+        if (count($memcachedServerDetails) < 2) {
+            $memcachedServerDetails[] = '11211';
+        }
+        if (count($memcachedServerDetails) < 3) {
+            $memcachedServerDetails[] = '100';
+        }
         $memcachedServers[$index] = array_combine($memcachedServerKeys, $memcachedServerDetails);
     }
 }
@@ -49,8 +53,8 @@ return [
         ],
 
         'database' => [
-            'driver' => 'database',
-            'table'  => 'cache',
+            'driver'     => 'database',
+            'table'      => 'cache',
             'connection' => null,
         ],
 
@@ -65,7 +69,7 @@ return [
         ],
 
         'redis' => [
-            'driver' => 'redis',
+            'driver'     => 'redis',
             'connection' => 'default',
         ],
 

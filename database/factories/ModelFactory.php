@@ -13,71 +13,73 @@
 
 $factory->define(DocsPen\User::class, function ($faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => str_random(10),
-        'remember_token' => str_random(10),
-        'email_confirmed' => 1
+        'name'            => $faker->name,
+        'email'           => $faker->email,
+        'password'        => str_random(10),
+        'remember_token'  => str_random(10),
+        'email_confirmed' => 1,
     ];
 });
 
 $factory->define(DocsPen\Book::class, function ($faker) {
     return [
-        'name' => $faker->sentence,
-        'slug' => str_random(10),
-        'description' => $faker->paragraph
+        'name'        => $faker->sentence,
+        'slug'        => str_random(10),
+        'description' => $faker->paragraph,
     ];
 });
 
 $factory->define(DocsPen\Chapter::class, function ($faker) {
     return [
-        'name' => $faker->sentence,
-        'slug' => str_random(10),
-        'description' => $faker->paragraph
+        'name'        => $faker->sentence,
+        'slug'        => str_random(10),
+        'description' => $faker->paragraph,
     ];
 });
 
 $factory->define(DocsPen\Page::class, function ($faker) {
-    $html = '<p>' . implode('</p>', $faker->paragraphs(5)) . '</p>';
+    $html = '<p>'.implode('</p>', $faker->paragraphs(5)).'</p>';
+
     return [
-        'name' => $faker->sentence,
-        'slug' => str_random(10),
-        'html' => $html,
-        'text' => strip_tags($html),
-        'revision_count' => 1
+        'name'           => $faker->sentence,
+        'slug'           => str_random(10),
+        'html'           => $html,
+        'text'           => strip_tags($html),
+        'revision_count' => 1,
     ];
 });
 
 $factory->define(DocsPen\Role::class, function ($faker) {
     return [
         'display_name' => $faker->sentence(3),
-        'description' => $faker->sentence(10)
+        'description'  => $faker->sentence(10),
     ];
 });
 
 $factory->define(DocsPen\Tag::class, function ($faker) {
     return [
-        'name' => $faker->city,
-        'value' => $faker->sentence(3)
+        'name'  => $faker->city,
+        'value' => $faker->sentence(3),
     ];
 });
 
 $factory->define(DocsPen\Image::class, function ($faker) {
     return [
-        'name' => $faker->slug . '.jpg',
-        'url' => $faker->url,
-        'path' => $faker->url,
-        'type' => 'gallery',
-        'uploaded_to' => 0
+        'name'        => $faker->slug.'.jpg',
+        'url'         => $faker->url,
+        'path'        => $faker->url,
+        'type'        => 'gallery',
+        'uploaded_to' => 0,
     ];
 });
 
-$factory->define(DocsPen\Comment::class, function($faker) {
+$factory->define(DocsPen\Comment::class, function ($faker) {
     $text = $faker->paragraph(1);
-    $html = '<p>' . $text. '</p>';
+    $html = '<p>'.$text.'</p>';
+
     return [
-        'html' => $html,
-        'text' => $text,
-        'parent_id' => null
+        'html'      => $html,
+        'text'      => $text,
+        'parent_id' => null,
     ];
 });

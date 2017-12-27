@@ -1,4 +1,7 @@
-<?php namespace DocsPen\Exceptions;
+<?php
 
+namespace DocsPen\Exceptions;
 
-class ConfirmationEmailException extends NotifyException {}
+class ConfirmationEmailException extends NotifyException
+{
+}

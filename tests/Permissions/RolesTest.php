@@ -1,10 +1,11 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 use DocsPen\Page;
 use DocsPen\Repos\PermissionsRepo;
 use DocsPen\Role;
 use Laravel\BrowserKitTesting\HttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RolesTest extends BrowserKitTest
 {
@@ -20,14 +21,16 @@ class RolesTest extends BrowserKitTest
     {
         $role = \DocsPen\Role::getRole('viewer');
         $viewer = $this->getNewBlankUser();
-        $viewer->attachRole($role);;
+        $viewer->attachRole($role);
+
         return $viewer;
     }
 
     /**
      * Give the given user some permissions.
+     *
      * @param \DocsPen\User $user
-     * @param array $permissions
+     * @param array         $permissions
      */
     protected function giveUserPermissions(\DocsPen\User $user, $permissions = [])
     {
@@ -39,7 +42,9 @@ class RolesTest extends BrowserKitTest
 
     /**
      * Create a new basic role for testing purposes.
+     *
      * @param array $permissions
+     *
      * @return Role
      */
     protected function createNewRole($permissions = [])
@@ -47,6 +52,7 @@ class RolesTest extends BrowserKitTest
         $permissionRepo = app(PermissionsRepo::class);
         $roleData = factory(\DocsPen\Role::class)->make()->toArray();
         $roleData['permissions'] = array_flip($permissions);
+
         return $permissionRepo->saveNewRole($roleData);
     }
 
@@ -58,7 +64,7 @@ class RolesTest extends BrowserKitTest
     public function test_cannot_delete_admin_role()
     {
         $adminRole = \DocsPen\Role::getRole('admin');
-        $deletePageUrl = '/settings/roles/delete/' . $adminRole->id;
+        $deletePageUrl = '/settings/roles/delete/'.$adminRole->id;
         $this->asAdmin()->visit($deletePageUrl)
             ->press('Confirm')
             ->seePageIs($deletePageUrl)
@@ -70,7 +76,7 @@ class RolesTest extends BrowserKitTest
         $newRole = $this->createNewRole();
         $this->setSettings(['registration-role' => $newRole->id]);
 
-        $deletePageUrl = '/settings/roles/delete/' . $newRole->id;
+        $deletePageUrl = '/settings/roles/delete/'.$newRole->id;
         $this->asAdmin()->visit($deletePageUrl)
             ->press('Confirm')
             ->seePageIs($deletePageUrl)
@@ -144,13 +150,13 @@ class RolesTest extends BrowserKitTest
         $page = \DocsPen\Page::take(1)->get()->first();
         $this->actingAs($this->user)->visit($page->getUrl())
             ->dontSee('Permissions')
-            ->visit($page->getUrl() . '/permissions')
+            ->visit($page->getUrl().'/permissions')
             ->seePageIs('/');
         $this->giveUserPermissions($this->user, ['restrictions-manage-all']);
         $this->actingAs($this->user)->visit($page->getUrl())
             ->see('Permissions')
             ->click('Permissions')
-            ->see('Page Permissions')->seePageIs($page->getUrl() . '/permissions');
+            ->see('Page Permissions')->seePageIs($page->getUrl().'/permissions');
     }
 
     public function test_restrictions_manage_own_permission()
@@ -160,12 +166,12 @@ class RolesTest extends BrowserKitTest
         // Check can't restrict other's content
         $this->actingAs($this->user)->visit($otherUsersPage->getUrl())
             ->dontSee('Permissions')
-            ->visit($otherUsersPage->getUrl() . '/permissions')
+            ->visit($otherUsersPage->getUrl().'/permissions')
             ->seePageIs('/');
         // Check can't restrict own content
         $this->actingAs($this->user)->visit($content['page']->getUrl())
             ->dontSee('Permissions')
-            ->visit($content['page']->getUrl() . '/permissions')
+            ->visit($content['page']->getUrl().'/permissions')
             ->seePageIs('/');
 
         $this->giveUserPermissions($this->user, ['restrictions-manage-own']);
@@ -173,20 +179,21 @@ class RolesTest extends BrowserKitTest
         // Check can't restrict other's content
         $this->actingAs($this->user)->visit($otherUsersPage->getUrl())
             ->dontSee('Permissions')
-            ->visit($otherUsersPage->getUrl() . '/permissions')
+            ->visit($otherUsersPage->getUrl().'/permissions')
             ->seePageIs('/');
         // Check can restrict own content
         $this->actingAs($this->user)->visit($content['page']->getUrl())
             ->see('Permissions')
             ->click('Permissions')
-            ->seePageIs($content['page']->getUrl() . '/permissions');
+            ->seePageIs($content['page']->getUrl().'/permissions');
     }
 
     /**
-     * Check a standard entity access permission
+     * Check a standard entity access permission.
+     *
      * @param string $permission
-     * @param array $accessUrls Urls that are only accessible after having the permission
-     * @param array $visibles Check this text, In the buttons toolbar, is only visible with the permission
+     * @param array  $accessUrls Urls that are only accessible after having the permission
+     * @param array  $visibles   Check this text, In the buttons toolbar, is only visible with the permission
      */
     private function checkAccessPermission($permission, $accessUrls = [], $visibles = [])
     {
@@ -196,7 +203,7 @@ class RolesTest extends BrowserKitTest
         }
         foreach ($visibles as $url => $text) {
             $this->actingAs($this->user)->visit($url)
-                ->dontSeeInElement('.action-buttons',$text);
+                ->dontSeeInElement('.action-buttons', $text);
         }
 
         $this->giveUserPermissions($this->user, [$permission]);
@@ -214,9 +221,9 @@ class RolesTest extends BrowserKitTest
     public function test_books_create_all_permissions()
     {
         $this->checkAccessPermission('book-create-all', [
-            '/books/create'
+            '/books/create',
         ], [
-            '/books' => 'Create New Book'
+            '/books' => 'Create New Book',
         ]);
 
         $this->visit('/books/create')
@@ -231,14 +238,14 @@ class RolesTest extends BrowserKitTest
         $otherBook = \DocsPen\Book::take(1)->get()->first();
         $ownBook = $this->createEntityChainBelongingToUser($this->user)['book'];
         $this->checkAccessPermission('book-update-own', [
-            $ownBook->getUrl() . '/edit'
+            $ownBook->getUrl().'/edit',
         ], [
-            $ownBook->getUrl() => 'Edit'
+            $ownBook->getUrl() => 'Edit',
         ]);
 
         $this->visit($otherBook->getUrl())
             ->dontSeeInElement('.action-buttons', 'Edit')
-            ->visit($otherBook->getUrl() . '/edit')
+            ->visit($otherBook->getUrl().'/edit')
             ->seePageIs('/');
     }
 
@@ -246,9 +253,9 @@ class RolesTest extends BrowserKitTest
     {
         $otherBook = \DocsPen\Book::take(1)->get()->first();
         $this->checkAccessPermission('book-update-all', [
-            $otherBook->getUrl() . '/edit'
+            $otherBook->getUrl().'/edit',
         ], [
-            $otherBook->getUrl() => 'Edit'
+            $otherBook->getUrl() => 'Edit',
         ]);
     }
 
@@ -258,16 +265,16 @@ class RolesTest extends BrowserKitTest
         $otherBook = \DocsPen\Book::take(1)->get()->first();
         $ownBook = $this->createEntityChainBelongingToUser($this->user)['book'];
         $this->checkAccessPermission('book-delete-own', [
-            $ownBook->getUrl() . '/delete'
+            $ownBook->getUrl().'/delete',
         ], [
-            $ownBook->getUrl() => 'Delete'
+            $ownBook->getUrl() => 'Delete',
         ]);
 
         $this->visit($otherBook->getUrl())
             ->dontSeeInElement('.action-buttons', 'Delete')
-            ->visit($otherBook->getUrl() . '/delete')
+            ->visit($otherBook->getUrl().'/delete')
             ->seePageIs('/');
-        $this->visit($ownBook->getUrl())->visit($ownBook->getUrl() . '/delete')
+        $this->visit($ownBook->getUrl())->visit($ownBook->getUrl().'/delete')
             ->press('Confirm')
             ->seePageIs('/books')
             ->dontSee($ownBook->name);
@@ -278,12 +285,12 @@ class RolesTest extends BrowserKitTest
         $this->giveUserPermissions($this->user, ['book-update-all']);
         $otherBook = \DocsPen\Book::take(1)->get()->first();
         $this->checkAccessPermission('book-delete-all', [
-            $otherBook->getUrl() . '/delete'
+            $otherBook->getUrl().'/delete',
         ], [
-            $otherBook->getUrl() => 'Delete'
+            $otherBook->getUrl() => 'Delete',
         ]);
 
-        $this->visit($otherBook->getUrl())->visit($otherBook->getUrl() . '/delete')
+        $this->visit($otherBook->getUrl())->visit($otherBook->getUrl().'/delete')
             ->press('Confirm')
             ->seePageIs('/books')
             ->dontSee($otherBook->name);
@@ -293,40 +300,40 @@ class RolesTest extends BrowserKitTest
     {
         $book = \DocsPen\Book::take(1)->get()->first();
         $ownBook = $this->createEntityChainBelongingToUser($this->user)['book'];
-        $baseUrl = $ownBook->getUrl() . '/chapter';
+        $baseUrl = $ownBook->getUrl().'/chapter';
         $this->checkAccessPermission('chapter-create-own', [
-            $baseUrl . '/create'
+            $baseUrl.'/create',
         ], [
-            $ownBook->getUrl() => 'New Chapter'
+            $ownBook->getUrl() => 'New Chapter',
         ]);
 
-        $this->visit($baseUrl . '/create')
+        $this->visit($baseUrl.'/create')
             ->type('test chapter', 'name')
             ->type('chapter desc', 'description')
             ->press('Save Chapter')
-            ->seePageIs($baseUrl . '/test-chapter');
+            ->seePageIs($baseUrl.'/test-chapter');
 
         $this->visit($book->getUrl())
             ->dontSeeInElement('.action-buttons', 'New Chapter')
-            ->visit($book->getUrl() . '/chapter/create')
+            ->visit($book->getUrl().'/chapter/create')
             ->seePageIs('/');
     }
 
     public function test_chapter_create_all_permissions()
     {
         $book = \DocsPen\Book::take(1)->get()->first();
-        $baseUrl = $book->getUrl() . '/chapter';
+        $baseUrl = $book->getUrl().'/chapter';
         $this->checkAccessPermission('chapter-create-all', [
-            $baseUrl . '/create'
+            $baseUrl.'/create',
         ], [
-            $book->getUrl() => 'New Chapter'
+            $book->getUrl() => 'New Chapter',
         ]);
 
-        $this->visit($baseUrl . '/create')
+        $this->visit($baseUrl.'/create')
             ->type('test chapter', 'name')
             ->type('chapter desc', 'description')
             ->press('Save Chapter')
-            ->seePageIs($baseUrl . '/test-chapter');
+            ->seePageIs($baseUrl.'/test-chapter');
     }
 
     public function test_chapter_edit_own_permission()
@@ -334,14 +341,14 @@ class RolesTest extends BrowserKitTest
         $otherChapter = \DocsPen\Chapter::take(1)->get()->first();
         $ownChapter = $this->createEntityChainBelongingToUser($this->user)['chapter'];
         $this->checkAccessPermission('chapter-update-own', [
-            $ownChapter->getUrl() . '/edit'
+            $ownChapter->getUrl().'/edit',
         ], [
-            $ownChapter->getUrl() => 'Edit'
+            $ownChapter->getUrl() => 'Edit',
         ]);
 
         $this->visit($otherChapter->getUrl())
             ->dontSeeInElement('.action-buttons', 'Edit')
-            ->visit($otherChapter->getUrl() . '/edit')
+            ->visit($otherChapter->getUrl().'/edit')
             ->seePageIs('/');
     }
 
@@ -349,9 +356,9 @@ class RolesTest extends BrowserKitTest
     {
         $otherChapter = \DocsPen\Chapter::take(1)->get()->first();
         $this->checkAccessPermission('chapter-update-all', [
-            $otherChapter->getUrl() . '/edit'
+            $otherChapter->getUrl().'/edit',
         ], [
-            $otherChapter->getUrl() => 'Edit'
+            $otherChapter->getUrl() => 'Edit',
         ]);
     }
 
@@ -361,17 +368,17 @@ class RolesTest extends BrowserKitTest
         $otherChapter = \DocsPen\Chapter::take(1)->get()->first();
         $ownChapter = $this->createEntityChainBelongingToUser($this->user)['chapter'];
         $this->checkAccessPermission('chapter-delete-own', [
-            $ownChapter->getUrl() . '/delete'
+            $ownChapter->getUrl().'/delete',
         ], [
-            $ownChapter->getUrl() => 'Delete'
+            $ownChapter->getUrl() => 'Delete',
         ]);
 
         $bookUrl = $ownChapter->book->getUrl();
         $this->visit($otherChapter->getUrl())
             ->dontSeeInElement('.action-buttons', 'Delete')
-            ->visit($otherChapter->getUrl() . '/delete')
+            ->visit($otherChapter->getUrl().'/delete')
             ->seePageIs('/');
-        $this->visit($ownChapter->getUrl())->visit($ownChapter->getUrl() . '/delete')
+        $this->visit($ownChapter->getUrl())->visit($ownChapter->getUrl().'/delete')
             ->press('Confirm')
             ->seePageIs($bookUrl)
             ->dontSeeInElement('.book-content', $ownChapter->name);
@@ -382,13 +389,13 @@ class RolesTest extends BrowserKitTest
         $this->giveUserPermissions($this->user, ['chapter-update-all']);
         $otherChapter = \DocsPen\Chapter::take(1)->get()->first();
         $this->checkAccessPermission('chapter-delete-all', [
-            $otherChapter->getUrl() . '/delete'
+            $otherChapter->getUrl().'/delete',
         ], [
-            $otherChapter->getUrl() => 'Delete'
+            $otherChapter->getUrl() => 'Delete',
         ]);
 
         $bookUrl = $otherChapter->book->getUrl();
-        $this->visit($otherChapter->getUrl())->visit($otherChapter->getUrl() . '/delete')
+        $this->visit($otherChapter->getUrl())->visit($otherChapter->getUrl().'/delete')
             ->press('Confirm')
             ->seePageIs($bookUrl)
             ->dontSeeInElement('.book-content', $otherChapter->name);
@@ -403,10 +410,10 @@ class RolesTest extends BrowserKitTest
         $ownBook = $entities['book'];
         $ownChapter = $entities['chapter'];
 
-        $baseUrl = $ownBook->getUrl() . '/page';
+        $baseUrl = $ownBook->getUrl().'/page';
 
-        $createUrl = $baseUrl . '/create';
-        $createUrlChapter = $ownChapter->getUrl() . '/create-page';
+        $createUrl = $baseUrl.'/create';
+        $createUrlChapter = $ownChapter->getUrl().'/create-page';
         $accessUrls = [$createUrl, $createUrlChapter];
 
         foreach ($accessUrls as $url) {
@@ -415,8 +422,8 @@ class RolesTest extends BrowserKitTest
         }
 
         $this->checkAccessPermission('page-create-own', [], [
-            $ownBook->getUrl() => 'New Page',
-            $ownChapter->getUrl() => 'New Page'
+            $ownBook->getUrl()    => 'New Page',
+            $ownChapter->getUrl() => 'New Page',
         ]);
 
         $this->giveUserPermissions($this->user, ['page-create-own']);
@@ -427,19 +434,19 @@ class RolesTest extends BrowserKitTest
             $this->seePageIs($expectedUrl);
         }
 
-        $this->visit($baseUrl . '/create')
+        $this->visit($baseUrl.'/create')
             ->type('test page', 'name')
             ->type('page desc', 'html')
             ->press('Save Page')
-            ->seePageIs($baseUrl . '/test-page');
+            ->seePageIs($baseUrl.'/test-page');
 
         $this->visit($book->getUrl())
             ->dontSeeInElement('.action-buttons', 'New Page')
-            ->visit($book->getUrl() . '/page/create')
+            ->visit($book->getUrl().'/page/create')
             ->seePageIs('/');
         $this->visit($chapter->getUrl())
             ->dontSeeInElement('.action-buttons', 'New Page')
-            ->visit($chapter->getUrl() . '/create-page')
+            ->visit($chapter->getUrl().'/create-page')
             ->seePageIs('/');
     }
 
@@ -447,10 +454,10 @@ class RolesTest extends BrowserKitTest
     {
         $book = \DocsPen\Book::take(1)->get()->first();
         $chapter = \DocsPen\Chapter::take(1)->get()->first();
-        $baseUrl = $book->getUrl() . '/page';
-        $createUrl = $baseUrl . '/create';
+        $baseUrl = $book->getUrl().'/page';
+        $createUrl = $baseUrl.'/create';
 
-        $createUrlChapter = $chapter->getUrl() . '/create-page';
+        $createUrlChapter = $chapter->getUrl().'/create-page';
         $accessUrls = [$createUrl, $createUrlChapter];
 
         foreach ($accessUrls as $url) {
@@ -459,8 +466,8 @@ class RolesTest extends BrowserKitTest
         }
 
         $this->checkAccessPermission('page-create-all', [], [
-            $book->getUrl() => 'New Page',
-            $chapter->getUrl() => 'New Page'
+            $book->getUrl()    => 'New Page',
+            $chapter->getUrl() => 'New Page',
         ]);
 
         $this->giveUserPermissions($this->user, ['page-create-all']);
@@ -471,17 +478,17 @@ class RolesTest extends BrowserKitTest
             $this->seePageIs($expectedUrl);
         }
 
-        $this->visit($baseUrl . '/create')
+        $this->visit($baseUrl.'/create')
             ->type('test page', 'name')
             ->type('page desc', 'html')
             ->press('Save Page')
-            ->seePageIs($baseUrl . '/test-page');
+            ->seePageIs($baseUrl.'/test-page');
 
-        $this->visit($chapter->getUrl() . '/create-page')
+        $this->visit($chapter->getUrl().'/create-page')
             ->type('new test page', 'name')
             ->type('page desc', 'html')
             ->press('Save Page')
-            ->seePageIs($baseUrl . '/new-test-page');
+            ->seePageIs($baseUrl.'/new-test-page');
     }
 
     public function test_page_edit_own_permission()
@@ -489,14 +496,14 @@ class RolesTest extends BrowserKitTest
         $otherPage = \DocsPen\Page::take(1)->get()->first();
         $ownPage = $this->createEntityChainBelongingToUser($this->user)['page'];
         $this->checkAccessPermission('page-update-own', [
-            $ownPage->getUrl() . '/edit'
+            $ownPage->getUrl().'/edit',
         ], [
-            $ownPage->getUrl() => 'Edit'
+            $ownPage->getUrl() => 'Edit',
         ]);
 
         $this->visit($otherPage->getUrl())
             ->dontSeeInElement('.action-buttons', 'Edit')
-            ->visit($otherPage->getUrl() . '/edit')
+            ->visit($otherPage->getUrl().'/edit')
             ->seePageIs('/');
     }
 
@@ -504,9 +511,9 @@ class RolesTest extends BrowserKitTest
     {
         $otherPage = \DocsPen\Page::take(1)->get()->first();
         $this->checkAccessPermission('page-update-all', [
-            $otherPage->getUrl() . '/edit'
+            $otherPage->getUrl().'/edit',
         ], [
-            $otherPage->getUrl() => 'Edit'
+            $otherPage->getUrl() => 'Edit',
         ]);
     }
 
@@ -516,17 +523,17 @@ class RolesTest extends BrowserKitTest
         $otherPage = \DocsPen\Page::take(1)->get()->first();
         $ownPage = $this->createEntityChainBelongingToUser($this->user)['page'];
         $this->checkAccessPermission('page-delete-own', [
-            $ownPage->getUrl() . '/delete'
+            $ownPage->getUrl().'/delete',
         ], [
-            $ownPage->getUrl() => 'Delete'
+            $ownPage->getUrl() => 'Delete',
         ]);
 
         $bookUrl = $ownPage->book->getUrl();
         $this->visit($otherPage->getUrl())
             ->dontSeeInElement('.action-buttons', 'Delete')
-            ->visit($otherPage->getUrl() . '/delete')
+            ->visit($otherPage->getUrl().'/delete')
             ->seePageIs('/');
-        $this->visit($ownPage->getUrl())->visit($ownPage->getUrl() . '/delete')
+        $this->visit($ownPage->getUrl())->visit($ownPage->getUrl().'/delete')
             ->press('Confirm')
             ->seePageIs($bookUrl)
             ->dontSeeInElement('.book-content', $ownPage->name);
@@ -537,13 +544,13 @@ class RolesTest extends BrowserKitTest
         $this->giveUserPermissions($this->user, ['page-update-all']);
         $otherPage = \DocsPen\Page::take(1)->get()->first();
         $this->checkAccessPermission('page-delete-all', [
-            $otherPage->getUrl() . '/delete'
+            $otherPage->getUrl().'/delete',
         ], [
-            $otherPage->getUrl() => 'Delete'
+            $otherPage->getUrl() => 'Delete',
         ]);
 
         $bookUrl = $otherPage->book->getUrl();
-        $this->visit($otherPage->getUrl())->visit($otherPage->getUrl() . '/delete')
+        $this->visit($otherPage->getUrl())->visit($otherPage->getUrl().'/delete')
             ->press('Confirm')
             ->seePageIs($bookUrl)
             ->dontSeeInElement('.book-content', $otherPage->name);
@@ -552,7 +559,7 @@ class RolesTest extends BrowserKitTest
     public function test_public_role_visible_in_user_edit_screen()
     {
         $user = \DocsPen\User::first();
-        $this->asAdmin()->visit('/settings/users/' . $user->id)
+        $this->asAdmin()->visit('/settings/users/'.$user->id)
             ->seeElement('#roles-admin')
             ->seeElement('#roles-public');
     }
@@ -569,7 +576,6 @@ class RolesTest extends BrowserKitTest
         $this->asAdmin()->visit('/settings')
             ->seeElement('[data-role-name="admin"]')
             ->seeElement('[data-role-name="public"]');
-
     }
 
     public function test_public_role_not_deleteable()
@@ -589,12 +595,12 @@ class RolesTest extends BrowserKitTest
         $page = \DocsPen\Page::first();
         $image = factory(\DocsPen\Image::class)->create(['uploaded_to' => $page->id, 'created_by' => $this->user->id, 'updated_by' => $this->user->id]);
 
-        $this->actingAs($this->user)->json('delete', '/images/' . $image->id)
+        $this->actingAs($this->user)->json('delete', '/images/'.$image->id)
             ->seeStatusCode(403);
 
         $this->giveUserPermissions($this->user, ['image-delete-own']);
 
-        $this->actingAs($this->user)->json('delete', '/images/' . $image->id)
+        $this->actingAs($this->user)->json('delete', '/images/'.$image->id)
             ->seeStatusCode(200)
             ->dontSeeInDatabase('images', ['id' => $image->id]);
     }
@@ -606,17 +612,17 @@ class RolesTest extends BrowserKitTest
         $page = \DocsPen\Page::first();
         $image = factory(\DocsPen\Image::class)->create(['uploaded_to' => $page->id, 'created_by' => $admin->id, 'updated_by' => $admin->id]);
 
-        $this->actingAs($this->user)->json('delete', '/images/' . $image->id)
+        $this->actingAs($this->user)->json('delete', '/images/'.$image->id)
             ->seeStatusCode(403);
 
         $this->giveUserPermissions($this->user, ['image-delete-own']);
 
-        $this->actingAs($this->user)->json('delete', '/images/' . $image->id)
+        $this->actingAs($this->user)->json('delete', '/images/'.$image->id)
             ->seeStatusCode(403);
 
         $this->giveUserPermissions($this->user, ['image-delete-all']);
 
-        $this->actingAs($this->user)->json('delete', '/images/' . $image->id)
+        $this->actingAs($this->user)->json('delete', '/images/'.$image->id)
             ->seeStatusCode(200)
             ->dontSeeInDatabase('images', ['id' => $image->id]);
     }
@@ -629,10 +635,10 @@ class RolesTest extends BrowserKitTest
         $viewer = $this->getViewer();
         $this->actingAs($viewer)->visit($page->getUrl())->assertResponseStatus(200);
 
-        $this->asAdmin()->put('/settings/roles/' . $viewerRole->id, [
+        $this->asAdmin()->put('/settings/roles/'.$viewerRole->id, [
             'display_name' => $viewerRole->display_name,
-            'description' => $viewerRole->description,
-            'permission' => []
+            'description'  => $viewerRole->description,
+            'permission'   => [],
         ])->assertResponseStatus(302);
 
         $this->expectException(HttpException::class);
@@ -657,7 +663,8 @@ class RolesTest extends BrowserKitTest
             ->dontSee('Sort the current book');
     }
 
-    public function test_comment_create_permission () {
+    public function test_comment_create_permission()
+    {
         $ownPage = $this->createEntityChainBelongingToUser($this->user)['page'];
 
         $this->actingAs($this->user)->addComment($ownPage);
@@ -670,8 +677,8 @@ class RolesTest extends BrowserKitTest
         $this->assertResponseStatus(200);
     }
 
-
-    public function test_comment_update_own_permission () {
+    public function test_comment_update_own_permission()
+    {
         $ownPage = $this->createEntityChainBelongingToUser($this->user)['page'];
         $this->giveUserPermissions($this->user, ['comment-create-all']);
         $commentId = $this->actingAs($this->user)->addComment($ownPage);
@@ -687,7 +694,8 @@ class RolesTest extends BrowserKitTest
         $this->assertResponseStatus(200);
     }
 
-    public function test_comment_update_all_permission () {
+    public function test_comment_update_all_permission()
+    {
         $ownPage = $this->createEntityChainBelongingToUser($this->user)['page'];
         $commentId = $this->asAdmin()->addComment($ownPage);
 
@@ -702,7 +710,8 @@ class RolesTest extends BrowserKitTest
         $this->assertResponseStatus(200);
     }
 
-    public function test_comment_delete_own_permission () {
+    public function test_comment_delete_own_permission()
+    {
         $ownPage = $this->createEntityChainBelongingToUser($this->user)['page'];
         $this->giveUserPermissions($this->user, ['comment-create-all']);
         $commentId = $this->actingAs($this->user)->addComment($ownPage);
@@ -718,7 +727,8 @@ class RolesTest extends BrowserKitTest
         $this->assertResponseStatus(200);
     }
 
-    public function test_comment_delete_all_permission () {
+    public function test_comment_delete_all_permission()
+    {
         $ownPage = $this->createEntityChainBelongingToUser($this->user)['page'];
         $commentId = $this->asAdmin()->addComment($ownPage);
 
@@ -733,33 +743,37 @@ class RolesTest extends BrowserKitTest
         $this->assertResponseStatus(200);
     }
 
-    private function addComment($page) {
+    private function addComment($page)
+    {
         $comment = factory(\DocsPen\Comment::class)->make();
         $url = "/ajax/page/$page->id/comment";
         $request = [
             'text' => $comment->text,
-            'html' => $comment->html
+            'html' => $comment->html,
         ];
 
         $this->postJson($url, $request);
         $comment = $page->comments()->first();
+
         return $comment === null ? null : $comment->id;
     }
 
-    private function updateComment($commentId) {
+    private function updateComment($commentId)
+    {
         $comment = factory(\DocsPen\Comment::class)->make();
         $url = "/ajax/comment/$commentId";
         $request = [
             'text' => $comment->text,
-            'html' => $comment->html
+            'html' => $comment->html,
         ];
 
         return $this->putJson($url, $request);
     }
 
-    private function deleteComment($commentId) {
-         $url = '/ajax/comment/' . $commentId;
-         return $this->json('DELETE', $url);
-    }
+    private function deleteComment($commentId)
+    {
+        $url = '/ajax/comment/'.$commentId;
 
+        return $this->json('DELETE', $url);
+    }
 }
