@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-sm-8 text-right">
                             @if(userCan('users-manage'))
-                                <a href="{{ baseUrl("/settings/users/create") }}" style="margin-top: 0;" class="pos button">{{ trans('settings.users_add_new') }}</a>
+                                <a href="{{ baseUrl("/settings/users/create") }}" style="margin-top:0" class="pos button">{{ trans('settings.users_add_new') }}</a>
                             @endif
                         </div>
                     </div>

@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div id="recent-activity" class="card">
+    <div class="card" id="recent-activity">
         <h3><i class="zmdi zmdi-time"></i> {{ trans('entities.recent_activity') }}</h3>
         @include('partials/activity-list', ['activity' => $activity])
     </div>
