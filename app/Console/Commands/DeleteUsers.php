@@ -2,11 +2,12 @@
 
 namespace DocsPen\Console\Commands;
 
-use DocsPen\User;
 use DocsPen\Repos\UserRepo;
+use DocsPen\User;
 use Illuminate\Console\Command;
 
-class DeleteUsers extends Command{
+class DeleteUsers extends Command
+{
 
     /**
      * The name and signature of the console command.
@@ -37,26 +38,21 @@ class DeleteUsers extends Command{
     {
         $confirm = $this->ask('This will delete all users from the system that are not "admin" or system users. Are you sure you want to continue? (Type "yes" to continue)');
         $numDeleted = 0;
-        if (strtolower(trim($confirm)) === 'yes')
-        {
+        if (strtolower(trim($confirm)) === 'yes') {
             $totalUsers = User::count();
             $users = $this->user->where('system_name', '=', null)->with('roles')->get();
-            foreach ($users as $user)
-            {
+            foreach ($users as $user) {
                 if ($user->hasRole('admin'))
                 {
                     // don't delete users with "admin" role
                     continue;
                 }
                 $this->userRepo->destroy($user);
-                ++$numDeleted;
+                $numDeleted++;
             }
             $this->info("Deleted $numDeleted of $totalUsers total users.");
-        }
-        else
-        {
+        } else {
             $this->info('Exiting...');
         }
     }
-
 }
