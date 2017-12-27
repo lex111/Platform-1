@@ -2,7 +2,7 @@
 
 [![Build Status](https://semaphoreci.com/api/v1/docspen/platform/branches/master/shields_badge.svg)](https://semaphoreci.com/docspen/platform)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5aeeae9df8b7eb42f21f/maintainability)](https://codeclimate.com/github/DocsPen/Platform/maintainability)
-
+[![StyleCI](https://styleci.io/repos/115519619/shield?branch=master)](https://styleci.io/repos/115519619)
 
 ## Introduction
 
