@@ -230,34 +230,7 @@ return [
         'Activity' => DocsPen\Services\Facades\Activity::class,
         'Setting'  => DocsPen\Services\Facades\Setting::class,
         'Views'    => DocsPen\Services\Facades\Views::class,
-        'Images'   => \
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        \Services\Facades\Images::class,
+        'Images'   => \DocsPen\Services\Facades\Images::class,
 
     ],
 
