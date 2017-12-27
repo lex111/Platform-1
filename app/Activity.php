@@ -1,6 +1,4 @@
-<?php
-
-namespace DocsPen;
+<?php namespace DocsPen;
 
 /**
  * @property string  key
