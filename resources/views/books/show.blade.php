@@ -114,7 +114,7 @@
                             <a href="{{ $book->getUrl('/page/create') }}" class="button outline page"><i class="zmdi zmdi-file-text"></i>{{ trans('entities.books_empty_create_page') }}</a>
                         @endif
                         @if(userCan('page-create', $book) && userCan('chapter-create', $book))
-                            &nbsp;&nbsp;<img src="hhttps://twemoji.maxcdn.com/svg/1f516.svg" style="height:20px;margin-top:14px">&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;<img src="https://twemoji.maxcdn.com/svg/1f516.svg" style="height:20px;margin-top:14px">&nbsp;&nbsp;&nbsp;
                         @endif
                         @if(userCan('chapter-create', $book))
                             <a href="{{ $book->getUrl('/chapter/create') }}" class="button outline chapter"><i class="zmdi zmdi-collection-bookmark"></i>{{ trans('entities.books_empty_add_chapter') }}</a>
