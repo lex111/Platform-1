@@ -1,5 +1,6 @@
-<?php namespace DocsPen;
+<?php 
 
+namespace DocsPen;
 
 class Attachment extends Ownable
 {
