@@ -43,4 +43,4 @@ These are the great open-source projects used to help build DocsPen:
 
 ## License
 
-MIT © [DocsPen](https://docspen.com)
+MIT © [DocsPen.](https://docspen.com)
