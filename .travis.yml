@@ -26,7 +26,7 @@ after_failure:
 
 before_script:
   - npm install -g npm@latest
-  - npm install -g gulp-cli
+  - npm install -g sloc@latest
 
 script:
   - sloc .
