@@ -176,6 +176,7 @@ class SocialAuthService
         if (!$this->checkDriverConfigured($driver)) {
             throw new SocialDriverNotConfigured(trans('errors.social_driver_not_configured', ['socialAccount' => title_case($socialDriver)]));
         }
+
         return $driver;
     }
 
