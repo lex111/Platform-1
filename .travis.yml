@@ -13,7 +13,7 @@ before_script:
   - cp .env.example .env
   - mysql -u root -e 'create database `docspen-test`;'
   - mysql -u root -e "CREATE USER 'docspen-test'@'localhost' IDENTIFIED BY 'docspen-test';"
-  - mysql -u root -e "GRANT ALL ON \`docspen-test\`.* TO 'docspen-test'@'localhost';"
+  - mysql -u root -e "GRANT ALL ON \`docspen-test\`.* TO 'root'@'localhost';"
   - mysql -u root -e "FLUSH PRIVILEGES;"
   - phpenv config-rm xdebug.ini
   - composer install --prefer-dist --no-interaction
