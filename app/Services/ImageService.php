@@ -69,6 +69,7 @@ class ImageService extends UploadService
         if ($imageData === false) {
             throw new \Exception(trans('errors.cannot_get_image_from_url', ['url' => $url]));
         }
+
         return $this->saveNew($imageName, $imageData, $type);
     }
 
