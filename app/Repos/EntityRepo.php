@@ -189,6 +189,7 @@ class EntityRepo
         if ($entity === null) {
             throw new NotFoundException(trans('errors.'.strtolower($type).'_not_found'));
         }
+
         return $entity;
     }
 
