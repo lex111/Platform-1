@@ -25,6 +25,7 @@ after_failure:
   - cat storage/logs/laravel.log
 
 before_script:
+  - npm install -g npm@latest
   - npm install -g gulp-cli
 
 script:
