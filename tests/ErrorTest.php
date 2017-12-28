@@ -1,8 +1,9 @@
-<?php namespace Tests;
+<?php
+
+namespace Tests;
 
 class ErrorTest extends TestCase
 {
-
     public function test_404_page_does_not_show_login()
     {
         // Due to middleware being handled differently this will not fail
