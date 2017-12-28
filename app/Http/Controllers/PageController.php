@@ -1,30 +1,28 @@
-<?php
-
-namespace DocsPen\Http\Controllers;
+<?php namespace DocsPen\Http\Controllers;
 
 use Activity;
-use Carbon\Carbon;
 use DocsPen\Exceptions\NotFoundException;
 use DocsPen\Repos\EntityRepo;
 use DocsPen\Repos\UserRepo;
 use DocsPen\Services\ExportService;
-use GatherContent\Htmldiff\Htmldiff;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Views;
+use GatherContent\Htmldiff\Htmldiff;
 
 class PageController extends Controller
 {
+
     protected $entityRepo;
     protected $exportService;
     protected $userRepo;
 
     /**
      * PageController constructor.
-     *
-     * @param EntityRepo    $entityRepo
+     * @param EntityRepo $entityRepo
      * @param ExportService $exportService
-     * @param UserRepo      $userRepo
+     * @param UserRepo $userRepo
      */
     public function __construct(EntityRepo $entityRepo, ExportService $exportService, UserRepo $userRepo)
     {
@@ -36,12 +34,9 @@ class PageController extends Controller
 
     /**
      * Show the form for creating a new page.
-     *
      * @param string $bookSlug
      * @param string $chapterSlug
-     *
      * @return Response
-     *
      * @internal param bool $pageSlug
      */
     public function create($bookSlug, $chapterSlug = null)
@@ -54,31 +49,26 @@ class PageController extends Controller
         // Redirect to draft edit screen if signed in
         if ($this->signedIn) {
             $draft = $this->entityRepo->getDraftPage($book, $chapter);
-
             return redirect($draft->getUrl());
         }
 
         // Otherwise show edit view
         $this->setPageTitle(trans('entities.pages_new'));
-
         return view('pages/guest-create', ['parent' => $parent]);
     }
 
     /**
      * Create a new page as a guest user.
-     *
-     * @param Request     $request
-     * @param string      $bookSlug
+     * @param Request $request
+     * @param string $bookSlug
      * @param string|null $chapterSlug
-     *
-     * @throws NotFoundException
-     *
      * @return mixed
+     * @throws NotFoundException
      */
     public function createAsGuest(Request $request, $bookSlug, $chapterSlug = null)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255'
         ]);
 
         $book = $this->entityRepo->getBySlug('book', $bookSlug);
@@ -89,18 +79,15 @@ class PageController extends Controller
         $page = $this->entityRepo->getDraftPage($book, $chapter);
         $this->entityRepo->publishPageDraft($page, [
             'name' => $request->get('name'),
-            'html' => '',
+            'html' => ''
         ]);
-
         return redirect($page->getUrl('/edit'));
     }
 
     /**
      * Show form to continue editing a draft page.
-     *
      * @param string $bookSlug
-     * @param int    $pageId
-     *
+     * @param int $pageId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function editDraft($bookSlug, $pageId)
@@ -110,28 +97,25 @@ class PageController extends Controller
         $this->setPageTitle(trans('entities.pages_edit_draft'));
 
         $draftsEnabled = $this->signedIn;
-
         return view('pages/edit', [
-            'page'          => $draft,
-            'book'          => $draft->book,
-            'isDraft'       => true,
-            'draftsEnabled' => $draftsEnabled,
+            'page' => $draft,
+            'book' => $draft->book,
+            'isDraft' => true,
+            'draftsEnabled' => $draftsEnabled
         ]);
     }
 
     /**
      * Store a new page by changing a draft into a page.
-     *
-     * @param Request $request
-     * @param string  $bookSlug
-     * @param int     $pageId
-     *
+     * @param  Request $request
+     * @param  string $bookSlug
+     * @param  int $pageId
      * @return Response
      */
     public function store(Request $request, $bookSlug, $pageId)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255'
         ]);
 
         $input = $request->all();
@@ -152,18 +136,16 @@ class PageController extends Controller
         $page = $this->entityRepo->publishPageDraft($draftPage, $input);
 
         Activity::add($page, 'page_create', $book->id);
-
         return redirect($page->getUrl());
     }
 
     /**
      * Display the specified page.
      * If the page is not found via the slug the revisions are searched for a match.
-     *
      * @param string $bookSlug
      * @param string $pageSlug
-     *
      * @return Response
+     * @throws NotFoundException
      */
     public function show($bookSlug, $pageSlug)
     {
@@ -171,10 +153,7 @@ class PageController extends Controller
             $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         } catch (NotFoundException $e) {
             $page = $this->entityRepo->getPageByOldSlug($pageSlug, $bookSlug);
-            if ($page === null) {
-                abort(404);
-            }
-
+            if ($page === null) throw $e;
             return redirect($page->getUrl());
         }
 
@@ -192,36 +171,30 @@ class PageController extends Controller
 
         Views::add($page);
         $this->setPageTitle($page->getShortName());
-
         return view('pages/show', [
-            'page'            => $page, 'book' => $page->book,
-            'current'         => $page,
-            'sidebarTree'     => $sidebarTree,
+            'page' => $page,'book' => $page->book,
+            'current' => $page,
+            'sidebarTree' => $sidebarTree,
             'commentsEnabled' => $commentsEnabled,
-            'pageNav'         => $pageNav,
+            'pageNav' => $pageNav
         ]);
     }
 
     /**
      * Get page from an ajax request.
-     *
      * @param int $pageId
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function getPageAjax($pageId)
     {
         $page = $this->entityRepo->getById('page', $pageId);
-
         return response()->json($page);
     }
 
     /**
      * Show the form for editing the specified page.
-     *
      * @param string $bookSlug
      * @param string $pageSlug
-     *
      * @return Response
      */
     public function edit($bookSlug, $pageSlug)
@@ -244,51 +217,43 @@ class PageController extends Controller
             $page->html = $draft->html;
             $page->markdown = $draft->markdown;
             $page->isDraft = true;
-            $warnings[] = $this->entityRepo->getUserPageDraftMessage($draft);
+            $warnings [] = $this->entityRepo->getUserPageDraftMessage($draft);
         }
 
-        if (count($warnings) > 0) {
-            session()->flash('warning', implode("\n", $warnings));
-        }
+        if (count($warnings) > 0) session()->flash('warning', implode("\n", $warnings));
 
         $draftsEnabled = $this->signedIn;
-
         return view('pages/edit', [
-            'page'          => $page,
-            'book'          => $page->book,
-            'current'       => $page,
-            'draftsEnabled' => $draftsEnabled,
+            'page' => $page,
+            'book' => $page->book,
+            'current' => $page,
+            'draftsEnabled' => $draftsEnabled
         ]);
     }
 
     /**
      * Update the specified page in storage.
-     *
-     * @param Request $request
-     * @param string  $bookSlug
-     * @param string  $pageSlug
-     *
+     * @param  Request $request
+     * @param  string $bookSlug
+     * @param  string $pageSlug
      * @return Response
      */
     public function update(Request $request, $bookSlug, $pageSlug)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255'
         ]);
         $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         $this->checkOwnablePermission('page-update', $page);
         $this->entityRepo->updatePage($page, $page->book->id, $request->all());
         Activity::add($page, 'page_update', $page->book->id);
-
         return redirect($page->getUrl());
     }
 
     /**
      * Save a draft update as a revision.
-     *
      * @param Request $request
-     * @param int     $pageId
-     *
+     * @param int $pageId
      * @return \Illuminate\Http\JsonResponse
      */
     public function saveDraft(Request $request, $pageId)
@@ -298,7 +263,7 @@ class PageController extends Controller
 
         if (!$this->signedIn) {
             return response()->json([
-                'status'  => 'error',
+                'status' => 'error',
                 'message' => trans('errors.guests_cannot_save_drafts'),
             ], 500);
         }
@@ -307,35 +272,29 @@ class PageController extends Controller
 
         $updateTime = $draft->updated_at->timestamp;
         $utcUpdateTimestamp = $updateTime + Carbon::createFromTimestamp(0)->offset;
-
         return response()->json([
             'status'    => 'success',
             'message'   => trans('entities.pages_edit_draft_save_at'),
-            'timestamp' => $utcUpdateTimestamp,
+            'timestamp' => $utcUpdateTimestamp
         ]);
     }
 
     /**
      * Redirect from a special link url which
      * uses the page id rather than the name.
-     *
      * @param int $pageId
-     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function redirectFromLink($pageId)
     {
         $page = $this->entityRepo->getById('page', $pageId);
-
         return redirect($page->getUrl());
     }
 
     /**
      * Show the deletion page for the specified page.
-     *
      * @param string $bookSlug
      * @param string $pageSlug
-     *
      * @return \Illuminate\View\View
      */
     public function showDelete($bookSlug, $pageSlug)
@@ -343,37 +302,30 @@ class PageController extends Controller
         $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         $this->checkOwnablePermission('page-delete', $page);
         $this->setPageTitle(trans('entities.pages_delete_named', ['pageName'=>$page->getShortName()]));
-
         return view('pages/delete', ['book' => $page->book, 'page' => $page, 'current' => $page]);
     }
 
+
     /**
      * Show the deletion page for the specified page.
-     *
      * @param string $bookSlug
-     * @param int    $pageId
-     *
-     * @throws NotFoundException
-     *
+     * @param int $pageId
      * @return \Illuminate\View\View
+     * @throws NotFoundException
      */
     public function showDeleteDraft($bookSlug, $pageId)
     {
         $page = $this->entityRepo->getById('page', $pageId, true);
         $this->checkOwnablePermission('page-update', $page);
         $this->setPageTitle(trans('entities.pages_delete_draft_named', ['pageName'=>$page->getShortName()]));
-
         return view('pages/delete', ['book' => $page->book, 'page' => $page, 'current' => $page]);
     }
 
     /**
      * Remove the specified page from storage.
-     *
      * @param string $bookSlug
      * @param string $pageSlug
-     *
      * @return Response
-     *
      * @internal param int $id
      */
     public function destroy($bookSlug, $pageSlug)
@@ -385,19 +337,15 @@ class PageController extends Controller
 
         Activity::addMessage('page_delete', $book->id, $page->name);
         session()->flash('success', trans('entities.pages_delete_success'));
-
         return redirect($book->getUrl());
     }
 
     /**
      * Remove the specified draft page from storage.
-     *
      * @param string $bookSlug
-     * @param int    $pageId
-     *
-     * @throws NotFoundException
-     *
+     * @param int $pageId
      * @return Response
+     * @throws NotFoundException
      */
     public function destroyDraft($bookSlug, $pageId)
     {
@@ -406,33 +354,27 @@ class PageController extends Controller
         $this->checkOwnablePermission('page-update', $page);
         session()->flash('success', trans('entities.pages_delete_draft_success'));
         $this->entityRepo->destroyPage($page);
-
         return redirect($book->getUrl());
     }
 
     /**
      * Shows the last revisions for this page.
-     *
      * @param string $bookSlug
      * @param string $pageSlug
-     *
      * @return \Illuminate\View\View
      */
     public function showRevisions($bookSlug, $pageSlug)
     {
         $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         $this->setPageTitle(trans('entities.pages_revisions_named', ['pageName'=>$page->getShortName()]));
-
         return view('pages/revisions', ['page' => $page, 'book' => $page->book, 'current' => $page]);
     }
 
     /**
-     * Shows a preview of a single revision.
-     *
+     * Shows a preview of a single revision
      * @param string $bookSlug
      * @param string $pageSlug
-     * @param int    $revisionId
-     *
+     * @param int $revisionId
      * @return \Illuminate\View\View
      */
     public function showRevision($bookSlug, $pageSlug, $revisionId)
@@ -447,19 +389,17 @@ class PageController extends Controller
         $this->setPageTitle(trans('entities.pages_revision_named', ['pageName' => $page->getShortName()]));
 
         return view('pages/revision', [
-            'page'     => $page,
-            'book'     => $page->book,
-            'revision' => $revision,
+            'page' => $page,
+            'book' => $page->book,
+            'revision' => $revision
         ]);
     }
 
     /**
-     * Shows the changes of a single revision.
-     *
+     * Shows the changes of a single revision
      * @param string $bookSlug
      * @param string $pageSlug
-     * @param int    $revisionId
-     *
+     * @param int $revisionId
      * @return \Illuminate\View\View
      */
     public function showRevisionChanges($bookSlug, $pageSlug, $revisionId)
@@ -472,26 +412,24 @@ class PageController extends Controller
 
         $prev = $revision->getPrevious();
         $prevContent = ($prev === null) ? '' : $prev->html;
-        $diff = (new Htmldiff())->diff($prevContent, $revision->html);
+        $diff = (new Htmldiff)->diff($prevContent, $revision->html);
 
         $page->fill($revision->toArray());
         $this->setPageTitle(trans('entities.pages_revision_named', ['pageName'=>$page->getShortName()]));
 
         return view('pages/revision', [
-            'page'     => $page,
-            'book'     => $page->book,
-            'diff'     => $diff,
-            'revision' => $revision,
+            'page' => $page,
+            'book' => $page->book,
+            'diff' => $diff,
+            'revision' => $revision
         ]);
     }
 
     /**
      * Restores a page using the content of the specified revision.
-     *
      * @param string $bookSlug
      * @param string $pageSlug
-     * @param int    $revisionId
-     *
+     * @param int $revisionId
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function restoreRevision($bookSlug, $pageSlug, $revisionId)
@@ -500,17 +438,14 @@ class PageController extends Controller
         $this->checkOwnablePermission('page-update', $page);
         $page = $this->entityRepo->restorePageRevision($page, $page->book, $revisionId);
         Activity::add($page, 'page_restore', $page->book->id);
-
         return redirect($page->getUrl());
     }
 
     /**
      * Exports a page to a PDF.
-     * https://github.com/barryvdh/laravel-dompdf.
-     *
+     * https://github.com/barryvdh/laravel-dompdf
      * @param string $bookSlug
      * @param string $pageSlug
-     *
      * @return \Illuminate\Http\Response
      */
     public function exportPdf($bookSlug, $pageSlug)
@@ -518,19 +453,16 @@ class PageController extends Controller
         $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         $page->html = $this->entityRepo->renderPage($page);
         $pdfContent = $this->exportService->pageToPdf($page);
-
         return response()->make($pdfContent, 200, [
             'Content-Type'        => 'application/octet-stream',
-            'Content-Disposition' => 'attachment; filename="'.$pageSlug.'.pdf',
+            'Content-Disposition' => 'attachment; filename="' . $pageSlug . '.pdf'
         ]);
     }
 
     /**
      * Export a page to a self-contained HTML file.
-     *
      * @param string $bookSlug
      * @param string $pageSlug
-     *
      * @return \Illuminate\Http\Response
      */
     public function exportHtml($bookSlug, $pageSlug)
@@ -538,68 +470,58 @@ class PageController extends Controller
         $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         $page->html = $this->entityRepo->renderPage($page);
         $containedHtml = $this->exportService->pageToContainedHtml($page);
-
         return response()->make($containedHtml, 200, [
             'Content-Type'        => 'application/octet-stream',
-            'Content-Disposition' => 'attachment; filename="'.$pageSlug.'.html',
+            'Content-Disposition' => 'attachment; filename="' . $pageSlug . '.html'
         ]);
     }
 
     /**
      * Export a page to a simple plaintext .txt file.
-     *
      * @param string $bookSlug
      * @param string $pageSlug
-     *
      * @return \Illuminate\Http\Response
      */
     public function exportPlainText($bookSlug, $pageSlug)
     {
         $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         $containedHtml = $this->exportService->pageToPlainText($page);
-
         return response()->make($containedHtml, 200, [
             'Content-Type'        => 'application/octet-stream',
-            'Content-Disposition' => 'attachment; filename="'.$pageSlug.'.txt',
+            'Content-Disposition' => 'attachment; filename="' . $pageSlug . '.txt'
         ]);
     }
 
     /**
-     * Show a listing of recently created pages.
-     *
+     * Show a listing of recently created pages
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showRecentlyCreated()
     {
         $pages = $this->entityRepo->getRecentlyCreatedPaginated('page', 20)->setPath(baseUrl('/pages/recently-created'));
-
         return view('pages/detailed-listing', [
             'title' => trans('entities.recently_created_pages'),
-            'pages' => $pages,
+            'pages' => $pages
         ]);
     }
 
     /**
-     * Show a listing of recently created pages.
-     *
+     * Show a listing of recently created pages
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showRecentlyUpdated()
     {
         $pages = $this->entityRepo->getRecentlyUpdatedPaginated('page', 20)->setPath(baseUrl('/pages/recently-updated'));
-
         return view('pages/detailed-listing', [
             'title' => trans('entities.recently_updated_pages'),
-            'pages' => $pages,
+            'pages' => $pages
         ]);
     }
 
     /**
      * Show the Restrictions view.
-     *
      * @param string $bookSlug
      * @param string $pageSlug
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showRestrict($bookSlug, $pageSlug)
@@ -607,44 +529,36 @@ class PageController extends Controller
         $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         $this->checkOwnablePermission('restrictions-manage', $page);
         $roles = $this->userRepo->getRestrictableRoles();
-
         return view('pages/restrictions', [
             'page'  => $page,
-            'roles' => $roles,
+            'roles' => $roles
         ]);
     }
 
     /**
      * Show the view to choose a new parent to move a page into.
-     *
      * @param string $bookSlug
      * @param string $pageSlug
-     *
-     * @throws NotFoundException
-     *
      * @return mixed
+     * @throws NotFoundException
      */
     public function showMove($bookSlug, $pageSlug)
     {
         $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         $this->checkOwnablePermission('page-update', $page);
-
         return view('pages/move', [
             'book' => $page->book,
-            'page' => $page,
+            'page' => $page
         ]);
     }
 
     /**
-     * Does the action of moving the location of a page.
-     *
-     * @param string  $bookSlug
-     * @param string  $pageSlug
+     * Does the action of moving the location of a page
+     * @param string $bookSlug
+     * @param string $pageSlug
      * @param Request $request
-     *
-     * @throws NotFoundException
-     *
      * @return mixed
+     * @throws NotFoundException
      */
     public function move($bookSlug, $pageSlug, Request $request)
     {
@@ -660,11 +574,11 @@ class PageController extends Controller
         $entityType = $stringExploded[0];
         $entityId = intval($stringExploded[1]);
 
+
         try {
             $parent = $this->entityRepo->getById($entityType, $entityId);
         } catch (\Exception $e) {
             session()->flash(trans('entities.selected_book_chapter_not_found'));
-
             return redirect()->back();
         }
 
@@ -677,11 +591,9 @@ class PageController extends Controller
 
     /**
      * Set the permissions for this page.
-     *
-     * @param string  $bookSlug
-     * @param string  $pageSlug
+     * @param string $bookSlug
+     * @param string $pageSlug
      * @param Request $request
-     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function restrict($bookSlug, $pageSlug, Request $request)
@@ -690,7 +602,7 @@ class PageController extends Controller
         $this->checkOwnablePermission('restrictions-manage', $page);
         $this->entityRepo->updateEntityPermissionsFromRequest($request, $page);
         session()->flash('success', trans('entities.pages_permissions_success'));
-
         return redirect($page->getUrl());
     }
+
 }

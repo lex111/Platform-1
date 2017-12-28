@@ -1,6 +1,4 @@
-<?php
-
-namespace DocsPen\Http;
+<?php namespace DocsPen\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -33,7 +31,15 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \DocsPen\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \DocsPen\Http\Middleware\Localization::class,
+            \DocsPen\Http\Middleware\Localization::class
+        ],
+        'web_errors' => [
+            \DocsPen\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \DocsPen\Http\Middleware\VerifyCsrfToken::class,
+            \DocsPen\Http\Middleware\Localization::class
         ],
         'api' => [
             'throttle:60,1',
@@ -51,7 +57,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can'        => \Illuminate\Auth\Middleware\Authorize::class,
         'guest'      => \DocsPen\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'perm'       => \DocsPen\Http\Middleware\PermissionMiddleware::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'perm'       => \DocsPen\Http\Middleware\PermissionMiddleware::class
     ];
 }
