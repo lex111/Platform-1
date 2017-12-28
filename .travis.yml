@@ -2,11 +2,10 @@ dist: trusty
 sudo: false
 language: php
 php:
+  - '5.6'
   - '7.0'
   - '7.1'
   - '7.2'
-  - hhvm
-  - nightly
 
 cache:
   directories:
@@ -19,6 +18,7 @@ before_script:
   - mysql -u root -e "CREATE USER 'docspen-test'@'localhost' IDENTIFIED BY 'docspen-test';"
   - mysql -u root -e "GRANT ALL ON \`docspen-test\`.* TO 'docspen-test'@'localhost';"
   - mysql -u root -e "FLUSH PRIVILEGES;"
+  - phpenv config-rm xdebug.ini
   - composer install --prefer-dist --no-interaction
   - php artisan clear-compiled -n
   - php artisan optimize -n
