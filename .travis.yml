@@ -9,6 +9,8 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
+  - npm install -g npm@latest
+  - npm install -g sloc@latest
   - cp .env.example .env
   - mysql -u root -e 'create database `docspen-test`;'
   - mysql -u root -e "CREATE USER 'docspen-test'@'localhost' IDENTIFIED BY 'docspen-test';"
@@ -23,10 +25,6 @@ before_script:
 
 after_failure:
   - cat storage/logs/laravel.log
-
-before_script:
-  - npm install -g npm@latest
-  - npm install -g sloc@latest
 
 script:
   - sloc .
