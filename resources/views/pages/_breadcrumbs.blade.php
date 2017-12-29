@@ -8,7 +8,7 @@
             <i class="zmdi zmdi-collection-bookmark"></i>
             {{ $page->chapter->getShortName() }}
         </a>
-        <img src="https://cdn.jsdelivr.net/npm/uswds@1.4.4/src/img/arrow-right.svg" style="height:10px">
+        <img src="https://cdn.jsdelivr.net/npm/docspen@6.0.0/imgs/arrow-right.svg" style="height:10px">
     @endif
     <a href="{{ $page->getUrl() }}" class="text-page text-button"><i class="zmdi zmdi-file"></i>{{ $page->getShortName() }}</a>
 </div>
