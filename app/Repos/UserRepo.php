@@ -5,7 +5,7 @@ namespace DocsPen\Repos;
 use DocsPen\Role;
 use DocsPen\User;
 use Exception;
-use BookStack\Services\ImageService;
+use DocsPen\Services\ImageService;
 
 class UserRepo
 {
