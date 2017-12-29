@@ -11,9 +11,9 @@
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png" />
     <link rel="stylesheet" href="{{ versioned_asset('css/styles.css') }}">
     <link rel="stylesheet" media="print" href="{{ versioned_asset('css/print-styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     @include('partials/custom-styles')
 
     <!-- Custom user content -->

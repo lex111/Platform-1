@@ -1,7 +1,7 @@
 @extends('simple-layout')
 
 @section('head')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docspen@6.0.0/js/jquery-sortable-min.js"></script>
 @stop
 
 @section('toolbar')

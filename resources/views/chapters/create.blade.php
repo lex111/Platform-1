@@ -4,7 +4,7 @@
     <div class="col-sm-12 faded">
         <div class="breadcrumbs">
             <a href="{{$book->getUrl()}}" class="text-book text-button"><i class="zmdi zmdi-book"></i>{{ $book->getShortName() }}</a>
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/uswds/1.4.4/img/arrow-right.svg" style="height:10px">
+            <img src="https://cdn.jsdelivr.net/npm/uswds@1.4.4/src/img/arrow-right.svg" style="height:10px">
             <a href="{{ baseUrl('/books/chapter/create') }}" class="text-button"><i class="zmdi zmdi-plus"></i>{{ trans('entities.chapters_create') }}</a>
         </div>
     </div>
