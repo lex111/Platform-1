@@ -3,9 +3,9 @@
 namespace DocsPen\Repos;
 
 use DocsPen\Role;
+use DocsPen\Services\ImageService;
 use DocsPen\User;
 use Exception;
-use DocsPen\Services\ImageService;
 
 class UserRepo
 {
@@ -170,9 +170,9 @@ class UserRepo
     {
         $user->socialAccounts()->delete();
         $user->delete();
-        
+
         // Deleting User profile pics
-        $profilePic = $user->image_id ? $user->avatar->findOrFail($user->image_id) : FALSE;
+        $profilePic = $user->image_id ? $user->avatar->findOrFail($user->image_id) : false;
         if ($profilePic) {
             $this->imageService->destroyImage($profilePic);
         }
