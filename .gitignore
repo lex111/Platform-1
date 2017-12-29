@@ -2,9 +2,7 @@
 /node_modules
 .codetasty/
 worker.log
-Homestead.yaml
 .env
-.idea
 npm-debug.log
 yarn-error.log
 /public/dist
