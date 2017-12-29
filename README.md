@@ -46,5 +46,4 @@ These are the great open-source projects used to help build DocsPen:
     * [Laravel IDE helper](https://github.com/barryvdh/laravel-ide-helper)
 
 ## License
-
 MIT © [DocsPen.](https://docspen.com)
