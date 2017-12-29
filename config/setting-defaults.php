@@ -6,7 +6,7 @@
 return [
 
     'app-name'              => 'DocsPen',
-    'app-logo'              => 'https://unpkg.com/docspen@1.0.0/imgs/logo-small.png',
+    'app-logo'              => 'https://oss.maxcdn.com/npm/docspen@1.0.0/imgs/logo-small.png',
     'app-name-header'       => true,
     'app-editor'            => 'wysiwyg',
     'app-color'             => '#026AA7',
