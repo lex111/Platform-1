@@ -38,7 +38,7 @@ return [
     'app_logo'                  => 'Logo da Aplicação',
     'app_logo_desc'             => 'A imagem deve ter 43px de altura. <br>Imagens mais largas devem ser reduzidas.',
     'app_primary_color'         => 'Cor primária da Aplicação',
-    'app_primary_color_desc'    => 'Esse valor deverá ser Hexadecimal. <br>Deixe em branco para que o Bookstack assuma a cor padrão.',
+    'app_primary_color_desc'    => 'Esse valor deverá ser Hexadecimal. <br>Deixe em branco para que o DocsPen assuma a cor padrão.',
     'app_homepage'              => 'Página incial',
     'app_homepage_desc'         => 'Selecione a página para ser usada como página inicial em vez da padrão. Permissões da página serão ignoradas.',
     'app_homepage_default'      => 'Escolhida página inicial padrão',
