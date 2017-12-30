@@ -11,7 +11,7 @@ server {
   listen 80;
   listen [::]:80;
 
-  server_name docspen.io;
+  server_name docspen.com;
 
   root /var/www/html/public;
   index index.php index.html;
