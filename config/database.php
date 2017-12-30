@@ -7,7 +7,7 @@
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
- 
+
 // REDIS - Split out configuration into an array
 if (env('REDIS_SERVERS', false)) {
     $redisServerKeys = ['host', 'port', 'database'];
