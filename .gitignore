@@ -1,7 +1,6 @@
 /vendor
 /node_modules
 .codetasty/
-worker.log
 .env
 npm-debug.log
 yarn-error.log
