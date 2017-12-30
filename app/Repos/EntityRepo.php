@@ -796,7 +796,7 @@ class EntityRepo
         if (count($matches[0]) === 0) {
             return $content;
         }
-
+        $topLevelTags = ['table', 'ul', 'ol'];
         foreach ($matches[1] as $index => $includeId) {
             $splitInclude = explode('#', $includeId, 2);
             $pageId = intval($splitInclude[0]);
@@ -823,8 +823,13 @@ class EntityRepo
                 continue;
             }
             $innerContent = '';
-            foreach ($matchingElem->childNodes as $childNode) {
-                $innerContent .= $doc->saveHTML($childNode);
+            $isTopLevel = in_array(strtolower($matchingElem->nodeName), $topLevelTags);
+            if ($isTopLevel) {
+                $innerContent .= $doc->saveHTML($matchingElem);
+            } else {
+                foreach ($matchingElem->childNodes as $childNode) {
+                    $innerContent .= $doc->saveHTML($childNode);
+                }
             }
             $content = str_replace($matches[0][$index], trim($innerContent), $content);
         }
