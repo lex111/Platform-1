@@ -62,8 +62,6 @@
         "post-install-cmd": [
             "php artisan cache:clear",
             "php artisan view:clear"
-            "php artisan config:clear"
-            "php artisan up"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
