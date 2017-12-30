@@ -7,7 +7,6 @@
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
