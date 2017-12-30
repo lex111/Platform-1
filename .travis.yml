@@ -28,4 +28,5 @@ after_failure:
   - cat storage/logs/laravel.log
 
 script:
+  - phpunit
   - sloc .
