@@ -58,7 +58,7 @@ class PageContentTest extends TestCase
         $page = Page::find($page->id);
         $this->assertContains("{{@$secondPage->id}}", $page->html);
     }
-    
+
     public function test_page_includes_do_not_break_tables()
     {
         $page = Page::first();
@@ -72,7 +72,7 @@ class PageContentTest extends TestCase
         $pageResp = $this->get($page->getUrl());
         $pageResp->assertSee($content);
     }
-    
+
     public function test_page_revision_views_viewable()
     {
         $this->asEditor();
