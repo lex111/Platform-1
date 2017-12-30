@@ -1,20 +1,22 @@
-<?php namespace DocsPen\Http\Controllers;
+<?php
 
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+namespace DocsPen\Http\Controllers;
+
 use DocsPen\Repos\UserRepo;
 use DocsPen\Services\SocialAuthService;
 use DocsPen\User;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
-
     protected $user;
     protected $userRepo;
 
     /**
      * UserController constructor.
+     *
      * @param User     $user
      * @param UserRepo $userRepo
      */
@@ -27,25 +29,29 @@ class UserController extends Controller
 
     /**
      * Display a listing of the users.
+     *
      * @param Request $request
+     *
      * @return Response
      */
     public function index(Request $request)
     {
         $this->checkPermission('users-manage');
         $listDetails = [
-            'order' => $request->get('order', 'asc'),
+            'order'  => $request->get('order', 'asc'),
             'search' => $request->get('search', ''),
-            'sort' => $request->get('sort', 'name'),
+            'sort'   => $request->get('sort', 'name'),
         ];
         $users = $this->userRepo->getAllUsersPaginatedAndSorted(20, $listDetails);
         $this->setPageTitle(trans('settings.users'));
         $users->appends($listDetails);
+
         return view('users/index', ['users' => $users, 'listDetails' => $listDetails]);
     }
 
     /**
      * Show the form for creating a new user.
+     *
      * @return Response
      */
     public function create()
@@ -53,12 +59,15 @@ class UserController extends Controller
         $this->checkPermission('users-manage');
         $authMethod = config('auth.method');
         $roles = $this->userRepo->getAllRoles();
+
         return view('users/create', ['authMethod' => $authMethod, 'roles' => $roles]);
     }
 
     /**
      * Store a newly created user in storage.
-     * @param  Request $request
+     *
+     * @param Request $request
+     *
      * @return Response
      */
     public function store(Request $request)
@@ -66,7 +75,7 @@ class UserController extends Controller
         $this->checkPermission('users-manage');
         $validationRules = [
             'name'             => 'required',
-            'email'            => 'required|email|unique:users,email'
+            'email'            => 'required|email|unique:users,email',
         ];
 
         $authMethod = config('auth.method');
@@ -102,7 +111,6 @@ class UserController extends Controller
             } catch (Exception $e) {
                 \Log::error('Failed to save user gravatar image');
             }
-
         }
 
         return redirect('/settings/users');
@@ -110,8 +118,10 @@ class UserController extends Controller
 
     /**
      * Show the form for editing the specified user.
-     * @param  int              $id
+     *
+     * @param int               $id
      * @param SocialAuthService $socialAuthService
+     *
      * @return Response
      */
     public function edit($id, SocialAuthService $socialAuthService)
@@ -127,13 +137,16 @@ class UserController extends Controller
         $activeSocialDrivers = $socialAuthService->getActiveDrivers();
         $this->setPageTitle(trans('settings.user_profile'));
         $roles = $this->userRepo->getAllRoles();
+
         return view('users/edit', ['user' => $user, 'activeSocialDrivers' => $activeSocialDrivers, 'authMethod' => $authMethod, 'roles' => $roles]);
     }
 
     /**
      * Update the specified user in storage.
-     * @param  Request $request
-     * @param  int     $id
+     *
+     * @param Request $request
+     * @param int     $id
+     *
      * @return Response
      */
     public function update(Request $request, $id)
@@ -145,10 +158,10 @@ class UserController extends Controller
 
         $this->validate($request, [
             'name'             => 'min:2',
-            'email'            => 'min:2|email|unique:users,email,' . $id,
+            'email'            => 'min:2|email|unique:users,email,'.$id,
             'password'         => 'min:5|required_with:password_confirm',
             'password-confirm' => 'same:password|required_with:password',
-            'setting'          => 'array'
+            'setting'          => 'array',
         ]);
 
         $user = $this->user->findOrFail($id);
@@ -181,13 +194,16 @@ class UserController extends Controller
         $user->save();
         session()->flash('success', trans('settings.users_edit_success'));
 
-        $redirectUrl = userCan('users-manage') ? '/settings/users' : '/settings/users/' . $user->id;
+        $redirectUrl = userCan('users-manage') ? '/settings/users' : '/settings/users/'.$user->id;
+
         return redirect($redirectUrl);
     }
 
     /**
      * Show the user delete page.
+     *
      * @param int $id
+     *
      * @return \Illuminate\View\View
      */
     public function delete($id)
@@ -198,12 +214,15 @@ class UserController extends Controller
 
         $user = $this->user->findOrFail($id);
         $this->setPageTitle(trans('settings.users_delete_named', ['userName' => $user->name]));
+
         return view('users/delete', ['user' => $user]);
     }
 
     /**
      * Remove the specified user from storage.
-     * @param  int $id
+     *
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)
@@ -217,11 +236,13 @@ class UserController extends Controller
 
         if ($this->userRepo->isOnlyAdmin($user)) {
             session()->flash('error', trans('errors.users_cannot_delete_only_admin'));
+
             return redirect($user->getEditUrl());
         }
 
         if ($user->system_name === 'public') {
             session()->flash('error', trans('errors.users_cannot_delete_guest'));
+
             return redirect($user->getEditUrl());
         }
 
@@ -232,8 +253,10 @@ class UserController extends Controller
     }
 
     /**
-     * Show the user profile page
+     * Show the user profile page.
+     *
      * @param $id
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showProfilePage($id)
@@ -242,21 +265,25 @@ class UserController extends Controller
         $userActivity = $this->userRepo->getActivity($user);
         $recentlyCreated = $this->userRepo->getRecentlyCreated($user, 5, 0);
         $assetCounts = $this->userRepo->getAssetCounts($user);
+
         return view('users/profile', [
-            'user' => $user,
-            'activity' => $userActivity,
+            'user'            => $user,
+            'activity'        => $userActivity,
             'recentlyCreated' => $recentlyCreated,
-            'assetCounts' => $assetCounts
+            'assetCounts'     => $assetCounts,
         ]);
     }
 
     /**
      * Update the user's preferred book-list display setting.
+     *
      * @param $id
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function switchBookView($id, Request $request) {
+    public function switchBookView($id, Request $request)
+    {
         $this->checkPermissionOr('users-manage', function () use ($id) {
             return $this->currentUser->id == $id;
         });
@@ -271,5 +298,4 @@ class UserController extends Controller
 
         return redirect()->back(302, [], "/settings/users/$id");
     }
-
 }
