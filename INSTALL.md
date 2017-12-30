@@ -28,7 +28,7 @@ server {
 ```
 
 ```
-sudo ln -s /etc/nginx/sites-available/bookstack /etc/nginx/sites-enabled/bookstack
+sudo ln -s /etc/nginx/sites-available/docspen /etc/nginx/sites-enabled/docspen
 sudo rm /etc/nginx/sites-enabled/default
 sudo service nginx restart
 ```
