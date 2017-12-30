@@ -1,7 +1,7 @@
 {
     "name": "DocsPen/Platform",
-    "description": "DocsPen documentation platform",
-    "keywords": ["DocsPen", "Documentation"],
+    "description": "DocsPen - Online Documentation Platform!",
+    "keywords": ["DocsPen", "Documentation", "Wiki", "Books"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -62,6 +62,8 @@
         "post-install-cmd": [
             "php artisan cache:clear",
             "php artisan view:clear"
+            "php artisan config:clear"
+            "php artisan up"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
