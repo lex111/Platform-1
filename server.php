@@ -7,12 +7,12 @@
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
- 
+
 /**
- * Laravel - A PHP Framework For Web Artisans.
- *
- * @author   Taylor Otwell <taylorotwell@gmail.com>
- */
+  * Laravel - A PHP Framework For Web Artisans.
+  *
+  * @author   Taylor Otwell <taylorotwell@gmail.com>
+  */
 $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 );
