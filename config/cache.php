@@ -7,7 +7,7 @@
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
- 
+
 // MEMCACHED - Split out configuration into an array
 if (env('CACHE_DRIVER') === 'memcached') {
     $memcachedServerKeys = ['host', 'port', 'weight'];
