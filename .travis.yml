@@ -29,6 +29,3 @@ after_failure:
 
 script:
   - sloc .
-  
-after_script:
-  - php vendor/bin/coveralls -v
