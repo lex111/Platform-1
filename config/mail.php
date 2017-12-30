@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.docspen.io'),
+    'host' => env('MAIL_HOST', 'smtp.docspen.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => env('MAIL_FROM', 'no-reply@docspen.io'), 'name' => 'DocsPen'],
+    'from' => ['address' => env('MAIL_FROM', 'no-reply@docspen.com'), 'name' => 'DocsPen'],
 
     /*
     |--------------------------------------------------------------------------
