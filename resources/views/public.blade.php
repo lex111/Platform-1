@@ -22,7 +22,7 @@
     @if(setting('app-custom-head'))
         {!! setting('app-custom-head') !!}
     @endif
-    <script>
+    {{-- <script>
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register('service-worker.js');
         }
@@ -33,7 +33,7 @@
           imgElement.src = iconUrl;
           document.querySelector('#container').appendChild(imgElement);
         });
-    </script>
+    </script> --}}
 </head>
 <body class="@yield('body-class')">
 
