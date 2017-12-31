@@ -22,6 +22,13 @@
     @if(setting('app-custom-head'))
         {!! setting('app-custom-head') !!}
     @endif
+    <script>
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/serviceworker.js', {
+            scope: '/'
+          });
+        }
+    </script>
 </head>
 <body class="@yield('body-class')">
 
