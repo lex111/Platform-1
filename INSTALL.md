@@ -7,33 +7,43 @@ sudo apt-get update
 ```
 sudo apt install -y git composer apache2 redis-server curl php libapache2-mod-php php7.1-fpm php7.1-curl php7.1-mbstring php7.1-ldap php7.1-mcrypt php7.1-tidy php7.1-xml php7.1-zip php7.1-gd php7.1-mysql mysql-server-5.7 mcrypt phpmyadmin
 ```
+## Database Creation
 
+```
+mysql -p -u root
+create database docspen;
+grant all privileges on docspen.* to 'ryan'@'localhost' identified by "password"; 
+```
 ## Apache Conf
 
 ```
-cd /etc/apache2/sites-available
-sudo nano docspen.conf
+cd /etc/nginx/sites-available
+sudo nano docspen
 ```
 
 ```
-<VirtualHost *:80>
-    ServerName DocsPen
+server {
+  listen 80;
+  listen [::]:80;
 
-    ServerAdmin yoginth@aol.com
-    DocumentRoot /var/www/html/public
+  server_name docspen.com;
 
-    <Directory /var/www/html>
-        AllowOverride All
-    </Directory>
+  root /var/www/html/public;
+  index index.php index.html;
 
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
+  location / {
+    try_files $uri $uri/ /index.php?$query_string;
+  }
+  
+  location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+  }
+}
 ```
 
 ```
-sudo a2dissite 000-default.conf
-sudo a2ensite docspen.conf
-sudo a2enmod rewrite
-sudo service apache2 restart
+sudo ln -s /etc/nginx/sites-available/docspen /etc/nginx/sites-enabled/docspen
+sudo rm /etc/nginx/sites-enabled/default
+sudo service nginx restart
 ```
