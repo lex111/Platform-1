@@ -2,7 +2,7 @@
 
     <h1 id="bkmrk-page-title">{{$page->name}}</h1>
     <div style="clear:left"></div>
-    <a data-pocket-label="pocket" data-pocket-count="vertical" class="pocket-btn" data-lang="en"></a>
+    <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
 
     @if (isset($diff) && $diff)
         {!! $diff !!}
