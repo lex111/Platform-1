@@ -1,6 +1,10 @@
 ## One Line Installation
 
 ```
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+```
+```
 sudo apt install -y git nginx curl php7.1-fpm php7.1-curl php7.1-mbstring php7.1-ldap php7.1-mcrypt php7.1-tidy php7.1-xml php7.1-zip php7.1-gd php7.1-mysql mysql-server-5.7 mcrypt phpmyadmin
 ```
 
