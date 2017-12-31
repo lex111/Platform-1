@@ -123,6 +123,9 @@ class SettingService
     {
         $cacheKey = $this->cachePrefix.$key;
         $this->cache->forget($cacheKey);
+        if (isset($this->localCache[$key])) {
+            unset($this->localCache[$key]);
+        }
     }
 
     /**
