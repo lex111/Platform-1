@@ -8,6 +8,7 @@
     <meta name="base-url" content="{{ baseUrl('/') }}">
     <meta charset="utf-8">
 
+    <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png" />
     <link rel="stylesheet" href="{{ versioned_asset('css/styles.css') }}">
     <link rel="stylesheet" media="print" href="{{ versioned_asset('css/print-styles.css') }}">
