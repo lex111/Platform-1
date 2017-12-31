@@ -7,11 +7,6 @@
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
- 
-$viewPaths = [realpath(base_path('resources/views'))];
-if ($theme = env('APP_THEME', false)) {
-    array_unshift($viewPaths, base_path('themes/' . $theme));
-}
 
 return [
 
@@ -27,7 +22,7 @@ return [
     */
 
     'paths' => [
-        'paths' => $viewPaths,
+        realpath(base_path('resources/views')),
     ],
 
     /*
