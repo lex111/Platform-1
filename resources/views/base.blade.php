@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ baseUrl('/') }}">
+    <meta name="theme-color" content="#026AA7">
     <meta charset="utf-8">
 
     <link rel="manifest" href="/manifest.json">
