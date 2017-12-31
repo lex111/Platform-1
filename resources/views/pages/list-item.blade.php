@@ -15,7 +15,7 @@
         <a href="{{ $page->getUrl() }}" class="text-page entity-list-item-link"><i class="zmdi zmdi-file-text"></i><span class="entity-list-item-name">{{ $page->name }}</span></a>
     </h4>
 
-    <div class="entity-item-snippet">
+    <div class="entity-item-snippet" style="white-space:pre-wrap;font-size:14px;line-height:20px">
         @if(isset($page->searchSnippet))
             <p class="text-muted">{!! $page->searchSnippet !!}</p>
         @else
