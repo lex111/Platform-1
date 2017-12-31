@@ -30,25 +30,24 @@
                         ])
                 </div>
             </div>
-
             <div class="col-sm-4">
                 <div class="card">
                     <h3 class="text-muted"><i class="zmdi zmdi-book"></i> {{ trans('entities.books_popular') }}</h3>
-                    @include('partials.entity-list', ['entities' => Views::getPopular(7, 0, [\DocsPen\Book::class]), 'style' => 'compact'])
+                    @include('partials.entity-list', ['entities' => Views::getPopular(12, 0, [\DocsPen\Book::class]), 'style' => 'compact'])
                 </div>
+                <div class="card">
+                </div>
+            </div>
+            <div class="col-sm-4">
                 <div class="card">
                     <h3 class="text-muted"><i class="zmdi zmdi-file-text"></i> {{ trans('entities.pages_popular') }}</h3>
-                    @include('partials.entity-list', ['entities' => Views::getPopular(6, 0, [\DocsPen\Page::class]), 'style' => 'compact'])
+                    @include('partials.entity-list', ['entities' => Views::getPopular(5, 0, [\DocsPen\Page::class]), 'style' => 'compact'])
                 </div>
-            </div>
-
-            <div class="col-sm-4" id="recent-activity">
                 <div class="card">
-                    <h3><i class="zmdi zmdi-time"></i> {{ trans('entities.recent_activity') }}</h3>
-                    @include('partials/activity-list', ['activity' => $activity])
+                    <h3 class="text-muted"><i class="zmdi zmdi-collection-bookmark"></i> {{ trans('entities.chapters_popular') }}</h3>
+                    @include('partials.entity-list', ['entities' => Views::getPopular(5, 0, [\DocsPen\Chapter::class]), 'style' => 'compact'])
                 </div>
             </div>
-
         </div>
     </div>
 
