@@ -13,7 +13,7 @@
         @if(signedInUser() && userCan('settings-manage'))
             <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Admin</a>
-            <a href="https://gitlab.com/DocsPen/Platform" class="text-primary"><i class="zmdi zmdi-github"></i>GitHub</a>       
+            <a href="https://github.com/DocsPen/Platform" class="text-primary"><i class="zmdi zmdi-github"></i>GitHub</a>       
         @endif
         <hr style="margin-bottom:10px">
         <li>
