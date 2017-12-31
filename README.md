@@ -3,7 +3,8 @@
 [![Build Status](https://travis-ci.org/DocsPen/Platform.svg?branch=master)](https://travis-ci.org/DocsPen/Platform)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5aeeae9df8b7eb42f21f/maintainability)](https://codeclimate.com/github/DocsPen/Platform/maintainability)
 [![StyleCI](https://styleci.io/repos/115519619/shield?branch=master)](https://styleci.io/repos/115519619)
-[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=DocsPen Platform is)](https://docspen.ga)
+[![Website](https://img.shields.io/website-up-down-green-red/https/docspen.ga.svg?label=DocsPen Platform is)](https://docspen.ga)
+
 ## Introduction
 
 DocsPen is an online documentation or wiki system that provides a pleasant and simple out of the box experience. New users to an instance should find the experience intuitive and only basic word-processing skills should be required to get involved in creating content on DocsPen. The platform should provide advanced power features to those that desire it but they should not interfere with the core simple user experience.
