@@ -14,17 +14,17 @@
 // Names of the two caches used in this version of the service worker.
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
-const PRECACHE = 'v1';
+const PRECACHE = 'v2';
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
     'https://cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png',
-    'print-styles.css?version=v1.0-beta',
+    'css/print-styles.css?version=v1.0-beta',
     'https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css',
     'https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js',
     'https://cdn.jsdelivr.net/npm/jquery-ui-stable-build@1.11.4/jquery-ui.min.js',
-    'styles.css?version=v1.0-beta',
+    'css/styles.css?version=v1.0-beta',
 ];
 
 // The install handler takes care of precaching the resources we always need.
