@@ -19,11 +19,12 @@ const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
-  'index.html',
-  './', // Alias for index.html
-  'styles.css',
-  '../../styles/main.css',
-  'demo.js'
+    'https://cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png',
+    'print-styles.css?version=v1.0-beta',
+    'https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css',
+    'https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js',
+    'https://cdn.jsdelivr.net/npm/jquery-ui-stable-build@1.11.4/jquery-ui.min.js',
+    'styles.css?version=v1.0-beta',
 ];
 
 // The install handler takes care of precaching the resources we always need.
