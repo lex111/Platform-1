@@ -1,5 +1,5 @@
 {
-  "short_name": "DocsPen",
+  "short_name": "DocsPen Lite",
   "name": "DocsPen Lite",
   "icons": [
     {
@@ -19,6 +19,7 @@
     }
   ],
   "display": "standalone",
+  "orientation":"portrait",
   "theme_color": "#026AA7",
   "background_color": "#026AA7",
   "start_url": "/?launcher=true"
