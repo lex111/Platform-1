@@ -7,7 +7,7 @@ use DocsPen\Repos\EntityRepo;
 use Illuminate\Http\Response;
 use Views;
 
-class PagesController extends Controller
+class OthersController extends Controller
 {
     public function credits()
     {
