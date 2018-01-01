@@ -534,12 +534,6 @@
             name: u.static,
             maxEntries: 50
         }
-    }), o.a.router.get("/v4/(.*)", o.a.cacheFirst, {
-        origin: "https://d2wy8f7a9ursnm.cloudfront.net",
-        cache: {
-            name: u.static,
-            maxEntries: 50
-        }
     }), o.a.router.get("/npm/(.*)", o.a.fastest, {
         origin: "https://cdn.jsdelivr.net",
         cache: {
