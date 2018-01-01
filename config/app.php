@@ -162,7 +162,7 @@ return [
          * Application Service Providers...
          */
         DocsPen\Providers\PaginationServiceProvider::class,
-
+        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
         DocsPen\Providers\AuthServiceProvider::class,
         DocsPen\Providers\AppServiceProvider::class,
         DocsPen\Providers\BroadcastServiceProvider::class,
@@ -237,6 +237,7 @@ return [
         'Setting'  => DocsPen\Services\Facades\Setting::class,
         'Views'    => DocsPen\Services\Facades\Views::class,
         'Images'   => \DocsPen\Services\Facades\Images::class,
+        'Bugsnag'  => Bugsnag\BugsnagLaravel\Facades\Bugsnag::class,
 
     ],
 
