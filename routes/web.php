@@ -191,7 +191,8 @@ Route::get('/about', 'OthersController@about');
 Route::get('/credits', 'OthersController@credits');
 Route::get('/terms', 'OthersController@terms');
 Route::get('/privacy', 'OthersController@privacy');
-Route::get('/ping', 'OthersController@ping');
+Route::get('/ping', function () { return 'pong'; });
+Route::get('/trello', function () { return redirect('https://trello.com/b/nUennIKj/docspen'); });
 
 // Sitemaps
 Route::get('/books.xml', 'SitemapsController@books');
