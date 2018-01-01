@@ -28,7 +28,7 @@
                         <div v-if="images.length > 0" v-for="(image, idx) in images">
                             <div class="image anim fadeIn" :style="{animationDelay: (idx > 26) ? '160ms' : ((idx * 25) + 'ms')}"
                                  :class="{selected: (image==selectedImage)}" @click="imageSelect(image)">
-                                <img :src="image.thumbs.gallery" :alt="image.title" :title="image.name">
+                                <img :src="image.thumbs.gallery?quality=100" :alt="image.title" :title="image.name">
                                 <div class="image-meta">
                                     <span class="name" v-text="image.name"></span>
                                     <span class="date">{{ trans('components.image_uploaded', ['uploadedDate' => "{{ getDate(image.created_at) }" . "}"]) }}</span>
