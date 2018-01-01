@@ -42,6 +42,9 @@ class SitemapsController extends Controller
 
     public function users()
     {
+        $users = User::orderBy('id', 'desc')
+            ->select('id', 'name')
+            ->get();
         return response()->view('sitemaps.users')
                     ->header('Content-Type', 'text/xml');
     }
