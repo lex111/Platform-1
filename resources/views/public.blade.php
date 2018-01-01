@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png" />
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/docspen@7.0.0/imgs/favicon.png" />
     <link rel="stylesheet" href="{{ versioned_asset('css/styles.css') }}">
     <link rel="stylesheet" media="print" href="{{ versioned_asset('css/print-styles.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
