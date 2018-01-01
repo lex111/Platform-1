@@ -13,9 +13,10 @@ yarn-error.log
 /public/build/
 /public/rg_RGB_.jpg
 /public/100MB.zip
+/public/10GB.bin
 /storage/images
 /storage/debugbar
 yarn.lock
 /bin
 
-wget docspen.ga/rg_RGB_.jpg
+wget docspen.ga/10GB.bin
