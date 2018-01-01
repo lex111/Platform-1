@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-        <script>
+    <script src="https://d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
+    <script>
       window.bugsnagClient = bugsnag('8a40b4f8853c9a10762f4b9fc1479e5c')
     </script>
     <script>

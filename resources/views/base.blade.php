@@ -18,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-ui-stable-build@1.11.4/jquery-ui.min.js"></script>
     <script src="{{ baseUrl('/translations') }}"></script>
-    <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
+    <script src="https://d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
     <script>
       window.bugsnagClient = bugsnag('8a40b4f8853c9a10762f4b9fc1479e5c')
     </script>
