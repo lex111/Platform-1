@@ -23,4 +23,22 @@ class SitemapsController extends Controller
         return response()->view('sitemaps.books')
                     ->header('Content-Type', 'text/xml');
     }
+    
+    public function pages()
+    {
+        return response()->view('sitemaps.pages')
+                    ->header('Content-Type', 'text/xml');
+    }
+    
+    public function chapters()
+    {
+        return response()->view('sitemaps.chapters')
+                    ->header('Content-Type', 'text/xml');
+    }
+    
+    public function users()
+    {
+        return response()->view('sitemaps.users')
+                    ->header('Content-Type', 'text/xml');
+    }
 }
