@@ -4,9 +4,9 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
     @foreach($users as $user)
         <url>
-            <loc>{{ baseUrl("/user/{$user->id}") }}</loc>
-            <changefreq>hourly</changefreq>
-            <priority>0.8</priority>
+            <loc>{{ $user->name }}</loc>
+            <changefreq>daily</changefreq>
+            <priority>0.7</priority>
         </url>
     @endforeach
 </urlset>
