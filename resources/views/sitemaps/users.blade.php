@@ -4,7 +4,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
     @foreach($users as $user)
         <url>
-            <loc>{{ baseUrl("/settings/users/{$user->id}") }}</loc>
+            <loc>{{ baseUrl("/user/{$user->id}") }}</loc>
             <changefreq>hourly</changefreq>
             <priority>0.8</priority>
         </url>
