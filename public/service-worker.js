@@ -511,13 +511,25 @@
         origin: "https://" + a.a.hostname
     };
     o.a.router.get("/(.*)", o.a.cacheFirst, {
-        origin: "https://cdn.jsdelivr.net",
+        origin: "https://cdn.jsdelivr.net/npm/",
+        cache: {
+            name: u.static,
+            maxEntries: 50
+        }
+    }), o.a.router.get("/(.*)", o.a.cacheFirst, {
+        origin: "/css/",
+        cache: {
+            name: u.static,
+            maxEntries: 50
+        }
+    }), o.a.router.get("/(.*)", o.a.cacheFirst, {
+        origin: "/js/",
         cache: {
             name: u.static,
             maxEntries: 50
         }
     }), o.a.router.get("/fk-cp-zion/fonts/(.*)", o.a.fastest, {
-        origin: "https://img1a.flixcart.com",
+        origin: "https://cdn.jsdelivr.net/",
         cache: {
             name: u.fonts,
             maxEntries: 5
