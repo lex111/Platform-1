@@ -12,6 +12,12 @@ namespace DocsPen\Http\Controllers;
 
 class SitemapsController extends Controller
 {
+    public function index()
+    {
+        return response()->view('sitemaps.index')
+                    ->header('Content-Type', 'text/xml');
+    }
+    
     public function books()
     {
         return response()->view('sitemaps.books')
