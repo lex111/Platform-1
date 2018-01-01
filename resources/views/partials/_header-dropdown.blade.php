@@ -10,11 +10,13 @@
         <li>
             <a href="{{ baseUrl("/settings/users/{$currentUser->id}") }}" class="text-primary"><i class="zmdi zmdi-edit"></i>{{ trans('common.edit_profile') }}</a>
         </li>
-        @if(signedInUser() && userCan('settings-manage'))
+        @if(signedInUser() && userCan('settings-manage') && userCan('users-manage'))
             <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Admin</a>
-            <a href="{{ baseUrl('/git') }}" class="text-primary"><i class="zmdi zmdi-github"></i>GitHub</a>
-            <a href="{{ baseUrl('/trello') }}" class="text-primary"><i class="zmdi zmdi-view-carousel"></i>Trello</a>
+            @if(signedInUser() && userCan('users-manage'))
+                <a href="{{ baseUrl('/git') }}" class="text-primary"><i class="zmdi zmdi-github"></i>GitHub</a>
+                <a href="{{ baseUrl('/trello') }}" class="text-primary"><i class="zmdi zmdi-view-carousel"></i>Trello</a>
+            @endif
         @endif
         <hr style="margin-bottom:10px">
         <li>
