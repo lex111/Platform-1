@@ -2,7 +2,7 @@
 
 ```
 sudo add-apt-repository ppa:ondrej/php
-sudo apt-add-repository ppa:ondrej/apache2
+sudo add-apt-repository ppa:nginx/stable
 sudo apt-get update
 ```
 ```
