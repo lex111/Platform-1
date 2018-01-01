@@ -10,7 +10,7 @@
         <li>
             <a href="{{ baseUrl("/settings/users/{$currentUser->id}") }}" class="text-primary"><i class="zmdi zmdi-edit"></i>{{ trans('common.edit_profile') }}</a>
         </li>
-        @if(signedInUser() && userCan('settings-manage') && userCan('users-manage'))
+        @if(signedInUser() && userCan('settings-manage'))
             <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Admin</a>
             @if(signedInUser() && userCan('users-manage'))
