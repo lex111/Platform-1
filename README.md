@@ -22,7 +22,7 @@ Pull requests are very welcome. If the scope of your pull request is very large 
 These are the great open-source projects used to help build DocsPen:
 
 ### Softwares and Backend
-* [NGINX](https://nginx.com)
+* [NGINX](https://nginx.org)
 * [Memcached](https://memcached.org/)
 * [Redis](https://redis.io)
 * [PHP](https://php.net)
