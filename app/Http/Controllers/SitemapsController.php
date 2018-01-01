@@ -10,11 +10,6 @@
 
 namespace DocsPen\Http\Controllers;
 
-use DocsPen\Repos\UserRepo;
-use DocsPen\Services\SocialAuthService;
-use DocsPen\User;
-use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class SitemapsController extends Controller
@@ -54,7 +49,7 @@ class SitemapsController extends Controller
         $users = $this->userRepo->getAllUsersPaginatedAndSorted(20, $listDetails);
         $this->setPageTitle(trans('settings.users'));
         $users->appends($listDetails);
-        
+
         return response()->view('sitemaps.users', ['users' => $users])
                     ->header('Content-Type', 'text/xml');
     }
