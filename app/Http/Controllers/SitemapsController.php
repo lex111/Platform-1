@@ -45,12 +45,14 @@ class SitemapsController extends Controller
 
     public function users()
     {
+        $this->checkPermission('users-manage');
         $listDetails = [
             'order'  => $request->get('order', 'asc'),
             'search' => $request->get('search', ''),
             'sort'   => $request->get('sort', 'name'),
         ];
         $users = $this->userRepo->getAllUsersPaginatedAndSorted(20, $listDetails);
+        $this->setPageTitle(trans('settings.users'));
         $users->appends($listDetails);
         
         return response()->view('sitemaps.users', ['users' => $users])
