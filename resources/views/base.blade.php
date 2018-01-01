@@ -32,6 +32,7 @@
     	if ('serviceWorker' in navigator && navigator.userAgent.indexOf("Mobile") === -1) {
     		navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
     			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    			console.log('DocsPen ♥\'s web');
     		})
     		.catch(function(err) {
     			console.error('ServiceWorker registration failed: ', err);
