@@ -10,10 +10,9 @@
 
 namespace DocsPen\Http\Controllers;
 
-use Activity;
-use DocsPen\Repos\EntityRepo;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Views;
+use Setting;
 
 class SitemapsController extends Controller
 {
