@@ -10,11 +10,6 @@
 
 namespace DocsPen\Http\Controllers;
 
-use Activity;
-use DocsPen\Repos\EntityRepo;
-use Illuminate\Http\Response;
-use Views;
-
 class OthersController extends Controller
 {
 
