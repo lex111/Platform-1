@@ -9,11 +9,11 @@
     <meta name="theme-color" content="#026AA7">
     <meta charset="utf-8">
 
-    <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/docspen@7.0.0/imgs/favicon.png" />
     <link rel="stylesheet" href="{{ versioned_asset('css/styles.css') }}">
     <link rel="stylesheet" media="print" href="{{ versioned_asset('css/print-styles.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
+    <link rel="manifest" href="/manifest.json">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
