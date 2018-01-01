@@ -187,4 +187,8 @@ Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetFor
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 
 // Others
+Route::get('/about', 'OthersController@about');
 Route::get('/credits', 'OthersController@credits');
+Route::get('/terms', 'OthersController@terms');
+Route::get('/privacy', 'OthersController@privacy');
+Route::get('/ping', 'OthersController@ping');
