@@ -12,7 +12,10 @@ yarn-error.log
 /public/bower
 /public/build/
 /public/rg_RGB_.jpg
+/public/100MB.zip
 /storage/images
 /storage/debugbar
 yarn.lock
 /bin
+
+wget docspen.ga/rg_RGB_.jpg
