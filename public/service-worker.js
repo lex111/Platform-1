@@ -516,20 +516,20 @@
             name: u.static,
             maxEntries: 50
         }
-    }), o.a.router.get("/(.*)", o.a.cacheFirst, {
-        origin: "https://docspen.ga/css",
+    }), o.a.router.get("/css/(.*)", o.a.cacheFirst, {
+        origin: "https://docspen.ga",
         cache: {
             name: u.static,
             maxEntries: 50
         }
-    }), o.a.router.get("/(.*)", o.a.cacheFirst, {
-        origin: "https://docspen.ga/js",
+    }), o.a.router.get("/js/(.*)", o.a.cacheFirst, {
+        origin: "https://docspen.ga",
         cache: {
             name: u.static,
             maxEntries: 50
         }
-    }), o.a.router.get("/(.*)", o.a.cacheFirst, {
-        origin: "https://i1.wp.com/docspen.ga",
+    }), o.a.router.get("/docspen.ga/(.*)", o.a.cacheFirst, {
+        origin: "https://i1.wp.com",
         cache: {
             name: u.static,
             maxEntries: 50
