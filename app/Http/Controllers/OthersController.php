@@ -32,10 +32,4 @@ class OthersController extends Controller
     {
         return view('others.privacy');
     }
-
-    // Heartbeat check for status
-    public function ping()
-    {
-        return 'pong';
-    }
 }
