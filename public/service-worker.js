@@ -510,8 +510,8 @@
         },
         origin: "https://" + a.a.hostname
     };
-    o.a.router.get("/(.*)", o.a.cacheFirst, {
-        origin: "https://cdn.jsdelivr.net/npm",
+    o.a.router.get("/npm/(.*)", o.a.cacheFirst, {
+        origin: "https://cdn.jsdelivr.net",
         cache: {
             name: u.static,
             maxEntries: 50
@@ -523,7 +523,7 @@
             maxEntries: 50
         }
     }), o.a.router.get("/(.*)", o.a.cacheFirst, {
-        origin: "/js",
+        origin: "https://docspen.ga/js",
         cache: {
             name: u.static,
             maxEntries: 50
@@ -534,8 +534,8 @@
             name: u.static,
             maxEntries: 50
         }
-    }), o.a.router.get("/fk-cp-zion/fonts/(.*)", o.a.fastest, {
-        origin: "https://cdn.jsdelivr.net/",
+    }), o.a.router.get("/npm/(.*)", o.a.fastest, {
+        origin: "https://cdn.jsdelivr.net",
         cache: {
             name: u.fonts,
             maxEntries: 5
