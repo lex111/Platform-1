@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(SettingService::class, function ($app) {
             return new SettingService($app->make(Setting::class), $app->make('Illuminate\Contracts\Cache\Repository'));
         });
-        
+
         // Bugsnag Implementation
         $this->app->alias('bugsnag.logger', \Illuminate\Contracts\Logging\Log::class);
         $this->app->alias('bugsnag.logger', \Psr\Log\LoggerInterface::class);
