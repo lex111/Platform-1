@@ -12,7 +12,6 @@ namespace DocsPen\Http\Controllers;
 
 class OthersController extends Controller
 {
-
     // Pages
     public function about()
     {
@@ -37,6 +36,6 @@ class OthersController extends Controller
     // Heartbeat check for status
     public function ping()
     {
-        return ('pong');
+        return 'pong';
     }
 }
