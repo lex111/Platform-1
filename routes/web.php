@@ -192,3 +192,6 @@ Route::get('/credits', 'OthersController@credits');
 Route::get('/terms', 'OthersController@terms');
 Route::get('/privacy', 'OthersController@privacy');
 Route::get('/ping', 'OthersController@ping');
+
+// Sitemaps
+Route::get('/books.xml', 'SitemapsController@books');
