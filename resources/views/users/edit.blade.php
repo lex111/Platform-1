@@ -29,7 +29,7 @@
                                       'resizeWidth' => '512',
                                       'showRemove' => false,
                                       'defaultImage' => baseUrl('/user_avatar.png'),
-                                      'currentImage' => $user->getAvatar(80)?quality=100,
+                                      'currentImage' => $user->getAvatar(80),
                                       'currentId' => $user->image_id,
                                       'name' => 'image_id',
                                       'imageClass' => 'avatar large'
