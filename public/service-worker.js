@@ -511,19 +511,25 @@
         origin: "https://" + a.a.hostname
     };
     o.a.router.get("/(.*)", o.a.cacheFirst, {
-        origin: "https://cdn.jsdelivr.net/npm/",
+        origin: "https://cdn.jsdelivr.net/npm",
         cache: {
             name: u.static,
             maxEntries: 50
         }
     }), o.a.router.get("/(.*)", o.a.cacheFirst, {
-        origin: "/css/",
+        origin: "https://docspen.ga/css",
         cache: {
             name: u.static,
             maxEntries: 50
         }
     }), o.a.router.get("/(.*)", o.a.cacheFirst, {
-        origin: "/js/",
+        origin: "/js",
+        cache: {
+            name: u.static,
+            maxEntries: 50
+        }
+    }), o.a.router.get("/(.*)", o.a.cacheFirst, {
+        origin: "https://i1.wp.com/docspen.ga",
         cache: {
             name: u.static,
             maxEntries: 50
