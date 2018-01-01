@@ -16,12 +16,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-    @include('partials/custom-styles')
-
-    <!-- Custom user content -->
-    @if(setting('app-custom-head'))
-        {!! setting('app-custom-head') !!}
-    @endif
+        <script>
+      window.bugsnagClient = bugsnag('8a40b4f8853c9a10762f4b9fc1479e5c')
+    </script>
     <script>
     	if ('serviceWorker' in navigator && navigator.userAgent.indexOf("Mobile") === -1) {
     		navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
@@ -42,6 +39,13 @@
             });
         }
     </script>
+    
+    @include('partials/custom-styles')
+
+    <!-- Custom user content -->
+    @if(setting('app-custom-head'))
+        {!! setting('app-custom-head') !!}
+    @endif
 </head>
 <body class="@yield('body-class')">
 
