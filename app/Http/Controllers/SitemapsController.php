@@ -50,7 +50,7 @@ class SitemapsController extends Controller
         $users = $this->userRepo->getAllUsersPaginatedAndSorted(20, $listDetails);
         $users->appends($listDetails);
         
-        return response()->view('sitemaps.users')
+        return response()->view('sitemaps.users', compact('users'))
                     ->header('Content-Type', 'text/xml');
     }
 }
