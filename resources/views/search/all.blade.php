@@ -195,7 +195,6 @@
 
         <h6 style="margin-top:25px" class="text-muted">{{ trans_choice('entities.search_total_results_found', $totalResults, ['count' => $totalResults]) }}</h6>
         @include('partials/entity-list', ['entities' => $entities])
-        <center><img src="https://cdn.jsdelivr.net/npm/docspen@8.0.0/imgs/nothing-found.svg" style="width:100%;height:12em;pointer-events:none"></center>
         @if ($hasNextPage)
             <a href="{{ $nextPageLink }}" class="button">{{ trans('entities.search_more') }}</a>
         @endif
