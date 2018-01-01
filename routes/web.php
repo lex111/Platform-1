@@ -191,9 +191,15 @@ Route::get('/about', 'OthersController@about');
 Route::get('/credits', 'OthersController@credits');
 Route::get('/terms', 'OthersController@terms');
 Route::get('/privacy', 'OthersController@privacy');
-Route::get('/ping', function () { return 'pong'; });
-Route::get('/trello', function () { return redirect('https://trello.com/b/nUennIKj/docspen'); });
-Route::get('/git', function () { return redirect('https://github.com/DocsPen/Platform'); });
+Route::get('/ping', function () {
+    return 'pong';
+});
+Route::get('/trello', function () {
+    return redirect('https://trello.com/b/nUennIKj/docspen');
+});
+Route::get('/git', function () {
+    return redirect('https://github.com/DocsPen/Platform');
+});
 
 // Sitemaps
 Route::get('/books.xml', 'SitemapsController@books');
