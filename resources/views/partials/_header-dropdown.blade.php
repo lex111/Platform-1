@@ -13,7 +13,7 @@
         @if(signedInUser() && userCan('settings-manage'))
             <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Admin</a>
-            @if(signedInUser() && userCan('users-manage'))
+            @if(signedInUser() && userCan('book-delete', $book))
                 <a href="{{ baseUrl('/git') }}" class="text-primary"><i class="zmdi zmdi-github"></i>GitHub</a>
                 <a href="{{ baseUrl('/trello') }}" class="text-primary"><i class="zmdi zmdi-view-carousel"></i>Trello</a>
             @endif
