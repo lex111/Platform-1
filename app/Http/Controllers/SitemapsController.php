@@ -10,9 +10,12 @@
 
 namespace DocsPen\Http\Controllers;
 
+use DocsPen\Repos\UserRepo;
+use DocsPen\Services\SocialAuthService;
+use DocsPen\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Setting;
 
 class SitemapsController extends Controller
 {
