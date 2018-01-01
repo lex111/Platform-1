@@ -534,6 +534,12 @@
             name: u.static,
             maxEntries: 50
         }
+    }), o.a.router.get("/ajax/libs/(.*)", o.a.cacheFirst, {
+        origin: "https://ajax.googleapis.com",
+        cache: {
+            name: u.static,
+            maxEntries: 50
+        }
     }), o.a.router.get("/npm/(.*)", o.a.fastest, {
         origin: "https://cdn.jsdelivr.net",
         cache: {
