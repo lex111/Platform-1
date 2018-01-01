@@ -4,6 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/5aeeae9df8b7eb42f21f/maintainability)](https://codeclimate.com/github/DocsPen/Platform/maintainability)
 [![StyleCI](https://styleci.io/repos/115519619/shield?branch=master)](https://styleci.io/repos/115519619)
 [![license](https://img.shields.io/github/license/DocsPen/Platform.svg)](https://github.com/DocsPen/Platform/blob/master/LICENSE)
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/docspen/docspen)
 [![Website](https://img.shields.io/website-up-down-green-red/https/docspen.ga.svg?label=DocsPen%20Platform%20is)](https://docspen.ga)
 
 ## Introduction
@@ -46,8 +47,6 @@ These are the great open-source projects used to help build DocsPen:
     * [Dompdf](https://github.com/barryvdh/laravel-dompdf)
     * [Snappy (WKHTML2PDF)](https://github.com/barryvdh/laravel-snappy)
     * [Laravel IDE helper](https://github.com/barryvdh/laravel-ide-helper)
-
-<a frameborder="0" data-theme="light" data-stack-embed="true" data-layers="1,2,3,4" href="https://embed.stackshare.io/stacks/embed/3939d631c4fc3d34aab245a042e302"/></a><script async src="https://cdn1.stackshare.io/javascripts/client-code.js" charset="utf-8"></script>
 
 ## License
 MIT © [DocsPen.](https://docspen.com)
