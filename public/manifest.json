@@ -2,11 +2,6 @@
   "short_name": "DocsPen",
   "name": "DocsPen Lite",
   "description":"Online Documentation Platform",
-  "display": "standalone",
-  "orientation":"portrait",
-  "theme_color": "#026AA7",
-  "background_color": "#026AA7",
-  "start_url": "/?launcher=true",
   "icons": [
     {
       "src": "https://i1.wp.com/cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png?quality=100&w=48",
@@ -23,5 +18,10 @@
       "type": "image/png",
       "sizes": "192x192"
     }
-  ]
+  ],
+  "display": "standalone",
+  "orientation":"portrait",
+  "theme_color": "#026AA7",
+  "background_color": "#026AA7",
+  "start_url": "/?launcher=true",
 }
