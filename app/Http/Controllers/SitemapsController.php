@@ -10,6 +10,11 @@
 
 namespace DocsPen\Http\Controllers;
 
+use Activity;
+use DocsPen\Repos\EntityRepo;
+use Illuminate\Http\Response;
+use Views;
+
 class SitemapsController extends Controller
 {
     public function index()
