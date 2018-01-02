@@ -243,7 +243,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function getProfileUrl()
     {
-        return baseUrl('/user/'.$this->id);
+        return baseUrl('/@/'.$this->id);
     }
 
     /**
