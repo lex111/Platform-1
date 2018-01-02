@@ -204,6 +204,9 @@ Route::get('/trello', function () {
 Route::get('/git', function () {
     return redirect('https://github.com/DocsPen/Platform');
 });
+Route::get('/blog', function () {
+    return redirect('https://docspen.tumblr.com');
+});
 
 // Sitemaps
 Route::get('/sitemap.xml', 'SitemapsController@index');

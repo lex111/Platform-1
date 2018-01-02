@@ -24,7 +24,7 @@
             <a href="{{ baseUrl('/terms') }}" class="text-primary"><i class="zmdi zmdi-assignment-check"></i>Terms</a>
         </li>
         <li>
-            <a href="{{ baseUrl('/privacy') }}" class="text-primary"><i class="zmdi zmdi-shield-security"></i>Privacy</a>
+            <a href="{{ baseUrl('/blog') }}" class="text-primary"><i class="zmdi zmdi-tumblr"></i>Blog</a>
         </li>
         <li>
             <a href="{{ baseUrl('/logout') }}" class="text-neg"><i class="zmdi zmdi-run"></i>{{ trans('auth.logout') }}</a>
