@@ -18,13 +18,13 @@
         @endif
         <hr style="margin-bottom:10px">
         <li>
-            <a href="{{ baseUrl("/books/docspen/page/about") }}" class="text-primary"><i class="zmdi zmdi-info"></i>About</a>
+            <a href="{{ baseUrl('/about') }}" class="text-primary"><i class="zmdi zmdi-info"></i>About</a>
         </li>
         <li>
-            <a href="{{ baseUrl("/books/docspen/page/terms") }}" class="text-primary"><i class="zmdi zmdi-assignment-check"></i>Terms</a>
+            <a href="{{ baseUrl('/terms') }}" class="text-primary"><i class="zmdi zmdi-assignment-check"></i>Terms</a>
         </li>
         <li>
-            <a href="{{ baseUrl("/books/docspen/page/privacy") }}" class="text-primary"><i class="zmdi zmdi-shield-security"></i>Privacy</a>
+            <a href="{{ baseUrl('/privacy') }}" class="text-primary"><i class="zmdi zmdi-shield-security"></i>Privacy</a>
         </li>
         <li>
             <a href="{{ baseUrl('/logout') }}" class="text-neg"><i class="zmdi zmdi-run"></i>{{ trans('auth.logout') }}</a>
