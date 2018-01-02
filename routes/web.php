@@ -83,7 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Get for user images
         Route::get('/user/all', 'ImageController@getAllForUserType');
         Route::get('/user/all/{page}', 'ImageController@getAllForUserType');
-        
+
         Route::get('/@/all', 'ImageController@getAllForUserType');
         Route::get('/@/all/{page}', 'ImageController@getAllForUserType');
         // Standard get, update and deletion for all types
