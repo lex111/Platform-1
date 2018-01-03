@@ -63,7 +63,8 @@ header {
       padding-top: $-xxs;
     }
     > i {
-      padding-top: 15px;
+      padding-top: 6px;
+      font-size: 18px;
     }
     @include smaller-than($screen-md) {
       padding-left: $-xs;
@@ -81,8 +82,7 @@ header {
       padding: 8px 10px;
     }
     .user-name {
-      padding-top: 6px;
-      font-size: 18px;
+      padding-top: 15px;
     }
   }
 }
