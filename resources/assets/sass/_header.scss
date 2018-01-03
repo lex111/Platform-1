@@ -95,9 +95,10 @@ header .search-box {
   display: inline-block;
   margin-top: 10px;
   input {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: hsla(0, 0%, 100%, .3);
     border: none;
-    color: #EEE;
+    color: #fff;
+    transition: width .15s;
   }
   button {
     color: #EEE;
