@@ -21,7 +21,9 @@ mysql -u root --execute="GRANT ALL ON docspen.* TO 'docspen'@'localhost';FLUSH P
 
 # Download DocsPen
 cd /var/www
-git clone https://github.com/DocsPen/Platform.git --branch master
+sudo rm -rf html/
+git clone https://github.com/DocsPen/Platform.git --branch master html
+sudo chmod -R 777 html/
 DOCSPEN_DIR="/var/www/html"
 cd $DOCSPEN_DIR
 
@@ -39,18 +41,18 @@ php artisan key:generate --no-interaction --force
 php artisan migrate --no-interaction --force
 
 # Set file and folder permissions
-chown www-data:www-data -R bootstrap/cache public/uploads storage && chmod -R 755 bootstrap/cache public/uploads storage
+sudo chown www-data:www-data -R bootstrap/cache public/uploads storage && chmod -R 755 bootstrap/cache public/uploads storage
 
 # Add nginx configuration
-curl -s https://raw.githubusercontent.com/DocsPen/Platform/master/nginx > /etc/nginx/sites-available/docspen
-sed -i.bak "s/docspen.ga/$DOMAIN/" /etc/nginx/sites-available/docspen
-ln -s /etc/nginx/sites-available/docspen /etc/nginx/sites-enabled/docspen
+sudo curl -s https://raw.githubusercontent.com/DocsPen/Platform/master/nginx > /etc/nginx/sites-available/docspen
+sudo sed -i.bak "s/docspen.ga/$DOMAIN/" /etc/nginx/sites-available/docspen
+sudo ln -s /etc/nginx/sites-available/docspen /etc/nginx/sites-enabled/docspen
 
 # Remove the default nginx configuration
-rm /etc/nginx/sites-enabled/default
+sudo rm /etc/nginx/sites-enabled/default
 
 # Restart nginx to load new config
-service nginx restart
+sudo service nginx restart
 
 echo ""
 echo "Setup Finished, Your DocsPen instance should now be installed."
