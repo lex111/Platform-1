@@ -100,6 +100,11 @@ header .search-box {
     color: #fff;
     transition: width .15s;
   }
+  input:focus {
+    background-color: hsla(0, 0%, 100%, 0.42);
+    transition: width .15s;
+    width: 350px;
+  }
   button {
     color: #EEE;
   }
