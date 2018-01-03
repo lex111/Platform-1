@@ -29,13 +29,11 @@ header {
     font-size: 13px;
     line-height: 1.1em;
     margin: 12px .25em;
-    padding: $-m $-l;
+    padding: 8px 10px;
     color: #FFF;
     text-decoration: none;
     vertical-align: top;
-    &:last-child {
-      padding-right: 0;
-    }
+
     @include smaller-than($screen-md) {
       padding: $-m $-s;
     }
