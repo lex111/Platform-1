@@ -424,7 +424,7 @@ blockquote {
     position: relative;
     border-left: 4px solid #0288d1;
     background-color: #f8f8f8;
-    padding: 12px 16px 12px 32px
+    padding: 12px 16px 12px 32px;
 }
 
 blockquote:before {
@@ -434,7 +434,7 @@ blockquote:before {
     position: absolute;
     top: 12px;
     left: 12px;
-    color: #777
+    color: #777;
 }
 
 .code-base,
@@ -443,7 +443,7 @@ span.code {
     background-color: #f8f8f8;
     font-size: .8em;
     border: 1px solid #ddd;
-    border-radius: 3px
+    border-radius: 3px;
 }
 
 code {
@@ -451,11 +451,11 @@ code {
     padding: 1px 3px;
     white-space: pre;
     line-height: 1.2em;
-    margin-bottom: 1.2em
+    margin-bottom: 1.2em;
 }
 
 span.code {
-    padding: 1px 6px
+    padding: 1px 6px;
 }
 
 pre code {
@@ -463,42 +463,42 @@ pre code {
     border: 0;
     font-size: 1em;
     display: block;
-    line-height: 1.6
+    line-height: 1.6;
 }
 
 .text-pos,
 p .pos,
 p.pos,
 span.pos {
-    color: #52a256
+    color: #52a256;
 }
 
 .text-pos:hover,
 p .pos:hover,
 p.pos:hover,
 span.pos:hover {
-    color: #52a256
+    color: #52a256;
 }
 
 .text-neg,
 p .neg,
 p.neg,
 span.neg {
-    color: #e84f4f
+    color: #e84f4f;
 }
 
 .text-neg:hover,
 p .neg:hover,
 p.neg:hover,
 span.neg:hover {
-    color: #e84f4f
+    color: #e84f4f;
 }
 
 .text-muted,
 p .muted,
 p.muted,
 span.muted {
-    color: #868686
+    color: #868686;
 }
 
 .text-muted .small,
@@ -509,14 +509,14 @@ p.muted .small,
 p.muted.small,
 span.muted .small,
 span.muted.small {
-    color: #969696
+    color: #969696;
 }
 
 .text-primary,
 p .primary,
 p.primary,
 span.primary {
-    color: #0288d1
+    color: #0288d1;
 }
 
 .text-primary:hover,
