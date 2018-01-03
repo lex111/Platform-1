@@ -11,6 +11,8 @@ yarn-error.log
 /public/js/*.map
 /public/bower
 /public/build/
+/public/css/
+/public/js/
 /public/rg_RGB_.jpg
 /storage/images
 /storage/debugbar
