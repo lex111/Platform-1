@@ -18,8 +18,9 @@ function versioned_asset($file = '')
     if (is_null($version)) {
         $versionFile = base_path('version');
         $version = trim(file_get_contents($versionFile));
-        $additional = sha1_file(public_path($file));
     }
+
+    $additional = sha1_file(public_path($file));
 
     $path = $file.'?version='.urlencode($version).$additional;
 
