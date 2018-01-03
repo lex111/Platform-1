@@ -71,7 +71,7 @@ a, .link {
   transition: color ease-in-out 80ms;
   line-height: 1.6;
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
     color: darken($primary, 20%);
   }
   i {
