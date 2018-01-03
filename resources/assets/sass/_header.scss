@@ -67,7 +67,7 @@ header {
       font-size: 18px;
     }
     @include smaller-than($screen-md) {
-      padding-left: $-xs;
+      padding-left: 3px;
       .name {
         display: none;
       }
