@@ -17,7 +17,7 @@ header {
     vertical-align: top;
     margin-right: $-xl;
     @include smaller-than($screen-md) {
-      margin-right: $-m;
+      margin-right: 0;
     }
   }
   .links a {
@@ -63,8 +63,7 @@ header {
       padding-top: $-xxs;
     }
     > i {
-      padding-top: 6px;
-      font-size: 18px;
+      padding-top: 15px;
     }
     @include smaller-than($screen-md) {
       padding-left: $-xs;
