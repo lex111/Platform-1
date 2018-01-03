@@ -186,10 +186,11 @@
   margin: $-m;
   background-color: #FFF;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px 5px 0 0;
   h3 {
     background-color: #dff0fb;
     padding: $-m;
-    border-bottom: 1px solid #E8E8E8;
+    border-bottom: 1px solid #dff0fb;
     margin: 0;
     font-size: $fs-s;
     color: #888;
