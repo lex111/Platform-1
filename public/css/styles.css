@@ -148,22 +148,22 @@ html.flexbox {
 }
 
 html.shaded {
-    background-color: #f2f2f2
+    background-color: #f2f2f2;
 }
 
 body {
     font-size: 15px;
     line-height: 1.6;
     color: #616161;
-    -webkit-font-smoothing: antialiased
+    -webkit-font-smoothing: antialiased;
 }
 
 body.shaded {
-    background-color: #f2f2f2
+    background-color: #f2f2f2;
 }
 
 button {
-    font-size: 100%
+    font-size: 100%;
 }
 
 body,
@@ -172,7 +172,7 @@ input,
 label,
 select,
 textarea {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Roboto, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Roboto, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 #markdown-editor-input,
@@ -182,35 +182,35 @@ textarea {
 code,
 pre,
 span.code {
-    font-family: "Lucida Console", "DejaVu Sans Mono", "Ubunto Mono", Monaco, monospace
+    font-family: "Lucida Console", "DejaVu Sans Mono", "Ubunto Mono", Monaco, monospace;
 }
 
 h1 {
     font-size: 3.425em;
     line-height: 1.22222222em;
     margin-top: .48888889em;
-    margin-bottom: .48888889em
+    margin-bottom: .48888889em;
 }
 
 h2 {
     font-size: 2.8275em;
     line-height: 1.294117647em;
     margin-top: .8627451em;
-    margin-bottom: .43137255em
+    margin-bottom: .43137255em;
 }
 
 h3 {
     font-size: 27px;
     line-height: 1.221428572em;
     margin-top: .78571429em;
-    margin-bottom: .43137255em
+    margin-bottom: .43137255em;
 }
 
 h4 {
     font-size: 1.666em;
     line-height: 1.375em;
     margin-top: .78571429em;
-    margin-bottom: .43137255em
+    margin-bottom: .43137255em;
 }
 
 h1,
@@ -222,7 +222,7 @@ h6 {
     font-weight: 400;
     position: relative;
     display: block;
-    color: #555
+    color: #555;
 }
 
 h1 .subheader,
@@ -233,11 +233,11 @@ h5 .subheader,
 h6 .subheader {
     font-size: .5em;
     line-height: 1em;
-    color: #969696
+    color: #969696;
 }
 
 h5 {
-    font-size: 1.4em
+    font-size: 1.4em;
 }
 
 h5,
@@ -245,7 +245,7 @@ h6 {
     font-weight: 500;
     line-height: 1.2em;
     margin-top: .78571429em;
-    margin-bottom: .66em
+    margin-bottom: .66em;
 }
 
 .link,
@@ -255,14 +255,14 @@ a {
     cursor: pointer;
     text-decoration: none;
     transition: color ease-in-out 80ms;
-    line-height: 1.6
+    line-height: 1.6;
 }
 
 .link:hover,
 .text-button:hover,
 a:hover {
     text-decoration: none;
-    color: #01466c
+    color: #01466c;
 }
 
 .link i,
@@ -281,14 +281,14 @@ a i.zmdi-hc-flip-horizontal {
 .icon.text-button,
 .link.icon,
 a.icon {
-    display: inline-block
+    display: inline-block;
 }
 
 .link svg,
 .text-button svg,
 a svg {
     position: relative;
-    display: inline-block
+    display: inline-block;
 }
 
 blockquote,
@@ -298,23 +298,23 @@ pre,
 table,
 ul {
     margin-top: .3em;
-    margin-bottom: 1.375em
+    margin-bottom: 1.375em;
 }
 
 hr {
     border: 0;
     height: 1px;
     background: #eaeaea;
-    margin-bottom: 24px
+    margin-bottom: 24px;
 }
 
 hr.faded {
-    background-image: linear-gradient(to right, #fff, #e3e0e0 20%, #e3e0e0 80%, #fff)
+    background-image: linear-gradient(to right, #fff, #e3e0e0 20%, #e3e0e0 80%, #fff);
 }
 
 hr.even,
 hr.margin-top {
-    margin-top: 24px
+    margin-top: 24px;
 }
 
 .bold,
