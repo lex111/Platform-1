@@ -11,18 +11,12 @@ use DocsPen\Ownable;
  *
  * @return string
  */
-function versioned_asset($file = '')
+function hashed_asset($file = '')
 {
-    static $version = null;
 
-    if (is_null($version)) {
-        $versionFile = base_path('version');
-        $version = trim(file_get_contents($versionFile));
-    }
+    $hashed_value = sha1_file(public_path($file));
 
-    $additional = sha1_file(public_path($file));
-
-    $path = $file.'?version='.urlencode($version).$additional;
+    $path = $file.'?'.$hashed_value;
 
     return baseUrl($path);
 }

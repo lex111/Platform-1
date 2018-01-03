@@ -10,8 +10,8 @@
     <meta charset="utf-8">
 
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/docspen@7.0.0/imgs/favicon.png" />
-    <link rel="stylesheet" href="{{ versioned_asset('css/styles.css') }}">
-    <link rel="stylesheet" media="print" href="{{ versioned_asset('css/print-styles.css') }}">
+    <link rel="stylesheet" href="{{ hashed_asset('css/styles.css') }}">
+    <link rel="stylesheet" media="print" href="{{ hashed_asset('css/print-styles.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
     <link rel="manifest" href="/manifest.json">
 
@@ -103,7 +103,7 @@
         </div>
     </div>
 @yield('bottom')
-<script src="{{ versioned_asset('js/common.js') }}"></script>
+<script src="{{ hashed_asset('js/common.js') }}"></script>
 @yield('scripts')
 </body>
 </html>
