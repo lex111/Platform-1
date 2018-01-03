@@ -35,7 +35,7 @@ header {
     vertical-align: top;
 
     @include smaller-than($screen-md) {
-      padding: $-m $-s;
+      padding: 8px 10px;
     }
   }
   .avatar, .user-name {
