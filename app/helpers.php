@@ -17,11 +17,7 @@ function versioned_asset($file = '')
 
     if (is_null($version)) {
         $versionFile = base_path('version');
-        $version = sha1_file(public_path($file));
-    }
-
-    $additional = '';
-    if (config('app.env') === 'development') {
+        $version = trim(file_get_contents($versionFile));
         $additional = sha1_file(public_path($file));
     }
 
