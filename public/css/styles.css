@@ -639,27 +639,27 @@ li.task-list-item input[type=checkbox] {
 }
 
 .text-left {
-    text-align: left
+    text-align: left;
 }
 
 .text-right {
-    text-align: right
+    text-align: right;
 }
 
 .text-bigger {
-    font-size: 1.1em
+    font-size: 1.1em;
 }
 
 .text-large {
-    font-size: 1.6666em
+    font-size: 1.6666em;
 }
 
 .no-color {
-    color: inherit
+    color: inherit;
 }
 
 .header-group {
-    margin: 16px 0
+    margin: 16px 0;
 }
 
 .header-group h1,
@@ -668,20 +668,20 @@ li.task-list-item input[type=checkbox] {
 .header-group h4,
 .header-group h5,
 .header-group h6 {
-    margin: 0
+    margin: 0;
 }
 
 span.sep {
     color: #bbb;
-    padding: 0 6px
+    padding: 0 6px;
 }
 
 .list>* {
-    display: block
+    display: block;
 }
 
 i {
-    padding-right: 6px
+    padding-right: 6px;
 }
 
 body.flexbox {
@@ -694,7 +694,7 @@ body.flexbox {
     height: 100%;
     min-height: 100%;
     max-height: 100%;
-    overflow: hidden
+    overflow: hidden;
 }
 
 body.flexbox #content {
@@ -702,7 +702,7 @@ body.flexbox #content {
     flex: 1;
     display: -ms-flexbox;
     display: flex;
-    min-height: 0
+    min-height: 0;
 }
 
 .flex-fill {
@@ -712,43 +712,43 @@ body.flexbox #content {
     align-items: stretch;
     min-height: 0;
     max-width: 100%;
-    position: relative
+    position: relative;
 }
 
 .flex-fill.rows {
     -ms-flex-direction: row;
-    flex-direction: row
+    flex-direction: row;
 }
 
 .flex-fill.columns {
     -ms-flex-direction: column;
-    flex-direction: column
+    flex-direction: column;
 }
 
 .flex {
     min-height: 0;
     -ms-flex: 1;
-    flex: 1
+    flex: 1;
 }
 
 .flex.scroll {
     display: -ms-flexbox;
-    display: flex
+    display: flex;
 }
 
 .flex.scroll.sidebar {
-    margin-right: -14px
+    margin-right: -14px;
 }
 
 .flex.scroll .scroll-body {
     overflow-y: scroll;
     -ms-flex: 1;
-    flex: 1
+    flex: 1;
 }
 
 .flex-child>div {
     -ms-flex: 1;
-    flex: 1
+    flex: 1;
 }
 
 .flex.sidebar {
@@ -756,7 +756,7 @@ body.flexbox #content {
     flex: 1;
     background-color: #f2f2f2;
     max-width: 360px;
-    min-height: 90vh
+    min-height: 90vh;
 }
 
 .flex.sidebar+.flex.content {
@@ -765,16 +765,16 @@ body.flexbox #content {
     background-color: #fff;
     padding: 0 24px;
     border-left: 1px solid #ddd;
-    max-width: 100%
+    max-width: 100%;
 }
 
 .flex.sidebar .sidebar-toggle {
-    display: none
+    display: none;
 }
 
 @media screen and (max-width:1100px) {
     body.sidebar-layout {
-        padding-left: 30px
+        padding-left: 30px;
     }
     .flex.sidebar {
         position: fixed;
@@ -790,14 +790,14 @@ body.flexbox #content {
         display: -ms-flexbox;
         display: flex;
         -ms-flex-direction: column;
-        flex-direction: column
+        flex-direction: column;
     }
     .flex.sidebar.open {
         box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, .1);
-        transform: translate3d(0, 0, 0)
+        transform: translate3d(0, 0, 0);
     }
     .flex.sidebar.open .sidebar-toggle i {
-        transform: rotate(180deg)
+        transform: rotate(180deg);
     }
     .flex.sidebar .sidebar-toggle {
         display: block;
@@ -814,23 +814,23 @@ body.flexbox #content {
         border: 1px solid #ddd;
         border-top: 1px solid #bbb;
         padding-top: 16px;
-        cursor: pointer
+        cursor: pointer;
     }
     .flex.sidebar .sidebar-toggle i {
         opacity: .5;
         transition: all ease-in-out 120ms;
-        padding: 0
+        padding: 0;
     }
     .flex.sidebar .sidebar-toggle:hover i {
-        opacity: 1
+        opacity: 1;
     }
     .sidebar .scroll-body {
         -ms-flex: 1;
         flex: 1;
-        overflow-y: scroll
+        overflow-y: scroll;
     }
     #sidebar .scroll-body.fixed {
-        width: auto!important
+        width: auto!important;
     }
 }
 
@@ -845,15 +845,15 @@ body.flexbox #content {
         height: 100%;
         overflow-y: auto;
         -ms-overflow-style: none;
-        border-left: 1px solid #ddd
+        border-left: 1px solid #ddd;
     }
     #sidebar .scroll-body.fixed::-webkit-scrollbar {
-        width: 0!important
+        width: 0!important;
     }
 }
 
 div[class^=col-] img {
-    max-width: 100%
+    max-width: 100%;
 }
 
 .container {
@@ -861,15 +861,15 @@ div[class^=col-] img {
     margin-left: auto;
     margin-right: auto;
     padding-left: 16px;
-    padding-right: 16px
+    padding-right: 16px;
 }
 
 .container.fluid {
-    max-width: 100%
+    max-width: 100%;
 }
 
 .container.medium {
-    max-width: 992px
+    max-width: 992px;
 }
 
 .container.small {
