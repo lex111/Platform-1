@@ -124,6 +124,7 @@ header .search-box {
   }
   @include smaller-than($l) {
     max-width: 200px;
+    margin-right: 10px;
   }
 }
 
