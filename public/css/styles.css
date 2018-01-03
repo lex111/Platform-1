@@ -523,119 +523,119 @@ span.primary {
 p .primary:hover,
 p.primary:hover,
 span.primary:hover {
-    color: #0288d1
+    color: #0288d1;
 }
 
 .text-secondary,
 p .secondary,
 p.secondary,
 span.secondary {
-    color: #e27b41
+    color: #e27b41;
 }
 
 .text-secondary:hover,
 p .secondary:hover,
 p.secondary:hover,
 span.secondary:hover {
-    color: #e27b41
+    color: #e27b41;
 }
 
 .text-book {
-    color: #009688
+    color: #009688;
 }
 
 .text-book:hover {
-    color: #009688
+    color: #009688;
 }
 
 .text-page {
-    color: #0288d1
+    color: #0288d1;
 }
 
 .text-page:hover {
-    color: #0288d1
+    color: #0288d1;
 }
 
 .text-page.draft {
-    color: #9a60da
+    color: #9a60da;
 }
 
 .text-page.draft:hover {
-    color: #9a60da
+    color: #9a60da;
 }
 
 .text-chapter {
-    color: #ef7c3c
+    color: #ef7c3c;
 }
 
 .text-chapter:hover {
-    color: #ef7c3c
+    color: #ef7c3c;
 }
 
 .faded .text-book:hover {
-    color: #009688!important
+    color: #009688!important;
 }
 
 .faded .text-chapter:hover {
-    color: #ef7c3c!important
+    color: #ef7c3c!important;
 }
 
 .faded .text-page:hover {
-    color: #0288d1!important
+    color: #0288d1!important;
 }
 
 span.highlight {
     font-weight: 700;
-    padding: 2px 4px
+    padding: 2px 4px;
 }
 
 ol,
 ul {
-    overflow: hidden
+    overflow: hidden;
 }
 
 ol p,
 ul p {
-    margin: 0
+    margin: 0;
 }
 
 ul {
     padding-left: 20.8px;
-    list-style: disc
+    list-style: disc;
 }
 
 ul ul {
     list-style: circle;
     margin-top: 0;
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 ul label {
-    margin: 0
+    margin: 0;
 }
 
 ol {
     list-style: decimal;
-    padding-left: 32px
+    padding-left: 32px;
 }
 
 li.checkbox-item,
 li.task-list-item {
     list-style: none;
-    margin-left: -20.8px
+    margin-left: -20.8px;
 }
 
 li.checkbox-item input[type=checkbox],
 li.task-list-item input[type=checkbox] {
-    margin-right: 6px
+    margin-right: 6px;
 }
 
 .underlined {
-    text-decoration: underline
+    text-decoration: underline;
 }
 
 .text-center {
-    text-align: center
+    text-align: center;
 }
 
 .text-left {
