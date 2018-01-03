@@ -15,8 +15,7 @@ function hashed_asset($file = '')
 {
 
     $hashed_value = sha1_file(public_path($file));
-
-    $path = $file.'?'.$hashed_value;
+    $path = $file.'.'.$hashed_value;
 
     return baseUrl($path);
 }
