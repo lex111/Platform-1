@@ -10,7 +10,7 @@ myip=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d
 
 export DEBIAN_FRONTEND=noninteractive
 sudo apt update
-sudo apt install -y git composer apache2 memcached php-memcached php-memcache curl php libapache2-mod-php php7.1-fpm php7.1-curl php7.1-mbstring php7.1-ldap php7.1-mcrypt php7.1-tidy php7.1-xml php7.1-zip php7.1-gd php7.1-mysql mysql-server-5.7 mcrypt
+sudo apt install -y git composer nginx redis-server curl php libapache2-mod-php php7.1-fpm php7.1-curl php7.1-mbstring php7.1-ldap php7.1-mcrypt php7.1-tidy php7.1-xml php7.1-zip php7.1-gd php7.1-mysql mysql-server-5.7 mcrypt
 
 # Set up database
 echo -n "Enter your the Database password [ENTER]: "
