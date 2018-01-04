@@ -3,17 +3,17 @@
   "name": "DocsPen Lite",
   "icons": [
     {
-      "src": "https://i1.wp.com/cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png?quality=100&w=48",
+      "src": "https://i1.wp.com/https://unpkg.com/docspen@1.0.0/imgs/logo-small.png?quality=100&w=48",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "https://i1.wp.com/cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png?quality=100&w=96",
+      "src": "https://i1.wp.com/unpkg.com/docspen@1.0.0/imgs/logo-small.png?quality=100&w=96",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "https://i1.wp.com/cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png?quality=100&w=192",
+      "src": "https://i1.wp.com/unpkg.com/docspen@1.0.0/imgs/logo-small.png?quality=100&w=192",
       "type": "image/png",
       "sizes": "192x192"
     }
