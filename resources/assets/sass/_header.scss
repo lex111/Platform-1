@@ -76,7 +76,7 @@ header {
   }
   @include smaller-than($screen-sm) {
     text-align: center;
-    height: 95px;
+    height: 100%;
     .float.right {
       float: none;
     }
@@ -225,7 +225,7 @@ header .search-box {
 
 @include smaller-than($m) {
   .breadcrumbs .text-button, .action-buttons .text-button {
-    padding: $-s $-xs;
+    padding: 7px 6px;
   }
   .action-buttons .dropdown-container:last-child a {
     padding-left: $-xs;
