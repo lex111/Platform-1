@@ -76,6 +76,7 @@ header {
   }
   @include smaller-than($screen-sm) {
     text-align: center;
+    height: 95px;
     .float.right {
       float: none;
     }
