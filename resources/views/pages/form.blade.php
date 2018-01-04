@@ -16,8 +16,8 @@
                 <div class="col-sm-4 faded text-center">
 
                     <div v-show="draftsEnabled" dropdown class="dropdown-container draft-display">
-                        <a dropdown-toggle class="text-primary text-button" style="padding-top:6px"><span class="faded-text" v-text="draftText"></span>&nbsp; <i class="zmdi zmdi-more-vert"></i></a>
-                        <i class="zmdi zmdi-check-circle text-pos draft-notification" style="padding-top:6px" :class="{visible: draftUpdated}"></i>
+                        <a dropdown-toggle class="text-primary text-button"><span class="faded-text" v-text="draftText"></span>&nbsp; <i class="zmdi zmdi-more-vert"></i></a>
+                        <i class="zmdi zmdi-check-circle text-pos draft-notification" :class="{visible: draftUpdated}"></i>
                         <ul>
                             <li>
                                 <a @click="saveDraft()" class="text-pos"><i class="zmdi zmdi-save"></i>{{ trans('entities.pages_edit_save_draft') }}</a>
@@ -34,7 +34,7 @@
                 <div class="col-sm-4 faded">
                     <div class="action-buttons" v-cloak>
                         <div dropdown class="dropdown-container">
-                            <a dropdown-toggle class="text-primary text-button"><i class="zmdi zmdi-edit"></i> <span v-text="changeSummaryShort"></span></a>
+                            <a dropdown-toggle class="text-primary text-button" style="padding-top:6px"><i class="zmdi zmdi-edit"></i> <span v-text="changeSummaryShort"></span></a>
                             <ul class="wide">
                                 <li class="padded">
                                     <p class="text-muted">{{ trans('entities.pages_edit_enter_changelog_desc') }}</p>
