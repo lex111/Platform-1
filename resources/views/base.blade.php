@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
     <link rel="icon" type="image/png" href="https://unpkg.com/docspen@7.0.0/imgs/favicon.png" />
-    <link rel="stylesheet" href="{{ hashed_asset('css/styles.cs') }}">
+    <link rel="stylesheet" href="{{ hashed_asset('css/styles.css') }}">
     <link rel="stylesheet" media="print" href="{{ hashed_asset('css/print-styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="manifest" href="/manifest.json">
