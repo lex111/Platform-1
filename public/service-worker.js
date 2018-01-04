@@ -535,7 +535,7 @@
             maxEntries: 50
         }
     }), o.a.router.get("/ajax/libs/(.*)", o.a.cacheFirst, {
-        origin: "https://ajax.googleapis.com",
+        origin: "https://cdnjs.cloudflare.com",
         cache: {
             name: u.static,
             maxEntries: 50
