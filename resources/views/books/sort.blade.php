@@ -13,7 +13,6 @@
 @section('body')
 
     <div class="container" ng-non-bindable>
-
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
