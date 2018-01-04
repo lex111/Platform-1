@@ -4,7 +4,7 @@
     <div class="col-sm-8 faded">
         <div class="breadcrumbs">
             <a href="{{ baseUrl('/books') }}" class="text-button"><i class="zmdi zmdi-book"></i>{{ trans('entities.books') }}</a>
-            <img src="https://cdn.jsdelivr.net/npm/docspen@6.0.0/imgs/arrow-right.svg" style="height:10px">
+            <img src="https://unpkg.com/docspen@6.0.0/imgs/arrow-right.svg" style="height:10px">
             <a href="{{ baseUrl('/books/create') }}" class="text-button"><i class="zmdi zmdi-plus"></i>{{ trans('entities.books_create') }}</a>
         </div>
     </div>
