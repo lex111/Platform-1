@@ -540,6 +540,12 @@
             name: u.static,
             maxEntries: 50
         }
+    }), o.a.router.get("/libs/(.*)", o.a.cacheFirst, {
+        origin: "https://docspen.ga",
+        cache: {
+            name: u.static,
+            maxEntries: 50
+        }
     }), o.a.router.get("/translations", o.a.cacheFirst, {
         origin: "https://docspen.ga",
         cache: {
