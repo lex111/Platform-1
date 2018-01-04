@@ -9,13 +9,13 @@
     <meta name="theme-color" content="#026AA7">
     <meta charset="utf-8">
     
-    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/docspen@7.0.0/imgs/favicon.png" />
+    <link rel="icon" type="image/png" href="https://unpkg.com/docspen@7.0.0/imgs/favicon.png" />
     <link rel="stylesheet" href="{{ hashed_asset('css/styles.css') }}">
     <link rel="stylesheet" media="print" href="{{ hashed_asset('css/print-styles.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link rel="manifest" href="/manifest.json">
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script>
     	if ('serviceWorker' in navigator && navigator.userAgent.indexOf("Mobile") === -1) {
     		navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
@@ -55,7 +55,7 @@
 
                 <a href="{{ baseUrl('/') }}" class="logo">
                     @if(setting('app-logo', '') !== 'none')
-                        <img class="logo-image" src="https://cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png" alt="Logo">
+                        <img class="logo-image" src="https://unpkg.com/docspen@1.0.0/imgs/logo-small.png" alt="Logo">
                     @endif
                     @if (setting('app-name-header'))
                         <span class="logo-text">{{ setting('app-name') }}</span>
