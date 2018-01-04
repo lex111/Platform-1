@@ -8,6 +8,7 @@ header {
   top: 0;
   background-color: $primary-dark;
   color: #fff;
+  height: 47px;
   .padded {
     padding: $-m;
   }
@@ -16,6 +17,7 @@ header {
     display: inline-block;
     vertical-align: top;
     margin-right: $-xl;
+    margin-top: -4px;
     @include smaller-than($screen-md) {
       margin-right: 0;
     }
@@ -46,7 +48,7 @@ header {
   }
   .user-name {
     vertical-align: top;
-    padding-top: 15px;
+    padding-top: 11px;
     position: relative;
     top: -3px;
     display: inline-block;
@@ -91,7 +93,7 @@ header {
 }
 header .search-box {
   display: inline-block;
-  margin-top: 11.5px;
+  margin-top: 7.5px;
   input {
     background-color: hsla(0, 0%, 100%, .3);
     border: none;
@@ -143,18 +145,18 @@ header .search-box {
 }
 .logo-text {
   display: inline-block;
-  font-size: 23px;
+  font-size: 20px;
   color: #fff;
   font-weight: 400;
-  padding: 16px 24px 14px 0;
+  padding: 13px 24px 14px 0;
   vertical-align: top;
   line-height: 1;
 }
 .logo-image {
   pointer-events: none;
-  margin: 10px 0 6px 0;
+  margin: 7px 0 6px 0;
   vertical-align: top;
-  height: 35px;
+  height: 32px;
 }
 
 .breadcrumbs span.sep {
