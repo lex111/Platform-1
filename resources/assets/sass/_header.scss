@@ -245,13 +245,13 @@ header .search-box {
 
 .nav-tabs {
   text-align: center;
+  margin-top: -4px;
   a, .tab-item {
     padding: $-m;
     display: inline-block;
     color: #666;
     cursor: pointer;
     &.selected {
-      background-color: #f2f2f2;
       border-bottom: 2px solid $primary;
     }
   }
