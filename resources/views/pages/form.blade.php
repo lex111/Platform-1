@@ -10,14 +10,14 @@
                 <div class="col-sm-4 faded">
                     <div class="action-buttons text-left">
                         <a href="{{ back()->getTargetUrl() }}" class="text-button text-primary" style="padding-top:6px"><i class="zmdi zmdi-arrow-left"></i>{{ trans('common.back') }}</a>
-                        <a onclick="$('body>header').slideToggle();" class="text-button text-primary"><i class="zmdi zmdi-swap-vertical"></i>{{ trans('entities.pages_edit_toggle_header') }}</a>
+                        <a onclick="$('body>header').slideToggle();" class="text-button text-primary" style="padding-top:6px"><i class="zmdi zmdi-swap-vertical"></i>{{ trans('entities.pages_edit_toggle_header') }}</a>
                     </div>
                 </div>
                 <div class="col-sm-4 faded text-center">
 
                     <div v-show="draftsEnabled" dropdown class="dropdown-container draft-display">
-                        <a dropdown-toggle class="text-primary text-button"><span class="faded-text" v-text="draftText"></span>&nbsp; <i class="zmdi zmdi-more-vert"></i></a>
-                        <i class="zmdi zmdi-check-circle text-pos draft-notification" :class="{visible: draftUpdated}"></i>
+                        <a dropdown-toggle class="text-primary text-button" style="padding-top:6px"><span class="faded-text" v-text="draftText"></span>&nbsp; <i class="zmdi zmdi-more-vert"></i></a>
+                        <i class="zmdi zmdi-check-circle text-pos draft-notification" style="padding-top:6px" :class="{visible: draftUpdated}"></i>
                         <ul>
                             <li>
                                 <a @click="saveDraft()" class="text-pos"><i class="zmdi zmdi-save"></i>{{ trans('entities.pages_edit_save_draft') }}</a>
