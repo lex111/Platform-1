@@ -43,7 +43,7 @@
                             </ul>
                         </div>
 
-                        <button type="submit" id="save-button" class="text-button text-pos"><i class="zmdi zmdi-floppy"></i>{{ trans('entities.pages_save') }}</button>
+                        <button type="submit" id="save-button" class="text-button text-pos" style="padding-top:6px"><i class="zmdi zmdi-floppy"></i>{{ trans('entities.pages_save') }}</button>
                     </div>
                 </div>
             </div>
