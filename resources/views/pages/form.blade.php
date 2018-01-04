@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-sm-4 faded">
                     <div class="action-buttons text-left">
-                        <a href="{{ back()->getTargetUrl() }}" class="text-button text-primary" style="padding-top:6px"><i class="zmdi zmdi-arrow-left"></i>{{ trans('common.back') }}</a>
-                        <a onclick="$('body>header').slideToggle();" class="text-button text-primary" style="padding-top:6px"><i class="zmdi zmdi-swap-vertical"></i>{{ trans('entities.pages_edit_toggle_header') }}</a>
+                        <a href="{{ back()->getTargetUrl() }}" class="text-button text-primary"><i class="zmdi zmdi-arrow-left"></i>{{ trans('common.back') }}</a>
+                        <a onclick="$('body>header').slideToggle();" class="text-button text-primary"><i class="zmdi zmdi-swap-vertical"></i>{{ trans('entities.pages_edit_toggle_header') }}</a>
                     </div>
                 </div>
                 <div class="col-sm-4 faded text-center">
@@ -34,7 +34,7 @@
                 <div class="col-sm-4 faded">
                     <div class="action-buttons" v-cloak>
                         <div dropdown class="dropdown-container">
-                            <a dropdown-toggle class="text-primary text-button" style="padding-top:6px"><i class="zmdi zmdi-edit"></i> <span v-text="changeSummaryShort"></span></a>
+                            <a dropdown-toggle class="text-primary text-button"><i class="zmdi zmdi-edit"></i> <span v-text="changeSummaryShort"></span></a>
                             <ul class="wide">
                                 <li class="padded">
                                     <p class="text-muted">{{ trans('entities.pages_edit_enter_changelog_desc') }}</p>
@@ -43,7 +43,7 @@
                             </ul>
                         </div>
 
-                        <button type="submit" id="save-button" class="text-button text-pos" style="padding-top:6px"><i class="zmdi zmdi-floppy"></i>{{ trans('entities.pages_save') }}</button>
+                        <button type="submit" id="save-button" class="text-button text-pos"><i class="zmdi zmdi-floppy"></i>{{ trans('entities.pages_save') }}</button>
                     </div>
                 </div>
             </div>

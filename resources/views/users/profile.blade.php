@@ -1,7 +1,7 @@
 @extends('sidebar-layout')
 
 @section('toolbar')
-    <div class="col-sm-6 col-xs-1 faded" style="height:30px">
+    <div class="col-sm-6 col-xs-1 faded">
         <div class="breadcrumbs">
             <a href="{{ $user->getProfileUrl() }}" class="text-button"><i class="zmdi zmdi-account"></i>{{ $user->name }}</a>
         </div>

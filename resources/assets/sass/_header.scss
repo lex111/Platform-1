@@ -8,7 +8,6 @@ header {
   top: 0;
   background-color: $primary-dark;
   color: #fff;
-  height: 47px;
   .padded {
     padding: $-m;
   }
@@ -17,7 +16,6 @@ header {
     display: inline-block;
     vertical-align: top;
     margin-right: $-xl;
-    margin-top: -4px;
     @include smaller-than($screen-md) {
       margin-right: 0;
     }
@@ -48,7 +46,7 @@ header {
   }
   .user-name {
     vertical-align: top;
-    padding-top: 11px;
+    padding-top: 15px;
     position: relative;
     top: -3px;
     display: inline-block;
@@ -76,7 +74,6 @@ header {
   }
   @include smaller-than($screen-sm) {
     text-align: center;
-    height: 100%;
     .float.right {
       float: none;
     }
@@ -84,7 +81,7 @@ header {
       padding: 8px 10px;
     }
     .user-name {
-      padding-top: 11px;
+      padding-top: 15px;
     }
   }
 }
@@ -94,7 +91,7 @@ header {
 }
 header .search-box {
   display: inline-block;
-  margin-top: 7.5px;
+  margin-top: 8.5px;
   input {
     background-color: hsla(0, 0%, 100%, .3);
     border: none;
@@ -146,18 +143,18 @@ header .search-box {
 }
 .logo-text {
   display: inline-block;
-  font-size: 20px;
+  font-size: 23px;
   color: #fff;
   font-weight: 400;
-  padding: 13px 24px 14px 0;
+  padding: 16px 24px 14px 0;
   vertical-align: top;
   line-height: 1;
 }
 .logo-image {
   pointer-events: none;
-  margin: 7px 0 6px 0;
+  margin: 10px 0 6px 0;
   vertical-align: top;
-  height: 32px;
+  height: 35px;
 }
 
 .breadcrumbs span.sep {
@@ -180,7 +177,7 @@ header .search-box {
 
 .faded span.faded-text {
   display: inline-block;
-  padding: 4px;
+  padding: $-s;
 }
 
 .faded-small {
@@ -195,14 +192,12 @@ header .search-box {
 
 .breadcrumbs .text-button, .action-buttons .text-button {
   display: inline-block;
-  padding: 3px;
-  font-size: 12px;
+  padding: $-s;
   &:last-child {
     padding-right: 0;
   }
   &:first-child {
     padding-left: 0;
-    padding-bottom: 7px;
   }
 }
 
@@ -218,7 +213,6 @@ header .search-box {
     .text-button {
       padding-right: $-m;
       padding-left: 0;
-      font-size: 12px;
     }
   }
   &.text-center {
@@ -228,7 +222,7 @@ header .search-box {
 
 @include smaller-than($m) {
   .breadcrumbs .text-button, .action-buttons .text-button {
-    padding: 7px 6px;
+    padding: $-s $-xs;
   }
   .action-buttons .dropdown-container:last-child a {
     padding-left: $-xs;
@@ -247,13 +241,13 @@ header .search-box {
 
 .nav-tabs {
   text-align: center;
-  margin-top: -4px;
   a, .tab-item {
     padding: $-m;
     display: inline-block;
     color: #666;
     cursor: pointer;
     &.selected {
+      background-color: #f2f2f2;
       border-bottom: 2px solid $primary;
     }
   }
