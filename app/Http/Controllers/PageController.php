@@ -176,6 +176,7 @@ class PageController extends Controller
             if ($page === null) {
                 throw $e;
             }
+
             return redirect($page->getUrl());
         }
 

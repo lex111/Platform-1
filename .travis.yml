@@ -2,9 +2,7 @@ dist: trusty
 sudo: false
 language: php
 php:
-  - '7.0'
   - '7.1'
-  - '7.2'
 
 cache:
   directories:
@@ -29,3 +27,13 @@ after_failure:
 
 script:
   - sloc .
+  
+notifications:
+  webhooks:
+    urls:
+      - https://integrations.bonbotics.io/travis/webhook/aRbJVCgYFSel7wtydqkqp0yPNFayUgfujMr6mILMJUs
+    on_success: change # default: always
+    on_failure: always # default: always
+    on_start: change   # default: never
+    on_cancel: always # default: always
+    on_error: always # default: always

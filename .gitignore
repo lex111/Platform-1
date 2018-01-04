@@ -1,7 +1,6 @@
 /vendor
 /node_modules
 .codetasty/
-worker.log
 .env
 npm-debug.log
 yarn-error.log
@@ -12,14 +11,10 @@ yarn-error.log
 /public/js/*.map
 /public/bower
 /public/build/
+/public/css/
+/public/js/
 /public/rg_RGB_.jpg
 /storage/images
-_ide_helper.php
 /storage/debugbar
-.phpstorm.meta.php
 yarn.lock
 /bin
-nbproject
-.buildpath
-.project
-.settings/

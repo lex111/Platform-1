@@ -6,16 +6,38 @@
     <meta name="viewport" content="width=device-width">
     <meta name="token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ baseUrl('/') }}">
+    <meta name="theme-color" content="#026AA7">
     <meta charset="utf-8">
 
-    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png" />
-    <link rel="stylesheet" href="{{ versioned_asset('css/styles.css') }}">
-    <link rel="stylesheet" media="print" href="{{ versioned_asset('css/print-styles.css') }}">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/docspen@7.0.0/imgs/favicon.png" />
+    <link rel="stylesheet" href="{{ hashed_asset('css/styles.css') }}">
+    <link rel="stylesheet" media="print" href="{{ hashed_asset('css/print-styles.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
+    <link rel="manifest" href="/manifest.json">
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-ui-stable-build@1.11.4/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ baseUrl('/translations') }}"></script>
+    <script>
+    	if ('serviceWorker' in navigator && navigator.userAgent.indexOf("Mobile") === -1) {
+    		navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+    			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    			console.log('DocsPen ♥\'s web');
+    		})
+    		.catch(function(err) {
+    			console.error('ServiceWorker registration failed: ', err);
+    		});
+    	} else if('serviceWorker' in navigator && navigator.userAgent.indexOf("Mobile") > -1){
+            navigator.serviceWorker.getRegistration().then(function(registration) {
+                var serviceWorkerUnregistered=false;
+                if(registration) {
+                    registration.unregister();
+                    serviceWorkerUnregistered=true;
+                }
+                serviceWorkerUnregistered && window.location.reload();
+            });
+        }
+    </script>
 
     @yield('head')
 
@@ -81,7 +103,7 @@
         </div>
     </div>
 @yield('bottom')
-<script src="{{ versioned_asset('js/common.js') }}"></script>
+<script src="{{ hashed_asset('js/common.js') }}"></script>
 @yield('scripts')
 </body>
 </html>

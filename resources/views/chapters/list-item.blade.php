@@ -11,7 +11,7 @@
         </a>
     </h4>
 
-    <div class="entity-item-snippet">
+    <div class="entity-item-snippet" style="font-size:14px;line-height:20px">
         @if(isset($chapter->searchSnippet))
             <p class="text-muted">{!! $chapter->searchSnippet !!}</p>
         @else

@@ -37,10 +37,10 @@
                     </tr>
                     @foreach($users as $user)
                         <tr>
-                            <td style="line-height:0"><img class="avatar med" src="{{ $user->getAvatar(150)}}" alt="{{ $user->name }}"></td>
+                            <td style="line-height:0"><img class="avatar med" src="{{ $user->getAvatar(150)}}?quality=100" alt="{{ $user->name }}"></td>
                             <td>
                                 @if(userCan('users-manage') || $currentUser->id == $user->id)
-                                    <a href="{{ baseUrl("/settings/users/{$user->id}") }}">
+                                    <a href="{{ baseUrl("/@/{$user->id}") }}">
                                         @endif
                                         {{ $user->name }}
                                         @if(userCan('users-manage') || $currentUser->id == $user->id)

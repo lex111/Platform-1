@@ -76,12 +76,16 @@ Route::group(['middleware' => 'auth'], function () {
 
     // User Profile routes
     Route::get('/user/{userId}', 'UserController@showProfilePage');
+    Route::get('/@/{userId}', 'UserController@showProfilePage');
 
     // Image routes
     Route::group(['prefix' => 'images'], function () {
         // Get for user images
-        Route::get('/user/all', 'ImageController@getAllForUserType');
-        Route::get('/user/all/{page}', 'ImageController@getAllForUserType');
+        // Route::get('/user/all', 'ImageController@getAllForUserType');
+        // Route::get('/user/all/{page}', 'ImageController@getAllForUserType');
+
+        Route::get('/@/all', 'ImageController@getAllForUserType');
+        Route::get('/@/all/{page}', 'ImageController@getAllForUserType');
         // Standard get, update and deletion for all types
         Route::get('/thumb/{id}/{width}/{height}/{crop}', 'ImageController@getThumbnail');
         Route::put('/update/{imageId}', 'ImageController@update');
@@ -185,3 +189,28 @@ Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail
 // Password reset routes...
 Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
+
+// Others
+Route::get('/about', 'OthersController@about');
+Route::get('/credits', 'OthersController@credits');
+Route::get('/terms', 'OthersController@terms');
+Route::get('/privacy', 'OthersController@privacy');
+Route::get('/ping', function () {
+    return 'pong';
+});
+Route::get('/trello', function () {
+    return redirect('https://trello.com/b/nUennIKj/docspen');
+});
+Route::get('/git', function () {
+    return redirect('https://github.com/DocsPen/Platform');
+});
+Route::get('/blog', function () {
+    return redirect('https://docspen.tumblr.com');
+});
+
+// Sitemaps
+Route::get('/sitemap.xml', 'SitemapsController@index');
+// Route::get('/books.xml', 'SitemapsController@books');
+// Route::get('/pages.xml', 'SitemapsController@pages');
+// Route::get('/chapters.xml', 'SitemapsController@chapters');
+// Route::get('/users.xml', 'SitemapsController@users');

@@ -3,6 +3,9 @@
 [![Build Status](https://travis-ci.org/DocsPen/Platform.svg?branch=master)](https://travis-ci.org/DocsPen/Platform)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5aeeae9df8b7eb42f21f/maintainability)](https://codeclimate.com/github/DocsPen/Platform/maintainability)
 [![StyleCI](https://styleci.io/repos/115519619/shield?branch=master)](https://styleci.io/repos/115519619)
+[![license](https://img.shields.io/github/license/DocsPen/Platform.svg)](https://github.com/DocsPen/Platform/blob/master/LICENSE)
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/docspen/docspen)
+[![Website](https://img.shields.io/website-up-down-green-red/https/docspen.ga.svg?label=DocsPen%20Platform%20is)](https://docspen.ga)
 
 ## Introduction
 
@@ -19,11 +22,11 @@ Pull requests are very welcome. If the scope of your pull request is very large 
 These are the great open-source projects used to help build DocsPen:
 
 ### Softwares and Backend
-* [NGINX](https://nginx.com)
-* [MySQL](https://mysql.com)
+* [NGINX](https://nginx.org)
+* [Memcached](https://memcached.org/)
 * [Redis](https://redis.io)
 * [PHP](https://php.net)
-* [Laravel](http://laravel.com/)
+* [Laravel](https://laravel.com/)
 
 ### Attributions
 * [jQuery](https://jquery.com/)
