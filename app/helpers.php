@@ -13,7 +13,6 @@ use DocsPen\Ownable;
  */
 function hashed_asset($file = '')
 {
-
     $hashed_value = sha1_file(public_path($file));
     $path = $file.'?'.$hashed_value;
 
