@@ -1,6 +1,6 @@
 <div class="dropdown-container" dropdown>
     <span class="user-name" dropdown-toggle>
-        <img class="avatar" src="{{$currentUser->getAvatar(50)}}?quality=100" alt="{{ $currentUser->name }}">
+        <img class="avatar" style="border-radius:2px solid #d9e9f2" src="{{$currentUser->getAvatar(50)}}?quality=100" alt="{{ $currentUser->name }}">
         <span class="name" ng-non-bindable>{{ $currentUser->getShortName(9) }}</span> <i class="zmdi zmdi-caret-down"></i>
     </span>
     <ul>
