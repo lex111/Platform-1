@@ -77,6 +77,9 @@
                            <li>All of your Content will be immediately deleted from the Service upon cancellation. This information can not be recovered once your account is canceled.</li>
                         </ol>
                     </p>
+                    <p class="text-muted small">
+                        Revision #1 <br> Created <span title="Wed, Jan 5, 2018 4:17 AM">Wed, Jan 5, 2018 4:17 AM</span>
+                    </p>
                 </div>
             </div>
         </div>
