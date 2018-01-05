@@ -44,7 +44,7 @@
     </div>
 
     <div id="new" class="card">
-        <h3><i class="zmdi zmdi-star-circle" style="color:#ef7c3c"></i> {{ trans('entities.books_new') }}</h3>
+        <h3><i class="zmdi zmdi-star-circle" style="color:#026aa7"></i> {{ trans('entities.books_new') }}</h3>
         @if(count($popular) > 0)
             @include('partials/entity-list', ['entities' => $new, 'style' => 'compact'])
         @else
