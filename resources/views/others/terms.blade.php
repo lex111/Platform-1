@@ -44,6 +44,19 @@
                         Content on the Service, you understand and agree that DocsPen cannot be responsible for the Content posted on the Service and
                         you nonetheless may be exposed to such materials.You agree to use the Service at your own risk.
                     </p>
+                    <h4>Account Terms</h4>
+                    <p>
+                        <ol>
+                            <li>You must be a human, bots are not allowed</li>
+                            <li>You must be 10 years or older to use this Service.</li>
+                            <li>You must provide a valid email address (as email).
+                            <li>You are responsible for maintaining the security of your account and password.</li>
+                            <li>You are responsible for all Content posted and activity that occurs under your account (even when Content is posted by others who have accounts under your account).6. One person may not maintain more than one free account.</li>
+                            <li>You may not use the Service for any illegal or unauthorized purpose. You must not, in the use of the Service, violate any laws in your jurisdiction</li>
+                            <li>Your use of the Service is at your sole risk</li>
+                            <li>You must not modify, adapt or hack the Service</li>
+                        </ol>
+                    </p>
                 </div>
             </div>
         </div>
