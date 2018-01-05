@@ -68,6 +68,15 @@
                             <li>DocsPen have the right (but not the obligation) in their sole discretion to refuse or remove any Content that is available via the Service.</li>
                         </ol>
                     </p>
+                                        
+                    <h4>Cancellation and Termination</h4>
+                    <p>
+                        <ol>
+                           <li>You have the right to cancel your account</li>
+                           <li>You are solely responsible for properly canceling your account.</li>
+                           <li>All of your Content will be immediately deleted from the Service upon cancellation. This information can not be recovered once your account is canceled.</li>
+                        </ol>
+                    </p>
                 </div>
             </div>
         </div>
