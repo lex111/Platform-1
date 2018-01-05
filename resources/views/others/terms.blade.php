@@ -44,6 +44,7 @@
                         Content on the Service, you understand and agree that DocsPen cannot be responsible for the Content posted on the Service and
                         you nonetheless may be exposed to such materials.You agree to use the Service at your own risk.
                     </p>
+                    
                     <h4>Account Terms</h4>
                     <p>
                         <ol>
@@ -55,6 +56,16 @@
                             <li>You may not use the Service for any illegal or unauthorized purpose. You must not, in the use of the Service, violate any laws in your jurisdiction</li>
                             <li>Your use of the Service is at your sole risk</li>
                             <li>You must not modify, adapt or hack the Service</li>
+                        </ol>
+                    </p>
+                    
+                    <h4>Copyright and Content Ownership</h4>
+                    <p>
+                        <ol>
+                            <li>The content (Images, Documents) is copyright ©2017 DocsPen, You may not duplicate, copy, or reuse any portion of the HTML/CSS, Javascript, or visual design elements or concepts without express written permission from DocsPen.</li>
+                            <li>Your profile and materials uploaded remain yours.</li>
+                            <li>Files edited and linked to your account remain yours</li>
+                            <li>DocsPen have the right (but not the obligation) in their sole discretion to refuse or remove any Content that is available via the Service.</li>
                         </ol>
                     </p>
                 </div>
