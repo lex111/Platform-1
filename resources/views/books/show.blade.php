@@ -19,10 +19,10 @@
                     <a dropdown-toggle class="text-primary text-button"><i class="zmdi zmdi-more-vert"></i>{{ trans('common.more') }}</a>
                     <ul>
                         @if(userCan('page-create', $book))
-                            <a href="{{ $book->getUrl('/page/create') }}" class="text-primary"><i class="zmdi zmdi-plus"></i>{{ trans('entities.pages_new') }}</a>
+                            <a href="{{ $book->getUrl('/page/create') }}" class="text-primary"><i class="zmdi zmdi-file-text"></i>{{ trans('entities.pages_new') }}</a>
                         @endif
                         @if(userCan('chapter-create', $book))
-                            <a href="{{ $book->getUrl('/chapter/create') }}" class="text-primary"><i class="zmdi zmdi-plus"></i>{{ trans('entities.chapters_new') }}</a>
+                            <a href="{{ $book->getUrl('/chapter/create') }}" class="text-primary"><i class="zmdi zmdi-collection-bookmark"></i>{{ trans('entities.chapters_new') }}</a>
                         @endif
                         @if(userCan('book-update', $book))
                             <li><a href="{{$book->getEditUrl()}}" class="text-primary"><i class="zmdi zmdi-edit"></i>{{ trans('common.edit') }}</a></li>
