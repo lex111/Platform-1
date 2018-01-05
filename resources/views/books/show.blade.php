@@ -14,16 +14,17 @@
                     <li><a href="{{ $book->getUrl('/export/plaintext') }}" target="_blank">{{ trans('entities.export_text') }} <span class="text-muted float right">.txt</span></a></li>
                 </ul>
             </span>
-            @if(userCan('page-create', $book))
-                <a href="{{ $book->getUrl('/page/create') }}" class="text-pos text-button"><i class="zmdi zmdi-plus"></i>{{ trans('entities.pages_new') }}</a>
-            @endif
-            @if(userCan('chapter-create', $book))
-                <a href="{{ $book->getUrl('/chapter/create') }}" class="text-pos text-button"><i class="zmdi zmdi-plus"></i>{{ trans('entities.chapters_new') }}</a>
-            @endif
+         
             @if(userCan('book-update', $book) || userCan('restrictions-manage', $book) || userCan('book-delete', $book))
                 <div dropdown class="dropdown-container">
                     <a dropdown-toggle class="text-primary text-button"><i class="zmdi zmdi-more-vert"></i>{{ trans('common.more') }}</a>
                     <ul>
+                        @if(userCan('page-create', $book))
+                            <a href="{{ $book->getUrl('/page/create') }}" class="text-pos text-button"><i class="zmdi zmdi-plus"></i>{{ trans('entities.pages_new') }}</a>
+                        @endif
+                        @if(userCan('chapter-create', $book))
+                            <a href="{{ $book->getUrl('/chapter/create') }}" class="text-pos text-button"><i class="zmdi zmdi-plus"></i>{{ trans('entities.chapters_new') }}</a>
+                        @endif
                         @if(userCan('book-update', $book))
                             <li><a href="{{$book->getEditUrl()}}" class="text-primary"><i class="zmdi zmdi-edit"></i>{{ trans('common.edit') }}</a></li>
                             <li><a href="{{ $book->getUrl('/sort') }}" class="text-primary"><i class="zmdi zmdi-sort"></i>{{ trans('common.sort') }}</a></li>
