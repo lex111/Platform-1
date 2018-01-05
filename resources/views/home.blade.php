@@ -33,7 +33,7 @@
 
             <div class="col-sm-4">
                 <div class="card">
-                    <h3 class="text-muted"><i class="zmdi zmdi-book"></i> {{ trans('entities.books_popular') }}</h3>
+                    <h3 class="text-muted"><i class="zmdi zmdi-book"></i> + <i class="zmdi zmdi-fire"></i> {{ trans('entities.books_popular') }}</h3>
                     @include('partials.entity-list', ['entities' => Views::getPopular(6, 0, [\DocsPen\Book::class]), 'style' => 'compact'])
                 </div>
                 <div class="card">
