@@ -12,7 +12,8 @@
                     <i class="zmdi zmdi-assignment-check"></i><span class="entity-list-item-name">Terms of Service</span>
                 </h4>
                 <div class="entity-item-snippet" style="font-size:14px;line-height:20px">
-                    <p class="text-muted">
+                    <p>
+                        <br>
                         By using the DocsPen (docspen.com) website ("Service"), you are agreeing to be bound by the following terms and conditions 
                         ("Terms of Service"). If you are entering into this agreement on behalf of a company or other legal entity, you represent 
                         that you have the authority to bind such entity, its affiliates and all users who access our services through your account 
