@@ -37,6 +37,12 @@
                         augment or enhance the current Service, including the release of new tools and resources, shall be subject to the Terms of 
                         Service. Continued use of the Service after any such changes shall constitute your consent to such changes. You can review 
                         the most current version of the Terms of Service at any time at  https://docspen.com/books/docspen/page/terms
+                        
+                        <br>
+                        
+                        Violation of any of the terms below will result in the termination of your Account. While DocsPen prohibits such conduct and 
+                        Content on the Service, you understand and agree that DocsPen cannot be responsible for the Content posted on the Service and
+                        you nonetheless may be exposed to such materials.You agree to use the Service at your own risk.
                     </p>
                 </div>
             </div>
