@@ -9,7 +9,7 @@
         <div class="entity-list detailed" ng-non-bindable="">
             <div class="page  entity-list-item" data-entity-type="page" data-entity-id="7">
                 <h4>
-                    <a class="text-page entity-list-item-link"><i class="zmdi zmdi-file-text"></i><span class="entity-list-item-name">Terms of Service</span></a>
+                    <i class="zmdi zmdi-assignment-check"></i><span class="entity-list-item-name">Terms of Service</span>
                 </h4>
                 <div class="entity-item-snippet" style="font-size:14px;line-height:20px">
                     <p class="text-muted">
