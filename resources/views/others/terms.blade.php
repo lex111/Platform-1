@@ -5,7 +5,6 @@
 <div class="container small">
     <p>&nbsp;</p>
     <div class="card">
-        <h3>Terms of Service</h3>
         <div class="entity-list detailed" ng-non-bindable="">
             <div class="page  entity-list-item" data-entity-type="page" data-entity-id="7">
                 <h4>
