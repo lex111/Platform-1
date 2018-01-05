@@ -21,7 +21,7 @@
                         must not accept this agreement and may not use the services.
                     </p>
                     <p><b>
-                        DocsPen (docspen.com) is owned by DocsPen, Inc.
+                        DocsPen (docspen.com) is owned by <i>DocsPen, Inc.</i>
 
 
                         DocsPen Inc.
