@@ -20,6 +20,13 @@
                         users associated with it. if you do not have such authority, or if you do not agree with these terms and conditions, you
                         must not accept this agreement and may not use the services.
                     </p>
+                    <p><b>
+                        DocsPen (docspen.com) is owned by DocsPen, Inc.
+
+
+                        DocsPen Inc.
+                        Email: contact@docspen.com
+                    </b></p>
                 </div>
             </div>
         </div>
