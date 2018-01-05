@@ -35,7 +35,7 @@
     @endif
 
     <div id="popular" class="card">
-        <h3><i class="zmdi zmdi-fire"></i> {{ trans('entities.books_popular') }}</h3>
+        <h3><i class="zmdi zmdi-fire" style="color:#ef7c3c"></i> {{ trans('entities.books_popular') }}</h3>
         @if(count($popular) > 0)
             @include('partials/entity-list', ['entities' => $popular, 'style' => 'compact'])
         @else
