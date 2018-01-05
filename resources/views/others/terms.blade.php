@@ -23,10 +23,10 @@
                     <p><b>
                         DocsPen (docspen.com) is owned by <i>DocsPen, Inc.</i>
 
-                        <p>
+                        <br>
                         DocsPen Inc.
+                        <br>
                         Email: contact@docspen.com
-                        </p>
                     </b></p>
                 </div>
             </div>
