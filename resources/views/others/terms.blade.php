@@ -2,6 +2,8 @@
 
 @section('content')
 
+<div class="container small">
+<p>&nbsp;</p>
 <div class="card">
 <h3>Recently Updated Pages</h3>
 <div class="entity-list detailed" ng-non-bindable="">
@@ -140,6 +142,7 @@ Updated <span title="Sun, Dec 31, 2017 8:15 AM">5 days ago</span> by <a href="ht
 </div>
 </div>
 </div> <div class="body text-center">
+</div>
 </div>
 </div>
 
