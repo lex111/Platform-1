@@ -5,7 +5,7 @@ const gulp = require('gulp'),
     plumber = require('gulp-plumber');
 
 const autoprefixer = require('gulp-autoprefixer');
-const minifycss = require('gulp-clean-css');
+const cleancss = require('gulp-clean-css');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 
@@ -18,7 +18,7 @@ const envify = require("envify");
 const uglify = require('gulp-uglify');
 
 const gutil = require("gulp-util");
-const liveReload = require('gulp-livereload');
+const refresh = require('gulp-refresh');
 
 if (argv.production) process.env.NODE_ENV = 'production';
 let isProduction = argv.production || process.env.NODE_ENV === 'production';
@@ -33,9 +33,9 @@ gulp.task('styles', () => {
             }}))
         .pipe(sass())
         .pipe(autoprefixer('last 2 versions'));
-    if (isProduction) chain = chain.pipe(minifycss());
+    if (isProduction) chain = chain.pipe(cleancss());
     chain = chain.pipe(sourcemaps.write());
-    return chain.pipe(gulp.dest('public/css/')).pipe(liveReload());
+    return chain.pipe(gulp.dest('public/css/')).pipe(refresh());
 });
 
 
@@ -60,7 +60,7 @@ function scriptTask(watch = false) {
         let stream = bundler.bundle();
         stream = stream.pipe(source('common.js'));
         if (isProduction) stream = stream.pipe(buffer()).pipe(uglify());
-        return stream.pipe(gulp.dest('public/js/')).pipe(liveReload());
+        return stream.pipe(gulp.dest('public/js/')).pipe(refresh());
     }
 
     bundler.on('update', function() {
@@ -76,7 +76,7 @@ gulp.task('scripts', () => {scriptTask(false)});
 gulp.task('scripts-watch', () => {scriptTask(true)});
 
 gulp.task('default', ['styles', 'scripts-watch'], () => {
-    liveReload.listen();
+    refresh.listen();
     gulp.watch("resources/assets/sass/**/*.scss", ['styles']);
 });
 
