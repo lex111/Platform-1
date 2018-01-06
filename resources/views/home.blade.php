@@ -22,7 +22,7 @@
                 @endif
 
                 <div class="card">
-                    <h3><i class="zmdi zmdi-{{ $signedIn ? 'eye' : 'star-circle' }}"></i> {{ trans('entities.' . ($signedIn ? 'my_recently_viewed' : 'books_recent')) }}</h3>
+                    <h3><i class="zmdi zmdi-{{ $signedIn ? 'eye' : 'star-circle' }}" style="color:#e27b41"></i> {{ trans('entities.' . ($signedIn ? 'my_recently_viewed' : 'books_recent')) }}</h3>
                     @include('partials/entity-list', [
                         'entities' => $recents,
                         'style' => 'compact',
