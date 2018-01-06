@@ -10,7 +10,7 @@
 
     @yield('head')
 
-    @include('partials/custom-styles')
+    @include('partials.custom-styles')
 
     @if(setting('app-custom-head') && \Route::currentRouteName() !== 'settings')
         <!-- Custom user content -->
