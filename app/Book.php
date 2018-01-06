@@ -32,7 +32,7 @@ class Book extends Entity
      */
     public function getBookCover($width = 440, $height = 250)
     {
-        $default = baseUrl('/book_default_cover.png');
+        $default = 'https://unpkg.com/docspen@12.0.0/imgs/default.png';
         if (!$this->image_id) {
             return $default;
         }
