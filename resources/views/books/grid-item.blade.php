@@ -1,6 +1,8 @@
 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 book-grid-item"  data-entity-type="book" data-entity-id="{{$book->id}}">
     <div class="featured-image-container">
-        <img width="1600" height="900" src="{{$book->getBookCover()}}?quality=100" alt="{{$book->name}}">
+        <a href="{{$book->getUrl()}}" title="{{$book->name}}">
+            <img width="1600" height="900" src="{{$book->getBookCover()}}?quality=100" alt="{{$book->name}}">
+        </a>
     </div>
     <div class="book-grid-content">
         <h2><a href="{{$book->getUrl()}}" title="{{$book->name}}" > {{$book->getShortName(35)}} </a></h2>
