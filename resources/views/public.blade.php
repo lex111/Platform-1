@@ -5,27 +5,6 @@
     
     @include('inc.header')
     
-    <script>
-    	if ('serviceWorker' in navigator && navigator.userAgent.indexOf("Mobile") === -1) {
-    		navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-    			console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    			console.log('DocsPen ♥\'s web');
-    		})
-    		.catch(function(err) {
-    			console.error('ServiceWorker registration failed: ', err);
-    		});
-    	} else if('serviceWorker' in navigator && navigator.userAgent.indexOf("Mobile") > -1){
-            navigator.serviceWorker.getRegistration().then(function(registration) {
-                var serviceWorkerUnregistered=false;
-                if(registration) {
-                    registration.unregister();
-                    serviceWorkerUnregistered=true;
-                }
-                serviceWorkerUnregistered && window.location.reload();
-            });
-        }
-    </script>
-    
     @include('partials/custom-styles')
 
     <!-- Custom user content -->
