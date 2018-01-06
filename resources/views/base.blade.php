@@ -14,6 +14,8 @@
     <meta name="theme-color" content="#026AA7">
     <meta name="mobile-web-app-capable" content="yes">
     <meta charset="utf-8">
+    <meta name="description" content="DocsPen - Online Documentation Platform. Read more, know more.">
+    <meta name="keywords" content="DocsPen, Docs, Documentation, Project Documentation, Wiki">
 
     <link rel="icon" type="image/png" href="https://unpkg.com/docspen@7.0.0/imgs/favicon.png" />
     <link rel="stylesheet" href="{{ hashed_asset('css/styles.css') }}">
