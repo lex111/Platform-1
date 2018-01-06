@@ -3,9 +3,9 @@
 <head>
     <title>{{ setting('app-name') }}</title>
     
-    @include('inc/header')
+    @include('inc.header')
     
-    @include('partials/custom-styles')
+    @include('partials.custom-styles')
 
 </head>
 <body class="@yield('body-class')">

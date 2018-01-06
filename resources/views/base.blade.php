@@ -3,19 +3,19 @@
 <head>
     <title>{{ isset($pageTitle) ? $pageTitle . ' | ' : '' }}{{ setting('app-name') }}</title>
     
-    @include('inc/header')
+    @include('inc.header')
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ baseUrl('/translations') }}"></script>
 
     @yield('head')
 
-    @include('partials/custom-styles')
+    @include('partials.custom-styles')
 
 </head>
 <body class="@yield('body-class')">
 
-    @include('partials/notifications')
+    @include('partials.notifications')
 
     <header id="header">
         <div class="container fluid">
