@@ -18,13 +18,10 @@
         @endif
         <hr style="margin-bottom:10px">
         <li>
-            <a href="{{ baseUrl('/about') }}" class="text-primary"><i class="zmdi zmdi-info"></i>About</a>
-        </li>
-        <li>
-            <a href="{{ baseUrl('/terms') }}" class="text-primary"><i class="zmdi zmdi-assignment-check"></i>Terms</a>
-        </li>
-        <li>
             <a href="{{ baseUrl('/blog') }}" class="text-primary"><i class="zmdi zmdi-tumblr"></i>Blog</a>
+        </li>
+        <li>
+            <a href="{{ baseUrl('/status') }}" class="text-primary"><i class="zmdi zmdi-check-all"></i>Status</a>
         </li>
         <li>
             <a href="{{ baseUrl('/logout') }}" class="text-neg"><i class="zmdi zmdi-run"></i>{{ trans('auth.logout') }}</a>

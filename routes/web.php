@@ -207,6 +207,9 @@ Route::get('/git', function () {
 Route::get('/blog', function () {
     return redirect('https://docspen.tumblr.com');
 });
+Route::get('/status', function () {
+    return redirect('https://stats.uptimerobot.com/jZDKmIREm');
+});
 
 // Sitemaps
 Route::get('/sitemap.xml', 'SitemapsController@index');
