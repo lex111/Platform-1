@@ -62,7 +62,7 @@
                                 'resizeHeight' => '43',
                                 'resizeWidth' => '200',
                                 'showRemove' => true,
-                                'defaultImage' => baseUrl('/logo-small.png'),
+                                'defaultImage' => 'https://unpkg.com/docspen@1.0.0/imgs/logo-small.png',
                                 'currentImage' => setting('app-logo'),
                                 'name' => 'setting-app-logo',
                                 'imageClass' => 'logo-image',
