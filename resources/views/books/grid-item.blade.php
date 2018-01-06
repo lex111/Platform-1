@@ -5,7 +5,7 @@
         </div>
     </a>
     <div class="book-grid-content">
-        <h2><a href="{{$book->getUrl()}}" title="{{$book->name}}" > {{$book->getShortName(35)}} </a></h2>
+        <h2><a href="{{$book->getUrl()}}" title="{{$book->name}}" > {{$book->getShortName(35)}} </a></h2> - <img class="avatar" src="{{$currentUser->getAvatar(50)}}?quality=100" alt="{{ $currentUser->name }}">
         @if(isset($book->searchSnippet))
             <p >{!! $book->searchSnippet !!}</p>
         @else
