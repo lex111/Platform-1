@@ -19,7 +19,7 @@ before_script:
   - phpenv config-rm xdebug.ini
   - composer install --prefer-dist --no-interaction
   - npm install
-  - gulp build --production
+  - npm run production
   - php artisan clear-compiled -n
   - php artisan optimize -n
   - php artisan migrate --force -n --database=mysql_testing
