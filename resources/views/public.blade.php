@@ -3,9 +3,9 @@
 <head>
     <title>{{ setting('app-name') }}</title>
     
-    @include('inc.header')
+    @include('inc/header')
     
-    @include('partials.custom-styles')
+    @include('partials/custom-styles')
 
     <!-- Custom user content -->
     @if(setting('app-custom-head'))
