@@ -33,11 +33,11 @@
 
             <div class="col-sm-4">
                 <div class="card">
-                    <h3 class="text-muted"><i class="zmdi zmdi-book"></i> <i class="zmdi zmdi-plus"></i> <img src="https://unpkg.com/docspen@13.0.0/imgs/trending.svg" class="trending"> {{ trans('entities.books_popular') }}</h3>
+                    <h3 class="text-muted"><i class="zmdi zmdi-book"></i> <i class="zmdi zmdi-plus"></i> <img src="https://unpkg.com/docspen@13.0.0/imgs/trending.svg" style="height:17px;margin-bottom:-4px;margin-right:6px"> {{ trans('entities.books_popular') }}</h3>
                     @include('partials.entity-list', ['entities' => Views::getPopular(6, 0, [\DocsPen\Book::class]), 'style' => 'compact'])
                 </div>
                 <div class="card">
-                    <h3 class="text-muted"><i class="zmdi zmdi-file-text"></i> <i class="zmdi zmdi-plus"></i> <img src="https://unpkg.com/docspen@13.0.0/imgs/trending.svg" class="trending">{{ trans('entities.pages_popular') }}</h3>
+                    <h3 class="text-muted"><i class="zmdi zmdi-file-text"></i> <i class="zmdi zmdi-plus"></i> <img src="https://unpkg.com/docspen@13.0.0/imgs/trending.svg" style="height:17px;margin-bottom:-4px;margin-right:6px">{{ trans('entities.pages_popular') }}</h3>
                     @include('partials.entity-list', ['entities' => Views::getPopular(5, 0, [\DocsPen\Page::class]), 'style' => 'compact'])
                 </div>
             </div>
