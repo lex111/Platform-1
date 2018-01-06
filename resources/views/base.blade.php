@@ -7,6 +7,7 @@
     <meta name="token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ baseUrl('/') }}">
     <meta name="theme-color" content="#026AA7">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta charset="utf-8">
 
     <link rel="icon" type="image/png" href="https://unpkg.com/docspen@7.0.0/imgs/favicon.png" />
