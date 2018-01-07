@@ -21,7 +21,7 @@
             <a href="{{ baseUrl('/blog') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-tumblr"></i>Blog</a>
         </li>
         <li>
-            <a href="{{ baseUrl('/terms') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-assignment-check"></i>Terms</a>
+            <a href="{{ baseUrl('/terms') }}" class="text-primary"><i class="zmdi zmdi-assignment-check"></i>Terms</a>
         </li>
         <li>
             <a href="{{ baseUrl('/status') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-check-all"></i>Status</a>
