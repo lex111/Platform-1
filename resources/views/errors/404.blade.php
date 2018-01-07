@@ -8,8 +8,10 @@
 
     <div class="card" style="background-color:transparent;box-shadow:none">
         <div class="body">
-            <center><img src="https://unpkg.com/docspen@8.0.0/imgs/404.svg" style="width:100%;height:13em;pointer-events:none"></center>
-            <center><p><a href="{{ baseUrl('/') }}" class="button outline" style="margin-top:34px">{{ trans('errors.return_home') }}</a></p></center>
+            <center>
+                <img src="https://unpkg.com/docspen@8.0.0/imgs/404.svg" style="width:100%;height:13em;pointer-events:none">
+                <p><a href="{{ baseUrl('/') }}" class="button outline" style="margin-top:34px">{{ trans('errors.return_home') }}</a></p>
+            </center>
         </div>
     </div>
 
