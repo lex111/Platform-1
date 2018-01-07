@@ -3,8 +3,8 @@
 @section('content')
 <div ng-non-bindable class="container small">
     <p>&nbsp;</p>
+    <h3>Contact Us</h3>
     <div class="card">
-        <h3><i class="zmdi zmdi-plus"></i> {{ trans('entities.books_create') }}</h3>
         <div class="body">
             <form accept-charset="UTF-8" action="https://usebasin.com/f/24e26908c642" enctype="multipart/form-data" method="POST">
     
