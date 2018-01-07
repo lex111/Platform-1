@@ -192,14 +192,12 @@ Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 
 // Others
 Route::get('/about', 'OthersController@about');
-Route::get('/credits', 'OthersController@credits');
 Route::get('/terms', 'OthersController@terms');
-Route::get('/privacy', 'OthersController@privacy');
-Route::get('/ping', 'OthersController@ping');
 Route::get('/trello', 'OthersController@trello');
 Route::get('/git', 'OthersController@git');
 Route::get('/blog', 'OthersController@blog');
 Route::get('/status', 'OthersController@status');
+Route::get('/ping', 'OthersController@ping');
 
 // Sitemaps
 Route::get('/sitemap.xml', 'SitemapsController@index');
