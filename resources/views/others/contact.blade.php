@@ -3,7 +3,10 @@
 @section('content')
 <div ng-non-bindable class="container small">
     <p>&nbsp;</p>
-    <center><h3>Contact Us</h3></center>
+    <center>
+        <a href="/"> <img class="auth-logo" class="logo-image" src="https://unpkg.com/docspen@1.0.0/imgs/logo-small.png" alt="Logo"></a>
+        <h3>Contact Us</h3>
+    </center>
     <div class="card">
         <div class="body">
             <form accept-charset="UTF-8" action="https://usebasin.com/f/24e26908c642" enctype="multipart/form-data" method="POST">
