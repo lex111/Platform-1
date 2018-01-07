@@ -1,7 +1,6 @@
 @extends('simple-layout')
 
-@section('body')
-
+@section('content')
 <div ng-non-bindable class="container small">
     <p>&nbsp;</p>
     <div class="card">
@@ -32,3 +31,4 @@
         </div>
     </div>
 </div>
+@stop
