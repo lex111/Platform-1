@@ -38,6 +38,12 @@ class OthersController extends Controller
     {
         return redirect('https://stats.uptimerobot.com/jZDKmIREm');
     }
+    
+    // Contact Page
+    public function contact()
+    {
+        return view('others.contact');
+    }
 
     // For Status used for checking Hearbeat of Server
     public function ping()

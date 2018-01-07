@@ -197,6 +197,7 @@ Route::get('/trello', 'OthersController@trello');
 Route::get('/git', 'OthersController@git');
 Route::get('/blog', 'OthersController@blog');
 Route::get('/status', 'OthersController@status');
+Route::get('/contact', 'OthersController@contact');
 Route::get('/ping', 'OthersController@ping');
 
 // Sitemaps
