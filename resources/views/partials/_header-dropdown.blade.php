@@ -27,6 +27,9 @@
             <a href="{{ baseUrl('/status') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-check-all"></i>Status</a>
         </li>
         <li>
+            <a href="{{ baseUrl('/contact') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-email"></i>Contact</a>
+        </li>
+        <li>
             <a href="{{ baseUrl('/logout') }}" class="text-neg"><i class="zmdi zmdi-run"></i>{{ trans('auth.logout') }}</a>
         </li>
     </ul>
