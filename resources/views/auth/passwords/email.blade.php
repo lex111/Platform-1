@@ -33,4 +33,14 @@
         </div>
     </div>
 
+    <div class="text-center">
+        <div class="card auth-border center-box">
+            <div class="from-group">
+                <div class="auth-box">
+                    <p style="text-align:center"><a href="/login">Login</a> or <a href="/register">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop

@@ -52,7 +52,7 @@
             <div class="card auth-border center-box">
                 <div class="from-group">
                     <div class="auth-box">
-                        <p style="text-align:center">Already in DocsPen? <a href="/login?source=login">Login</a>.</p>
+                        <p style="text-align:center">Already in DocsPen? <a href="/login">Login</a>.</p>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-@extends('public')
+@extends('blank')
 
 @section('header-buttons')
     @if(!$signedIn)
