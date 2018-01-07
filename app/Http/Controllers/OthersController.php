@@ -44,7 +44,7 @@ class OthersController extends Controller
     {
         return view('others.contact');
     }
-    
+
     public function success()
     {
         return view('others.success');
