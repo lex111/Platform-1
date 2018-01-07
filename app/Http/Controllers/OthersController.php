@@ -38,7 +38,7 @@ class OthersController extends Controller
     {
         return redirect('https://stats.uptimerobot.com/jZDKmIREm');
     }
-    
+
     // Contact Page
     public function contact()
     {
