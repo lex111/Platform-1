@@ -1,4 +1,4 @@
-@extends('public')
+@extends('blank')
 
 @section('header-buttons')
     @if(setting('registration-enabled', false))
@@ -9,9 +9,11 @@
 @section('content')
 
     <div class="text-center">
-        <div class="card center-box">
-            <h3><i class="zmdi zmdi-sign-in"></i> {{ title_case(trans('auth.log_in')) }}</h3>
+        
+        <img class="auth-logo" class="logo-image" src="https://unpkg.com/docspen@1.0.0/imgs/logo-small.png" alt="Logo">
+        <h5 class="auth">Sign in to DocsPen</h5>
 
+        <div class="card auth-border center-box">
             <div class="body">
                 <form action="{{ baseUrl("/login") }}" method="POST" id="login-form">
                     {!! csrf_field() !!}
@@ -40,6 +42,16 @@
                         </a>
                     @endforeach
                 @endif
+            </div>
+        </div>
+
+        <div class="text-center">
+            <div class="card auth-border center-box">
+                <div class="from-group">
+                    <div class="auth-box">
+                        <p style="text-align:center">New to DocsPen? <a href="/register?source=login">Create an account</a>.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

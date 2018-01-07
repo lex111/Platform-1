@@ -1,4 +1,4 @@
-@extends('public')
+@extends('blank')
 
 @section('header-buttons')
     <a href="{{ baseUrl("/login") }}"><i class="zmdi zmdi-sign-in"></i>{{ trans('auth.log_in') }}</a>
@@ -7,8 +7,11 @@
 @section('content')
 
     <div class="text-center">
-        <div class="card center-box">
-            <h3><i class="zmdi zmdi-account-add"></i> {{ title_case(trans('auth.sign_up')) }}</h3>
+
+        <img class="auth-logo" class="logo-image" src="https://unpkg.com/docspen@1.0.0/imgs/logo-small.png" alt="Logo">
+        <h5 class="auth">Sign in to DocsPen</h5>
+
+        <div class="card auth-border center-box">
             <div class="body">
                 <form action="{{ baseUrl("/register") }}" method="POST">
                     {!! csrf_field() !!}
@@ -29,7 +32,7 @@
                     </div>
 
                     <div class="from-group">
-                        <button class="button block pos">{{ trans('auth.create_account') }}</button>
+                        <button class="button block pos"><i class="zmdi zmdi-plus"></i>{{ trans('auth.create_account') }}</button>
                     </div>
                 </form>
 
@@ -44,7 +47,17 @@
                 @endif
             </div>
         </div>
-    </div>
 
+        <div class="text-center">
+            <div class="card auth-border center-box">
+                <div class="from-group">
+                    <div class="auth-box">
+                        <p style="text-align:center">Already in DocsPen? <a href="/login?source=login">Login</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 @stop

@@ -1,4 +1,4 @@
-@extends('public')
+@extends('blank')
 
 @section('header-buttons')
     <a href="{{ baseUrl("/login") }}"><i class="zmdi zmdi-sign-in"></i>{{ trans('auth.log_in') }}</a>
@@ -11,9 +11,11 @@
 
 
     <div class="text-center">
-        <div class="center-box text-left">
-            <h1>{{ trans('auth.reset_password') }}</h1>
+        
+        <img class="auth-logo" class="logo-image" src="https://unpkg.com/docspen@1.0.0/imgs/logo-small.png" alt="Logo">
+        <h5 class="auth">{{ trans('auth.reset_password') }}</h5>
 
+        <div class="center-box text-left">
             <p class="muted small">{{ trans('auth.reset_password_send_instructions') }}</p>
 
             <form action="{{ baseUrl("/password/email") }}" method="POST">
