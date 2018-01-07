@@ -195,21 +195,11 @@ Route::get('/about', 'OthersController@about');
 Route::get('/credits', 'OthersController@credits');
 Route::get('/terms', 'OthersController@terms');
 Route::get('/privacy', 'OthersController@privacy');
-Route::get('/ping', function () {
-    return 'pong';
-});
-Route::get('/trello', function () {
-    return redirect('https://trello.com/b/nUennIKj/docspen');
-});
-Route::get('/git', function () {
-    return redirect('https://github.com/DocsPen/Platform');
-});
-Route::get('/blog', function () {
-    return redirect('https://docspen.tumblr.com');
-});
-Route::get('/status', function () {
-    return redirect('https://stats.uptimerobot.com/jZDKmIREm');
-});
+Route::get('/ping', 'OthersController@ping');
+Route::get('/trello', 'OthersController@trello');
+Route::get('/git', 'OthersController@git');
+Route::get('/blog', 'OthersController@blog');
+Route::get('/status', 'OthersController@status');
 
 // Sitemaps
 Route::get('/sitemap.xml', 'SitemapsController@index');
