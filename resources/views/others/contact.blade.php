@@ -3,8 +3,8 @@
 @section('content')
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.min.css">
-<link rel="stylesheet" href="main.css">
-<script defer src="main.js"></script>
+<link rel="stylesheet" href="contact/main.css">
+<script defer src="contact/main.js"></script>
 
 <section class="hero is-fullheight is-default is-bold">
 	<div class="hero-body">
