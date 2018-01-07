@@ -2,8 +2,8 @@
 
 @section('content')
    <div class="text-center">
-        <div class="container small">
-            <div class="body">
+        <div class="card auth-border center-box">
+            <div class="container small">
                 
                 <form accept-charset="UTF-8" action="https://usebasin.com/f/1d7f387e41bb" enctype="multipart/form-data" method="POST">
     
