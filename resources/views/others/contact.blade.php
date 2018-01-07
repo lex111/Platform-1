@@ -17,6 +17,7 @@
 
                     <div class="form-group">
                         <label for="password">{{ trans('auth.password') }}</label>
+                        <textarea class="textarea" placeholder="I'm a human. Please be nice." name="message" minlength="5" required autofocus></textarea>
                     </div>
 
                     <div class="from-group">
