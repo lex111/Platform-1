@@ -3,7 +3,7 @@
 @section('content')
 <div ng-non-bindable class="container small">
     <p>&nbsp;</p>
-    <h3>Contact Us</h3>
+    <center><h3>Contact Us</h3></center>
     <div class="card">
         <div class="body">
             <form accept-charset="UTF-8" action="https://usebasin.com/f/24e26908c642" enctype="multipart/form-data" method="POST">
