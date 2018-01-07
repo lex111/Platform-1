@@ -1,5 +1,5 @@
 <div page-comments page-id="{{ $page->id }}" ng-non-bindable class="comments-list">
-  <h3 comments-title>{{ trans_choice('entities.comment_count', count($page->comments), ['count' => count($page->comments)]) }}</h3>
+  <h5 comments-title>{{ trans_choice('entities.comment_count', count($page->comments), ['count' => count($page->comments)]) }}</h5>
 
     <div class="comment-container" comment-container>
         @foreach($page->comments as $comment)
