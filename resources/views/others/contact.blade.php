@@ -1,11 +1,13 @@
 @extends('simple-layout')
 
-@section('content')
-   <div class="text-center">
-        <div class="card auth-border center-box">
-            <div class="container small">
-                
-                <form accept-charset="UTF-8" action="https://usebasin.com/f/1d7f387e41bb" enctype="multipart/form-data" method="POST">
+@section('body')
+
+<div ng-non-bindable class="container small">
+    <p>&nbsp;</p>
+    <div class="card">
+        <h3><i class="zmdi zmdi-plus"></i> {{ trans('entities.books_create') }}</h3>
+        <div class="body">
+            <form accept-charset="UTF-8" action="https://usebasin.com/f/1d7f387e41bb" enctype="multipart/form-data" method="POST">
     
                     <div class="form-group">
                         <label for="email">Name</label>
@@ -27,8 +29,6 @@
                     </div>
                     
                 </form>
-                
-            </div>
         </div>
     </div>
-@stop
+</div>
