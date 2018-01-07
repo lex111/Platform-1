@@ -8,6 +8,7 @@
 
                     <div class="form-group">
                         <label for="email">E-Mail</label>
+                        <input class="input" type="email" name="email" id="email" required>
                     </div>
 
                     <div class="form-group">
