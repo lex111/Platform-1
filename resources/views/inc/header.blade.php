@@ -1,7 +1,7 @@
     <link rel="dns-prefetch" href="https://docspen.ga">
     <link rel="dns-prefetch" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://i1.wp.com">
+    <link rel="dns-prefetch" href="https://i0.wp.com">
     
     <meta name="viewport" content="width=device-width">
     <meta name="token" content="{{ csrf_token() }}">

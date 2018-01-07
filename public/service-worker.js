@@ -529,7 +529,7 @@
             maxEntries: 50
         }
     }), o.a.router.get("/docspen.ga/(.*)", o.a.cacheFirst, {
-        origin: "https://i1.wp.com",
+        origin: "https://i0.wp.com",
         cache: {
             name: u.static,
             maxEntries: 50
