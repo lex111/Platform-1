@@ -17,17 +17,17 @@
                     {!! csrf_field() !!}
 
                     <div class="form-group">
-                        <label for="email">{{ trans('auth.name') }}</label>
+                        <label for="email" required>{{ trans('auth.name') }}</label>
                         @include('form/text', ['name' => 'name'])
                     </div>
 
                     <div class="form-group">
-                        <label for="email">{{ trans('auth.email') }}</label>
+                        <label for="email" required>{{ trans('auth.email') }}</label>
                         @include('form/text', ['name' => 'email'])
                     </div>
 
                     <div class="form-group">
-                        <label for="password">{{ trans('auth.password') }}</label>
+                        <label for="password" required>{{ trans('auth.password') }}</label>
                         @include('form/password', ['name' => 'password', 'placeholder' => trans('auth.password_hint')])
                     </div>
 
