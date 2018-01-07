@@ -1,4 +1,4 @@
-# DocsPen
+ # DocsPen
 
 [![Build Status](https://travis-ci.org/DocsPen/Platform.svg?branch=master)](https://travis-ci.org/DocsPen/Platform)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5aeeae9df8b7eb42f21f/maintainability)](https://codeclimate.com/github/DocsPen/Platform/maintainability)
@@ -9,7 +9,9 @@
 
 ## Introduction
 
-DocsPen is an online documentation or wiki system that provides a pleasant and simple out of the box experience. New users to an instance should find the experience intuitive and only basic word-processing skills should be required to get involved in creating content on DocsPen. The platform should provide advanced power features to those that desire it but they should not interfere with the core simple user experience.
+ Docspen is a hub to publish your own documentation for projects through online, "its like wikihub of  all documents",
+its right choice for  professors & Teachers for content publishing ,which provides a pleasant and simple out of the box experience.  
+New users to an instance should find the experience intuitive and only basic word-processing skills should be required to get involved in creating content on DocsPen. The platform should provide advanced power features to those that desire it but they should not interfere with the core simple user experience.
 
 ## Contributing
 
