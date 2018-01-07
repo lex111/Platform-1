@@ -198,6 +198,7 @@ Route::get('/git', 'OthersController@git');
 Route::get('/blog', 'OthersController@blog');
 Route::get('/status', 'OthersController@status');
 Route::get('/contact', 'OthersController@contact');
+Route::get('/message-sent', 'OthersController@success');
 Route::get('/ping', 'OthersController@ping');
 
 // Sitemaps

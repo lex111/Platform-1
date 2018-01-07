@@ -44,6 +44,11 @@ class OthersController extends Controller
     {
         return view('others.contact');
     }
+    
+    public function success()
+    {
+        return view('others.success');
+    }
 
     // For Status used for checking Hearbeat of Server
     public function ping()
