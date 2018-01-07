@@ -10,7 +10,7 @@
 
     <div class="text-center">
         
-        <img class="auth-logo" class="logo-image" src="https://unpkg.com/docspen@1.0.0/imgs/logo-small.png" alt="Logo">
+        <a href="/"> <img class="auth-logo" class="logo-image" src="https://unpkg.com/docspen@1.0.0/imgs/logo-small.png" alt="Logo"></a>
         <h5 class="auth">Sign in to DocsPen</h5>
 
         <div class="card auth-border center-box">
