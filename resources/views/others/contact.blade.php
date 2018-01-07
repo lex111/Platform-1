@@ -8,8 +8,7 @@
     
                     <div class="form-group">
                         <label for="email">Name</label>
-                        <input class="input" type="hidden" name="_method" value="put">
-                        @include('users.forms.' . $authMethod, ['model' => $user])
+                        <input class="input" type="text" name="name">
                     </div>
 
                     <div class="form-group">
