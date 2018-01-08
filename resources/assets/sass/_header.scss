@@ -36,6 +36,9 @@ header {
       padding: 8px;
     }
   }
+  .links a:hover {
+    background-color: #72c362;
+  }
   .avatar, .user-name {
     display: inline-block;
   }
