@@ -1,7 +1,7 @@
 @extends('simple-layout')
 
 @section('toolbar')
-    @include('settings/navbar', ['selected' => 'roles'])
+    @include('settings.navbar', ['selected' => 'roles'])
 @stop
 
 @section('body')
@@ -19,7 +19,7 @@
                     @if($role->users->count() > 0)
                         <div class="form-group">
                             <p>{{ trans('settings.role_delete_users_assigned', ['userCount' => $role->users->count()]) }}</p>
-                            @include('form/role-select', ['options' => $roles, 'name' => 'migration_role_id'])
+                            @include('form.role-select', ['options' => $roles, 'name' => 'migration_role_id'])
                         </div>
                     @endif
 

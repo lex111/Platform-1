@@ -1,7 +1,7 @@
 @extends('simple-layout')
 
 @section('toolbar')
-    @include('settings/navbar', ['selected' => 'roles'])
+    @include('settings.navbar', ['selected' => 'roles'])
 @stop
 
 @section('body')
@@ -10,7 +10,7 @@
         <input type="hidden" name="_method" value="PUT">
         <div class="container">
             <div class="row">
-                @include('settings/roles/form', ['model' => $role, 'title' => trans('settings.role_edit'), 'icon' => 'edit'])
+                @include('settings.roles.form', ['model' => $role, 'title' => trans('settings.role_edit'), 'icon' => 'edit'])
             </div>
         </div>
     </form>
