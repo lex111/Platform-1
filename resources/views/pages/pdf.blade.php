@@ -1,4 +1,4 @@
-@extends('pages/export')
+@extends('pages.export')
 
 @section('head')
     <style>
