@@ -23,7 +23,6 @@ These are the great open-source projects used to help build DocsPen:
 
 ### Softwares and Backend
 * [NGINX](https://nginx.org)
-* [Memcached](https://memcached.org/)
 * [Redis](https://redis.io)
 * [PHP](https://php.net)
 * [Laravel](https://laravel.com/)
