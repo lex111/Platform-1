@@ -12,8 +12,8 @@ sudo apt install -y git composer apache2 memcached php-memcached php-memcache cu
 
 ```
 mysql -p -u root
-create database docspen;
-grant all privileges on docspen.* to 'ryan'@'localhost' identified by "password";
+CREATE DATABASE docspen;
+GRANT ALL PRIVILEGES ON docspen.* TO 'root'@'localhost' IDENTIFIED BY "password";
 FLUSH PRIVILEGES;
 ```
 ## NGINX Conf
