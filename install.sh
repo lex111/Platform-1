@@ -17,7 +17,7 @@ echo -n "Enter your the Database password [ENTER]: "
 read DB_PASS
 mysql -u root --execute="CREATE DATABASE docspen;"
 mysql -u root --execute="CREATE USER 'docspen'@'localhost' IDENTIFIED BY '$DB_PASS';"
-mysql -u root --execute="GRANT ALL ON docspen.* TO 'docspen'@'localhost';FLUSH PRIVILEGES;"
+mysql -u root --execute="GRANT ALL ON docspen.* TO 'docspen'@'localhost';"
 
 # Download DocsPen
 cd /var/www
