@@ -17,7 +17,7 @@
             <h3><i class="zmdi zmdi-plus"></i> {{ trans('entities.chapters_create') }}</h3>
             <div class="body">
                 <form action="{{ $book->getUrl('/chapter/create') }}" method="POST">
-                    @include('chapters/form')
+                    @include('chapters.form')
                 </form>
             </div>
         </div>

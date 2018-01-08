@@ -17,9 +17,9 @@
                     <div class="form-group">
                         <label for="email">{{ trans('auth.email') }}</label>
                         @if(auth()->check())
-                            @include('form/text', ['name' => 'email', 'model' => auth()->user()])
+                            @include('form.text', ['name' => 'email', 'model' => auth()->user()])
                         @else
-                            @include('form/text', ['name' => 'email'])
+                            @include('form.text', ['name' => 'email'])
                         @endif
                     </div>
                     <div class="form-group">

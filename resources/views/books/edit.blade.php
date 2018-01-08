@@ -15,7 +15,7 @@
             <div class="body">
                 <form action="{{ $book->getUrl() }}" method="POST">
                     <input type="hidden" name="_method" value="PUT">
-                    @include('books/form', ['model' => $book])
+                    @include('books.form', ['model' => $book])
                 </form>
             </div>
         </div>

@@ -19,7 +19,7 @@
                     <h3><i class="zmdi zmdi-sort"></i> {{ trans('entities.books_sort') }}</h3>
                     <div class="body">
                         <div id="sort-boxes">
-                            @include('books/sort-box', ['book' => $book, 'bookChildren' => $bookChildren])
+                            @include('books.sort-box', ['book' => $book, 'bookChildren' => $bookChildren])
                         </div>
 
                         <form action="{{ $book->getUrl('/sort') }}" method="POST">

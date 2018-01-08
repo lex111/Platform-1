@@ -22,17 +22,17 @@
 
                 <div class="form-group">
                     <label for="email">{{ trans('auth.email') }}</label>
-                    @include('form/text', ['name' => 'email'])
+                    @include('form.text', ['name' => 'email'])
                 </div>
 
                 <div class="form-group">
                     <label for="password">{{ trans('auth.password') }}</label>
-                    @include('form/password', ['name' => 'password'])
+                    @include('form.password', ['name' => 'password'])
                 </div>
 
                 <div class="form-group">
                     <label for="password_confirmation">{{ trans('auth.password_confirm') }}</label>
-                    @include('form/password', ['name' => 'password_confirmation'])
+                    @include('form.password', ['name' => 'password_confirmation'])
                 </div>
 
                 <div class="from-group">
