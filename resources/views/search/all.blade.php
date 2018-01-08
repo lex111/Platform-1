@@ -194,7 +194,7 @@
         <input type="hidden" name="searchTerm" value="{{$searchTerm}}">
 
         <h6 style="margin-top:25px" class="text-muted">{{ trans_choice('entities.search_total_results_found', $totalResults, ['count' => $totalResults]) }}</h6>
-        @include('partials/entity-list', ['entities' => $entities])
+        @include('partials.entity-list', ['entities' => $entities])
         @if ($hasNextPage)
             <a href="{{ $nextPageLink }}" class="button">{{ trans('entities.search_more') }}</a>
         @endif
