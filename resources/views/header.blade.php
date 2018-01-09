@@ -1,5 +1,5 @@
     <link rel="dns-prefetch" href="https://docspen.ga">
-    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://i0.wp.com">
     
@@ -12,7 +12,7 @@
     <meta name="description" content="DocsPen - Online Documentation Platform. Read more, know more.">
     <meta name="keywords" content="DocsPen, Docs, Documentation, Project Documentation, Wiki">
     
-    <link rel="icon" type="image/png" href="https://unpkg.com/docspen@7.0.0/imgs/favicon.png" />
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/docspen@7.0.0/imgs/favicon.png" />
     <link rel="stylesheet" href="{{ hashed_asset('css/styles.css') }}">
     <link rel="stylesheet" media="print" href="{{ hashed_asset('css/print-styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
