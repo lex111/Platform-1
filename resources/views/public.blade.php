@@ -21,7 +21,7 @@
                     @if(setting('app-logo', '') !== 'none')
                         <img class="logo-image" src="https://unpkg.com/docspen@1.0.0/imgs/logo-small.png" alt="Logo">
                     @endif
-                    @if (setting('app-name-header'))
+                    @if(setting('app-name-header'))
                         <span class="logo-text">{{ setting('app-name') }}</span>
                     @endif
                 </a>
