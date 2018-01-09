@@ -49,33 +49,3 @@ sudo ln -s /etc/nginx/sites-available/docspen /etc/nginx/sites-enabled/docspen
 sudo rm /etc/nginx/sites-enabled/default
 sudo service nginx restart
 ```
-
-## Apache Conf
-
-```
-cd /etc/apache2/sites-available
-sudo nano docspen.conf
-```
-
-```
-<VirtualHost *:80>
-    ServerName DocsPen
-
-    ServerAdmin yoginth@aol.com
-    DocumentRoot /var/www/html/public
-
-    <Directory /var/www/html>
-        AllowOverride All
-    </Directory>
-
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-```
-
-```
-sudo a2dissite 000-default.conf
-sudo a2ensite docspen.conf
-sudo a2enmod rewrite
-sudo service apache2 restart
-```
