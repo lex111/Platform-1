@@ -12,7 +12,7 @@
 
     <div class="text-center">
         
-        <a href="/"> <img class="auth-logo" class="logo-image" src="https://unpkg.com/docspen@1.0.0/imgs/logo-small.png" alt="Logo"></a>
+        <a href="/"> <img class="auth-logo" class="logo-image" src="https://cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png" alt="Logo"></a>
         <h5 class="auth">{{ trans('auth.reset_password') }}</h5>
 
         <div class="center-box text-left">
