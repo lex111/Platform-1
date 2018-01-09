@@ -1,7 +1,7 @@
 @extends('simple-layout')
 
 @section('toolbar')
-    @include('settings/navbar', ['selected' => 'settings'])
+    @include('settings.navbar', ['selected' => 'settings'])
 @stop
 
 @section('body')

@@ -30,14 +30,14 @@
     @if($recents)
         <div id="recents" class="card">
             <h3><i class="zmdi zmdi-eye"></i> {{ trans('entities.recently_viewed') }}</h3>
-            @include('partials/entity-list', ['entities' => $recents, 'style' => 'compact'])
+            @include('partials.entity-list', ['entities' => $recents, 'style' => 'compact'])
         </div>
     @endif
 
     <div id="popular" class="card">
         <h3><i class="zmdi zmdi-fire" style="color:#ef7c3c"></i> {{ trans('entities.books_popular') }}</h3>
         @if(count($popular) > 0)
-            @include('partials/entity-list', ['entities' => $popular, 'style' => 'compact'])
+            @include('partials.entity-list', ['entities' => $popular, 'style' => 'compact'])
         @else
             <div class="body text-muted">{{ trans('entities.books_popular_empty') }}</div>
         @endif
@@ -46,7 +46,7 @@
     <div id="new" class="card">
         <h3><i class="zmdi zmdi-star-circle" style="color:#026aa7"></i> {{ trans('entities.books_new') }}</h3>
         @if(count($popular) > 0)
-            @include('partials/entity-list', ['entities' => $new, 'style' => 'compact'])
+            @include('partials.entity-list', ['entities' => $new, 'style' => 'compact'])
         @else
             <div class="body text-muted">{{ trans('entities.books_new_empty') }}</div>
         @endif
@@ -63,14 +63,14 @@
         @if(count($books) > 0)
             @if($booksViewType === 'list')
                 @foreach($books as $book)
-                    @include('books/list-item', ['book' => $book])
+                    @include('books.list-item', ['book' => $book])
                     <hr>
                 @endforeach
                 {!! $books->render() !!}
             @else
              <div class="row auto-clear">
                     @foreach($books as $key => $book)
-                            @include('books/grid-item', ['book' => $book])
+                            @include('books.grid-item', ['book' => $book])
                     @endforeach
                 <div class="col-xs-12">
                     {!! $books->render() !!}

@@ -19,7 +19,7 @@
                     {!! csrf_field() !!}
 
 
-                    @include('auth/forms/login/' . $authMethod)
+                    @include('auth.forms.login/' . $authMethod)
 
                     <div class="form-group">
                         <label for="remember" class="inline">{{ trans('auth.remember_me') }}</label>

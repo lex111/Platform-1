@@ -13,7 +13,7 @@
         <div class="card">
             <h3><i class="zmdi zmdi-lock-outline"></i> {{ trans('entities.books_permissions') }}</h3>
             <div class="body">
-                @include('form/restriction-form', ['model' => $book])
+                @include('form.restriction-form', ['model' => $book])
             </div>
         </div>
     </div>

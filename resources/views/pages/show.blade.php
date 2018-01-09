@@ -130,7 +130,7 @@
         </div>
     </div>
 
-    @include('partials/book-tree', ['book' => $book, 'sidebarTree' => $sidebarTree])
+    @include('partials.book-tree', ['book' => $book, 'sidebarTree' => $sidebarTree])
 
 @stop
 
@@ -145,12 +145,12 @@
             </div>
         </div>
 
-        @include('pages/page-display')
+        @include('pages.page-display')
 
     </div>
     @if ($commentsEnabled)
       <div class="container small nopad">
-          @include('comments/comments', ['page' => $page])
+          @include('comments.comments', ['page' => $page])
       </div>
     @endif
 @stop

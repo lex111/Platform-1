@@ -71,7 +71,7 @@
     @if(count($activity) > 0)
         <div class="activity card">
             <h3><i class="zmdi zmdi-time"></i> {{ trans('entities.recent_activity') }}</h3>
-            @include('partials/activity-list', ['activity' => $activity])
+            @include('partials.activity-list', ['activity' => $activity])
         </div>
     @endif
 
@@ -100,9 +100,9 @@
                 <hr>
                 @foreach($bookChildren as $childElement)
                     @if($childElement->isA('chapter'))
-                        @include('chapters/list-item', ['chapter' => $childElement])
+                        @include('chapters.list-item', ['chapter' => $childElement])
                     @else
-                        @include('pages/list-item', ['page' => $childElement])
+                        @include('pages.list-item', ['page' => $childElement])
                     @endif
                     <hr>
                 @endforeach
@@ -126,7 +126,7 @@
         <div class="search-results" v-cloak v-show="searching">
             <h3 class="text-muted">{{ trans('entities.search_results') }} <a v-if="searching" v-on:click="clearSearch()" class="text-small"><i class="zmdi zmdi-close"></i>{{ trans('entities.search_clear') }}</a></h3>
             <div v-if="!searchResults">
-                @include('partials/loading-icon')
+                @include('partials.loading-icon')
             </div>
             <div v-html="searchResults"></div>
         </div>

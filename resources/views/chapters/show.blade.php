@@ -91,7 +91,7 @@
         </div>
     </div>
 
-    @include('partials/book-tree', ['book' => $book, 'sidebarTree' => $sidebarTree])
+    @include('partials.book-tree', ['book' => $book, 'sidebarTree' => $sidebarTree])
 @stop
 
 @section('body')
@@ -105,7 +105,7 @@
                 <div v-pre class="page-list">
                     <hr>
                     @foreach($pages as $page)
-                        @include('pages/list-item', ['page' => $page])
+                        @include('pages.list-item', ['page' => $page])
                         <hr>
                     @endforeach
                 </div>
@@ -130,7 +130,7 @@
         <div class="search-results" v-cloak v-show="searching">
             <h3 class="text-muted">{{ trans('entities.search_results') }} <a v-if="searching" @click="clearSearch()" class="text-small"><i class="zmdi zmdi-close"></i>{{ trans('entities.search_clear') }}</a></h3>
             <div v-if="!searchResults">
-                @include('partials/loading-icon')
+                @include('partials.loading-icon')
             </div>
             <div v-html="searchResults"></div>
         </div>

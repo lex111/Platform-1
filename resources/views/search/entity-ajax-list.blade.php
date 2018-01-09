@@ -2,11 +2,11 @@
     @if(count($entities) > 0)
         @foreach($entities as $index => $entity)
             @if($entity->isA('page'))
-                @include('pages/list-item', ['page' => $entity, 'showPath' => true])
+                @include('pages.list-item', ['page' => $entity, 'showPath' => true])
             @elseif($entity->isA('book'))
-                @include('books/list-item', ['book' => $entity])
+                @include('books.list-item', ['book' => $entity])
             @elseif($entity->isA('chapter'))
-                @include('chapters/list-item', ['chapter' => $entity, 'hidePages' => true, 'showPath' => true])
+                @include('chapters.list-item', ['chapter' => $entity, 'hidePages' => true, 'showPath' => true])
             @endif
 
             @if($index !== count($entities) - 1)

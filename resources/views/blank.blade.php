@@ -3,7 +3,7 @@
 <head>
     <title>{{ setting('app-name') }} - Auth</title>
     
-    @include('inc.header')
+    @include('header')
     @include('partials.custom-styles')
 
 </head>

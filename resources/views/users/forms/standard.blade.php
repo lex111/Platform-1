@@ -11,7 +11,7 @@
 @if(userCan('users-manage'))
     <div class="form-group">
         <label for="role">{{ trans('settings.users_role') }}</label>
-        @include('form/role-checkboxes', ['name' => 'roles', 'roles' => $roles])
+        @include('form.role-checkboxes', ['name' => 'roles', 'roles' => $roles])
     </div>
 @endif
 

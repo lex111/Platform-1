@@ -15,7 +15,7 @@
             <div class="body">
                 <form action="{{  $chapter->getUrl() }}" method="POST">
                     <input type="hidden" name="_method" value="PUT">
-                    @include('chapters/form', ['model' => $chapter])
+                    @include('chapters.form', ['model' => $chapter])
                 </form>
             </div>
         </div>

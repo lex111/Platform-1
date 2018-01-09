@@ -11,7 +11,7 @@
 @section('sidebar')
     <div class="card" id="recent-activity">
         <h3><i class="zmdi zmdi-time"></i> {{ trans('entities.recent_activity') }}</h3>
-        @include('partials/activity-list', ['activity' => $activity])
+        @include('partials.activity-list', ['activity' => $activity])
     </div>
 @stop
 
@@ -53,7 +53,7 @@
 
         <h3>{{ trans('entities.recently_created_pages') }}</h3>
         @if (count($recentlyCreated['pages']) > 0)
-            @include('partials/entity-list', ['entities' => $recentlyCreated['pages']])
+            @include('partials.entity-list', ['entities' => $recentlyCreated['pages']])
         @else
             <p class="text-muted">{{ trans('entities.profile_not_created_pages', ['userName' => $user->name]) }}</p>
         @endif
@@ -62,7 +62,7 @@
 
         <h3>{{ trans('entities.recently_created_chapters') }}</h3>
         @if (count($recentlyCreated['chapters']) > 0)
-            @include('partials/entity-list', ['entities' => $recentlyCreated['chapters']])
+            @include('partials.entity-list', ['entities' => $recentlyCreated['chapters']])
         @else
             <p class="text-muted">{{ trans('entities.profile_not_created_chapters', ['userName' => $user->name]) }}</p>
         @endif
@@ -71,7 +71,7 @@
 
         <h3>{{ trans('entities.recently_created_books') }}</h3>
         @if (count($recentlyCreated['books']) > 0)
-            @include('partials/entity-list', ['entities' => $recentlyCreated['books']])
+            @include('partials.entity-list', ['entities' => $recentlyCreated['books']])
         @else
             <p class="text-muted">{{ trans('entities.profile_not_created_books', ['userName' => $user->name]) }}</p>
         @endif

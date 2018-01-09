@@ -18,7 +18,7 @@
         <h3><i class="zmdi zmdi-plus"></i> {{ trans('entities.books_create') }}</h3>
         <div class="body">
             <form action="{{ baseUrl("/books") }}" method="POST" enctype="multipart/form-data">
-                @include('books/form')
+                @include('books.form')
             </form>
         </div>
     </div>
