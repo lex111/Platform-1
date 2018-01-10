@@ -48,7 +48,7 @@ header {
   }
   .user-name {
     vertical-align: top;
-    padding-top: 15px;
+    padding-top: $fs-m;
     position: relative;
     top: -3px;
     display: inline-block;
@@ -83,7 +83,7 @@ header {
       padding: 8px 10px;
     }
     .user-name {
-      padding-top: 15px;
+      padding-top: $fs-m;
     }
   }
 }
@@ -147,7 +147,7 @@ header .search-box {
   font-size: 23px;
   color: #fff;
   font-weight: 400;
-  padding: $-m $-l 14px 0;
+  padding: $-m $-l $fs-s 0;
   vertical-align: top;
   line-height: 1;
 }
