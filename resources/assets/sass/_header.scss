@@ -147,7 +147,7 @@ header .search-box {
   font-size: 23px;
   color: #fff;
   font-weight: 400;
-  padding: 16px 24px 14px 0;
+  padding: $-m $-l 14px 0;
   vertical-align: top;
   line-height: 1;
 }
@@ -226,7 +226,7 @@ header .search-box {
     padding: $-s $-xs;
   }
   .action-buttons .dropdown-container:last-child a {
-    padding-left: 16px;
+    padding-left: $-m;
     padding-right: 13px;
   }
   .breadcrumbs .text-button {
