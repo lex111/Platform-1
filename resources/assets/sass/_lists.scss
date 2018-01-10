@@ -240,12 +240,12 @@ ul.pagination {
   }
   li:first-child {
     a, span {
-      border-radius: 3px 0 0 3px;
+      border-radius: $-xxs 0 0 $-xxs;
     }
   }
   li:last-child {
     a, span {
-      border-radius: 0 3px 3px 0;
+      border-radius: 0 $-xxs $-xxs 0;
     }
   }
   a, span {

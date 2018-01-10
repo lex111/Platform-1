@@ -146,8 +146,8 @@ pre {
   border: 1px solid #DDD;
   padding-left: 31px;
   position: relative;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: $-xxs;
+  padding-bottom: $-xxs;
   &:after {
     content: '';
     display: block;
@@ -191,13 +191,13 @@ blockquote {
     background-color: #F8F8F8;
     font-size: 0.80em;
     border: 1px solid #DDD;
-    border-radius: 3px;
+    border-radius: $-xxs;
 }
 
 code {
   @extend .code-base;
   display: inline;
-  padding: 1px 3px;
+  padding: 1px $-xxs;
   white-space:pre;
   line-height: 1.2em;
   margin-bottom: 1.2em;

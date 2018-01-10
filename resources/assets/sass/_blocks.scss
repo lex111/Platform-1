@@ -46,7 +46,7 @@
   }
 }
 .rounded {
-  border-radius: 3px;
+  border-radius: $-xxs;
 }
 
 /*
@@ -132,7 +132,7 @@
  */
 
 .callout {
-  border-left: 3px solid #BBB;
+  border-left: $-xxs solid #BBB;
   background-color: #EEE;
   padding: $-s $-s $-s $-xl;
   display: block;
