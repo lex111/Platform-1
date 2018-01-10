@@ -57,14 +57,14 @@ header {
       vertical-align: top;
     }
     > span, > i {
-      padding-left: 6px;
+      padding-left: $-xs;
       display: inline-block;
     }
     > span {
       padding-top: $-xxs;
     }
     > i {
-      padding-top: 6px;
+      padding-top: $-xs;
       font-size: 18px;
     }
     @include smaller-than($screen-md) {
@@ -153,7 +153,7 @@ header .search-box {
 }
 .logo-image {
   pointer-events: none;
-  margin: 10px 0 6px 0;
+  margin: 10px 0 $-xs 0;
   vertical-align: top;
   height: 35px;
 }
