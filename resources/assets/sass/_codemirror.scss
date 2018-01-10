@@ -386,10 +386,10 @@ span.CodeMirror-selectedtext { background: none; }
  * Custom DocsPen overrides
  */
 .CodeMirror, .CodeMirror pre {
-  font-size: 12px;
+  font-size: $-s;
 }
 .CodeMirror {
-  font-size: 12px;
+  font-size: $-s;
   height: auto;
   margin-bottom: $-l;
   border: 1px solid #DDD;;

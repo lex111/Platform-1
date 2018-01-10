@@ -149,11 +149,11 @@ $button-border-radius: 2px;
     position: absolute;
     left: $-m;
     top: $-s - 2px;
-    width: 24px;
+    width: $-l;
   }
   padding: $-s $-m;
   padding-bottom: $-s - 2px;
-  padding-left: $-m*2 + 24px;
+  padding-left: $-m*2 + $-l;
 }
 
 .button[disabled] {

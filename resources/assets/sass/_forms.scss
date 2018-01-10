@@ -157,7 +157,7 @@ input[type=date] {
   &.active {
     background-color: rgba($positive, 0.4);
     &:after {
-      left: 16px;
+      left: $-m;
       background-color: $positive;
       border: darken($positive, 20%);
     }
@@ -169,7 +169,7 @@ input[type=date] {
 input:checked + .toggle-switch {
   background-color: rgba($positive, 0.4);
   &:after {
-    left: 16px;
+    left: $-m;
     background-color: $positive;
     border: darken($positive, 20%);
   }
@@ -180,7 +180,7 @@ input:checked + .toggle-switch {
   textarea {
     display: block;
     width: 100%;
-    min-height: 64px;
+    min-height: $-xxxl;
   }
 }
 
