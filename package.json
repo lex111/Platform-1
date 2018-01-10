@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "gulp build",
-    "prod" : "gulp build --production"
+    "prod" : "gulp build --production",
     "production": "gulp build --production",
     "dev": "gulp",
     "watch": "gulp",
