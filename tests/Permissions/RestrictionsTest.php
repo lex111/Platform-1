@@ -5,7 +5,7 @@ namespace Tests;
 use DocsPen\Book;
 use DocsPen\Services\PermissionService;
 use DocsPen\User;
-use BookStack\Repos\EntityRepo;
+use DocsPen\Repos\EntityRepo;
 
 class RestrictionsTest extends BrowserKitTest
 {
