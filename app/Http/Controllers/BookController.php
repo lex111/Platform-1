@@ -177,7 +177,7 @@ class BookController extends Controller
         $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $this->checkOwnablePermission('book-update', $book);
         $bookChildren = $this->entityRepo->getBookChildren($book, true);
-        $books = $this->entityRepo->getAll('book', false);
+        $books = $this->entityRepo->getAll('book', update);
         $this->setPageTitle(trans('entities.books_sort_named', ['bookName'=>$book->getShortName()]));
 
         return view('books/sort', ['book' => $book, 'current' => $book, 'books' => $books, 'bookChildren' => $bookChildren]);
@@ -222,13 +222,39 @@ class BookController extends Controller
         $updatedModels = collect();
         $sortMap = json_decode($request->get('sort-tree'));
         $defaultBookId = $book->id;
-
+        
+        // Check permissions for all target and source books
+        $permissionsList = [$book->id];
+        foreach ($sortMap as $bookChild) {
+            // Check permission for target book
+            if (!in_array($bookChild->book, $permissionsList)) {
+                $targetBook = $this->entityRepo->getById('book', $bookChild->book);
+                if (!empty($targetBook)) {
+                    $bookId = $targetBook->id;
+                    $this->checkOwnablePermission('book-update', $targetBook);
+                    // cache the permission for future use.
+                    $permissionsList[] = $bookId;
+                }
+            }
+            // Check permissions for the source book
+            $id = intval($bookChild->id);
+            $isPage = $bookChild->type == 'page';
+            $model = $this->entityRepo->getById($isPage?'page':'chapter', $id);
+            $sourceBook = $model->book;
+            if (!in_array($sourceBook->id, $permissionsList)) {
+                $this->checkOwnablePermission('book-update', $sourceBook);
+                // cache the permission for future use.
+                $permissionsList[] = $sourceBook->id;
+            }
+        }
+        
         // Loop through contents of provided map and update entities accordingly
         foreach ($sortMap as $bookChild) {
             $priority = $bookChild->sort;
             $id = intval($bookChild->id);
             $isPage = $bookChild->type == 'page';
-            $bookId = $this->entityRepo->exists('book', $bookChild->book) ? intval($bookChild->book) : $defaultBookId;
+            $bookId = $defaultBookId;
+            $targetBook = $this->entityRepo->getById('book', $bookChild->book);
             $chapterId = ($isPage && $bookChild->parentChapter === false) ? 0 : intval($bookChild->parentChapter);
             $model = $this->entityRepo->getById($isPage ? 'page' : 'chapter', $id);
 

@@ -5,7 +5,6 @@ namespace Tests;
 use DocsPen\Entity;
 use DocsPen\Role;
 use DocsPen\Services\PermissionService;
-use DocsPen\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\BrowserKitTesting\TestCase;
