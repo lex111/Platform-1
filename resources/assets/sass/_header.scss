@@ -93,7 +93,7 @@ header {
 }
 header .search-box {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: $-s;
   input {
     background-color: hsla(0, 0%, 100%, .3);
     border: none;
