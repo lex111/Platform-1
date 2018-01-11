@@ -119,9 +119,9 @@ class EntityRepo
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    protected function entityQuery($type, $allowDrafts = false, $permission = 'view')
+    protected function entityQuery($type, $allowDrafts = false)
     {
-        $q = $this->permissionService->enforceEntityRestrictions($type, $this->getEntity($type), $permission);
+        $q = $this->permissionService->enforceEntityRestrictions($type, $this->getEntity($type), 'view');
         if (strtolower($type) === 'page' && !$allowDrafts) {
             $q = $q->where('draft', '=', false);
         }
@@ -217,16 +217,16 @@ class EntityRepo
     }
 
     /**
-     * Get all entities of a type with the given permission, limited by count unless count is false.
-     * @param string $type
-     * @param integer|bool $count
-     * @param string $permission
+     * Get all entities of a type limited by count unless count if false.
+     *
+     * @param string   $type
+     * @param int|bool $count
+     *
      * @return Collection
      */
-     
-    public function getAll($type, $count = 20, $permission = 'view')
+    public function getAll($type, $count = 20)
     {
-        $q = $this->entityQuery($type, false, $permission)->orderBy('name', 'asc');
+        $q = $this->entityQuery($type)->orderBy('name', 'asc');
         if ($count !== false) {
             $q = $q->take($count);
         }
