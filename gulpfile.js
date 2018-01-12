@@ -16,6 +16,7 @@ const babelify = require("babelify");
 const watchify = require("watchify");
 const envify = require("envify");
 const uglify = require('gulp-uglify');
+const jshint = require('gulp-jshint');
 
 const gutil = require("gulp-util");
 const refresh = require('gulp-refresh');
@@ -60,7 +61,7 @@ function scriptTask(watch = false) {
         let stream = bundler.bundle();
         stream = stream.pipe(source('common.js'));
         if (isProduction) stream = stream.pipe(buffer()).pipe(uglify());
-        return stream.pipe(gulp.dest('public/js/')).pipe(refresh());
+        return stream.pipe(jshint(gulp.dest('public/js/'))).pipe(refresh());
     }
 
     bundler.on('update', function() {
