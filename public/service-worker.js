@@ -528,8 +528,8 @@
             name: u.static,
             maxEntries: 50
         }
-    }), o.a.router.get("/docspen.ga/(.*)", o.a.cacheFirst, {
-        origin: "https://i0.wp.com",
+    }), o.a.router.get("/(.*)", o.a.cacheFirst, {
+        origin: "https://cdn.docspen.ga",
         cache: {
             name: u.static,
             maxEntries: 50
