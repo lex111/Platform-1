@@ -14,6 +14,12 @@ class OthersController extends Controller
     {
         return view('others.terms');
     }
+    
+    // Return Success if Contact Message Sent
+    public function success()
+    {
+        return view('others.success');
+    }
 
     // ToDos on Trello Kanban
     public function trello()
@@ -43,11 +49,6 @@ class OthersController extends Controller
     public function contact()
     {
         return view('others.contact');
-    }
-
-    public function success()
-    {
-        return view('others.success');
     }
 
     // For Status used for checking Hearbeat of Server
