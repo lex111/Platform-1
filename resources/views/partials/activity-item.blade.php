@@ -3,7 +3,7 @@
 
 @if($activity->user)
     <div class="left">
-        <img class="avatar" src="{{ $activity->user->getAvatar(50) }}?quality=100" alt="{{ $activity->user->name }}">
+        <img class="avatar" src="{{ $activity->user->getAvatar(50) }}" alt="{{ $activity->user->name }}">
     </div>
 @endif
 
