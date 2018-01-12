@@ -25,7 +25,7 @@
             <div class="col-md-7">
                 <div class="clearfix">
                     <div class="padded-right float left">
-                        <img class="avatar square huge" src="{{ $user->getAvatar(150) }}?quality=100" alt="{{ $user->name }}">
+                        <img class="avatar square huge" src="{{ $user->getAvatar(150) }}" alt="{{ $user->name }}">
                     </div>
                     <div>
                         <h3 
