@@ -61,7 +61,7 @@ function scriptTask(watch = false) {
         let stream = bundler.bundle();
         stream = stream.pipe(source('common.js'));
         if (isProduction) stream = stream.pipe(buffer()).pipe(uglify());
-        return stream.pipe(jshint(gulp.dest('public/js/'))).pipe(refresh());
+        return stream.pipe(jshint(gulp.dest('public/js/')).pipe(refresh()));
     }
 
     bundler.on('update', function() {
