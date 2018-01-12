@@ -11,7 +11,7 @@
     <meta name="description" content="DocsPen - Online Documentation Platform. Read more, know more.">
     <meta name="keywords" content="DocsPen, Docs, Documentation, Project Documentation, Wiki">
     
-    <link rel="icon" type="image/png" href="favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <link rel="stylesheet" href="{{ hashed_asset('css/styles.css') }}">
     <link rel="stylesheet" media="print" href="{{ hashed_asset('css/print-styles.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
