@@ -50,11 +50,7 @@ class SearchController extends Controller
         
         if($searchTerm == '') {
             return view('search/all', [
-                'entities'     => $results['results'],
                 'totalResults' => $results['total'],
-                'searchTerm'   => $searchTerm,
-                'hasNextPage'  => $hasNextPage,
-                'nextPageLink' => $nextPageLink,
             ]);
         } else {
             return view('search/all', [
