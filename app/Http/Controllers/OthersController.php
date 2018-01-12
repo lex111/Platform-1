@@ -14,7 +14,7 @@ class OthersController extends Controller
     {
         return view('others.terms');
     }
-    
+
     // Return Success if Contact Message Sent
     public function success()
     {
