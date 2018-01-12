@@ -35,7 +35,7 @@
                         <div class="header-search">
                             <form action="{{ baseUrl('/search') }}" method="GET" class="search-box">
                                 <button id="header-search-box-button" type="submit"><i class="zmdi zmdi-search"></i> </button>
-                                <input id="header-search-box-input" type="text" name="term" tabindex="2" maxlength="32" placeholder="{{ trans('common.search') }}" value="{{ isset($searchTerm) ? $searchTerm : '' }}" name="message" minlength="5" required>
+                                <input id="header-search-box-input" type="text" name="term" tabindex="2" maxlength="32" placeholder="{{ trans('common.search') }}" value="{{ isset($searchTerm) }}" name="message" minlength="3" required>
                             </form>
                         </div>
                         <div class="links text-center">
