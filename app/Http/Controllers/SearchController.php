@@ -47,14 +47,18 @@ class SearchController extends Controller
 
         $results = $this->searchService->searchEntities($searchTerm, 'all', $page, 20);
         $hasNextPage = $this->searchService->searchEntities($searchTerm, 'all', $page + 1, 20)['count'] > 0;
-
-        return view('search/all', [
-            'entities'     => $results['results'],
-            'totalResults' => $results['total'],
-            'searchTerm'   => $searchTerm,
-            'hasNextPage'  => $hasNextPage,
-            'nextPageLink' => $nextPageLink,
-        ]);
+        
+        if($searchTerm == '') {
+            return "404";
+        } else {
+            return view('search/all', [
+                'entities'     => $results['results'],
+                'totalResults' => $results['total'],
+                'searchTerm'   => $searchTerm,
+                'hasNextPage'  => $hasNextPage,
+                'nextPageLink' => $nextPageLink,
+            ]);
+        }
     }
 
     /**
