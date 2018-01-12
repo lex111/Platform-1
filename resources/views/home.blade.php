@@ -38,7 +38,7 @@
                 </div>
                 <div class="card">
                     <h3 class="text-muted"><i class="zmdi zmdi-file-text" style="color:#026AA7"></i> <i class="zmdi zmdi-plus"></i> <img src="https://cdn.jsdelivr.net/npm/docspen@13.0.0/imgs/trending.svg" class="trending">{{ trans('entities.pages_popular') }}</h3>
-                    @include('partials.entity-list', ['entities' => Views::getPopular(5, 0, [\DocsPen\Page::class]), 'style' => 'compact'])
+                    @include('partials.entity-list', ['entities' => Views::getPopular(6, 0, [\DocsPen\Page::class]), 'style' => 'compact'])
                 </div>
             </div>
 
