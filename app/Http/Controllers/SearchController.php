@@ -49,7 +49,7 @@ class SearchController extends Controller
         $hasNextPage = $this->searchService->searchEntities($searchTerm, 'all', $page + 1, 20)['count'] > 0;
         
         if($searchTerm == '') {
-            abort(404);
+            echo "444";
         } else {
             return view('search/all', [
                 'entities'     => $results['results'],
