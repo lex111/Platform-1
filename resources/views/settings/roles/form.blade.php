@@ -152,7 +152,7 @@
                 <table class="list-table">
                     @foreach($role->users as $user)
                         <tr>
-                            <td style="line-height: 0;"><img class="avatar small" src="{{ $user->getAvatar(40) }}?quality=100" alt="{{ $user->name }}"></td>
+                            <td style="line-height: 0;"><img class="avatar small" src="{{ $user->getAvatar(40) }}" alt="{{ $user->name }}"></td>
                             <td>
                                 @if(userCan('users-manage') || $currentUser->id == $user->id)
                                     <a href="{{ baseUrl("/settings/users/{$user->id}") }}">
