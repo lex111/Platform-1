@@ -24,7 +24,7 @@
             <a href="#comment{{$comment->local_id}}" class="text-muted">#{{$comment->local_id}}</a>
             &nbsp;&nbsp;
             @if ($comment->createdBy)
-                <img width="50" src="{{ $comment->createdBy->getAvatar(50) }}?quality=100" class="avatar" alt="{{ $comment->createdBy->name }}">
+                <img width="50" src="{{ $comment->createdBy->getAvatar(50) }}" class="avatar" alt="{{ $comment->createdBy->name }}">
                 &nbsp;
                 <a href="{{ $comment->createdBy->getProfileUrl() }}">{{ $comment->createdBy->name }}</a>
             @else
