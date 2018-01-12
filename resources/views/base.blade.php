@@ -5,7 +5,7 @@
     
     @include('header')
     
-    <script src="https://cdn.jsdelivr.net/npm/docspen@16.0.0/js/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ baseUrl('/translations') }}"></script>
 
     @yield('head')
