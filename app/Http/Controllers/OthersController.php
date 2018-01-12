@@ -18,7 +18,7 @@ class OthersController extends Controller
     // ToDos on Trello Kanban
     public function trello()
     {
-        return redirect('https://trello.com/b/nUennIKj/docspen');
+        return redirect('https://trello.com/b/nUennIKj');
     }
 
     // Source code on GitHub
