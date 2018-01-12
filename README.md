@@ -17,6 +17,10 @@ Feel free to create issues to request new features or to report bugs and problem
 
 Pull requests are very welcome. If the scope of your pull request is very large it may be best to open the pull request early or create an issue for it to discuss how it will fit into the project and plan out the merge.
 
+## Join with us
+
+Come and join with us in [Slack](http://bit.ly/dpslack).
+
 ## The Stack
 
 These are the great open-source projects used to help build DocsPen:
