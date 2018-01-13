@@ -14,9 +14,9 @@ use DocsPen\Ownable;
 function hashed_asset($file = '')
 {
     $hashed_value = sha1_file(public_path($file));
-    $path = $file;
+    $path = $file.'?'.$hashed_value;
 
-    return baseUrl($hashed_value.'/'.$path);
+    return baseUrl($path);
 }
 
 /**
