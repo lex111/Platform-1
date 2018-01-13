@@ -213,10 +213,10 @@ class ImageRepo
     {
         try {
             return $this->imageService->getThumbnail($image, $width, $height, $keepRatio);
-        } catch (FileNotFoundException $exception) {
-            $image->delete();
+        } catch (\Exception $exception) {
+            dd($exception);
 
-            return [];
+            return null;
         }
     }
 }
