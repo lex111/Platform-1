@@ -3,6 +3,7 @@
 namespace DocsPen\Http\Controllers;
 
 use DocsPen\Exceptions\ImageUploadException;
+use DocsPen\Exceptions\NotFoundException;
 use DocsPen\Image;
 use DocsPen\Repos\EntityRepo;
 use DocsPen\Repos\ImageRepo;
@@ -28,6 +29,20 @@ class ImageController extends Controller
         $this->file = $file;
         $this->imageRepo = $imageRepo;
         parent::__construct();
+    }
+    
+    /**
+     * Provide an image file from storage.
+     * @param string $path
+     * @return mixed
+     */
+    public function showImage(string $path)
+    {
+        $path = storage_path('uploads/images/' . $path);
+        if (!file_exists($path)) {
+            abort(404);
+        }
+        return response()->file($path);
     }
 
     /**
