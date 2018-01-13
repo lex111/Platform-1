@@ -6,7 +6,6 @@ use DocsPen\Image;
 use DocsPen\Page;
 use DocsPen\Services\ImageService;
 use DocsPen\Services\PermissionService;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ImageRepo
@@ -216,7 +215,7 @@ class ImageRepo
         } catch (\Exception $exception) {
             dd($exception);
 
-            return null;
+            return;
         }
     }
 }

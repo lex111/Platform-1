@@ -9,31 +9,34 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AttachmentService extends UploadService
 {
-    
     /**
      * Get the storage that will be used for storing files.
+     *
      * @return \Illuminate\Contracts\Filesystem\Filesystem
      */
     protected function getStorage()
     {
-        if ($this->storageInstance !== null) return $this->storageInstance;
+        if ($this->storageInstance !== null) {
+            return $this->storageInstance;
+        }
         $storageType = config('filesystems.default');
         // Override default location if set to local public to ensure not visible.
         if ($storageType === 'local') {
             $storageType = 'local_secure';
         }
         $this->storageInstance = $this->fileSystem->disk($storageType);
+
         return $this->storageInstance;
     }
-    
+
     /**
      * Get an attachment from storage.
      *
      * @param Attachment $attachment
      *
-     * @return string
-     * 
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     *
+     * @return string
      */
     public function getAttachmentFromStorage(Attachment $attachment)
     {
@@ -163,7 +166,7 @@ class AttachmentService extends UploadService
      * Delete a File from the database and storage.
      *
      * @param Attachment $attachment
-     * 
+     *
      * @throws Exception
      */
     public function deleteFile(Attachment $attachment)
@@ -210,14 +213,14 @@ class AttachmentService extends UploadService
         $attachmentData = file_get_contents($uploadedFile->getRealPath());
 
         $storage = $this->getStorage();
-        $basePath = 'uploads/files/' . Date('Y-m-M') . '/';
+        $basePath = 'uploads/files/'.date('Y-m-M').'/';
 
         $uploadFileName = $attachmentName;
-        while ($storage->exists($basePath . $uploadFileName)) {
+        while ($storage->exists($basePath.$uploadFileName)) {
             $uploadFileName = str_random(3).$uploadFileName;
         }
 
-        $attachmentPath = $basePath . $uploadFileName;
+        $attachmentPath = $basePath.$uploadFileName;
 
         try {
             $storage->put($attachmentPath, $attachmentData);

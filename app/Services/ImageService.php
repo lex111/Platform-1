@@ -178,6 +178,7 @@ class ImageService extends UploadService
             if ($e instanceof \ErrorException || $e instanceof NotSupportedException) {
                 throw new ImageUploadException(trans('errors.cannot_create_thumbs'));
             }
+
             throw $e;
         }
 
@@ -285,6 +286,7 @@ class ImageService extends UploadService
         }
 
         $basePath = ($this->storageUrl == false) ? baseUrl('/') : $this->storageUrl;
-        return rtrim($basePath, '/') . $filePath;
+
+        return rtrim($basePath, '/').$filePath;
     }
 }
