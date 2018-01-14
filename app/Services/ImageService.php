@@ -97,10 +97,6 @@ class ImageService extends UploadService
 
         $imagePath = '/uploads/images/'.$type.'/'.date('Y-m-M').'/';
 
-        if ($this->isLocal()) {
-            $imagePath = '/public'.$imagePath;
-        }
-
         while ($storage->exists($imagePath.$imageName)) {
             $imageName = str_random(3).$imageName;
         }
@@ -111,10 +107,6 @@ class ImageService extends UploadService
             $storage->setVisibility($fullPath, 'public');
         } catch (Exception $e) {
             throw new ImageUploadException(trans('errors.path_not_writable', ['filePath' => $fullPath]));
-        }
-
-        if ($this->isLocal()) {
-            $fullPath = str_replace_first('/public', '', $fullPath);
         }
 
         $imageDetails = [
@@ -131,7 +123,8 @@ class ImageService extends UploadService
             $imageDetails['updated_by'] = $userId;
         }
 
-        $image = Image::forceCreate($imageDetails);
+        $image = (new Image());
+        $image->forceFill($imageDetails)->save();
 
         return $image;
     }
@@ -145,7 +138,7 @@ class ImageService extends UploadService
      */
     protected function getPath(Image $image)
     {
-        return ($this->isLocal()) ? ('public/'.$image->path) : $image->path;
+        return $image->path;
     }
 
     /**
@@ -184,9 +177,9 @@ class ImageService extends UploadService
         } catch (Exception $e) {
             if ($e instanceof \ErrorException || $e instanceof NotSupportedException) {
                 throw new ImageUploadException(trans('errors.cannot_create_thumbs'));
-            } else {
-                throw $e;
             }
+
+            throw $e;
         }
 
         if ($keepRatio) {
@@ -292,10 +285,8 @@ class ImageService extends UploadService
             $this->storageUrl = $storageUrl;
         }
 
-        if ($this->isLocal()) {
-            $filePath = str_replace_first('public/', '', $filePath);
-        }
+        $basePath = ($this->storageUrl == false) ? baseUrl('/') : $this->storageUrl;
 
-        return ($this->storageUrl == false ? rtrim(baseUrl(''), '/') : rtrim($this->storageUrl, '/')).$filePath;
+        return rtrim($basePath, '/').$filePath;
     }
 }

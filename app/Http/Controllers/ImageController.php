@@ -31,6 +31,23 @@ class ImageController extends Controller
     }
 
     /**
+     * Provide an image file from storage.
+     *
+     * @param string $path
+     *
+     * @return mixed
+     */
+    public function showImage(string $path)
+    {
+        $path = storage_path('uploads/images/'.$path);
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->file($path);
+    }
+
+    /**
      * Get all images for a specific type, Paginated.
      *
      * @param string $type
