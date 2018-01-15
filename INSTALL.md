@@ -12,8 +12,8 @@ sudo apt install -y git composer nginx redis-server curl php libapache2-mod-php 
 
 ```
 mysql -p -u root
-CREATE DATABASE musepen;
-GRANT ALL PRIVILEGES ON musepen.* TO 'root'@'localhost' IDENTIFIED BY "LaravelYogi!1998";
+CREATE DATABASE docspen;
+GRANT ALL PRIVILEGES ON docspen.* TO 'root'@'localhost' IDENTIFIED BY "secret";
 FLUSH PRIVILEGES;
 ```
 ## NGINX Conf
