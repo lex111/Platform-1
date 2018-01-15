@@ -50,7 +50,7 @@
                     </div>
                 @else
                     <div class="card">
-                        <h3><i class="zmdi zmdi-file"></i> <a class="no-color" href="{{ baseUrl("/pages/recently-updated") }}">{{ trans('entities.recently_updated_pages') }}</a></h3>
+                        <h3><i class="zmdi zmdi-file" style="color:#026aa7"></i> <a class="no-color" href="{{ baseUrl("/pages/recently-updated") }}">{{ trans('entities.recently_updated_pages') }}</a></h3>
                         <div id="recently-updated-pages">
                             @include('partials/entity-list', [
                             'entities' => $recentlyUpdatedPages,
