@@ -2,7 +2,7 @@
 @mixin generate-button-colors($textColor, $backgroundColor) {
   background-color: $backgroundColor;
   color: $textColor;
-  text-transform: uppercase;
+  text-transform: ;
   border: 1px solid $backgroundColor;
   vertical-align: top;
   &:hover {
