@@ -31,6 +31,7 @@ return [
     'export_html'               => 'Contained Web File',
     'export_pdf'                => 'PDF File',
     'export_text'               => 'Plain Text File',
+    'discover'                  => 'Discover',
 
     /*
      * Permissions and restrictions

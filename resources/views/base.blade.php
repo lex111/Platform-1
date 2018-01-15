@@ -39,7 +39,7 @@
                             </form>
                         </div>
                         <div class="links text-center">
-                            <a href="{{ baseUrl('/books') }}" style="background:#e2e4e6;color:#4d4d4d"><i class="zmdi zmdi-book"></i>{{ trans('entities.books') }}</a>
+                            <a href="{{ baseUrl('/books') }}" style="background:#e2e4e6;color:#4d4d4d"><i class="zmdi zmdi-group-work"></i>{{ trans('entities.discover') }}</a>
                             @if(signedInUser())
                                 <a href="{{ baseUrl('books/create') }}"><i class="zmdi zmdi-edit"></i>{{ trans('common.create') }}</a>
                             @endif
