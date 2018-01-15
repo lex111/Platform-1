@@ -32,7 +32,6 @@ return [
     'export_pdf'                => 'PDF File',
     'export_text'               => 'Plain Text File',
     'discover'                  => 'Discover',
-    'topics'                  => 'Topics',
 
     /*
      * Permissions and restrictions

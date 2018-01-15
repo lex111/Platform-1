@@ -14,15 +14,6 @@
                         <button type="submit" class="text-pos text-button"><i class="zmdi zmdi-view-list"></i>{{ trans('common.list_view') }}</button>
                     @endif
                 @endif
-                <div class="dropdown-container" dropdown>
-                    <span class="user-name" dropdown-toggle>
-                        <button type="submit" class="text-pos text-button"><i class="zmdi zmdi-view-module"></i>{{ trans('entities.topics') }}</button>
-                        <i class="zmdi zmdi-caret-down"></i>
-                    </span>
-                    <ul>
-                        <li><a href="{{ baseUrl('/search?term=%5Btechnology%5D') }}" class="text-primary">Technology</a></li>
-                    </ul>
-                </div>
             </form>
         </div>
     </div>
