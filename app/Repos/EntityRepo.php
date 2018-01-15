@@ -1,5 +1,8 @@
-<?php namespace DocsPen\Repos;
+<?php
 
+namespace DocsPen\Repos;
+
+use Carbon\Carbon;
 use DocsPen\Book;
 use DocsPen\Chapter;
 use DocsPen\Entity;
@@ -11,16 +14,14 @@ use DocsPen\Services\AttachmentService;
 use DocsPen\Services\PermissionService;
 use DocsPen\Services\SearchService;
 use DocsPen\Services\ViewService;
-use Carbon\Carbon;
 use DOMDocument;
 use DOMXPath;
 use Illuminate\Support\Collection;
 
 class EntityRepo
 {
-
     /**
-     * @var Book $book
+     * @var Book
      */
     public $book;
 
@@ -40,7 +41,8 @@ class EntityRepo
     protected $pageRevision;
 
     /**
-     * Base entity instances keyed by type
+     * Base entity instances keyed by type.
+     *
      * @var []Entity
      */
     protected $entities;
@@ -67,29 +69,29 @@ class EntityRepo
 
     /**
      * EntityRepo constructor.
-     * @param Book $book
-     * @param Chapter $chapter
-     * @param Page $page
-     * @param PageRevision $pageRevision
-     * @param ViewService $viewService
+     *
+     * @param Book              $book
+     * @param Chapter           $chapter
+     * @param Page              $page
+     * @param PageRevision      $pageRevision
+     * @param ViewService       $viewService
      * @param PermissionService $permissionService
-     * @param TagRepo $tagRepo
-     * @param SearchService $searchService
+     * @param TagRepo           $tagRepo
+     * @param SearchService     $searchService
      */
     public function __construct(
         Book $book, Chapter $chapter, Page $page, PageRevision $pageRevision,
         ViewService $viewService, PermissionService $permissionService,
         TagRepo $tagRepo, SearchService $searchService
-    )
-    {
+    ) {
         $this->book = $book;
         $this->chapter = $chapter;
         $this->page = $page;
         $this->pageRevision = $pageRevision;
         $this->entities = [
-            'page' => $this->page,
+            'page'    => $this->page,
             'chapter' => $this->chapter,
-            'book' => $this->book
+            'book'    => $this->book,
         ];
         $this->viewService = $viewService;
         $this->permissionService = $permissionService;
@@ -99,7 +101,9 @@ class EntityRepo
 
     /**
      * Get an entity instance via type.
+     *
      * @param $type
+     *
      * @return Entity
      */
     protected function getEntity($type)
@@ -108,9 +112,11 @@ class EntityRepo
     }
 
     /**
-     * Base query for searching entities via permission system
+     * Base query for searching entities via permission system.
+     *
      * @param string $type
-     * @param bool $allowDrafts
+     * @param bool   $allowDrafts
+     *
      * @return \Illuminate\Database\Query\Builder
      */
     protected function entityQuery($type, $allowDrafts = false, $permission = 'view')
@@ -119,13 +125,16 @@ class EntityRepo
         if (strtolower($type) === 'page' && !$allowDrafts) {
             $q = $q->where('draft', '=', false);
         }
+
         return $q;
     }
 
     /**
      * Check if an entity with the given id exists.
+     *
      * @param $type
      * @param $id
+     *
      * @return bool
      */
     public function exists($type, $id)
@@ -134,52 +143,62 @@ class EntityRepo
     }
 
     /**
-     * Get an entity by ID
+     * Get an entity by ID.
+     *
      * @param string $type
-     * @param integer $id
-     * @param bool $allowDrafts
-     * @param bool $ignorePermissions
+     * @param int    $id
+     * @param bool   $allowDrafts
+     * @param bool   $ignorePermissions
+     *
      * @return Entity
      */
     public function getById($type, $id, $allowDrafts = false, $ignorePermissions = false)
     {
         if ($ignorePermissions) {
             $entity = $this->getEntity($type);
+
             return $entity->newQuery()->find($id);
         }
+
         return $this->entityQuery($type, $allowDrafts)->find($id);
     }
 
     /**
      * Get an entity by its url slug.
-     * @param string $type
-     * @param string $slug
+     *
+     * @param string      $type
+     * @param string      $slug
      * @param string|bool $bookSlug
-     * @return Entity
+     *
      * @throws NotFoundException
+     *
+     * @return Entity
      */
     public function getBySlug($type, $slug, $bookSlug = false)
     {
         $q = $this->entityQuery($type)->where('slug', '=', $slug);
 
         if (strtolower($type) === 'chapter' || strtolower($type) === 'page') {
-            $q = $q->where('book_id', '=', function($query) use ($bookSlug) {
+            $q = $q->where('book_id', '=', function ($query) use ($bookSlug) {
                 $query->select('id')
                     ->from($this->book->getTable())
                     ->where('slug', '=', $bookSlug)->limit(1);
             });
         }
         $entity = $q->first();
-        if ($entity === null) throw new NotFoundException(trans('errors.' . strtolower($type) . '_not_found'));
+        if ($entity === null) {
+            throw new NotFoundException(trans('errors.'.strtolower($type).'_not_found'));
+        }
         return $entity;
     }
-
 
     /**
      * Search through page revisions and retrieve the last page in the
      * current book that has a slug equal to the one given.
+     *
      * @param string $pageSlug
      * @param string $bookSlug
+     *
      * @return null|Page
      */
     public function getPageByOldSlug($pageSlug, $bookSlug)
@@ -192,27 +211,35 @@ class EntityRepo
             ->where('book_slug', '=', $bookSlug)
             ->orderBy('created_at', 'desc')
             ->with('page')->first();
+
         return $revision !== null ? $revision->page : null;
     }
 
     /**
      * Get all entities of a type with the given permission, limited by count unless count is false.
-     * @param string $type
-     * @param integer|bool $count
-     * @param string $permission
+     *
+     * @param string   $type
+     * @param int|bool $count
+     * @param string   $permission
+     *
      * @return Collection
      */
     public function getAll($type, $count = 20, $permission = 'view')
     {
         $q = $this->entityQuery($type, false, $permission)->orderBy('name', 'asc');
-        if ($count !== false) $q = $q->take($count);
+        if ($count !== false) {
+            $q = $q->take($count);
+        }
+
         return $q->get();
     }
 
     /**
-     * Get all entities in a paginated format
+     * Get all entities in a paginated format.
+     *
      * @param $type
      * @param int $count
+     *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function getAllPaginated($type, $count = 10)
@@ -222,59 +249,74 @@ class EntityRepo
 
     /**
      * Get the most recently created entities of the given type.
-     * @param string $type
-     * @param int $count
-     * @param int $page
+     *
+     * @param string        $type
+     * @param int           $count
+     * @param int           $page
      * @param bool|callable $additionalQuery
+     *
      * @return Collection
      */
     public function getRecentlyCreated($type, $count = 20, $page = 0, $additionalQuery = false)
     {
         $query = $this->permissionService->enforceEntityRestrictions($type, $this->getEntity($type))
             ->orderBy('created_at', 'desc');
-        if (strtolower($type) === 'page') $query = $query->where('draft', '=', false);
+        if (strtolower($type) === 'page') {
+            $query = $query->where('draft', '=', false);
+        }
         if ($additionalQuery !== false && is_callable($additionalQuery)) {
             $additionalQuery($query);
         }
+
         return $query->skip($page * $count)->take($count)->get();
     }
 
     /**
      * Get the most recently updated entities of the given type.
-     * @param string $type
-     * @param int $count
-     * @param int $page
+     *
+     * @param string        $type
+     * @param int           $count
+     * @param int           $page
      * @param bool|callable $additionalQuery
+     *
      * @return Collection
      */
     public function getRecentlyUpdated($type, $count = 20, $page = 0, $additionalQuery = false)
     {
         $query = $this->permissionService->enforceEntityRestrictions($type, $this->getEntity($type))
             ->orderBy('updated_at', 'desc');
-        if (strtolower($type) === 'page') $query = $query->where('draft', '=', false);
+        if (strtolower($type) === 'page') {
+            $query = $query->where('draft', '=', false);
+        }
         if ($additionalQuery !== false && is_callable($additionalQuery)) {
             $additionalQuery($query);
         }
+
         return $query->skip($page * $count)->take($count)->get();
     }
 
     /**
      * Get the most recently viewed entities.
+     *
      * @param string|bool $type
-     * @param int $count
-     * @param int $page
+     * @param int         $count
+     * @param int         $page
+     *
      * @return mixed
      */
     public function getRecentlyViewed($type, $count = 10, $page = 0)
     {
         $filter = is_bool($type) ? false : $this->getEntity($type);
+
         return $this->viewService->getUserRecentlyViewed($count, $page, $filter);
     }
 
     /**
      * Get the latest pages added to the system with pagination.
+     *
      * @param string $type
-     * @param int $count
+     * @param int    $count
+     *
      * @return mixed
      */
     public function getRecentlyCreatedPaginated($type, $count = 20)
@@ -284,8 +326,10 @@ class EntityRepo
 
     /**
      * Get the latest pages added to the system with pagination.
+     *
      * @param string $type
-     * @param int $count
+     * @param int    $count
+     *
      * @return mixed
      */
     public function getRecentlyUpdatedPaginated($type, $count = 20)
@@ -295,19 +339,23 @@ class EntityRepo
 
     /**
      * Get the most popular entities base on all views.
+     *
      * @param string|bool $type
-     * @param int $count
-     * @param int $page
+     * @param int         $count
+     * @param int         $page
+     *
      * @return mixed
      */
     public function getPopular($type, $count = 10, $page = 0)
     {
         $filter = is_bool($type) ? false : $this->getEntity($type);
+
         return $this->viewService->getPopular($count, $page, $filter);
     }
 
     /**
      * Get draft pages owned by the current user.
+     *
      * @param int $count
      * @param int $page
      */
@@ -323,9 +371,11 @@ class EntityRepo
      * Get all child objects of a book.
      * Returns a sorted collection of Pages and Chapters.
      * Loads the book slug onto child elements to prevent access database access for getting the slug.
+     *
      * @param Book $book
      * @param bool $filterDrafts
      * @param bool $renderPages
+     *
      * @return mixed
      */
     public function getBookChildren(Book $book, $filterDrafts = false, $renderPages = false)
@@ -341,20 +391,24 @@ class EntityRepo
                 if ($renderPages) {
                     $entities[$index]->html = $rawEntity->html;
                     $entities[$index]->html = $this->renderPage($entities[$index]);
-                };
-            } else if ($rawEntity->entity_type === 'DocsPen\\Chapter') {
+                }
+            } elseif ($rawEntity->entity_type === 'DocsPen\\Chapter') {
                 $entities[$index] = $this->chapter->newFromBuilder($rawEntity);
-                $key = $entities[$index]->entity_type . ':' . $entities[$index]->id;
+                $key = $entities[$index]->entity_type.':'.$entities[$index]->id;
                 $parents[$key] = $entities[$index];
                 $parents[$key]->setAttribute('pages', collect());
             }
-            if ($entities[$index]->chapter_id === 0 || $entities[$index]->chapter_id === '0') $tree[] = $entities[$index];
+            if ($entities[$index]->chapter_id === 0 || $entities[$index]->chapter_id === '0') {
+                $tree[] = $entities[$index];
+            }
             $entities[$index]->book = $book;
         }
 
         foreach ($entities as $entity) {
-            if ($entity->chapter_id === 0 || $entity->chapter_id === '0') continue;
-            $parentKey = 'DocsPen\\Chapter:' . $entity->chapter_id;
+            if ($entity->chapter_id === 0 || $entity->chapter_id === '0') {
+                continue;
+            }
+            $parentKey = 'DocsPen\\Chapter:'.$entity->chapter_id;
             if (!isset($parents[$parentKey])) {
                 $tree[] = $entity;
                 continue;
@@ -369,7 +423,9 @@ class EntityRepo
     /**
      * Get the child items for a chapter sorted by priority but
      * with draft items floated to the top.
+     *
      * @param Chapter $chapter
+     *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getChapterChildren(Chapter $chapter)
@@ -378,52 +434,62 @@ class EntityRepo
             ->orderBy('draft', 'DESC')->orderBy('priority', 'ASC')->get();
     }
 
-
     /**
      * Get the next sequential priority for a new child element in the given book.
+     *
      * @param Book $book
+     *
      * @return int
      */
     public function getNewBookPriority(Book $book)
     {
         $lastElem = $this->getBookChildren($book)->pop();
+
         return $lastElem ? $lastElem->priority + 1 : 0;
     }
 
     /**
      * Get a new priority for a new page to be added to the given chapter.
+     *
      * @param Chapter $chapter
+     *
      * @return int
      */
     public function getNewChapterPriority(Chapter $chapter)
     {
         $lastPage = $chapter->pages('DESC')->first();
+
         return $lastPage !== null ? $lastPage->priority + 1 : 0;
     }
 
     /**
      * Find a suitable slug for an entity.
-     * @param string $type
-     * @param string $name
-     * @param bool|integer $currentId
-     * @param bool|integer $bookId Only pass if type is not a book
+     *
+     * @param string   $type
+     * @param string   $name
+     * @param bool|int $currentId
+     * @param bool|int $bookId    Only pass if type is not a book
+     *
      * @return string
      */
     public function findSuitableSlug($type, $name, $currentId = false, $bookId = false)
     {
         $slug = $this->nameToSlug($name);
         while ($this->slugExists($type, $slug, $currentId, $bookId)) {
-            $slug .= '-' . substr(md5(rand(1, 500)), 0, 3);
+            $slug .= '-'.substr(md5(rand(1, 500)), 0, 3);
         }
+
         return $slug;
     }
 
     /**
      * Check if a slug already exists in the database.
-     * @param string $type
-     * @param string $slug
-     * @param bool|integer $currentId
-     * @param bool|integer $bookId
+     *
+     * @param string   $type
+     * @param string   $slug
+     * @param bool|int $currentId
+     * @param bool|int $bookId
+     *
      * @return bool
      */
     protected function slugExists($type, $slug, $currentId = false, $bookId = false)
@@ -432,12 +498,16 @@ class EntityRepo
         if (strtolower($type) === 'page' || strtolower($type) === 'chapter') {
             $query = $query->where('book_id', '=', $bookId);
         }
-        if ($currentId) $query = $query->where('id', '!=', $currentId);
+        if ($currentId) {
+            $query = $query->where('id', '!=', $currentId);
+        }
+
         return $query->count() > 0;
     }
 
     /**
-     * Updates entity restrictions from a request
+     * Updates entity restrictions from a request.
+     *
      * @param $request
      * @param Entity $entity
      */
@@ -451,7 +521,7 @@ class EntityRepo
                 foreach ($restrictions as $action => $value) {
                     $entity->permissions()->create([
                         'role_id' => $roleId,
-                        'action'  => strtolower($action)
+                        'action'  => strtolower($action),
                     ]);
                 }
             }
@@ -461,14 +531,14 @@ class EntityRepo
         $this->permissionService->buildJointPermissionsForEntity($entity);
     }
 
-
-
     /**
      * Create a new entity from request input.
      * Used for books and chapters.
-     * @param string $type
-     * @param array $input
+     *
+     * @param string    $type
+     * @param array     $input
      * @param bool|Book $book
+     *
      * @return Entity
      */
     public function createFromInput($type, $input = [], $book = false)
@@ -481,15 +551,18 @@ class EntityRepo
         $isChapter ? $book->chapters()->save($entity) : $entity->save();
         $this->permissionService->buildJointPermissionsForEntity($entity);
         $this->searchService->indexEntity($entity);
+
         return $entity;
     }
 
     /**
      * Update entity details from request input.
-     * Used for books and chapters
+     * Used for books and chapters.
+     *
      * @param string $type
      * @param Entity $entityModel
-     * @param array $input
+     * @param array  $input
+     *
      * @return Entity
      */
     public function updateFromInput($type, Entity $entityModel, $input = [])
@@ -502,15 +575,18 @@ class EntityRepo
         $entityModel->save();
         $this->permissionService->buildJointPermissionsForEntity($entityModel);
         $this->searchService->indexEntity($entityModel);
+
         return $entityModel;
     }
 
     /**
      * Change the book that an entity belongs to.
+     *
      * @param string $type
-     * @param integer $newBookId
+     * @param int    $newBookId
      * @param Entity $entity
-     * @param bool $rebuildPermissions
+     * @param bool   $rebuildPermissions
+     *
      * @return Entity
      */
     public function changeBook($type, $newBookId, Entity $entity, $rebuildPermissions = false)
@@ -542,6 +618,7 @@ class EntityRepo
 
     /**
      * Alias method to update the book jointPermissions in the PermissionService.
+     *
      * @param Book $book
      */
     public function buildJointPermissionsForBook(Book $book)
@@ -551,7 +628,9 @@ class EntityRepo
 
     /**
      * Format a name as a url slug.
+     *
      * @param $name
+     *
      * @return string
      */
     protected function nameToSlug($name)
@@ -559,15 +638,20 @@ class EntityRepo
         $slug = preg_replace('/[\+\/\\\?\@\}\{\.\,\=\[\]\#\&\!\*\'\;\:\$\%]/', '', mb_strtolower($name));
         $slug = preg_replace('/\s{2,}/', ' ', $slug);
         $slug = str_replace(' ', '-', $slug);
-        if ($slug === "") $slug = substr(md5(rand(1, 500)), 0, 5);
+        if ($slug === '') {
+            $slug = substr(md5(rand(1, 500)), 0, 5);
+        }
+
         return $slug;
     }
 
     /**
      * Publish a draft page to make it a normal page.
      * Sets the slug and updates the content.
-     * @param Page $draftPage
+     *
+     * @param Page  $draftPage
      * @param array $input
+     *
      * @return Page
      */
     public function publishPageDraft(Page $draftPage, array $input)
@@ -588,19 +672,24 @@ class EntityRepo
         $draftPage->save();
         $this->savePageRevision($draftPage, trans('entities.pages_initial_revision'));
         $this->searchService->indexEntity($draftPage);
+
         return $draftPage;
     }
 
     /**
      * Saves a page revision into the system.
-     * @param Page $page
+     *
+     * @param Page        $page
      * @param null|string $summary
+     *
      * @return PageRevision
      */
     public function savePageRevision(Page $page, $summary = null)
     {
         $revision = $this->pageRevision->newInstance($page->toArray());
-        if (setting('app-editor') !== 'markdown') $revision->markdown = '';
+        if (setting('app-editor') !== 'markdown') {
+            $revision->markdown = '';
+        }
         $revision->page_id = $page->id;
         $revision->slug = $page->slug;
         $revision->book_slug = $page->book->slug;
@@ -623,12 +712,16 @@ class EntityRepo
     /**
      * Formats a page's html to be tagged correctly
      * within the system.
+     *
      * @param string $htmlText
+     *
      * @return string
      */
     protected function formatHtml($htmlText)
     {
-        if ($htmlText == '') return $htmlText;
+        if ($htmlText == '') {
+            return $htmlText;
+        }
         libxml_use_internal_errors(true);
         $doc = new DOMDocument();
         $doc->loadHTML(mb_convert_encoding($htmlText, 'HTML-ENTITIES', 'UTF-8'));
@@ -642,7 +735,9 @@ class EntityRepo
 
         foreach ($childNodes as $index => $childNode) {
             /** @var \DOMElement $childNode */
-            if (get_class($childNode) !== 'DOMElement') continue;
+            if (get_class($childNode) !== 'DOMElement') {
+                continue;
+            }
 
             // Overwrite id if not a DocsPen custom id
             if ($childNode->hasAttribute('id')) {
@@ -650,17 +745,17 @@ class EntityRepo
                 if (strpos($id, 'bkmrk') === 0 && array_search($id, $idArray) === false) {
                     $idArray[] = $id;
                     continue;
-                };
+                }
             }
 
             // Create an unique id for the element
             // Uses the content as a basis to ensure output is the same every time
             // the same content is passed through.
-            $contentId = 'bkmrk-' . substr(strtolower(preg_replace('/\s+/', '-', trim($childNode->nodeValue))), 0, 20);
+            $contentId = 'bkmrk-'.substr(strtolower(preg_replace('/\s+/', '-', trim($childNode->nodeValue))), 0, 20);
             $newId = urlencode($contentId);
             $loopIndex = 0;
             while (in_array($newId, $idArray)) {
-                $newId = urlencode($contentId . '-' . $loopIndex);
+                $newId = urlencode($contentId.'-'.$loopIndex);
                 $loopIndex++;
             }
 
@@ -677,11 +772,12 @@ class EntityRepo
         return $html;
     }
 
-
     /**
      * Render the page for viewing, Parsing and performing features such as page transclusion.
+     *
      * @param Page $page
      * @param bool $ignorePermissions
+     *
      * @return mixed|string
      */
     public function renderPage(Page $page, $ignorePermissions = false)
@@ -689,13 +785,17 @@ class EntityRepo
         $content = $page->html;
         $matches = [];
         preg_match_all("/{{@\s?([0-9].*?)}}/", $content, $matches);
-        if (count($matches[0]) === 0) return $content;
+        if (count($matches[0]) === 0) {
+            return $content;
+        }
 
         $topLevelTags = ['table', 'ul', 'ol'];
         foreach ($matches[1] as $index => $includeId) {
             $splitInclude = explode('#', $includeId, 2);
             $pageId = intval($splitInclude[0]);
-            if (is_nan($pageId)) continue;
+            if (is_nan($pageId)) {
+                continue;
+            }
 
             $matchedPage = $this->getById('page', $pageId, false, $ignorePermissions);
             if ($matchedPage === null) {
@@ -732,19 +832,24 @@ class EntityRepo
 
     /**
      * Get the plain text version of a page's content.
+     *
      * @param Page $page
+     *
      * @return string
      */
     public function pageToPlainText(Page $page)
     {
         $html = $this->renderPage($page);
+
         return strip_tags($html);
     }
 
     /**
      * Get a new draft page instance.
-     * @param Book $book
+     *
+     * @param Book         $book
      * @param Chapter|bool $chapter
+     *
      * @return Page
      */
     public function getDraftPage(Book $book, $chapter = false)
@@ -755,73 +860,89 @@ class EntityRepo
         $page->updated_by = user()->id;
         $page->draft = true;
 
-        if ($chapter) $page->chapter_id = $chapter->id;
+        if ($chapter) {
+            $page->chapter_id = $chapter->id;
+        }
 
         $book->pages()->save($page);
         $page = $this->page->find($page->id);
         $this->permissionService->buildJointPermissionsForEntity($page);
+
         return $page;
     }
 
     /**
      * Search for image usage within page content.
+     *
      * @param $imageString
+     *
      * @return mixed
      */
     public function searchForImage($imageString)
     {
-        $pages = $this->entityQuery('page')->where('html', 'like', '%' . $imageString . '%')->get();
+        $pages = $this->entityQuery('page')->where('html', 'like', '%'.$imageString.'%')->get();
         foreach ($pages as $page) {
             $page->url = $page->getUrl();
             $page->html = '';
             $page->text = '';
         }
+
         return count($pages) > 0 ? $pages : false;
     }
 
     /**
-     * Parse the headers on the page to get a navigation menu
-     * @param String $pageContent
+     * Parse the headers on the page to get a navigation menu.
+     *
+     * @param string $pageContent
+     *
      * @return array
      */
     public function getPageNav($pageContent)
     {
-        if ($pageContent == '') return [];
+        if ($pageContent == '') {
+            return [];
+        }
         libxml_use_internal_errors(true);
         $doc = new DOMDocument();
         $doc->loadHTML(mb_convert_encoding($pageContent, 'HTML-ENTITIES', 'UTF-8'));
         $xPath = new DOMXPath($doc);
-        $headers = $xPath->query("//h1|//h2|//h3|//h4|//h5|//h6");
+        $headers = $xPath->query('//h1|//h2|//h3|//h4|//h5|//h6');
 
-        if (is_null($headers)) return [];
+        if (is_null($headers)) {
+            return [];
+        }
 
         $tree = collect([]);
         foreach ($headers as $header) {
             $text = $header->nodeValue;
             $tree->push([
                 'nodeName' => strtolower($header->nodeName),
-                'level' => intval(str_replace('h', '', $header->nodeName)),
-                'link' => '#' . $header->getAttribute('id'),
-                'text' => strlen($text) > 30 ? substr($text, 0, 27) . '...' : $text
+                'level'    => intval(str_replace('h', '', $header->nodeName)),
+                'link'     => '#'.$header->getAttribute('id'),
+                'text'     => strlen($text) > 30 ? substr($text, 0, 27).'...' : $text,
             ]);
         }
 
         // Normalise headers if only smaller headers have been used
         if (count($tree) > 0) {
             $minLevel = $tree->pluck('level')->min();
-            $tree = $tree->map(function($header) use ($minLevel) {
+            $tree = $tree->map(function ($header) use ($minLevel) {
                 $header['level'] -= ($minLevel - 2);
+
                 return $header;
             });
         }
+
         return $tree->toArray();
     }
 
     /**
      * Updates a page with any fillable data and saves it into the database.
-     * @param Page $page
-     * @param int $book_id
+     *
+     * @param Page  $page
+     * @param int   $book_id
      * @param array $input
+     *
      * @return Page
      */
     public function updatePage(Page $page, $book_id, $input)
@@ -845,7 +966,9 @@ class EntityRepo
         $page->fill($input);
         $page->html = $this->formatHtml($input['html']);
         $page->text = $this->pageToPlainText($page);
-        if (setting('app-editor') !== 'markdown') $page->markdown = '';
+        if (setting('app-editor') !== 'markdown') {
+            $page->markdown = '';
+        }
         $page->updated_by = $userId;
         $page->revision_count++;
         $page->save();
@@ -865,8 +988,10 @@ class EntityRepo
 
     /**
      * The base query for getting user update drafts.
+     *
      * @param Page $page
      * @param $userId
+     *
      * @return mixed
      */
     protected function userUpdatePageDraftsQuery(Page $page, $userId)
@@ -879,8 +1004,10 @@ class EntityRepo
 
     /**
      * Checks whether a user has a draft version of a particular page or not.
+     *
      * @param Page $page
      * @param $userId
+     *
      * @return bool
      */
     public function hasUserGotPageDraft(Page $page, $userId)
@@ -890,8 +1017,10 @@ class EntityRepo
 
     /**
      * Get the latest updated draft revision for a particular page and user.
+     *
      * @param Page $page
      * @param $userId
+     *
      * @return mixed
      */
     public function getUserPageDraft(Page $page, $userId)
@@ -901,14 +1030,19 @@ class EntityRepo
 
     /**
      * Get the notification message that informs the user that they are editing a draft page.
+     *
      * @param PageRevision $draft
+     *
      * @return string
      */
     public function getUserPageDraftMessage(PageRevision $draft)
     {
         $message = trans('entities.pages_editing_draft_notification', ['timeDiff' => $draft->updated_at->diffForHumans()]);
-        if ($draft->page->updated_at->timestamp <= $draft->updated_at->timestamp) return $message;
-        return $message . "\n" . trans('entities.pages_draft_edited_notification');
+        if ($draft->page->updated_at->timestamp <= $draft->updated_at->timestamp) {
+            return $message;
+        }
+
+        return $message."\n".trans('entities.pages_draft_edited_notification');
     }
 
     /**
@@ -916,20 +1050,25 @@ class EntityRepo
      * Checks for edits since last page updated.
      * Passing in a minuted range will check for edits
      * within the last x minutes.
+     *
      * @param Page $page
      * @param null $minRange
+     *
      * @return bool
      */
     public function isPageEditingActive(Page $page, $minRange = null)
     {
         $draftSearch = $this->activePageEditingQuery($page, $minRange);
+
         return $draftSearch->count() > 0;
     }
 
     /**
      * A query to check for active update drafts on a particular page.
+     *
      * @param Page $page
      * @param null $minRange
+     *
      * @return mixed
      */
     protected function activePageEditingQuery(Page $page, $minRange = null)
@@ -949,9 +1088,11 @@ class EntityRepo
 
     /**
      * Restores a revision's content back into a page.
+     *
      * @param Page $page
      * @param Book $book
-     * @param  int $revisionId
+     * @param int  $revisionId
+     *
      * @return Page
      */
     public function restorePageRevision(Page $page, Book $book, $revisionId)
@@ -965,14 +1106,16 @@ class EntityRepo
         $page->updated_by = user()->id;
         $page->save();
         $this->searchService->indexEntity($page);
+
         return $page;
     }
 
-
     /**
      * Save a page update draft.
-     * @param Page $page
+     *
+     * @param Page  $page
      * @param array $data
+     *
      * @return PageRevision|Page
      */
     public function updatePageDraft(Page $page, $data = [])
@@ -984,6 +1127,7 @@ class EntityRepo
                 $page->text = $this->pageToPlainText($page);
             }
             $page->save();
+
             return $page;
         }
 
@@ -1003,30 +1147,37 @@ class EntityRepo
         }
 
         $draft->fill($data);
-        if (setting('app-editor') !== 'markdown') $draft->markdown = '';
+        if (setting('app-editor') !== 'markdown') {
+            $draft->markdown = '';
+        }
 
         $draft->save();
+
         return $draft;
     }
 
     /**
      * Get a notification message concerning the editing activity on a particular page.
+     *
      * @param Page $page
      * @param null $minRange
+     *
      * @return string
      */
     public function getPageEditingActiveMessage(Page $page, $minRange = null)
     {
         $pageDraftEdits = $this->activePageEditingQuery($page, $minRange)->get();
 
-        $userMessage = $pageDraftEdits->count() > 1 ? trans('entities.pages_draft_edit_active.start_a', ['count' => $pageDraftEdits->count()]): trans('entities.pages_draft_edit_active.start_b', ['userName' => $pageDraftEdits->first()->createdBy->name]);
+        $userMessage = $pageDraftEdits->count() > 1 ? trans('entities.pages_draft_edit_active.start_a', ['count' => $pageDraftEdits->count()]) : trans('entities.pages_draft_edit_active.start_b', ['userName' => $pageDraftEdits->first()->createdBy->name]);
         $timeMessage = $minRange === null ? trans('entities.pages_draft_edit_active.time_a') : trans('entities.pages_draft_edit_active.time_b', ['minCount'=>$minRange]);
+
         return trans('entities.pages_draft_edit_active.message', ['start' => $userMessage, 'time' => $timeMessage]);
     }
 
     /**
      * Change the page's parent to the given entity.
-     * @param Page $page
+     *
+     * @param Page   $page
      * @param Entity $parent
      */
     public function changePageParent(Page $page, Entity $parent)
@@ -1043,6 +1194,7 @@ class EntityRepo
 
     /**
      * Destroy the provided book and all its child entities.
+     *
      * @param Book $book
      */
     public function destroyBook(Book $book)
@@ -1063,6 +1215,7 @@ class EntityRepo
 
     /**
      * Destroy a chapter and its relations.
+     *
      * @param Chapter $chapter
      */
     public function destroyChapter(Chapter $chapter)
@@ -1083,7 +1236,9 @@ class EntityRepo
 
     /**
      * Destroy a given page along with its dependencies.
+     *
      * @param Page $page
+     *
      * @throws NotifyException
      */
     public function destroyPage(Page $page)
@@ -1110,5 +1265,4 @@ class EntityRepo
 
         $page->delete();
     }
-
 }
