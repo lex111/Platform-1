@@ -2,10 +2,10 @@
 
 [![Open Source](https://cdn.jsdelivr.net/npm/docspen@18.0.2/imgs/open-source.svg)](https://github.com/DocsPen/Platform)
 [![Build Status](https://travis-ci.org/DocsPen/Platform.svg?branch=master)](https://travis-ci.org/DocsPen/Platform)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/DocsPen/Platform/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DocsPen/Platform/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5aeeae9df8b7eb42f21f/maintainability)](https://codeclimate.com/github/DocsPen/Platform/maintainability)
 [![StyleCI](https://styleci.io/repos/115519619/shield?branch=master)](https://styleci.io/repos/115519619)
 [![David](https://img.shields.io/david/DocsPen/Platform.svg)](https://david-dm.org/DocsPen/Platform?view=list)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/DocsPen/Platform/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DocsPen/Platform/)
 
 ## Introduction
 
