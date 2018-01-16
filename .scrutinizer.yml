@@ -8,6 +8,7 @@ filter:
         - 'public/*'
         - 'resources/*'
         - 'vendor/*'
+        - 'tests/*'
         - 'views/*'
 tools:
     php_analyzer: true
