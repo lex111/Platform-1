@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d8698bd67cd5cd46ab8fd7757c3dd671",
-    "content-hash": "f40e0c86ddfefd22ab3ced241374217d",
+    "hash": "63826fb245bc5472d30167e1340967af",
+    "content-hash": "7c94e59c73080e345ad10d7f62fc00c9",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2465,62 +2465,6 @@
             ],
             "description": "Slack OAuth2 Provider for Laravel Socialite",
             "time": "2017-04-10 05:10:48"
-        },
-        {
-            "name": "spatie/laravel-varnish",
-            "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-varnish.git",
-                "reference": "8ec066b852e3bb463a17edc8eb83fed097f77384"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-varnish/zipball/8ec066b852e3bb463a17edc8eb83fed097f77384",
-                "reference": "8ec066b852e3bb463a17edc8eb83fed097f77384",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/console": "~5.5.0",
-                "illuminate/http": "~5.5.0",
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.5.0",
-                "phpunit/phpunit": "^6.3"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\Varnish\\VarnishServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Varnish\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Making Varnish and Laravel play nice together",
-            "homepage": "https://github.com/spatie/laravel-varnish",
-            "keywords": [
-                "laravel-varnish",
-                "spatie"
-            ],
-            "time": "2017-09-09 09:37:04"
         },
         {
             "name": "swiftmailer/swiftmailer",
