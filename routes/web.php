@@ -7,7 +7,7 @@ Route::group(['middleware' => ['auth', 'cacheable']], function () {
     Route::get('/uploads/images/{path}', 'ImageController@showImage')
         ->where('path', '.*$');
 
-    Route::group(['prefix' => 'pages'], function () {
+    Route::group(['prefix' => ['pages', 'cacheable']], function () {
         Route::get('/recently-created', 'PageController@showRecentlyCreated');
         Route::get('/recently-updated', 'PageController@showRecentlyUpdated');
     });
