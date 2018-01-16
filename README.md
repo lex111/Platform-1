@@ -21,6 +21,10 @@ Pull requests are very welcome. If the scope of your pull request is very large 
 
 Come and join with us in [Slack](http://bit.ly/dpslack).
 
+## Workflow
+
+See our Workflow in [Trello](http://bit.ly/dptrello).
+
 ## The Stack
 
 These are the great open-source projects used to help build DocsPen:
