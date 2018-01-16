@@ -3,7 +3,7 @@ build:
         node: '8.9.1'
     tests:
         override:
-            -
+            - php artisan key:generate
                 command: 'vendor/bin/phpunit --coverage-clover=some-file'
                 coverage:
                     file: 'some-file'
