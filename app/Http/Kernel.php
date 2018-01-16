@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'guest'      => \DocsPen\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'perm'       => \DocsPen\Http\Middleware\PermissionMiddleware::class,
+        'cacheable'  => \Spatie\Varnish\Middleware\CacheWithVarnish::class,
     ];
 }
