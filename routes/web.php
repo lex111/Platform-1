@@ -7,12 +7,12 @@ Route::group(['middleware' => ['auth', 'cacheable']], function () {
     Route::get('/uploads/images/{path}', 'ImageController@showImage')
         ->where('path', '.*$');
 
-    Route::group(['prefix' => 'pages', 'cacheable'], function () {
+    Route::group(['prefix' => ['pages', 'cacheable']], function () {
         Route::get('/recently-created', 'PageController@showRecentlyCreated');
         Route::get('/recently-updated', 'PageController@showRecentlyUpdated');
     });
 
-    Route::group(['prefix' => 'books', 'cacheable'], function () {
+    Route::group(['prefix' => ['books', 'cacheable']], function () {
 
         // Books
         Route::get('/', 'BookController@index');
@@ -116,7 +116,7 @@ Route::group(['middleware' => ['auth', 'cacheable']], function () {
     Route::delete('/ajax/page/{id}', 'PageController@ajaxDestroy');
 
     // Tag routes (AJAX)
-    Route::group(['prefix' => 'ajax/tags', 'cacheable'], function () {
+    Route::group(['prefix' => ['ajax/tags', 'cacheable']], function () {
         Route::get('/get/{entityType}/{entityId}', 'TagController@getForEntity');
         Route::get('/suggest/names', 'TagController@getNameSuggestions');
         Route::get('/suggest/values', 'TagController@getValueSuggestions');
@@ -143,7 +143,7 @@ Route::group(['middleware' => ['auth', 'cacheable']], function () {
     Route::get('/custom-head-content', 'HomeController@customHeadContent');
 
     // Settings
-    Route::group(['prefix' => 'settings', 'cacheable'], function () {
+    Route::group(['prefix' => ['settings', 'cacheable']], function () {
         Route::get('/', 'SettingController@index')->name('settings');
         Route::post('/', 'SettingController@update');
 
