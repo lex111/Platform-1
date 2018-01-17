@@ -19,7 +19,7 @@ Pull requests are very welcome. If the scope of your pull request is very large 
 
 ## Join with us
 
-Come and join with us in [Slack](http://bit.ly/dpslack).
+Come and join with us in [Slack](https://docspen-slack.herokuapp.com).
 
 ## Workflow
 
