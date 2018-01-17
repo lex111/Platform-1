@@ -1,5 +1,5 @@
 <div class="page {{$page->draft ? 'draft' : ''}} entity-list-item" data-entity-type="page" data-entity-id="{{$page->id}}">
-    <h5>
+    <h4>
         @if (isset($showPath) && $showPath)
             <a href="{{ $page->book->getUrl() }}" class="text-book">
                 <i class="zmdi zmdi-book"></i>{{ $page->book->getShortName() }}
@@ -13,7 +13,7 @@
             @endif
         @endif
         <a href="{{ $page->getUrl() }}" class="text-page entity-list-item-link"><i class="zmdi zmdi-file-text"></i><span class="entity-list-item-name">{{ $page->name }}</span></a>
-    </h5>
+    </h4>
 
     <div class="entity-item-snippet" style="font-size:14px;line-height:20px">
         @if(isset($page->searchSnippet))
