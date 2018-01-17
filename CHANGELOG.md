@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 # Next release
 
-# [1.0.0] - 2018-01-24
+# 1.0.0 - 2018-01-24
 
 ### Added
 - Adds Image Permission
@@ -30,7 +30,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed 404 Page Token Error, Showing Login Button
 - Fixed Reusing Page Content
 
-# 1.0.1
+# 1.0.1 - 2018-01-24
 
 ### Added
 - Adds Image Permission
