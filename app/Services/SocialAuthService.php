@@ -15,7 +15,7 @@ class SocialAuthService
     protected $socialite;
     protected $socialAccount;
 
-    protected $validSocialDrivers = ['google', 'github', 'facebook', 'slack', 'twitter', 'azure'];
+    protected $validSocialDrivers = ['google', 'github', 'facebook', 'twitter'];
 
     /**
      * SocialAuthService constructor.
