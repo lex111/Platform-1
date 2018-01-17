@@ -16,7 +16,7 @@
         "predis/predis": "^1.1",
         "gathercontent/htmldiff": "^0.2.1",
         "barryvdh/laravel-snappy": "^0.4.0",
-        "bugsnag/bugsnag-laravel": "^2.0",
+        "bugsnag/bugsnag-laravel": "^2.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
