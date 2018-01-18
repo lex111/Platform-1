@@ -152,32 +152,3 @@
 @include('components.entity-selector-popup', ['entityTypes' => 'page'])
 
 @stop
-
-@section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js"></script>
-    <script type="text/javascript">
-        $('#setting-app-color').colorPicker({
-            opacity: false,
-            renderCallback: function($elm, toggled) {
-                var hexVal = '#' + this.color.colors.HEX;
-                var rgb = this.color.colors.RND.rgb;
-                var rgbLightVal = 'rgba('+ [rgb.r, rgb.g, rgb.b, '0.15'].join(',') +')';
-
-                // Set textbox color to hex color code.
-                var isEmpty = $.trim($elm.val()).length === 0;
-                if (!isEmpty) $elm.val(hexVal);
-                $('#setting-app-color-light').val(isEmpty ? '' : rgbLightVal);
-
-                var customStyles = document.getElementById('custom-styles');
-                var oldColor = customStyles.getAttribute('data-color');
-                var oldColorLight = customStyles.getAttribute('data-color-light');
-
-                customStyles.innerHTML = customStyles.innerHTML.split(oldColor).join(hexVal);
-                customStyles.innerHTML = customStyles.innerHTML.split(oldColorLight).join(rgbLightVal);
-
-                customStyles.setAttribute('data-color', hexVal);
-                customStyles.setAttribute('data-color-light', rgbLightVal);
-            }
-        });
-    </script>
-@stop
