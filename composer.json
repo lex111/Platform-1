@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.1.13",
+        "php": ">=7.1.12",
         "laravel/framework": "5.5.*",
         "fideloper/proxy": "~3.3",
         "ext-tidy": "*",
@@ -16,6 +16,9 @@
         "predis/predis": "^1.1",
         "gathercontent/htmldiff": "^0.2.1",
         "barryvdh/laravel-snappy": "^0.4.0",
+        "socialiteproviders/slack": "^3.0",
+        "socialiteproviders/microsoft-azure": "^3.0",
+        "socialiteproviders/okta": "^1.0",
         "bugsnag/bugsnag-laravel": "^2.0"
     },
     "require-dev": {
@@ -74,7 +77,7 @@
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "platform": {
-            "php": "7.1.13"
+            "php": "7.1.12"
         }
     }
 }
