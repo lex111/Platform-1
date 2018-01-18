@@ -206,7 +206,3 @@ Route::get('/ping', 'OthersController@ping');
 
 // Sitemaps
 Route::get('/sitemap.xml', 'SitemapsController@index');
-// Route::get('/books.xml', 'SitemapsController@books');
-// Route::get('/pages.xml', 'SitemapsController@pages');
-// Route::get('/chapters.xml', 'SitemapsController@chapters');
-// Route::get('/users.xml', 'SitemapsController@users');
