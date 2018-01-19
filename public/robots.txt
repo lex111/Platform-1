@@ -15,7 +15,7 @@ User-agent: duckduckbot
 
 User-agent: EtaoSpider
 
-User-agent: 
+User-agent: HTTrack
 
 User-agent: 
 
