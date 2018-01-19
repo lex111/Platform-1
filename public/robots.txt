@@ -1,7 +1,12 @@
-User-agent: *
-Disallow: /settings/
+# If you would like to crawl DocsPen contact us at support@docspen.com.
 
 User-agent: Googlebot
+
+User-agent: duckduckbot
+
+User-agent: Bingbot
+
+User-agent: ia_archiver
 
 User-agent: CCBot
 
@@ -11,13 +16,9 @@ User-agent: Daumoa
 
 User-agent: dotbot
 
-User-agent: duckduckbot
-
 User-agent: EtaoSpider
 
 User-agent: HTTrack
-
-User-agent: ia_archiver
 
 User-agent: IntuitGSACrawler
 
@@ -25,35 +26,28 @@ User-agent: Mail.RU_Bot
 
 User-agent: msnbot
 
-User-agent: Bingbot
-
 User-agent: naverbot
 
 User-agent: 
 
-User-agent: 
+User-agent: rogerbot
 
-User-agent: 
+User-agent: SandDollar
 
-User-agent: 
+User-agent: seznambot
 
-User-agent: 
+User-agent: Slurp
 
-User-agent: 
+User-agent: Swiftbot
 
-User-agent: 
+User-agent: Telefonica
 
-User-agent: 
+User-agent: teoma
 
-User-agent: 
+User-agent: Twitterbot
 
-User-agent: 
+User-agent: Yandex
 
-User-agent: 
-
-User-agent: 
-
-User-agent: 
-
-User-agent: 
-
+User-agent: *
+Allow: /humans.txt
+Disallow: /
