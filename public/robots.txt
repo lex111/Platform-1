@@ -21,7 +21,7 @@ User-agent: ia_archiver
 
 User-agent: IntuitGSACrawler
 
-User-agent: 
+User-agent: Mail.RU_Bot
 
 User-agent: 
 
