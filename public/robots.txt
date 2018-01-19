@@ -23,7 +23,7 @@ User-agent: IntuitGSACrawler
 
 User-agent: Mail.RU_Bot
 
-User-agent: 
+User-agent: msnbot
 
 User-agent: 
 
