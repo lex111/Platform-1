@@ -41,7 +41,7 @@ User-agent: Slurp
 
 User-agent: Swiftbot
 
-User-agent: 
+User-agent: Telefonica
 
 User-agent: 
 
