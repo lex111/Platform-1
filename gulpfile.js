@@ -2,13 +2,11 @@
 
 const argv = require('yargs').argv;
 const gulp = require('gulp'),
-    plumber = require('gulp-plumber');
-
+      plumber = require('gulp-plumber');
 const autoprefixer = require('gulp-autoprefixer');
 const cleancss = require('gulp-clean-css');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
-
 const browserify = require("browserify");
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
@@ -37,7 +35,6 @@ gulp.task('styles', () => {
     chain = chain.pipe(sourcemaps.write());
     return chain.pipe(gulp.dest('public/css/')).pipe(refresh());
 });
-
 
 function scriptTask(watch = false) {
 
