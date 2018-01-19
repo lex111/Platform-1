@@ -19,7 +19,7 @@ User-agent: HTTrack
 
 User-agent: ia_archiver
 
-User-agent: 
+User-agent: IntuitGSACrawler
 
 User-agent: 
 
