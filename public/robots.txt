@@ -29,7 +29,7 @@ User-agent: Bingbot
 
 User-agent: naverbot
 
-User-agent: red-app-gsa-p-one
+User-agent: 
 
 User-agent: 
 
