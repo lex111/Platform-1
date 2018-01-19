@@ -11,7 +11,7 @@ cache:
 before_script:
   - npm install -g sloc@latest
   - npm install -g gulp gulp-cli
-  - cp .env.travis .env
+  - cp .env.example .env
   - mysql -u root -e 'create database `docspen-test`;'
   - mysql -u root -e "CREATE USER 'docspen-test'@'localhost' IDENTIFIED BY 'docspen-test';"
   - mysql -u root -e "GRANT ALL ON \`docspen-test\`.* TO 'docspen-test'@'localhost';"
