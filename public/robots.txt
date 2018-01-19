@@ -37,7 +37,7 @@ User-agent: SandDollar
 
 User-agent: seznambot
 
-User-agent: 
+User-agent: Slurp
 
 User-agent: 
 
