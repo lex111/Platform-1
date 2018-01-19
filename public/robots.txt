@@ -47,7 +47,7 @@ User-agent: teoma
 
 User-agent: Twitterbot
 
-User-agent: 
+User-agent: Yandex
 
 User-agent: 
 
