@@ -27,7 +27,7 @@ User-agent: msnbot
 
 User-agent: Bingbot
 
-User-agent: 
+User-agent: naverbot
 
 User-agent: 
 
