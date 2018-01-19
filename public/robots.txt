@@ -35,7 +35,7 @@ User-agent: rogerbot
 
 User-agent: SandDollar
 
-User-agent: 
+User-agent: seznambot
 
 User-agent: 
 
