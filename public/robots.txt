@@ -25,7 +25,7 @@ User-agent: Mail.RU_Bot
 
 User-agent: msnbot
 
-User-agent: 
+User-agent: Bingbot
 
 User-agent: 
 
