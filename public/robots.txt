@@ -11,7 +11,7 @@ User-agent: Daumoa
 
 User-agent: dotbot
 
-User-agent: 
+User-agent: duckduckbot
 
 User-agent: 
 
