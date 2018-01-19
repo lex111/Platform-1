@@ -7,7 +7,7 @@ User-agent: CCBot
 
 User-agent: coccoc
 
-User-agent: 
+User-agent: Daumoa
 
 User-agent: 
 
