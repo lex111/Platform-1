@@ -33,7 +33,7 @@ User-agent: red-app-gsa-p-one
 
 User-agent: rogerbot
 
-User-agent: 
+User-agent: SandDollar
 
 User-agent: 
 
