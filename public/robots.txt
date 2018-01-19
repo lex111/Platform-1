@@ -13,7 +13,7 @@ User-agent: dotbot
 
 User-agent: duckduckbot
 
-User-agent: 
+User-agent: EtaoSpider
 
 User-agent: 
 
