@@ -1,7 +1,7 @@
 User-agent: *
 Disallow: /settings/
 
-User-agent: 
+User-agent: Googlebot
 
 User-agent: CCBot
 
