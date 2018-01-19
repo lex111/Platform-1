@@ -9,7 +9,7 @@ User-agent: coccoc
 
 User-agent: Daumoa
 
-User-agent: 
+User-agent: dotbot
 
 User-agent: 
 
