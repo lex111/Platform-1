@@ -39,7 +39,7 @@ User-agent: seznambot
 
 User-agent: Slurp
 
-User-agent: 
+User-agent: Swiftbot
 
 User-agent: 
 
