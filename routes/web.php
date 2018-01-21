@@ -204,6 +204,7 @@ Route::get('/contact', 'OthersController@contact');
 Route::get('/message-sent', 'OthersController@success');
 Route::get('/ping', 'OthersController@ping');
 Route::get('/robots.txt', 'OthersController@robots');
+Route::get('/loaderio-e44f220977ee69b24892b4be8884c377', 'OthersController@loaderio');
 
 // Sitemaps and XMLs
 Route::get('/opensearch.xml', 'SitemapsController@opensearch');
