@@ -1,6 +1,6 @@
 # DocsPen
 
-[![Open Source](https://cdn.jsdelivr.net/npm/docspen@18.0.2/imgs/open-source.svg)](https://github.com/DocsPen/Platform)
+[![Open Source](https://unpkg.com/docspen@18.0.2/imgs/open-source.svg)](https://github.com/DocsPen/Platform)
 [![Build Status](https://travis-ci.org/DocsPen/Platform.svg?branch=master)](https://travis-ci.org/DocsPen/Platform)
 [![StyleCI](https://styleci.io/repos/115519619/shield?branch=master)](https://styleci.io/repos/115519619)
 [![Scrutinizer Score](https://scrutinizer-ci.com/g/DocsPen/Platform/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/DocsPen/Platform/)
