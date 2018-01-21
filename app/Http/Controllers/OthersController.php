@@ -56,7 +56,7 @@ class OthersController extends Controller
     {
         return 'pong';
     }
-    
+
     public function robots()
     {
         return response()->view('others.robots')
