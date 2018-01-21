@@ -511,7 +511,7 @@
         origin: "https://" + a.a.hostname
     };
     o.a.router.get("/npm/(.*)", o.a.cacheFirst, {
-        origin: "https://cdn.jsdelivr.net",
+        origin: "https://unpkg.com",
         cache: {
             name: u.static,
             maxEntries: 50
@@ -553,7 +553,7 @@
             maxEntries: 50
         }
     }), o.a.router.get("/npm/(.*)", o.a.fastest, {
-        origin: "https://cdn.jsdelivr.net",
+        origin: "https://unpkg.com",
         cache: {
             name: u.fonts,
             maxEntries: 5
