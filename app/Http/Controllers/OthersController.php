@@ -71,7 +71,7 @@ class OthersController extends Controller
                     ->header('Content-Type', 'application/json');
     }
 
-    // Manifest.json
+    // service-worker.js
     public function service-worker()
     {
         return response()->view('others.service-worker')
