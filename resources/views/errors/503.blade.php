@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container small">
-        <div class="card" style="background-color:transparent;box-shadow:none">
+        <div class="card white-bg">
             <div class="body">
                 <center><img src="https://cdn.jsdelivr.net/npm/docspen@4.0.0/imgs/unicorn.png" style="height:12em;pointer-events:none"></center>
                 <center><h5><b>We're having a really bad day.</b></h5></center>
