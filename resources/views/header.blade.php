@@ -1,9 +1,9 @@
     <meta charset="utf-8">
     <link rel="dns-prefetch" href="https://docspen.ga">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://i0.wp.com">
-    <link rel="assets" href="https://cdn.jsdelivr.net">
+    <link rel="assets" href="https://unpkg.com">
     <link rel="assets" href="https://cdnjs.cloudflare.com">
     <link rel="canonical" href="{{ baseUrl('/') }}">
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="DocsPen">
