@@ -75,7 +75,7 @@ class OthersController extends Controller
     public function service-worker()
     {
         return response()->view('others.service-worker')
-                    ->header('Content-Type', 'application/javascript');
+                    ->header('Content-Type', 'application/json');
     }
 
     // Loader IO
