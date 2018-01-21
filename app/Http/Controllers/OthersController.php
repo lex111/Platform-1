@@ -71,6 +71,13 @@ class OthersController extends Controller
                     ->header('Content-Type', 'application/json');
     }
 
+    // Manifest.json
+    public function service-worker()
+    {
+        return response()->view('others.service-worker')
+                    ->header('Content-Type', 'application/javascript');
+    }
+
     // Loader IO
     public function loaderio()
     {
