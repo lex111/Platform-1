@@ -59,6 +59,7 @@ class OthersController extends Controller
     
     public function robots()
     {
-        return view('others.robots');
+        return response()->view('others.robots')
+                    ->header('Content-Type', 'text/xml');
     }
 }
