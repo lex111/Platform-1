@@ -19,3 +19,13 @@
     <link rel="manifest" href="/manifest.json">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="DocsPen">
+
+    <meta property="fb:app_id" content="">
+    <meta property="og:url" content="https://docspen.ga">
+    <meta property="og:site_name" content="DocsPen">
+    <meta property="og:title" content="Online Documentation Platform">
+    <meta property="og:description" content="DocsPen - Online Documentation Platform. Read more, know more.">
+    <meta property="og:image" content="https://cdn.jsdelivr.net/npm/docspen@17.0.0/imgs/docspen-og.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="500">
+    <meta property="og:image:height" content="500">
