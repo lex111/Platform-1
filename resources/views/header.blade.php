@@ -1,3 +1,4 @@
+    <meta charset="utf-8">
     <link rel="dns-prefetch" href="https://docspen.ga">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -7,7 +8,6 @@
     <link rel="canonical" href="{{ baseUrl('/') }}">
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="DocsPen">
     
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta name="token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ baseUrl('/') }}">
