@@ -64,6 +64,13 @@ class OthersController extends Controller
                     ->header('Content-Type', 'text/plain');
     }
 
+    // Manifest.json
+    public function manifest()
+    {
+        return response()->view('others.manifest')
+                    ->header('Content-Type', 'application/json');
+    }
+
     // Loader IO
     public function loaderio()
     {
