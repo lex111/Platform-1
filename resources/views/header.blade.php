@@ -2,6 +2,8 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://i0.wp.com">
+    <link rel="assets" href="https://cdn.jsdelivr.net">
+    <link rel="assets" href="https://cdnjs.cloudflare.com">
     <link rel="canonical" href="{{ baseUrl('/') }}">
     <meta name="viewport" content="width=device-width">
     <meta name="token" content="{{ csrf_token() }}">
