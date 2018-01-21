@@ -203,6 +203,7 @@ Route::get('/status', 'OthersController@status');
 Route::get('/contact', 'OthersController@contact');
 Route::get('/message-sent', 'OthersController@success');
 Route::get('/ping', 'OthersController@ping');
+Route::get('/robot.txt', 'OthersController@robots');
 
 // Sitemaps and XMLs
 Route::get('/opensearch.xml', 'SitemapsController@opensearch');
