@@ -71,13 +71,6 @@ class OthersController extends Controller
                     ->header('Content-Type', 'application/json');
     }
 
-    // service-worker.js
-    public function sw()
-    {
-        return response()->view('others.sw')
-                    ->header('Content-Type', 'application/json');
-    }
-
     // Loader IO
     public function loaderio()
     {
