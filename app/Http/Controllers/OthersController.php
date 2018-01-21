@@ -72,9 +72,9 @@ class OthersController extends Controller
     }
 
     // service-worker.js
-    public function service-worker()
+    public function sw()
     {
-        return response()->view('others.service-worker')
+        return response()->view('others.sw')
                     ->header('Content-Type', 'application/json');
     }
 
