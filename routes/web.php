@@ -204,5 +204,6 @@ Route::get('/contact', 'OthersController@contact');
 Route::get('/message-sent', 'OthersController@success');
 Route::get('/ping', 'OthersController@ping');
 
-// Sitemaps
+// Sitemaps and XMLs
+Route::get('/opensearch.xml', 'SitemapsController@opensearch');
 Route::get('/sitemap.xml', 'SitemapsController@index');

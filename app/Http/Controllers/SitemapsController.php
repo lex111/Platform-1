@@ -8,7 +8,13 @@ class SitemapsController extends Controller
 {
     public function index()
     {
-        return response()->view('sitemaps.index')
+        return response()->view('xml.index')
+                    ->header('Content-Type', 'text/xml');
+    }
+
+    public function opensearch()
+    {
+        return response()->view('xml.opensearch')
                     ->header('Content-Type', 'text/xml');
     }
 }
