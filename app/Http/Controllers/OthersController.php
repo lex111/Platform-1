@@ -60,6 +60,6 @@ class OthersController extends Controller
     public function robots()
     {
         return response()->view('others.robots')
-                    ->header('Content-Type', 'text/xml');
+                    ->header('Content-Type', 'text/plain');
     }
 }
