@@ -6,7 +6,7 @@
 
     <p>&nbsp;</p>
 
-    <div class="card" style="background-color:transparent;box-shadow:none">
+    <div class="card white-bg">
         <div class="body">
             <center>
                 <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/2.1.5/2/svg/2714.svg" style="width:100%;height:13em;pointer-events:none">
