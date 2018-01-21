@@ -29,7 +29,7 @@
     <meta property="og:site_name" content="DocsPen">
     <meta property="og:title" content="Online Documentation Platform">
     <meta property="og:description" content="DocsPen - Online Documentation Platform. Read more, know more.">
-    <meta property="og:image" content="https://cdn.jsdelivr.net/npm/docspen@17.0.0/imgs/docspen-og.png">
+    <meta property="og:image" content="https://unpkg.com/docspen@17.0.0/imgs/docspen-og.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="500">
     <meta property="og:image:height" content="500">
