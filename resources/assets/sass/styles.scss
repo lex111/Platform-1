@@ -125,7 +125,7 @@ $btt-size: 40px;
   right: $-l;
   padding: $-xs $-s;
   cursor: pointer;
-  color: #FFF;
+  color: $white;
   width: $btt-size;
   height: $btt-size;
   border-radius: $btt-size;
@@ -211,7 +211,7 @@ $btt-size: 40px;
   .entity-list > div {
     padding-left: $-m;
     padding-right: $-m;
-    background-color: #FFF;
+    background-color: $white;
     transition: all ease-in-out 120ms;
     cursor: pointer;
   }
