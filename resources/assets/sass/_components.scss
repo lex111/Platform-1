@@ -82,7 +82,7 @@
 }
 
 .popup-body {
-  background-color: #FFF;
+  background-color: $white;
   max-height: 90%;
   width: 1200px;
   height: auto;
@@ -120,7 +120,7 @@
   height: 40px;
   flex: none !important;
   .popup-title {
-    color: #FFF;
+    color: $white;
     padding: 8px $-m;
   }
 }
