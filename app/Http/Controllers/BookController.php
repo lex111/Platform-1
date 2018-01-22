@@ -380,4 +380,21 @@ class BookController extends Controller
             'Content-Disposition' => 'attachment; filename="'.$bookSlug.'.txt',
         ]);
     }
+
+    /**
+     * Export a book as a plain text file.
+     *
+     * @param $bookSlug
+     *
+     * @return mixed
+     */
+    public function rawPlainText($bookSlug)
+    {
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
+        $htmlContent = $this->exportService->bookToPlainText($book);
+
+        return response()->make($htmlContent, 200, [
+            'Content-Type'        => 'text/plain',
+        ]);
+    }
 }

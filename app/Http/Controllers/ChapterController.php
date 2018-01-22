@@ -336,4 +336,22 @@ class ChapterController extends Controller
             'Content-Disposition' => 'attachment; filename="'.$chapterSlug.'.txt',
         ]);
     }
+
+    /**
+     * Export a chapter to a simple plaintext .txt file.
+     *
+     * @param string $bookSlug
+     * @param string $chapterSlug
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function rawPlainText($bookSlug, $chapterSlug)
+    {
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $containedHtml = $this->exportService->chapterToPlainText($chapter);
+
+        return response()->make($containedHtml, 200, [
+            'Content-Type'        => 'text/plain',
+        ]);
+    }
 }

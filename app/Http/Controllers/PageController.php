@@ -567,6 +567,24 @@ class PageController extends Controller
     }
 
     /**
+     * Export a page to a simple plaintext .txt file.
+     *
+     * @param string $bookSlug
+     * @param string $pageSlug
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function rawPlainText($bookSlug, $pageSlug)
+    {
+        $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
+        $containedHtml = $this->exportService->pageToPlainText($page);
+
+        return response()->make($containedHtml, 200, [
+            'Content-Type'        => 'text/plain',
+        ]);
+    }
+
+    /**
      * Show a listing of recently created pages.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
