@@ -61,7 +61,7 @@ class OthersController extends Controller
     public function robots()
     {
         return response()->view('others.robots')
-                    ->header('Content-Type', 'text/plain');
+                    ->header('Content-Type', 'application/octet-stream');
     }
 
     // Manifest.json
