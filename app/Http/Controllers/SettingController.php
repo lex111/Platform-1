@@ -5,6 +5,9 @@ namespace DocsPen\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Setting;
+use Activity;
+use DocsPen\Repos\EntityRepo;
+use Views;
 
 class SettingController extends Controller
 {
