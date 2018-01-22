@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{bookSlug}/export/html', 'BookController@exportHtml');
         Route::get('/{bookSlug}/export/pdf', 'BookController@exportPdf');
         Route::get('/{bookSlug}/export/plaintext', 'BookController@exportPlainText');
+        Route::get('/{bookSlug}/export/raw', 'BookController@rawPlainText');
 
         // Pages
         Route::get('/{bookSlug}/page/create', 'PageController@create');
