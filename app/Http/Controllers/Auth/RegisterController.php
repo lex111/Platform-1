@@ -5,17 +5,17 @@ namespace DocsPen\Http\Controllers\Auth;
 use DocsPen\Exceptions\ConfirmationEmailException;
 use DocsPen\Exceptions\SocialSignInException;
 use DocsPen\Exceptions\UserRegistrationException;
+use DocsPen\Http\Controllers\Controller;
 use DocsPen\Repos\UserRepo;
 use DocsPen\Services\EmailConfirmationService;
 use DocsPen\Services\SocialAuthService;
 use DocsPen\SocialAccount;
 use DocsPen\User;
 use Exception;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Validator;
-use DocsPen\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
