@@ -12,7 +12,7 @@ class ClearActivity extends Command
      *
      * @var string
      */
-    protected $signature = 'docspen:clear-activity';
+    protected $signature = 'docspen:activity';
 
     /**
      * The console command description.
