@@ -104,7 +104,7 @@ hr {
   background: #EAEAEA;
   margin-bottom: $-l;
   &.faded {
-    background-image: linear-gradient(to right, #FFF, #e3e0e0 20%, #e3e0e0 80%, #FFF);
+    background-image: linear-gradient(to right, $white, #e3e0e0 20%, #e3e0e0 80%, $white);
   }
   &.margin-top, &.even {
     margin-top: $-l;
