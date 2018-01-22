@@ -55,8 +55,6 @@ class SettingController extends Controller
 
     public function analytics()
     {
-        $this->checkPermission('settings-manage');
-
         return view('settings/analytics');
     }
 }
