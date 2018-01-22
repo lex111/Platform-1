@@ -78,7 +78,7 @@ class PageController extends Controller
     public function createAsGuest(Request $request, $bookSlug, $chapterSlug = null)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:30',
         ]);
 
         $book = $this->entityRepo->getBySlug('book', $bookSlug);
@@ -131,7 +131,7 @@ class PageController extends Controller
     public function store(Request $request, $bookSlug, $pageId)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:30',
         ]);
 
         $input = $request->all();
@@ -275,7 +275,7 @@ class PageController extends Controller
     public function update(Request $request, $bookSlug, $pageSlug)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:30',
         ]);
         $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         $this->checkOwnablePermission('page-update', $page);
