@@ -168,21 +168,21 @@ class EntityRepo
      *
      * @param string      $type
      * @param string      $slug
-     * @param string|bool $docSlug
+     * @param string|bool $bookSlug
      *
      * @throws NotFoundException
      *
      * @return Entity
      */
-    public function getBySlug($type, $slug, $docSlug = false)
+    public function getBySlug($type, $slug, $bookSlug = false)
     {
         $q = $this->entityQuery($type)->where('slug', '=', $slug);
 
         if (strtolower($type) === 'chapter' || strtolower($type) === 'page') {
-            $q = $q->where('book_id', '=', function ($query) use ($docSlug) {
+            $q = $q->where('book_id', '=', function ($query) use ($bookSlug) {
                 $query->select('id')
                     ->from($this->book->getTable())
-                    ->where('slug', '=', $docSlug)->limit(1);
+                    ->where('slug', '=', $bookSlug)->limit(1);
             });
         }
         $entity = $q->first();
@@ -198,18 +198,18 @@ class EntityRepo
      * current book that has a slug equal to the one given.
      *
      * @param string $pageSlug
-     * @param string $docSlug
+     * @param string $bookSlug
      *
      * @return null|Page
      */
-    public function getPageByOldSlug($pageSlug, $docSlug)
+    public function getPageByOldSlug($pageSlug, $bookSlug)
     {
         $revision = $this->pageRevision->where('slug', '=', $pageSlug)
             ->whereHas('page', function ($query) {
                 $this->permissionService->enforceEntityRestrictions('page', $query);
             })
             ->where('type', '=', 'version')
-            ->where('book_slug', '=', $docSlug)
+            ->where('book_slug', '=', $bookSlug)
             ->orderBy('created_at', 'desc')
             ->with('page')->first();
 
@@ -534,7 +534,7 @@ class EntityRepo
 
     /**
      * Create a new entity from request input.
-     * Used for docs and chapters.
+     * Used for books and chapters.
      *
      * @param string    $type
      * @param array     $input
@@ -558,7 +558,7 @@ class EntityRepo
 
     /**
      * Update entity details from request input.
-     * Used for docs and chapters.
+     * Used for books and chapters.
      *
      * @param string $type
      * @param Entity $entityModel

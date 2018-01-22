@@ -152,13 +152,13 @@ class BookController extends Controller
     /**
      * Shows the page to confirm deletion.
      *
-     * @param $docSlug
+     * @param $bookSlug
      *
      * @return \Illuminate\View\View
      */
-    public function showDelete($docSlug)
+    public function showDelete($bookSlug)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $this->checkOwnablePermission('book-delete', $book);
         $this->setPageTitle(trans('entities.books_delete_named', ['bookName'=>$book->getShortName()]));
 
@@ -168,48 +168,48 @@ class BookController extends Controller
     /**
      * Shows the view which allows pages to be re-ordered and sorted.
      *
-     * @param string $docSlug
+     * @param string $bookSlug
      *
      * @return \Illuminate\View\View
      */
-    public function sort($docSlug)
+    public function sort($bookSlug)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $this->checkOwnablePermission('book-update', $book);
         $bookChildren = $this->entityRepo->getBookChildren($book, true);
         $books = $this->entityRepo->getAll('book', false, 'update');
         $this->setPageTitle(trans('entities.books_sort_named', ['bookName'=>$book->getShortName()]));
 
-        return view('docs/sort', ['book' => $book, 'current' => $book, 'books' => $books, 'bookChildren' => $bookChildren]);
+        return view('books/sort', ['book' => $book, 'current' => $book, 'books' => $books, 'bookChildren' => $bookChildren]);
     }
 
     /**
      * Shows the sort box for a single book.
      * Used via AJAX when loading in extra books to a sort.
      *
-     * @param $docSlug
+     * @param $bookSlug
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getSortItem($docSlug)
+    public function getSortItem($bookSlug)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $bookChildren = $this->entityRepo->getBookChildren($book);
 
-        return view('docs/sort-box', ['book' => $book, 'bookChildren' => $bookChildren]);
+        return view('books/sort-box', ['book' => $book, 'bookChildren' => $bookChildren]);
     }
 
     /**
      * Saves an array of sort mapping to pages and chapters.
      *
-     * @param string  $docSlug
+     * @param string  $bookSlug
      * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function saveSort($docSlug, Request $request)
+    public function saveSort($bookSlug, Request $request)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $this->checkOwnablePermission('book-update', $book);
 
         // Return if no map sent
@@ -225,19 +225,19 @@ class BookController extends Controller
         $sortMap->each(function ($mapItem) use ($bookIdsInvolved) {
             $mapItem->type = ($mapItem->type === 'page' ? 'page' : 'chapter');
             $mapItem->model = $this->entityRepo->getById($mapItem->type, $mapItem->id);
-            // Store source and target docs
+            // Store source and target books
             $bookIdsInvolved->push(intval($mapItem->model->book_id));
             $bookIdsInvolved->push(intval($mapItem->book));
         });
 
-        // Get the docs involved in the sort
+        // Get the books involved in the sort
         $bookIdsInvolved = $bookIdsInvolved->unique()->toArray();
         $booksInvolved = $this->entityRepo->book->newQuery()->whereIn('id', $bookIdsInvolved)->get();
-        // Throw permission error if invalid ids or inaccessible docs given.
+        // Throw permission error if invalid ids or inaccessible books given.
         if (count($bookIdsInvolved) !== count($booksInvolved)) {
             $this->showPermissionError();
         }
-        // Check permissions of involved docs
+        // Check permissions of involved books
         $booksInvolved->each(function (Book $book) {
             $this->checkOwnablePermission('book-update', $book);
         });
@@ -263,7 +263,7 @@ class BookController extends Controller
             }
         });
 
-        // Rebuild permissions and add activity for involved docs.
+        // Rebuild permissions and add activity for involved books.
         $booksInvolved->each(function (Book $book) {
             $this->entityRepo->buildJointPermissionsForBook($book);
             Activity::add($book, 'book_sort', $book->id);
@@ -275,34 +275,34 @@ class BookController extends Controller
     /**
      * Remove the specified book from storage.
      *
-     * @param $docSlug
+     * @param $bookSlug
      *
      * @return Response
      */
-    public function destroy($docSlug)
+    public function destroy($bookSlug)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $this->checkOwnablePermission('book-delete', $book);
         Activity::addMessage('book_delete', 0, $book->name);
         $this->entityRepo->destroyBook($book);
 
-        return redirect('/docs');
+        return redirect('/books');
     }
 
     /**
      * Show the Restrictions view.
      *
-     * @param $docSlug
+     * @param $bookSlug
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showRestrict($docSlug)
+    public function showRestrict($bookSlug)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $this->checkOwnablePermission('restrictions-manage', $book);
         $roles = $this->userRepo->getRestrictableRoles();
 
-        return view('docs/restrictions', [
+        return view('books/restrictions', [
             'book'  => $book,
             'roles' => $roles,
         ]);
@@ -311,15 +311,15 @@ class BookController extends Controller
     /**
      * Set the restrictions for this book.
      *
-     * @param $docSlug
-     * @param $docSlug
+     * @param $bookSlug
+     * @param $bookSlug
      * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function restrict($docSlug, Request $request)
+    public function restrict($bookSlug, Request $request)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $this->checkOwnablePermission('restrictions-manage', $book);
         $this->entityRepo->updateEntityPermissionsFromRequest($request, $book);
         session()->flash('success', trans('entities.books_permissions_updated'));
@@ -330,67 +330,67 @@ class BookController extends Controller
     /**
      * Export a book as a PDF file.
      *
-     * @param string $docSlug
+     * @param string $bookSlug
      *
      * @return mixed
      */
-    public function exportPdf($docSlug)
+    public function exportPdf($bookSlug)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $pdfContent = $this->exportService->bookToPdf($book);
 
         return response()->make($pdfContent, 200, [
             'Content-Type'        => 'application/octet-stream',
-            'Content-Disposition' => 'attachment; filename="'.$docSlug.'.pdf',
+            'Content-Disposition' => 'attachment; filename="'.$bookSlug.'.pdf',
         ]);
     }
 
     /**
      * Export a book as a contained HTML file.
      *
-     * @param string $docSlug
+     * @param string $bookSlug
      *
      * @return mixed
      */
-    public function exportHtml($docSlug)
+    public function exportHtml($bookSlug)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $htmlContent = $this->exportService->bookToContainedHtml($book);
 
         return response()->make($htmlContent, 200, [
             'Content-Type'        => 'application/octet-stream',
-            'Content-Disposition' => 'attachment; filename="'.$docSlug.'.html',
+            'Content-Disposition' => 'attachment; filename="'.$bookSlug.'.html',
         ]);
     }
 
     /**
      * Export a book as a plain text file.
      *
-     * @param $docSlug
+     * @param $bookSlug
      *
      * @return mixed
      */
-    public function exportPlainText($docSlug)
+    public function exportPlainText($bookSlug)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $htmlContent = $this->exportService->bookToPlainText($book);
 
         return response()->make($htmlContent, 200, [
             'Content-Type'        => 'application/octet-stream',
-            'Content-Disposition' => 'attachment; filename="'.$docSlug.'.txt',
+            'Content-Disposition' => 'attachment; filename="'.$bookSlug.'.txt',
         ]);
     }
 
     /**
      * Export a book as a plain text file.
      *
-     * @param $docSlug
+     * @param $bookSlug
      *
      * @return mixed
      */
-    public function rawPlainText($docSlug)
+    public function rawPlainText($bookSlug)
     {
-        $book = $this->entityRepo->getBySlug('book', $docSlug);
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
         $htmlContent = $this->exportService->bookToPlainText($book);
 
         return response()->make($htmlContent, 200, [
