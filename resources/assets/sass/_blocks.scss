@@ -172,9 +172,9 @@
     content: '\f1f8';
   }
   &.warning {
-    border-left-color: $warning;
-    background-color: lighten($warning, 36%);
-    color: darken($warning, 16%);
+    border-left-color: $secondary;
+    background-color: lighten($secondary, 36%);
+    color: darken($secondary, 16%);
   }
   &.warning:before {
     content: '\f1f1';
