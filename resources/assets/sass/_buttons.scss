@@ -73,7 +73,7 @@ $button-border-radius: 2px;
     color: $color-page;
     &:hover, &:focus, &:active {
       background-color: $color-page;
-      color: #FFF;
+      color: $white;
     }
   }
   &.chapter {
@@ -81,7 +81,7 @@ $button-border-radius: 2px;
     color: $color-chapter;
     &:hover, &:focus, &:active {
       background-color: $color-chapter;
-      color: #FFF;
+      color: $white;
     }
   }
   &.book {
@@ -89,7 +89,7 @@ $button-border-radius: 2px;
     color: $color-book;
     &:hover, &:focus, &:active {
       background-color: $color-book;
-      color: #FFF;
+      color: $white;
     }
   }
 }
