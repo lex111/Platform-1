@@ -149,7 +149,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'settings'], function () {
         Route::get('/', 'SettingController@index')->name('settings');
         Route::post('/', 'SettingController@update');
-        Route::get('/analytics', 'SettingController@analytics');
 
         // Users
         Route::get('/users', 'UserController@index');

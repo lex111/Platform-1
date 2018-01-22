@@ -5,9 +5,6 @@ namespace DocsPen\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Setting;
-use Activity;
-use DocsPen\Repos\EntityRepo;
-use Views;
 
 class SettingController extends Controller
 {
@@ -51,10 +48,5 @@ class SettingController extends Controller
         session()->flash('success', trans('settings.settings_save_success'));
 
         return redirect('/settings');
-    }
-
-    public function analytics()
-    {
-        return view('settings/analytics');
     }
 }
