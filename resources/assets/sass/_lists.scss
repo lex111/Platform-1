@@ -260,9 +260,10 @@ ul.pagination {
     }
   }
   li.active span {
-    background-color: rgba($primary, 0.8);
-    color: #EEE;
-    border-color: rgba($primary, 0.8);
+    background-color: #0366d6;
+    color: $white;
+    font-weight: bold;
+    border-color: #0366d6;
   }
   a {
     color: $primary;
