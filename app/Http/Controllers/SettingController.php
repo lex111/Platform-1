@@ -49,4 +49,12 @@ class SettingController extends Controller
 
         return redirect('/settings');
     }
+
+    public function analytics()
+    {
+        $this->checkPermission('settings-manage');
+        $this->setPageTitle('Analytics');
+
+        return view('settings/analytics');
+    }
 }
