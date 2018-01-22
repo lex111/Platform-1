@@ -12,7 +12,7 @@ class RegenerateSearch extends Command
      *
      * @var string
      */
-    protected $signature = 'docspen:regenerate-search {--database= : The database connection to use.}';
+    protected $signature = 'docspen:search {--database= : The database connection to use.}';
 
     /**
      * The console command description.

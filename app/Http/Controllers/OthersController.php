@@ -56,4 +56,24 @@ class OthersController extends Controller
     {
         return 'pong';
     }
+
+    // Robots.txt
+    public function robots()
+    {
+        return response()->view('others.robots')
+                    ->header('Content-Type', 'text/plain');
+    }
+
+    // Manifest.json
+    public function manifest()
+    {
+        return response()->view('others.manifest')
+                    ->header('Content-Type', 'application/json');
+    }
+
+    // Loader IO
+    public function loaderio()
+    {
+        return 'loaderio-e44f220977ee69b24892b4be8884c377';
+    }
 }

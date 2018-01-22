@@ -12,7 +12,7 @@ class RegeneratePermissions extends Command
      *
      * @var string
      */
-    protected $signature = 'docspen:regenerate-permissions {--database= : The database connection to use.}';
+    protected $signature = 'docspen:permissions {--database= : The database connection to use.}';
 
     /**
      * The console command description.

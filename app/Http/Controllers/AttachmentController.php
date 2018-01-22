@@ -109,7 +109,7 @@ class AttachmentController extends Controller
     {
         $this->validate($request, [
             'uploaded_to' => 'required|integer|exists:pages,id',
-            'name'        => 'required|string|min:1|max:255',
+            'name'        => 'required|string|min:1|max:50',
             'link'        => 'url|min:1|max:255',
         ]);
 

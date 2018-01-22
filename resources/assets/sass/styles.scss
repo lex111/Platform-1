@@ -125,7 +125,7 @@ $btt-size: 40px;
   right: $-l;
   padding: $-xs $-s;
   cursor: pointer;
-  color: #FFF;
+  color: $white;
   width: $btt-size;
   height: $btt-size;
   border-radius: $btt-size;
@@ -211,7 +211,7 @@ $btt-size: 40px;
   .entity-list > div {
     padding-left: $-m;
     padding-right: $-m;
-    background-color: #FFF;
+    background-color: $white;
     transition: all ease-in-out 120ms;
     cursor: pointer;
   }
@@ -221,11 +221,6 @@ $btt-size: 40px;
   h3, i, p ,a, span {
     color: #EEE;
   }
-}
-
-.auth-style {
-  background-color: #f2f2f2;
-  background-image: url(https://cdn.jsdelivr.net/npm/docspen@14.0.0/imgs/pattern.svg);
 }
 
 .center-box {

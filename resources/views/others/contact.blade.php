@@ -4,7 +4,7 @@
 <div ng-non-bindable class="container small">
     <p>&nbsp;</p>
     <div class="text-center">
-        <a href="/"> <img class="auth-logo" class="logo-image" src="https://cdn.jsdelivr.net/npm/docspen@1.0.0/imgs/logo-small.png" alt="Logo"></a>
+        <a href="/"> <img class="auth-logo" class="logo-image" src="https://unpkg.com/docspen@1.0.0/imgs/logo-small.png" alt="Logo"></a>
         <h3>Contact Us</h3>
         <div class="card auth-border center-box" style="width:600px">
             <div class="body">

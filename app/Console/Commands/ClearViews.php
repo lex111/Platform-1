@@ -11,7 +11,7 @@ class ClearViews extends Command
      *
      * @var string
      */
-    protected $signature = 'docspen:clear-views';
+    protected $signature = 'docspen:views';
 
     /**
      * The console command description.

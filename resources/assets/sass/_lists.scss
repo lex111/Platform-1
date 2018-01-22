@@ -174,7 +174,7 @@
 // Sortable Lists
 .sortable-page-list, .sortable-page-list ul {
   list-style: none;
-  background-color: #FFF;
+  background-color: $white;
 }
 .sort-box {
   margin-bottom: $-m;
@@ -260,9 +260,10 @@ ul.pagination {
     }
   }
   li.active span {
-    background-color: rgba($primary, 0.8);
-    color: #EEE;
-    border-color: rgba($primary, 0.8);
+    background-color: #0366d6;
+    color: $white;
+    font-weight: bold;
+    border-color: #0366d6;
   }
   a {
     color: $primary;
@@ -339,7 +340,7 @@ ul.pagination {
   list-style: none;
   right: 0;
   margin: $-m 0;
-  background-color: #FFFFFF;
+  background-color: $white;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
   border-radius: 1px;
   border: 1px solid #EEE;

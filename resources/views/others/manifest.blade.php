@@ -3,7 +3,7 @@
   "name": "DocsPen Lite",
   "icons": [
     {
-      "src": "https://i0.wp.com/cdn.jsdelivr.net/npm/docspen@17.0.0/imgs/icon.png?quality=100&w=192",
+      "src": "https://i0.wp.com/unpkg.com/docspen@@17.0.0/imgs/icon.png?quality=100&w=192",
       "type": "image/png",
       "sizes": "192x192"
     }

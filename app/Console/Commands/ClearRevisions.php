@@ -12,7 +12,7 @@ class ClearRevisions extends Command
      *
      * @var string
      */
-    protected $signature = 'docspen:clear-revisions
+    protected $signature = 'docspen:revisions
                             {--a|all : Include active update drafts in deletion}
                             ';
 

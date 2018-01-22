@@ -78,7 +78,7 @@ class PageController extends Controller
     public function createAsGuest(Request $request, $bookSlug, $chapterSlug = null)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:30|min:3',
         ]);
 
         $book = $this->entityRepo->getBySlug('book', $bookSlug);
@@ -131,7 +131,7 @@ class PageController extends Controller
     public function store(Request $request, $bookSlug, $pageId)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:30|min:3',
         ]);
 
         $input = $request->all();
@@ -275,7 +275,7 @@ class PageController extends Controller
     public function update(Request $request, $bookSlug, $pageSlug)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:30|min:3',
         ]);
         $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
         $this->checkOwnablePermission('page-update', $page);
@@ -563,6 +563,24 @@ class PageController extends Controller
         return response()->make($containedHtml, 200, [
             'Content-Type'        => 'application/octet-stream',
             'Content-Disposition' => 'attachment; filename="'.$pageSlug.'.txt',
+        ]);
+    }
+
+    /**
+     * Export a page to a simple plaintext .txt file.
+     *
+     * @param string $bookSlug
+     * @param string $pageSlug
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function rawPlainText($bookSlug, $pageSlug)
+    {
+        $page = $this->entityRepo->getBySlug('page', $pageSlug, $bookSlug);
+        $containedHtml = $this->exportService->pageToPlainText($page);
+
+        return response()->make($containedHtml, 200, [
+            'Content-Type'        => 'text/plain',
         ]);
     }
 

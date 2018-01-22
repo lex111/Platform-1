@@ -39,7 +39,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = $this->entityRepo->getAllPaginated('book', 20);
+        $books = $this->entityRepo->getAllPaginated('book', 12);
         $recents = $this->signedIn ? $this->entityRepo->getRecentlyViewed('book', 4, 0) : false;
         $popular = $this->entityRepo->getPopular('book', 4, 0);
         $new = $this->entityRepo->getRecentlyCreated('book', 4, 0);
@@ -79,8 +79,8 @@ class BookController extends Controller
     {
         $this->checkPermission('book-create-all');
         $this->validate($request, [
-            'name'        => 'required|string|max:255',
-            'description' => 'string|max:1000',
+            'name'        => 'required|string|max:30|min:3',
+            'description' => 'string|max:160',
         ]);
         $book = $this->entityRepo->createFromInput('book', $request->all());
         Activity::add($book, 'book_create', $book->id);
@@ -140,8 +140,8 @@ class BookController extends Controller
         $book = $this->entityRepo->getBySlug('book', $slug);
         $this->checkOwnablePermission('book-update', $book);
         $this->validate($request, [
-            'name'        => 'required|string|max:255',
-            'description' => 'string|max:1000',
+            'name'        => 'required|string|max:30|min:3',
+            'description' => 'string|max:160',
         ]);
         $book = $this->entityRepo->updateFromInput('book', $book, $request->all());
         Activity::add($book, 'book_update', $book->id);
@@ -378,6 +378,23 @@ class BookController extends Controller
         return response()->make($htmlContent, 200, [
             'Content-Type'        => 'application/octet-stream',
             'Content-Disposition' => 'attachment; filename="'.$bookSlug.'.txt',
+        ]);
+    }
+
+    /**
+     * Export a book as a plain text file.
+     *
+     * @param $bookSlug
+     *
+     * @return mixed
+     */
+    public function rawPlainText($bookSlug)
+    {
+        $book = $this->entityRepo->getBySlug('book', $bookSlug);
+        $htmlContent = $this->exportService->bookToPlainText($book);
+
+        return response()->make($htmlContent, 200, [
+            'Content-Type'        => 'text/plain',
         ]);
     }
 }

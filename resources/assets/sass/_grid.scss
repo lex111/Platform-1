@@ -57,7 +57,7 @@ body.flexbox {
 }
 .flex.sidebar + .flex.content {
   flex: 3;
-  background-color: #FFFFFF;
+  background-color: $white;
   padding: 0 $-l;
   border-left: 1px solid #DDD;
   max-width: 100%;

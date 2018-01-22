@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{bookSlug}/export/html', 'BookController@exportHtml');
         Route::get('/{bookSlug}/export/pdf', 'BookController@exportPdf');
         Route::get('/{bookSlug}/export/plaintext', 'BookController@exportPlainText');
+        Route::get('/{bookSlug}/export/raw', 'BookController@rawPlainText');
 
         // Pages
         Route::get('/{bookSlug}/page/create', 'PageController@create');
@@ -41,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{bookSlug}/page/{pageSlug}/export/pdf', 'PageController@exportPdf');
         Route::get('/{bookSlug}/page/{pageSlug}/export/html', 'PageController@exportHtml');
         Route::get('/{bookSlug}/page/{pageSlug}/export/plaintext', 'PageController@exportPlainText');
+        Route::get('/{bookSlug}/page/{pageSlug}/export/raw', 'PageController@rawPlainText');
         Route::get('/{bookSlug}/page/{pageSlug}/edit', 'PageController@edit');
         Route::get('/{bookSlug}/page/{pageSlug}/move', 'PageController@showMove');
         Route::put('/{bookSlug}/page/{pageSlug}/move', 'PageController@move');
@@ -72,6 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{bookSlug}/chapter/{chapterSlug}/export/pdf', 'ChapterController@exportPdf');
         Route::get('/{bookSlug}/chapter/{chapterSlug}/export/html', 'ChapterController@exportHtml');
         Route::get('/{bookSlug}/chapter/{chapterSlug}/export/plaintext', 'ChapterController@exportPlainText');
+        Route::get('/{bookSlug}/chapter/{chapterSlug}/export/raw', 'ChapterController@rawPlainText');
         Route::put('/{bookSlug}/chapter/{chapterSlug}/permissions', 'ChapterController@restrict');
         Route::get('/{bookSlug}/chapter/{chapterSlug}/delete', 'ChapterController@showDelete');
         Route::delete('/{bookSlug}/chapter/{chapterSlug}', 'ChapterController@destroy');
@@ -203,6 +206,9 @@ Route::get('/status', 'OthersController@status');
 Route::get('/contact', 'OthersController@contact');
 Route::get('/message-sent', 'OthersController@success');
 Route::get('/ping', 'OthersController@ping');
+Route::get('/robots.txt', 'OthersController@robots');
+Route::get('/manifest.json', 'OthersController@manifest');
+Route::get('/loaderio-e44f220977ee69b24892b4be8884c377', 'OthersController@loaderio');
 
 // Sitemaps and XMLs
 Route::get('/opensearch.xml', 'SitemapsController@opensearch');

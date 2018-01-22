@@ -93,7 +93,7 @@
   box-shadow: 0 0 8px 1px rgba(212, 209, 209, 0.35);
   position: absolute;
   top: -60px;
-  background-color:#FFF;
+  background-color:$white;
   width: 272px;
   z-index: 55;
   &:before {
@@ -105,7 +105,7 @@
     margin-left: -8px;
     content: '';
     display: block;
-    background-color:#FFF;
+    background-color:$white;
     transform: rotate(45deg);
     transform-origin: 50% 50%;
     border-bottom: 1px solid #CCC;
@@ -113,7 +113,7 @@
     z-index: 56;
   }
   input {
-    background-color: #FFF;
+    background-color: $white;
     border: 1px solid #DDD;
     color: #666;
     width: 172px;
@@ -144,7 +144,7 @@
 
 // Attribute form
 .floating-toolbox {
-  background-color: #FFF;
+  background-color: $white;
   border: 1px solid #DDD;
   right: $-xl*2;
   width: 48px;
@@ -282,7 +282,7 @@
 
 .suggestion-box {
   position: absolute;
-  background-color: #FFF;
+  background-color: $white;
   border: 1px solid #BBB;
   box-shadow: $bs-light;
   list-style: none;

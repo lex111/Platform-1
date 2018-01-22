@@ -21,8 +21,8 @@
                 'resizeHeight' => '512',
                 'resizeWidth' => '512',
                 'showRemove' => false,
-                'defaultImage' => 'https://cdn.jsdelivr.net/npm/docspen@18.0.1/imgs/default.png',
-                'currentImage' => @isset($model) ? $model->getBookCover() : 'https://cdn.jsdelivr.net/npm/docspen@12.0.0/imgs/default.png' ,
+                'defaultImage' => 'https://unpkg.com/docspen@18.0.1/imgs/default.png',
+                'currentImage' => @isset($model) ? $model->getBookCover() : 'https://unpkg.com/docspen@12.0.0/imgs/default.png' ,
                 'currentId' => @isset($model) ? $model->image_id : 0,
                 'name' => 'image_id',
                 'imageClass' => 'cover'
