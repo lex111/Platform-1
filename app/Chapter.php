@@ -39,12 +39,12 @@ class Chapter extends Entity
      */
     public function getUrl($path = false)
     {
-        $bookSlug = $this->getAttribute('bookSlug') ? $this->getAttribute('bookSlug') : $this->book->slug;
+        $docSlug = $this->getAttribute('docSlug') ? $this->getAttribute('docSlug') : $this->book->slug;
         if ($path !== false) {
-            return baseUrl('/books/'.urlencode($bookSlug).'/chapter/'.urlencode($this->slug).'/'.trim($path, '/'));
+            return baseUrl('/books/'.urlencode($docSlug).'/chapter/'.urlencode($this->slug).'/'.trim($path, '/'));
         }
 
-        return baseUrl('/books/'.urlencode($bookSlug).'/chapter/'.urlencode($this->slug));
+        return baseUrl('/books/'.urlencode($docSlug).'/chapter/'.urlencode($this->slug));
     }
 
     /**

@@ -168,21 +168,21 @@ class EntityRepo
      *
      * @param string      $type
      * @param string      $slug
-     * @param string|bool $bookSlug
+     * @param string|bool $docSlug
      *
      * @throws NotFoundException
      *
      * @return Entity
      */
-    public function getBySlug($type, $slug, $bookSlug = false)
+    public function getBySlug($type, $slug, $docSlug = false)
     {
         $q = $this->entityQuery($type)->where('slug', '=', $slug);
 
         if (strtolower($type) === 'chapter' || strtolower($type) === 'page') {
-            $q = $q->where('book_id', '=', function ($query) use ($bookSlug) {
+            $q = $q->where('book_id', '=', function ($query) use ($docSlug) {
                 $query->select('id')
                     ->from($this->book->getTable())
-                    ->where('slug', '=', $bookSlug)->limit(1);
+                    ->where('slug', '=', $docSlug)->limit(1);
             });
         }
         $entity = $q->first();
@@ -198,18 +198,18 @@ class EntityRepo
      * current book that has a slug equal to the one given.
      *
      * @param string $pageSlug
-     * @param string $bookSlug
+     * @param string $docSlug
      *
      * @return null|Page
      */
-    public function getPageByOldSlug($pageSlug, $bookSlug)
+    public function getPageByOldSlug($pageSlug, $docSlug)
     {
         $revision = $this->pageRevision->where('slug', '=', $pageSlug)
             ->whereHas('page', function ($query) {
                 $this->permissionService->enforceEntityRestrictions('page', $query);
             })
             ->where('type', '=', 'version')
-            ->where('book_slug', '=', $bookSlug)
+            ->where('book_slug', '=', $docSlug)
             ->orderBy('created_at', 'desc')
             ->with('page')->first();
 

@@ -34,13 +34,13 @@ class ChapterController extends Controller
     /**
      * Show the form for creating a new chapter.
      *
-     * @param $bookSlug
+     * @param $docSlug
      *
      * @return Response
      */
-    public function create($bookSlug)
+    public function create($docSlug)
     {
-        $book = $this->entityRepo->getBySlug('book', $bookSlug);
+        $book = $this->entityRepo->getBySlug('book', $docSlug);
         $this->checkOwnablePermission('chapter-create', $book);
         $this->setPageTitle(trans('entities.chapters_create'));
 
@@ -50,18 +50,18 @@ class ChapterController extends Controller
     /**
      * Store a newly created chapter in storage.
      *
-     * @param         $bookSlug
+     * @param         $docSlug
      * @param Request $request
      *
      * @return Response
      */
-    public function store($bookSlug, Request $request)
+    public function store($docSlug, Request $request)
     {
         $this->validate($request, [
             'name' => 'required|string|max:30|min:3',
         ]);
 
-        $book = $this->entityRepo->getBySlug('book', $bookSlug);
+        $book = $this->entityRepo->getBySlug('book', $docSlug);
         $this->checkOwnablePermission('chapter-create', $book);
 
         $input = $request->all();
@@ -75,14 +75,14 @@ class ChapterController extends Controller
     /**
      * Display the specified chapter.
      *
-     * @param $bookSlug
+     * @param $docSlug
      * @param $chapterSlug
      *
      * @return Response
      */
-    public function show($bookSlug, $chapterSlug)
+    public function show($docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $this->checkOwnablePermission('chapter-view', $chapter);
         $sidebarTree = $this->entityRepo->getBookChildren($chapter->book);
         Views::add($chapter);
@@ -101,14 +101,14 @@ class ChapterController extends Controller
     /**
      * Show the form for editing the specified chapter.
      *
-     * @param $bookSlug
+     * @param $docSlug
      * @param $chapterSlug
      *
      * @return Response
      */
-    public function edit($bookSlug, $chapterSlug)
+    public function edit($docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $this->checkOwnablePermission('chapter-update', $chapter);
         $this->setPageTitle(trans('entities.chapters_edit_named', ['chapterName' => $chapter->getShortName()]));
 
@@ -119,14 +119,14 @@ class ChapterController extends Controller
      * Update the specified chapter in storage.
      *
      * @param Request $request
-     * @param         $bookSlug
+     * @param         $docSlug
      * @param         $chapterSlug
      *
      * @return Response
      */
-    public function update(Request $request, $bookSlug, $chapterSlug)
+    public function update(Request $request, $docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $this->checkOwnablePermission('chapter-update', $chapter);
         if ($chapter->name !== $request->get('name')) {
             $chapter->slug = $this->entityRepo->findSuitableSlug('chapter', $request->get('name'), $chapter->id, $chapter->book->id);
@@ -142,14 +142,14 @@ class ChapterController extends Controller
     /**
      * Shows the page to confirm deletion of this chapter.
      *
-     * @param $bookSlug
+     * @param $docSlug
      * @param $chapterSlug
      *
      * @return \Illuminate\View\View
      */
-    public function showDelete($bookSlug, $chapterSlug)
+    public function showDelete($docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $this->checkOwnablePermission('chapter-delete', $chapter);
         $this->setPageTitle(trans('entities.chapters_delete_named', ['chapterName' => $chapter->getShortName()]));
 
@@ -159,14 +159,14 @@ class ChapterController extends Controller
     /**
      * Remove the specified chapter from storage.
      *
-     * @param $bookSlug
+     * @param $docSlug
      * @param $chapterSlug
      *
      * @return Response
      */
-    public function destroy($bookSlug, $chapterSlug)
+    public function destroy($docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $book = $chapter->book;
         $this->checkOwnablePermission('chapter-delete', $chapter);
         Activity::addMessage('chapter_delete', $book->id, $chapter->name);
@@ -178,16 +178,16 @@ class ChapterController extends Controller
     /**
      * Show the page for moving a chapter.
      *
-     * @param $bookSlug
+     * @param $docSlug
      * @param $chapterSlug
      *
      * @throws \DocsPen\Exceptions\NotFoundException
      *
      * @return mixed
      */
-    public function showMove($bookSlug, $chapterSlug)
+    public function showMove($docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $this->setPageTitle(trans('entities.chapters_move_named', ['chapterName' => $chapter->getShortName()]));
         $this->checkOwnablePermission('chapter-update', $chapter);
 
@@ -200,7 +200,7 @@ class ChapterController extends Controller
     /**
      * Perform the move action for a chapter.
      *
-     * @param $bookSlug
+     * @param $docSlug
      * @param $chapterSlug
      * @param Request $request
      *
@@ -208,9 +208,9 @@ class ChapterController extends Controller
      *
      * @return mixed
      */
-    public function move($bookSlug, $chapterSlug, Request $request)
+    public function move($docSlug, $chapterSlug, Request $request)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $this->checkOwnablePermission('chapter-update', $chapter);
 
         $entitySelection = $request->get('entity_selection', null);
@@ -244,14 +244,14 @@ class ChapterController extends Controller
     /**
      * Show the Restrictions view.
      *
-     * @param $bookSlug
+     * @param $docSlug
      * @param $chapterSlug
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showRestrict($bookSlug, $chapterSlug)
+    public function showRestrict($docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $this->checkOwnablePermission('restrictions-manage', $chapter);
         $roles = $this->userRepo->getRestrictableRoles();
 
@@ -264,15 +264,15 @@ class ChapterController extends Controller
     /**
      * Set the restrictions for this chapter.
      *
-     * @param $bookSlug
+     * @param $docSlug
      * @param $chapterSlug
      * @param Request $request
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function restrict($bookSlug, $chapterSlug, Request $request)
+    public function restrict($docSlug, $chapterSlug, Request $request)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $this->checkOwnablePermission('restrictions-manage', $chapter);
         $this->entityRepo->updateEntityPermissionsFromRequest($request, $chapter);
         session()->flash('success', trans('entities.chapters_permissions_success'));
@@ -283,14 +283,14 @@ class ChapterController extends Controller
     /**
      * Exports a chapter to pdf .
      *
-     * @param string $bookSlug
+     * @param string $docSlug
      * @param string $chapterSlug
      *
      * @return \Illuminate\Http\Response
      */
-    public function exportPdf($bookSlug, $chapterSlug)
+    public function exportPdf($docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $pdfContent = $this->exportService->chapterToPdf($chapter);
 
         return response()->make($pdfContent, 200, [
@@ -302,14 +302,14 @@ class ChapterController extends Controller
     /**
      * Export a chapter to a self-contained HTML file.
      *
-     * @param string $bookSlug
+     * @param string $docSlug
      * @param string $chapterSlug
      *
      * @return \Illuminate\Http\Response
      */
-    public function exportHtml($bookSlug, $chapterSlug)
+    public function exportHtml($docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $containedHtml = $this->exportService->chapterToContainedHtml($chapter);
 
         return response()->make($containedHtml, 200, [
@@ -321,14 +321,14 @@ class ChapterController extends Controller
     /**
      * Export a chapter to a simple plaintext .txt file.
      *
-     * @param string $bookSlug
+     * @param string $docSlug
      * @param string $chapterSlug
      *
      * @return \Illuminate\Http\Response
      */
-    public function exportPlainText($bookSlug, $chapterSlug)
+    public function exportPlainText($docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $containedHtml = $this->exportService->chapterToPlainText($chapter);
 
         return response()->make($containedHtml, 200, [
@@ -340,14 +340,14 @@ class ChapterController extends Controller
     /**
      * Export a chapter to a simple plaintext .txt file.
      *
-     * @param string $bookSlug
+     * @param string $docSlug
      * @param string $chapterSlug
      *
      * @return \Illuminate\Http\Response
      */
-    public function rawPlainText($bookSlug, $chapterSlug)
+    public function rawPlainText($docSlug, $chapterSlug)
     {
-        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $bookSlug);
+        $chapter = $this->entityRepo->getBySlug('chapter', $chapterSlug, $docSlug);
         $containedHtml = $this->exportService->chapterToPlainText($chapter);
 
         return response()->make($containedHtml, 200, [

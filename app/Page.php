@@ -83,15 +83,15 @@ class Page extends Entity
      */
     public function getUrl($path = false)
     {
-        $bookSlug = $this->getAttribute('bookSlug') ? $this->getAttribute('bookSlug') : $this->book->slug;
+        $docSlug = $this->getAttribute('docSlug') ? $this->getAttribute('docSlug') : $this->book->slug;
         $midText = $this->draft ? '/draft/' : '/page/';
         $idComponent = $this->draft ? $this->id : urlencode($this->slug);
 
         if ($path !== false) {
-            return baseUrl('/books/'.urlencode($bookSlug).$midText.$idComponent.'/'.trim($path, '/'));
+            return baseUrl('/books/'.urlencode($docSlug).$midText.$idComponent.'/'.trim($path, '/'));
         }
 
-        return baseUrl('/books/'.urlencode($bookSlug).$midText.$idComponent);
+        return baseUrl('/books/'.urlencode($docSlug).$midText.$idComponent);
     }
 
     /**
