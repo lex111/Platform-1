@@ -534,7 +534,7 @@ class EntityRepo
 
     /**
      * Create a new entity from request input.
-     * Used for books and chapters.
+     * Used for docs and chapters.
      *
      * @param string    $type
      * @param array     $input
@@ -558,7 +558,7 @@ class EntityRepo
 
     /**
      * Update entity details from request input.
-     * Used for books and chapters.
+     * Used for docs and chapters.
      *
      * @param string $type
      * @param Entity $entityModel

@@ -180,7 +180,7 @@ class BookController extends Controller
         $books = $this->entityRepo->getAll('book', false, 'update');
         $this->setPageTitle(trans('entities.books_sort_named', ['bookName'=>$book->getShortName()]));
 
-        return view('books/sort', ['book' => $book, 'current' => $book, 'books' => $books, 'bookChildren' => $bookChildren]);
+        return view('docs/sort', ['book' => $book, 'current' => $book, 'books' => $books, 'bookChildren' => $bookChildren]);
     }
 
     /**
@@ -196,7 +196,7 @@ class BookController extends Controller
         $book = $this->entityRepo->getBySlug('book', $docSlug);
         $bookChildren = $this->entityRepo->getBookChildren($book);
 
-        return view('books/sort-box', ['book' => $book, 'bookChildren' => $bookChildren]);
+        return view('docs/sort-box', ['book' => $book, 'bookChildren' => $bookChildren]);
     }
 
     /**
@@ -225,19 +225,19 @@ class BookController extends Controller
         $sortMap->each(function ($mapItem) use ($bookIdsInvolved) {
             $mapItem->type = ($mapItem->type === 'page' ? 'page' : 'chapter');
             $mapItem->model = $this->entityRepo->getById($mapItem->type, $mapItem->id);
-            // Store source and target books
+            // Store source and target docs
             $bookIdsInvolved->push(intval($mapItem->model->book_id));
             $bookIdsInvolved->push(intval($mapItem->book));
         });
 
-        // Get the books involved in the sort
+        // Get the docs involved in the sort
         $bookIdsInvolved = $bookIdsInvolved->unique()->toArray();
         $booksInvolved = $this->entityRepo->book->newQuery()->whereIn('id', $bookIdsInvolved)->get();
-        // Throw permission error if invalid ids or inaccessible books given.
+        // Throw permission error if invalid ids or inaccessible docs given.
         if (count($bookIdsInvolved) !== count($booksInvolved)) {
             $this->showPermissionError();
         }
-        // Check permissions of involved books
+        // Check permissions of involved docs
         $booksInvolved->each(function (Book $book) {
             $this->checkOwnablePermission('book-update', $book);
         });
@@ -263,7 +263,7 @@ class BookController extends Controller
             }
         });
 
-        // Rebuild permissions and add activity for involved books.
+        // Rebuild permissions and add activity for involved docs.
         $booksInvolved->each(function (Book $book) {
             $this->entityRepo->buildJointPermissionsForBook($book);
             Activity::add($book, 'book_sort', $book->id);
@@ -286,7 +286,7 @@ class BookController extends Controller
         Activity::addMessage('book_delete', 0, $book->name);
         $this->entityRepo->destroyBook($book);
 
-        return redirect('/books');
+        return redirect('/docs');
     }
 
     /**
@@ -302,7 +302,7 @@ class BookController extends Controller
         $this->checkOwnablePermission('restrictions-manage', $book);
         $roles = $this->userRepo->getRestrictableRoles();
 
-        return view('books/restrictions', [
+        return view('docs/restrictions', [
             'book'  => $book,
             'roles' => $roles,
         ]);
