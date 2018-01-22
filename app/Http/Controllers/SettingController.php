@@ -53,7 +53,6 @@ class SettingController extends Controller
     public function analytics()
     {
         $this->checkPermission('settings-manage');
-        $this->setPageTitle('Analytics');
 
         return view('settings/analytics');
     }
