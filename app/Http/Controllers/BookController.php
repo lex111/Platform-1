@@ -80,7 +80,7 @@ class BookController extends Controller
         $this->checkPermission('book-create-all');
         $this->validate($request, [
             'name'        => 'required|string|max:30',
-            'description' => 'string|max:1000',
+            'description' => 'string|max:160',
         ]);
         $book = $this->entityRepo->createFromInput('book', $request->all());
         Activity::add($book, 'book_create', $book->id);
