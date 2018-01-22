@@ -2,9 +2,7 @@
 <html lang="en" class="@yield('body-class')">
 <head>
     <title>{{ isset($pageTitle) ? $pageTitle . ' | ' : '' }}{{ setting('app-name') }}</title>
-    
     @include('header')
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="{{ baseUrl('/translations') }}"></script>
 
