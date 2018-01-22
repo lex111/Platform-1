@@ -140,8 +140,8 @@ class BookController extends Controller
         $book = $this->entityRepo->getBySlug('book', $slug);
         $this->checkOwnablePermission('book-update', $book);
         $this->validate($request, [
-            'name'        => 'required|string|max:255',
-            'description' => 'string|max:1000',
+            'name'        => 'required|string|max:30|min:3',
+            'description' => 'string|max:160',
         ]);
         $book = $this->entityRepo->updateFromInput('book', $book, $request->all());
         Activity::add($book, 'book_update', $book->id);
