@@ -21,7 +21,7 @@ class SettingController extends Controller
         // Get application version
         $version = trim(file_get_contents(base_path('version')));
 
-        return view('settings/index', ['version' => $version]);
+        return view('settings.index', ['version' => $version]);
     }
 
     /**
@@ -55,6 +55,6 @@ class SettingController extends Controller
         $this->checkPermission('settings-manage');
         $this->setPageTitle('Analytics');
 
-        return view('settings/analytics');
+        return view('settings.analytics');
     }
 }
