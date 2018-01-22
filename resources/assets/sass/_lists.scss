@@ -174,7 +174,7 @@
 // Sortable Lists
 .sortable-page-list, .sortable-page-list ul {
   list-style: none;
-  background-color: #FFF;
+  background-color: $white;
 }
 .sort-box {
   margin-bottom: $-m;
@@ -340,7 +340,7 @@ ul.pagination {
   list-style: none;
   right: 0;
   margin: $-m 0;
-  background-color: #FFFFFF;
+  background-color: $white;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
   border-radius: 1px;
   border: 1px solid #EEE;
