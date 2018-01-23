@@ -861,6 +861,9 @@ Disallow: /
 User-agent: SiteSnagger
 Disallow: /
 
+User-agent: WebStripper
+Disallow: /
+
 # Misbehaving: requests much too fast:
 User-agent: fast
 Disallow: /
