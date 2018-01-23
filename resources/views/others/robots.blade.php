@@ -874,6 +874,8 @@ Disallow: /
 User-agent: Fetch
 Disallow: /
 
+User-agent: Offline Explorer
+Disallow: /
 #
 # Sorry, wget in its recursive mode is a frequent problem.
 # Please read the man page and use it properly; there is a
