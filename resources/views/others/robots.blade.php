@@ -922,4 +922,11 @@ Disallow: /
 User-agent: grub-client
 Disallow: /
 
+
+#
+# Doesn't follow robots.txt anyway, but...
+#
+User-agent: k2spider
+Disallow: /
+
 Sitemap: https://docspen.ga/sitemap.xml
