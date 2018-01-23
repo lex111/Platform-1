@@ -916,4 +916,10 @@ Disallow: /
 User-agent: wget
 Disallow: /
 
+#
+# The 'grub' distributed client has been *very* poorly behaved.
+#
+User-agent: grub-client
+Disallow: /
+
 Sitemap: https://docspen.ga/sitemap.xml
