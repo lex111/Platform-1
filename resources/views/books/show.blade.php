@@ -94,7 +94,7 @@
 @section('body')
 
     <div class="container small">
-        <h1>{{$book->name}}</h1>
+        <h1 class="green-inline-bg">{{$book->name}}</h1>
         <div class="book-content" v-show="!searching">
             <p class="text-muted" v-pre>{!! nl2br(e($book->description)) !!}</p>
             @if(count($bookChildren) > 0)

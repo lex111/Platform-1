@@ -99,7 +99,7 @@
 @section('body')
 
     <div class="container small">
-        <h1 v-pre>{{ $chapter->name }}</h1>
+        <h1 v-pre class="green-inline-bg">{{ $chapter->name }}</h1>
         <div class="chapter-content" v-show="!searching">
             <p v-pre class="text-muted">{!! nl2br(e($chapter->description)) !!}</p>
 
