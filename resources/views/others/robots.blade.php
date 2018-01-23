@@ -127,8 +127,20 @@ Disallow: /
 #
 
 User-agent: *
-Allow: /humans.txt
+
 Allow: /
+Allow: /humans.txt
+Allow: /books
+Allow: /books/discover
+Allow: /books/create
+Allow: /books/*
+Allow: /books/*/page/*
+Allow: /books/*/chapter/*
+Allow: /user/*
+Allow: /@/*
+Allow: /terms
+Allow: /privacy
+Allow: /about
 Disallow: /books/*/edit
 Disallow: /books/*/page/*/edit
 Disallow: /books/*/chapter/*/*/edit
@@ -150,8 +162,8 @@ Disallow: /books/*/*/*/export/plaintext
 Disallow: /books/*/*/*//export/html
 Disallow: /books/*/chapter/*/export/pdf
 Disallow: /books/*/chapter/*/export/plaintext
-Disallow: /search
 Disallow: /settings
+Disallow: /search
 Disallow: /git
 Disallow: /trello
 Disallow: /slack
