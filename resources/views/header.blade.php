@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ baseUrl('/') }}">
-    <meta name="theme-color" content="#026AA7">
+    <meta name="theme-color" content="#534292">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="description" content="DocsPen - Online Documentation Platform. Read more, know more.">
     <meta name="keywords" content="DocsPen, Docs, Documentation, Project Documentation, Wiki">
