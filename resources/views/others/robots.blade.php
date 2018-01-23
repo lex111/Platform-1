@@ -929,4 +929,10 @@ Disallow: /
 User-agent: k2spider
 Disallow: /
 
+#
+# Hits many times per second, not acceptable
+# http://www.nameprotect.com/botinfo.html
+User-agent: NPBot
+Disallow: /
+
 Sitemap: https://docspen.ga/sitemap.xml
