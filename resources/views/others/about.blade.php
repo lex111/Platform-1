@@ -14,30 +14,31 @@
                     <h1>The Idea</h1>
                     <h4>Executive Summary</h4>
                     <p>
-                        <br>
+                        <p>
                         Documenting projects is hard, hosting them shouldn’t be. DocsPen was created to make hosting documentation simple.
-                        
-                        <br>
+                        </p>
+                        <p>
                         DocsPen is a hub to publish the documentation for projects through online, its right choice for Professors & Teachers
                         for publishing the content, centralized platform for wikis, which provides a pleasant and simple out of the box experience.
-                        
-                        <br>
+                        </p>
+                        <p>
                         New users to an instance should find the experience intuitive and only basic word-processing skills should be required to
                         get involved in creating content on DocsPen.
-                        
-                        <br>
+                        </p>
+                        <p>
                         The platform should provide advanced power features to those that desire it but they should not interfere with the core 
                         simple user experience.
-                        
-                        <br>
+                        </p>
+                        <p>
                         First, DocsPen was started as a weekend project for self-hosting our internal documents like API Documentations, Product 
                         details etc. The project was taken out of the box as Open Source and we got some contributor across the globe and they 
                         proposed us some ideas to take your project and ship it as a product to the globe.
-                        
-                        <br>
+                        </p>
+                        <p>
                         So finally we started working on the conversion of (Project to a Product) transition and with hard working after 210 days 
                         (6 months, 26 days) and 490,989 lines of code where done still that we are in Alpha Phase and we transitioned to Public 
                         Beta Phase on January 1, 2018.
+                        </p>
                     </p>
                     
                     <p>
