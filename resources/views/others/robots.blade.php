@@ -1,4 +1,14 @@
+# robots.txt for http://docspen.ga/ and friends
+#
+# Please note: There are a lot of pages on this site, and there are
+# some misbehaved spiders out there that go _way_ too fast. If you're
+# irresponsible, your access to the site may be blocked.
+#
 # If you would like to crawl DocsPen contact us at support@docspen.com.
+
+# advertising-related bots:
+User-agent: Mediapartners-Google*
+Disallow: /
 
 User-agent: *
 Allow: /humans.txt
