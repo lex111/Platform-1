@@ -843,3 +843,5 @@ Disallow: /login
 User-agent: *
 Allow: /humans.txt
 Disallow: /
+
+Sitemap: https://docspen.ga/sitemap.xml
