@@ -117,6 +117,15 @@ Disallow: /
 User-agent: WebReaper
 Disallow: /
 
+#
+# Friendly, low-speed bots are welcome viewing article pages, but not
+# dynamically-generated pages please.
+#
+# Inktomi's "Slurp" can read a minimum delay between hits; if your
+# bot supports such a thing using the 'Crawl-delay' or another
+# instruction, please let us know.
+#
+
 User-agent: *
 Allow: /humans.txt
 Allow: /
