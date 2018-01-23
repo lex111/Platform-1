@@ -904,6 +904,8 @@ Disallow: /
 User-agent: ZyBORG
 Disallow: /
 
+User-agent: Download Ninja
+Disallow: /
 
 #
 # Sorry, wget in its recursive mode is a frequent problem.
