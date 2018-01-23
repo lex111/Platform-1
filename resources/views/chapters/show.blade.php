@@ -88,6 +88,7 @@
     <div class="card">
         <h3><i class="zmdi zmdi-info-outline"></i> {{ trans('common.details') }}</h3>
         <div class="body">
+            <a href="https://creativecommons.org/licenses/by-sa/3.0/"><h6 style="color:#1180c1"><img class="cc" src="https://unpkg.com/docspen@18.0.4/imgs/cc.svg"></img>CC BY-SA 3.0</h6></a>
             @include('partials.entity-meta', ['entity' => $chapter])
         </div>
     </div>
