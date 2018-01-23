@@ -85,6 +85,8 @@
         </div>
     @endif
 
+    @include('partials.book-tree', ['book' => $book, 'sidebarTree' => $sidebarTree])
+    
     <div class="card">
         <h3><i class="zmdi zmdi-info-outline"></i> {{ trans('common.details') }}</h3>
         <div class="body">
@@ -92,8 +94,6 @@
             @include('partials.entity-meta', ['entity' => $chapter])
         </div>
     </div>
-
-    @include('partials.book-tree', ['book' => $book, 'sidebarTree' => $sidebarTree])
 @stop
 
 @section('body')
