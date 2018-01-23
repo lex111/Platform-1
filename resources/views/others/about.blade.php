@@ -7,9 +7,6 @@
     <div class="card">
         <div class="entity-list detailed" ng-non-bindable="">
             <div class="page  entity-list-item" data-entity-type="page" data-entity-id="7">
-                <h4>
-                    <i class="zmdi zmdi-assignment-check"></i><span class="entity-list-item-name">About</span>
-                </h4>
                 <div class="entity-item-snippet" style="font-size:14px;line-height:20px">
                     <h1>The Idea</h1>
                     <h4>Executive Summary</h4>
