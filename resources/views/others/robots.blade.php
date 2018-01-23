@@ -886,6 +886,9 @@ Disallow: /
 User-agent: WebZIP
 Disallow: /
 
+User-agent: linko
+Disallow: /
+
 #
 # Sorry, wget in its recursive mode is a frequent problem.
 # Please read the man page and use it properly; there is a
