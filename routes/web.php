@@ -199,6 +199,7 @@ Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 
 // Others
 Route::get('/about', 'OthersController@about');
+Route::get('/humans.txt', 'OthersController@about');
 Route::get('/terms', 'OthersController@terms');
 Route::get('/trello', 'OthersController@trello');
 Route::get('/git', 'OthersController@git');
