@@ -21,38 +21,6 @@ Disallow: /
 User-agent: Zao
 Disallow: /
 
-User-agent: *
-Allow: /humans.txt
-Allow: /
-Disallow: /books/*/edit
-Disallow: /books/*/page/*/edit
-Disallow: /books/*/chapter/*/*/edit
-Disallow: /books/*/draft/*
-Disallow: /books/*/sort
-Disallow: /books/*/permissions
-Disallow: /books/*/delete
-Disallow: /books/*/draft/*/delete
-Disallow: /books/*/chapter/*/*/edit
-Disallow: /books/*/page/create
-Disallow: /books/*/chapter/create
-Disallow: /books/create
-Disallow: /books/*/export/html
-Disallow: /books/*/export/pdf
-Disallow: /books/*/export/plaintext
-Disallow: /books/*/*/*/export/html
-Disallow: /books/*/*/*/export/pdf
-Disallow: /books/*/*/*/export/plaintext
-Disallow: /books/*/*/*//export/html
-Disallow: /books/*/chapter/*/export/pdf
-Disallow: /books/*/chapter/*/export/plaintext
-Disallow: /search
-Disallow: /settings
-Disallow: /git
-Disallow: /trello
-Disallow: /slack
-Disallow: /logout
-Disallow: /login
-
 # Some bots are known to be trouble, particularly those designed to copy
 # entire sites. Please obey robots.txt.
 User-agent: sitecheck.internetseer.com
@@ -149,6 +117,36 @@ Disallow: /
 User-agent: WebReaper
 Disallow: /
 
-
+User-agent: *
+Allow: /humans.txt
+Allow: /
+Disallow: /books/*/edit
+Disallow: /books/*/page/*/edit
+Disallow: /books/*/chapter/*/*/edit
+Disallow: /books/*/draft/*
+Disallow: /books/*/sort
+Disallow: /books/*/permissions
+Disallow: /books/*/delete
+Disallow: /books/*/draft/*/delete
+Disallow: /books/*/chapter/*/*/edit
+Disallow: /books/*/page/create
+Disallow: /books/*/chapter/create
+Disallow: /books/create
+Disallow: /books/*/export/html
+Disallow: /books/*/export/pdf
+Disallow: /books/*/export/plaintext
+Disallow: /books/*/*/*/export/html
+Disallow: /books/*/*/*/export/pdf
+Disallow: /books/*/*/*/export/plaintext
+Disallow: /books/*/*/*//export/html
+Disallow: /books/*/chapter/*/export/pdf
+Disallow: /books/*/chapter/*/export/plaintext
+Disallow: /search
+Disallow: /settings
+Disallow: /git
+Disallow: /trello
+Disallow: /slack
+Disallow: /logout
+Disallow: /login
 
 Sitemap: https://docspen.ga/sitemap.xml
