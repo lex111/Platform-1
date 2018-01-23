@@ -200,4 +200,9 @@ Disallow: /
 User-agent: NPBot
 Disallow: /
 
+# A capture bot, downloads gazillions of pages with no public benefit
+# http://www.webreaper.net/
+User-agent: WebReaper
+Disallow: /
+
 Sitemap: https://docspen.ga/sitemap.xml
