@@ -12,8 +12,4 @@
     <sitemap>
         <loc>{{ config('app.url') }}/chapters.xml</loc>
     </sitemap>
-
-    <sitemap>
-        <loc>{{ config('app.url') }}/users.xml</loc>
-    </sitemap>
 </sitemapindex>
