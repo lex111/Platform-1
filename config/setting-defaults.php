@@ -9,8 +9,8 @@ return [
     'app-logo'              => 'https://unpkg.com/docspen@1.0.0/imgs/logo-small.png',
     'app-name-header'       => true,
     'app-editor'            => 'wysiwyg',
-    'app-color'             => '#026AA7',
-    'app-color-light'       => 'rgba(2, 106, 167, 0.15)',
+    'app-color'             => '#534292',
+    'app-color-light'       => '#d7ccff',
     'app-custom-head'       => false,
     'registration-enabled'  => true,
 
