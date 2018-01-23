@@ -44,43 +44,50 @@
                     <h4>Problem being solved</h4>
                     <p>
                         With DocsPen the following problems will be solved
-
-                        <li>No need of messy paper bundles</li>
-                        <li>No need of word-processor being installed</li>
-                        <li>No need to waste Gigabytes of data on installing software</li>
-                        <li>No need to save and publish on third-party sites</li>
-                        <li>Collaboration made easy</li>
+                        <ol>
+                            <li>No need of messy paper bundles</li>
+                            <li>No need of word-processor being installed</li>
+                            <li>No need to waste Gigabytes of data on installing software</li>
+                            <li>No need to save and publish on third-party sites</li>
+                            <li>Collaboration made easy</li>
+                        </ol>
                     </p>
                     
                     <h4>Customer pain-points</h4>
                     <p>
-                        <li>Can't collaborate with people with word-processor</li>
-                        <li>Organizing Pages in Books and Chapters</li>
-                        <li>File Storage Issues</li>
+                        <ol>
+                            <li>Can't collaborate with people with word-processor</li>
+                            <li>Organizing Pages in Books and Chapters</li>
+                            <li>File Storage Issues</li>
+                        </ol>
                     </p>
                     
                     <h4>Benefits to Customers</h4>
                     <p>
-                        <li>Able to publish data in one place</li>
-                        <li>View it and Updated it anywhere</li>
-                        <li>Easy to use and learn</li>
-                        <li>People can collaborate and edit contents</li>
-                        <li>People located in different parts of the world can work on the same document</li>
-                        <li>DocsPen keeps track of every edit made and it's a simple process to revert back to a previous version of an article</li>
-                        <li>widens access to the power of web publishing to non-technical users</li>
-                        <li>Keep it up to date</li>
+                        <ol>
+                            <li>Able to publish data in one place</li>
+                            <li>View it and Updated it anywhere</li>
+                            <li>Easy to use and learn</li>
+                            <li>People can collaborate and edit contents</li>
+                            <li>People located in different parts of the world can work on the same document</li>
+                            <li>DocsPen keeps track of every edit made and it's a simple process to revert back to a previous version of an article</li>
+                            <li>widens access to the power of web publishing to non-technical users</li>
+                            <li>Keep it up to date</li>
+                        </ol>
                     </p>
                     
                     <h4>To who?</h4>
                     <p>
-                        <li>To all Developers</li>
-                        <li>To all Artists</li>
-                        <li>To all Content Developers</li>
-                        <li>To all Wiki Makers</li>
-                        <li>To all Book Writers</li>
-                        <li>To all Bloggers</li>
-                        <li>To all Professors and Teachers</li>
-                        <li>To all self-promoters</li>
+                        <ol>
+                            <li>To all Developers</li>
+                            <li>To all Artists</li>
+                            <li>To all Content Developers</li>
+                            <li>To all Wiki Makers</li>
+                            <li>To all Book Writers</li>
+                            <li>To all Bloggers</li>
+                            <li>To all Professors and Teachers</li>
+                            <li>To all self-promoters</li>
+                        </ol>
                     </p>
                     
                     <h4>Additional Pieces of information</h4>
