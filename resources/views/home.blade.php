@@ -48,7 +48,7 @@
                         <h3><i class="zmdi zmdi-time"></i> {{ trans('entities.recent_activity') }}</h3>
                         @include('partials.activity-list', ['activity' => $activity])
                     </div>
-                @else if(signedInUser() && userCan('settings-manage'))
+                @elseif(signedInUser() && userCan('settings-manage'))
                     <div class="card">
                         <h3><i class="zmdi zmdi-file" style="color:#026aa7"></i> <a class="no-color" href="{{ baseUrl("/pages/recently-updated") }}">{{ trans('entities.recently_updated_pages') }}</a></h3>
                         <div id="recently-updated-pages">
