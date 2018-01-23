@@ -15,6 +15,9 @@ Disallow: /
 User-agent: UbiCrawler
 Disallow: /
 
+User-agent: DOC
+Disallow: /
+
 User-agent: *
 Allow: /humans.txt
 Allow: /
