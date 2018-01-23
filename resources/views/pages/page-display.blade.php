@@ -1,6 +1,6 @@
 <div ng-non-bindable>
 
-    <h1 id="bkmrk-page-title">{{$page->name}}</h1>
+    <h1 id="bkmrk-page-title" class="green-inline-bg">{{$page->name}}</h1>
     <div style="clear:left"></div>
 
     @if (isset($diff) && $diff)

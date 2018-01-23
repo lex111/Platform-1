@@ -272,3 +272,12 @@ $btt-size: 40px;
   margin-bottom: -4px;
   margin-right: $-xs;
 }
+
+.green-inline-bg {
+    background-color: #5df2ae;
+    line-height: 50px;
+    display: inline;
+    color: #000;
+    font-weight: bold;
+    padding: 5px 9px;
+}
