@@ -2,84 +2,7 @@
 
 User-agent: *
 Allow: /humans.txt
-Disallow: /
-
-User-agent: Googlebot
 Allow: /
-Allow: /@/*
-Allow: /books/*
-Allow: /books/*/page/*
-Allow: /books/*/chapter/*/*
-Disallow: /books/*/edit
-Disallow: /books/*/page/*/edit
-Disallow: /books/*/chapter/*/*/edit
-Disallow: /books/*/draft/*
-Disallow: /books/*/sort
-Disallow: /books/*/permissions
-Disallow: /books/*/delete
-Disallow: /books/*/draft/*/delete
-Disallow: /books/*/chapter/*/*/edit
-Disallow: /books/*/page/create
-Disallow: /books/*/chapter/create
-Disallow: /books/create
-Disallow: /books/*/export/html
-Disallow: /books/*/export/pdf
-Disallow: /books/*/export/plaintext
-Disallow: /books/*/*/*/export/html
-Disallow: /books/*/*/*/export/pdf
-Disallow: /books/*/*/*/export/plaintext
-Disallow: /books/*/*/*//export/html
-Disallow: /books/*/chapter/*/export/pdf
-Disallow: /books/*/chapter/*/export/plaintext
-Disallow: /search
-Disallow: /settings
-Disallow: /git
-Disallow: /trello
-Disallow: /slack
-Disallow: /logout
-Disallow: /login
-
-User-agent: duckduckbot
-Allow: /
-Allow: /@/*
-Allow: /books/*
-Allow: /books/*/page/*
-Allow: /books/*/chapter/*/*
-Disallow: /books/*/edit
-Disallow: /books/*/page/*/edit
-Disallow: /books/*/chapter/*/*/edit
-Disallow: /books/*/draft/*
-Disallow: /books/*/sort
-Disallow: /books/*/permissions
-Disallow: /books/*/delete
-Disallow: /books/*/draft/*/delete
-Disallow: /books/*/chapter/*/*/edit
-Disallow: /books/*/page/create
-Disallow: /books/*/chapter/create
-Disallow: /books/create
-Disallow: /books/*/export/html
-Disallow: /books/*/export/pdf
-Disallow: /books/*/export/plaintext
-Disallow: /books/*/*/*/export/html
-Disallow: /books/*/*/*/export/pdf
-Disallow: /books/*/*/*/export/plaintext
-Disallow: /books/*/*/*//export/html
-Disallow: /books/*/chapter/*/export/pdf
-Disallow: /books/*/chapter/*/export/plaintext
-Disallow: /search
-Disallow: /settings
-Disallow: /git
-Disallow: /trello
-Disallow: /slack
-Disallow: /logout
-Disallow: /login
-
-User-agent: Bingbot
-Allow: /
-Allow: /@/*
-Allow: /books/*
-Allow: /books/*/page/*
-Allow: /books/*/chapter/*/*
 Disallow: /books/*/edit
 Disallow: /books/*/page/*/edit
 Disallow: /books/*/chapter/*/*/edit
@@ -204,5 +127,7 @@ Disallow: /
 # http://www.webreaper.net/
 User-agent: WebReaper
 Disallow: /
+
+
 
 Sitemap: https://docspen.ga/sitemap.xml
