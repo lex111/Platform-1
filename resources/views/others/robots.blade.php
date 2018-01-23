@@ -18,6 +18,9 @@ Disallow: /
 User-agent: DOC
 Disallow: /
 
+User-agent: Zao
+Disallow: /
+
 User-agent: *
 Allow: /humans.txt
 Allow: /
