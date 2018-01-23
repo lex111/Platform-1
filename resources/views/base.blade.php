@@ -50,7 +50,6 @@
                         @if(signedInUser())
                             @include('partials._header-dropdown', ['currentUser' => user()])
                         @endif
-
                     </div>
                 </div>
             </div>
