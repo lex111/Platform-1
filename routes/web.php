@@ -12,10 +12,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/recently-updated', 'PageController@showRecentlyUpdated');
     });
 
+    // Discover
+    Route::get('/discover', 'BookController@index');
+    
     Route::group(['prefix' => 'books'], function () {
 
         // Books
-        Route::get('/', 'BookController@index');
         Route::get('/create', 'BookController@create');
         Route::post('/', 'BookController@store');
         Route::get('/{slug}/edit', 'BookController@edit');
