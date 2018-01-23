@@ -10,6 +10,11 @@
 User-agent: Mediapartners-Google*
 Disallow: /
 
+# Crawlers that are kind enough to obey, but which we'd rather not have
+# unless they're feeding search engines.
+User-agent: UbiCrawler
+Disallow: /
+
 User-agent: *
 Allow: /humans.txt
 Allow: /
