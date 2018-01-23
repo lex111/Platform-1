@@ -52,41 +52,42 @@
                         <li>Collaboration made easy</li>
                     </p>
                     
-                    <h4>Account Terms</h4>
+                    <h4>Customer pain-points</h4>
                     <p>
-                        <ol>
-                            <li>You must be a human, bots are not allowed</li>
-                            <li>You must be 10 years or older to use this Service.</li>
-                            <li>You must provide a valid email address (as email).
-                            <li>You are responsible for maintaining the security of your account and password.</li>
-                            <li>You are responsible for all Content posted and activity that occurs under your account (even when Content is posted by others who have accounts under your account).6. One person may not maintain more than one free account.</li>
-                            <li>You may not use the Service for any illegal or unauthorized purpose. You must not, in the use of the Service, violate any laws in your jurisdiction</li>
-                            <li>Your use of the Service is at your sole risk</li>
-                            <li>You must not modify, adapt or hack the Service</li>
-                        </ol>
+                        <li>Can't collaborate with people with word-processor</li>
+                        <li>Organizing Pages in Books and Chapters</li>
+                        <li>File Storage Issues</li>
                     </p>
                     
-                    <h4>Copyright and Content Ownership</h4>
+                    <h4>Benefits to Customers</h4>
                     <p>
-                        <ol>
-                            <li>The content (Images, Documents) is copyright ©2017 DocsPen, You may not duplicate, copy, or reuse any portion of the HTML/CSS, Javascript, or visual design elements or concepts without express written permission from DocsPen.</li>
-                            <li>Your profile and materials uploaded remain yours.</li>
-                            <li>Files edited and linked to your account remain yours</li>
-                            <li>DocsPen have the right (but not the obligation) in their sole discretion to refuse or remove any Content that is available via the Service.</li>
-                        </ol>
+                        <li>Able to publish data in one place</li>
+                        <li>View it and Updated it anywhere</li>
+                        <li>Easy to use and learn</li>
+                        <li>People can collaborate and edit contents</li>
+                        <li>People located in different parts of the world can work on the same document</li>
+                        <li>DocsPen keeps track of every edit made and it's a simple process to revert back to a previous version of an article</li>
+                        <li>widens access to the power of web publishing to non-technical users</li>
+                        <li>Keep it up to date</li>
                     </p>
-                                        
-                    <h4>Cancellation and Termination</h4>
+                    
+                    <h4>To who?</h4>
                     <p>
-                        <ol>
-                           <li>You have the right to cancel your account</li>
-                           <li>You are solely responsible for properly canceling your account.</li>
-                           <li>All of your Content will be immediately deleted from the Service upon cancellation. This information can not be recovered once your account is canceled.</li>
-                        </ol>
+                        <li>To all Developers</li>
+                        <li>To all Artists</li>
+                        <li>To all Content Developers</li>
+                        <li>To all Wiki Makers</li>
+                        <li>To all Book Writers</li>
+                        <li>To all Bloggers</li>
+                        <li>To all Professors and Teachers</li>
+                        <li>To all self-promoters</li>
                     </p>
-                    <p class="text-muted small">
-                        Revision #1 <br> Created <span title="Wed, Jan 5, 2018 4:17 AM">Wed, Jan 5, 2018 4:17 AM</span>
+                    
+                    <h4>Additional Pieces of information</h4>
+                    <p>
+                        We got support from <b>OSS Planet</b> and they provided Hosting Support for this Platform
                     </p>
+                    
                 </div>
             </div>
         </div>
