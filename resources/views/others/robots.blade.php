@@ -858,6 +858,9 @@ Disallow: /
 User-agent: MSIECrawler
 Disallow: /
 
+User-agent: SiteSnagger
+Disallow: /
+
 # Misbehaving: requests much too fast:
 User-agent: fast
 Disallow: /
