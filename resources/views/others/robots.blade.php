@@ -864,10 +864,6 @@ Disallow: /
 User-agent: WebStripper
 Disallow: /
 
-# Misbehaving: requests much too fast:
-User-agent: fast
-Disallow: /
-
 User-agent: WebCopier
 Disallow: /
 
@@ -905,6 +901,10 @@ User-agent: ZyBORG
 Disallow: /
 
 User-agent: Download Ninja
+Disallow: /
+
+# Misbehaving: requests much too fast:
+User-agent: fast
 Disallow: /
 
 #
