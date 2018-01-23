@@ -852,6 +852,8 @@ Disallow: /
 User-agent: Zealbot
 Disallow: /
 
+User-agent: HTTrack
+Disallow: /
 
 
 # Misbehaving: requests much too fast:
