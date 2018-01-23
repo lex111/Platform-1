@@ -282,3 +282,23 @@ $btt-size: 40px;
     font-weight: bold;
     padding: 5px 9px;
 }
+
+::-moz-selection {
+    background-color:#00d6d6
+}
+
+::selection { 
+    background-color:#00d6d6
+}
+
+img::-moz-selection {
+    background-color:rgba(0,214,214,.6)
+}
+
+img::selection {
+    background-color:rgba(0,214,214,.6)
+}
+
+body.no-scroll {
+    height:100vh;overflow:hidden
+}
