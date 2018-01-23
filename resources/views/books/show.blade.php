@@ -79,7 +79,7 @@
     <div class="card">
         <h3><i class="zmdi zmdi-info-outline"></i> {{ trans('common.details') }}</h3>
         <div class="body">
-            <h6><img style="height:30px" src="https://unpkg.com/docspen@18.0.4/imgs/cc.svg"></img>CC BY-SA 3.0</h6>
+            <h6><img style="height:20px" src="https://unpkg.com/docspen@18.0.4/imgs/cc.svg"></img>CC BY-SA 3.0</h6>
             @include('partials.entity-meta', ['entity' => $book])
         </div>
     </div>
