@@ -5,7 +5,7 @@
 <div class="container small">
     <p>&nbsp;</p>
     <div class="card">
-        <div class="entity-list detailed" ng-non-bindable="">
+        <div class="entity-list detailed">
             <div class="page  entity-list-item" data-entity-type="page" data-entity-id="7">
                 <h4>
                     <i class="zmdi zmdi-assignment-check"></i><span class="entity-list-item-name">Terms of Service</span>
