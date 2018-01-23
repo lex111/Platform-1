@@ -855,6 +855,8 @@ Disallow: /
 User-agent: HTTrack
 Disallow: /
 
+User-agent: MSIECrawler
+Disallow: /
 
 # Misbehaving: requests much too fast:
 User-agent: fast
