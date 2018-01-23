@@ -49,7 +49,7 @@
                         <li>No need of word-processor being installed</li>
                         <li>No need to waste Gigabytes of data on installing software</li>
                         <li>No need to save and publish on third-party sites</li>
-                        Collaboration made easy</li>
+                        <li>Collaboration made easy</li>
                     </p>
                     
                     <h4>Account Terms</h4>
