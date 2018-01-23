@@ -844,6 +844,19 @@ User-agent: *
 Allow: /humans.txt
 Disallow: /
 
+# Some bots are known to be trouble, particularly those designed to copy
+# entire sites. Please obey robots.txt.
+User-agent: sitecheck.internetseer.com
+Disallow: /
+
+User-agent: Zealbot
+Disallow: /
+
+
+
+# Misbehaving: requests much too fast:
+User-agent: fast
+Disallow: /
 
 #
 # Sorry, wget in its recursive mode is a frequent problem.
