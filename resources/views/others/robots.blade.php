@@ -844,4 +844,14 @@ User-agent: *
 Allow: /humans.txt
 Disallow: /
 
+
+#
+# Sorry, wget in its recursive mode is a frequent problem.
+# Please read the man page and use it properly; there is a
+# --wait option you can use to set the delay between hits,
+# for instance.
+#
+User-agent: wget
+Disallow: /
+
 Sitemap: https://docspen.ga/sitemap.xml
