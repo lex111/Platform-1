@@ -37,7 +37,7 @@
                     @include('partials.entity-list', ['entities' => Views::getPopular(6, 0, [\DocsPen\Book::class]), 'style' => 'compact'])
                 </div>
                 <div class="card">
-                    <h3 class="text-muted"><i class="zmdi zmdi-file-text" style="color:#026AA7"></i> <i class="zmdi zmdi-plus"></i> <i class="zmdi zmdi-fire" style="color:#ef7c3c"></i>{{ trans('entities.pages_popular') }}</h3>
+                    <h3 class="text-muted"><i class="zmdi zmdi-file-text" style="color:#534292"></i> <i class="zmdi zmdi-plus"></i> <i class="zmdi zmdi-fire" style="color:#ef7c3c"></i>{{ trans('entities.pages_popular') }}</h3>
                     @include('partials.entity-list', ['entities' => Views::getPopular(6, 0, [\DocsPen\Page::class]), 'style' => 'compact'])
                 </div>
             </div>
@@ -50,7 +50,7 @@
                     </div>
                 @else
                     <div class="card">
-                        <h3><i class="zmdi zmdi-file" style="color:#026aa7"></i> <a class="no-color" href="{{ baseUrl("/pages/recently-updated") }}">{{ trans('entities.recently_updated_pages') }}</a></h3>
+                        <h3><i class="zmdi zmdi-file" style="color:#534292"></i> <a class="no-color" href="{{ baseUrl("/pages/recently-updated") }}">{{ trans('entities.recently_updated_pages') }}</a></h3>
                         <div id="recently-updated-pages">
                             @include('partials/entity-list', [
                                 'entities' => $recentlyUpdatedPages,
