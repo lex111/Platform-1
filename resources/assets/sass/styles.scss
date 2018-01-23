@@ -284,19 +284,19 @@ $btt-size: 40px;
 }
 
 ::-moz-selection {
-    background-color: #5df2ae;
+    background-color: #e27b41;
 }
 
 ::selection { 
-    background-color: #5df2ae;
+    background-color: #e27b41;
 }
 
 img::-moz-selection {
-    background-color: rgba(0,214,214,.6);
+    background-color: #e27b41;
 }
 
 img::selection {
-    background-color: rgba(0,214,214,.6);
+    background-color: #e27b41;
 }
 
 body.no-scroll {
