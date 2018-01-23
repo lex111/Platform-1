@@ -141,6 +141,7 @@ Allow: /@/*
 Allow: /terms
 Allow: /privacy
 Allow: /about
+Allow: /contact
 Disallow: /books/*/edit
 Disallow: /books/*/page/*/edit
 Disallow: /books/*/chapter/*/*/edit
@@ -162,6 +163,7 @@ Disallow: /books/*/*/*/export/plaintext
 Disallow: /books/*/*/*//export/html
 Disallow: /books/*/chapter/*/export/pdf
 Disallow: /books/*/chapter/*/export/plaintext
+Disallow: /message-sent
 Disallow: /settings
 Disallow: /search
 Disallow: /git
