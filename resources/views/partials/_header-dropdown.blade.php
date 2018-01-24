@@ -10,14 +10,13 @@
         <li>
             <a href="{{ baseUrl("/settings/users/{$currentUser->id}") }}" class="text-primary"><i class="zmdi zmdi-edit"></i>{{ trans('common.edit_profile') }}</a>
         </li>
-  
-        @if(signedInUser() && userCan('settings-manage'))
-            <hr style="margin-bottom:10px">
-            <a href="{{ baseUrl('/settings') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Admin</a>
-        @endif
         
         @if($currentUser->can('users-manage') && ('user-roles-manage'))
             <hr style="margin-bottom:10px">
+            @if(signedInUser() && userCan('settings-manage'))
+                <hr style="margin-bottom:10px">
+                <a href="{{ baseUrl('/settings') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Admin</a>
+            @endif
             <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-accounts"></i>Users</a>
             <a href="{{ baseUrl('/settings/roles') }}" class="text-primary"><i class="zmdi zmdi-lock-open"></i>Roles</a>
         @endif
