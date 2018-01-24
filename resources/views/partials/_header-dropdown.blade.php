@@ -1,11 +1,11 @@
 <div class="dropdown-container" dropdown>
     <span class="user-name" dropdown-toggle>
         <img class="avatar" src="{{$currentUser->getAvatar(50)}}" alt="{{ $currentUser->name }}">
-        <span class="name">{{ $currentUser->getShortName(9) }}</span> <i class="zmdi zmdi-caret-down"></i>
+        <span class="name">{{ $currentUser->getShortName(10) }}</span> <i class="zmdi zmdi-caret-down"></i>
     </span>
     <ul>
         <li>
-            <a href="{{ baseUrl("/@/{$currentUser->id}") }}" class="text-primary"><i class="zmdi zmdi-account"></i>{{ $currentUser->getShortName(9) }}</a>
+            <a href="{{ baseUrl("/@/{$currentUser->id}") }}" class="text-primary"><i class="zmdi zmdi-account"></i>{{ $currentUser->getShortName(10) }}</a>
         </li>
         <li>
             <a href="{{ baseUrl("/settings/users/{$currentUser->id}") }}" class="text-primary"><i class="zmdi zmdi-edit"></i>{{ trans('common.edit_profile') }}</a>
