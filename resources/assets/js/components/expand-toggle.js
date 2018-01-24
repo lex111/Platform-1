@@ -40,7 +40,7 @@ class ExpandToggle {
       elemToToggle.style.overflow = "";
       elemToToggle.style.height = "";
       elemToToggle.style.transition = "";
-      elemToToggle.style.ExpandToggledisplay = "none";
+      elemToToggle.style.display = "none";
       elemToToggle.removeEventListener("transitionend", transitionEndBound);
     }
 
