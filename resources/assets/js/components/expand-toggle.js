@@ -1,7 +1,7 @@
 class ExpandToggle {
   constructor(elem) {
     this.elem = elem;
-    this.isOpen = false;
+    this.isOpen = true;
     this.selector = elem.getAttribute("expand-toggle");
     elem.addEventListener("click", this.click.bind(this));
   }
