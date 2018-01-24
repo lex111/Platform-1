@@ -20,6 +20,10 @@
             <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Users</a>
         @endif
+        @if($currentUser->can('user-roles-manage'))
+            <hr style="margin-bottom:10px">
+            <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Users</a>
+        @endif
         <hr style="margin-bottom:10px">
         <li>
             <a href="{{ baseUrl('/blog') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-tumblr"></i>Blog</a>
