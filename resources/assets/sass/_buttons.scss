@@ -44,7 +44,12 @@ $button-border-radius: 2px;
 .button, input[type="button"], input[type="submit"]  {
   @extend .button-base;
   &.pos {
-    @include generate-button-colors(#EEE, $positive);
+    background-color: #79589f;
+    background-image: -webkit-gradient(linear,right top,left bottom,color-stop(0,rgba(159,88,150,0)),color-stop(1,rgba(159,88,150,0.6)));
+    color: #eee;
+    text-transform: uppercase;
+    border: none;
+    vertical-align: top;
   }
   &.neg {
     @include generate-button-colors(#EEE, $negative);
