@@ -10,7 +10,7 @@ return [
     'app-name-header'       => true,
     'app-editor'            => 'wysiwyg',
     'app-color'             => '#534292',
-    'app-color-light'       => '#d7ccff',
+    'app-color-light'       => '#e6e6e6',
     'app-custom-head'       => false,
     'registration-enabled'  => true,
 
