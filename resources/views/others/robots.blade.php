@@ -131,6 +131,7 @@ User-agent: *
 Allow: /
 Allow: /humans.txt
 Allow: /books
+Allow: /discover
 Allow: /books/discover
 Allow: /books/create
 Allow: /books/*
