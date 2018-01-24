@@ -74,6 +74,7 @@ class OthersController extends Controller
     // Loader IO
     public function loaderio()
     {
-        return 'loaderio-e44f220977ee69b24892b4be8884c377';
+        return response('loaderio-e44f220977ee69b24892b4be8884c377', 200)
+                  ->header('Content-Type', 'text/plain');
     }
 }
