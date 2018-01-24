@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="shaded" style="background-color:#534292">
+<html class="shaded" style="background-color:#79589f">
 <head>
     <title>{{ setting('app-name') }}</title>
     
@@ -12,7 +12,7 @@
 
 @include('partials.notifications')
 
-<header id="header">
+<header id="header" style="background-color:#79589f">
     <div class="container fluid">
         <div class="row">
             <div class="col-sm-6">
