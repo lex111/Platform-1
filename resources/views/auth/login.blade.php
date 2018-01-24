@@ -11,6 +11,7 @@
     <div class="text-center">
         
         <a href="/"> <img class="auth-logo" class="logo-image" src="https://unpkg.com/docspen@18.0.6/imgs/docspen-white.svg" alt="Logo"></a>
+        <h5 class="auth">Sign in to DocsPen</h5>
 
         <div class="card auth-border center-box">
             <div class="body">
