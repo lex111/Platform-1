@@ -43,7 +43,7 @@
             </div>
 
             <div class="col-sm-4" id="recent-activity">
-                @if(signedInUser() && userCan('settings-manage') && ('users-manage') && ('user-roles-manage'))
+                @if(signedInUser() && userCan('settings-manage') && $currentUser->can('users-manage') && ('user-roles-manage'))
                     <div class="card">
                         <h3><i class="zmdi zmdi-time"></i> {{ trans('entities.recent_activity') }}</h3>
                         @include('partials.activity-list', ['activity' => $activity])
