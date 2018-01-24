@@ -12,7 +12,7 @@ class OthersController extends Controller
 
     public function humans()
     {
-        return redirect()->route('about');
+        return redirect('/about');
     }
 
     public function terms()
