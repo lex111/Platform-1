@@ -23,7 +23,6 @@
         @endif
             
         @if($currentUser->can('users-manage'))
-            <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-accounts"></i>Users</a>
         @endif
         
