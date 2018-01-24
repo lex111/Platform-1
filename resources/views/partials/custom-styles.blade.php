@@ -1,5 +1,5 @@
 <style id="custom-styles" data-color="{{ setting('app-color') }}" data-color-light="{{ setting('app-color-light') }}">
-    header, [back-to-top], .primary-background { background-image: -webkit-radial-gradient(50% top, circle, rgba(84,90,182,0.6) 0%, rgba(84,90,182,0) 75%),-webkit-radial-gradient(right top, circle, #794aa2 0%, rgba(121,74,162,0) 57%) }
+    header, [back-to-top], .primary-background { background-color: {{ setting('app-color') }} !important }
     .faded-small, .primary-background-light { background-color: #e3dbff }
     .button-base, .button, input[type="button"], input[type="submit"] { background-color: {{ setting('app-color') }}; border-color: {{ setting('app-color') }} }
     .button-base:hover, .button:hover, input[type="button"]:hover, input[type="submit"]:hover, .button:focus { background-color: {{ setting('app-color') }} }
