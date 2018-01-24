@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 @include('ascii')
-
 <html lang="en" class="@yield('body-class')">
 <head>
     <title>{{ isset($pageTitle) ? $pageTitle . ' | ' : '' }}{{ setting('app-name') }}</title>
