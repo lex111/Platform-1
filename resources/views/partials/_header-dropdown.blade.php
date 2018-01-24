@@ -17,6 +17,10 @@
             <a href="{{ baseUrl('/trello') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-view-carousel"></i>Trello</a>
         @endif
         <hr style="margin-bottom:10px">
+        @if($currentUser->can('users-manage'))
+            <hr style="margin-bottom:10px">
+            <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Users</a>
+        @endif
         <li>
             <a href="{{ baseUrl('/blog') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-tumblr"></i>Blog</a>
         </li>

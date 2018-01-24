@@ -25,8 +25,8 @@ class RemoveHiddenRoles extends Migration
 
         // Insert our new public system user.
         $publicUserId = DB::table('users')->insertGetId([
-            'email'           => 'guest@example.com',
-            'name'            => 'Guest',
+            'email'           => 'anonymous@docspen.com',
+            'name'            => 'Anonymous',
             'system_name'     => 'public',
             'email_confirmed' => true,
             'created_at'      => \Carbon\Carbon::now(),
