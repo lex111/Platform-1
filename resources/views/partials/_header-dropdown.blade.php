@@ -17,6 +17,7 @@
         @endif
         
         @if($currentUser->can('users-manage') && ('user-roles-manage'))
+            <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/git') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-github"></i>GitHub</a>
             <a href="{{ baseUrl('/trello') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-view-carousel"></i>Trello</a>
         @endif
