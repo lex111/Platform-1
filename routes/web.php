@@ -18,20 +18,20 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'BookController@index');
         Route::get('/create', 'BookController@create');
         Route::post('/', 'BookController@store');
-        Route::get('/{slug}/edit', 'BookController@edit');
-        Route::put('/{slug}', 'BookController@update');
+        Route::get(':{slug}/edit', 'BookController@edit');
+        Route::put(':{slug}', 'BookController@update');
         Route::delete('/{id}', 'BookController@destroy');
-        Route::get('/{slug}/sort-item', 'BookController@getSortItem');
-        Route::get('/{slug}', 'BookController@show');
-        Route::get('/{bookSlug}/permissions', 'BookController@showRestrict');
-        Route::put('/{bookSlug}/permissions', 'BookController@restrict');
-        Route::get('/{slug}/delete', 'BookController@showDelete');
-        Route::get('/{bookSlug}/sort', 'BookController@sort');
-        Route::put('/{bookSlug}/sort', 'BookController@saveSort');
-        Route::get('/{bookSlug}/export/html', 'BookController@exportHtml');
-        Route::get('/{bookSlug}/export/pdf', 'BookController@exportPdf');
-        Route::get('/{bookSlug}/export/plaintext', 'BookController@exportPlainText');
-        Route::get('/{bookSlug}/export/raw', 'BookController@rawPlainText');
+        Route::get(':{slug}/sort-item', 'BookController@getSortItem');
+        Route::get(':{slug}', 'BookController@show');
+        Route::get(':{bookSlug}/permissions', 'BookController@showRestrict');
+        Route::put(':{bookSlug}/permissions', 'BookController@restrict');
+        Route::get(':{slug}/delete', 'BookController@showDelete');
+        Route::get(':{bookSlug}/sort', 'BookController@sort');
+        Route::put(':{bookSlug}/sort', 'BookController@saveSort');
+        Route::get(':{bookSlug}/export/html', 'BookController@exportHtml');
+        Route::get(':{bookSlug}/export/pdf', 'BookController@exportPdf');
+        Route::get(':{bookSlug}/export/plaintext', 'BookController@exportPlainText');
+        Route::get(':{bookSlug}/export/raw', 'BookController@rawPlainText');
 
         // Pages
         Route::get('/{bookSlug}/page/create', 'PageController@create');
