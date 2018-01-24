@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-@include('ascii')
+@include('others.ascii')
 
 <html lang="en" class="@yield('body-class')">
 <head>

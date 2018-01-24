@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-@include('ascii')
+@include('others.ascii')
 
 <html class="shaded" style="background-color:#534292">
 <head>
