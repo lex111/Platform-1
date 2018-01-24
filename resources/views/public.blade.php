@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="shaded">
+<html class="shaded" style="background-color:#534292">
 <head>
     <title>{{ setting('app-name') }}</title>
     
