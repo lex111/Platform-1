@@ -10,6 +10,11 @@ class OthersController extends Controller
         return view('others.about');
     }
 
+    public function humans()
+    {
+        return redirect()->route('about');
+    }
+
     public function terms()
     {
         return view('others.terms');
