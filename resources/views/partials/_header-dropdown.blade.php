@@ -10,19 +10,25 @@
         <li>
             <a href="{{ baseUrl("/settings/users/{$currentUser->id}") }}" class="text-primary"><i class="zmdi zmdi-edit"></i>{{ trans('common.edit_profile') }}</a>
         </li>
+        
         @if(signedInUser() && userCan('settings-manage'))
             <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Admin</a>
-            <a href="{{ baseUrl('/git') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-github"></i>GitHub</a>
-            <a href="{{ baseUrl('/trello') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-view-carousel"></i>Trello</a>
+            @if($currentUser->can('users-manage') && )
+                <a href="{{ baseUrl('/git') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-github"></i>GitHub</a>
+                <a href="{{ baseUrl('/trello') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-view-carousel"></i>Trello</a>
+            @endif
         @endif
+        
         @if($currentUser->can('users-manage'))
             <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-accounts"></i>Users</a>
         @endif
+        
         @if($currentUser->can('user-roles-manage'))
             <a href="{{ baseUrl('/settings/roles') }}" class="text-primary"><i class="zmdi zmdi-lock-open"></i>Roles</a>
         @endif
+        
         <hr style="margin-bottom:10px">
         <li>
             <a href="{{ baseUrl('/blog') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-tumblr"></i>Blog</a>
