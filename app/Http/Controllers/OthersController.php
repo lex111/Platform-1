@@ -75,6 +75,6 @@ class OthersController extends Controller
     public function loaderio()
     {
         return response('loaderio-e44f220977ee69b24892b4be8884c377', 200)
-                  ->header('Content-Type', 'text/plain');
+                    ->header('Content-Type', 'text/plain');
     }
 }
