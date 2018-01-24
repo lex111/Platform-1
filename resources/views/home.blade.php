@@ -43,11 +43,13 @@
             </div>
 
             <div class="col-sm-4" id="recent-activity">
-                @if(signedInUser() && userCan('settings-manage') && $currentUser->can('users-manage') && ('user-roles-manage'))
-                    <div class="card">
-                        <h3><i class="zmdi zmdi-time"></i> {{ trans('entities.recent_activity') }}</h3>
-                        @include('partials.activity-list', ['activity' => $activity])
-                    </div>
+                @if(signedInUser() && userCan('settings-manage'))
+                    @if($currentUser->can('users-manage') && ('user-roles-manage'))
+                        <div class="card">
+                            <h3><i class="zmdi zmdi-time"></i> {{ trans('entities.recent_activity') }}</h3>
+                            @include('partials.activity-list', ['activity' => $activity])
+                        </div>
+                    @endif
                 @else
                     <div class="card">
                         <h3><i class="zmdi zmdi-file" style="color:#534292"></i> <a class="no-color" href="{{ baseUrl("/pages/recently-updated") }}">{{ trans('entities.recently_updated_pages') }}</a></h3>
