@@ -10,13 +10,7 @@
         <li>
             <a href="{{ baseUrl("/settings/users/{$currentUser->id}") }}" class="text-primary"><i class="zmdi zmdi-edit"></i>{{ trans('common.edit_profile') }}</a>
         </li>
-        
-        @if($currentUser->can('users-manage') && ('user-roles-manage'))
-            <hr style="margin-bottom:10px">
-            <a href="{{ baseUrl('/git') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-github"></i>GitHub</a>
-            <a href="{{ baseUrl('/trello') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-view-carousel"></i>Trello</a>
-        @endif
-        
+  
         @if(signedInUser() && userCan('settings-manage'))
             <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings') }}" class="text-primary"><i class="zmdi zmdi-compass"></i>Admin</a>
@@ -28,6 +22,12 @@
         
         @if($currentUser->can('user-roles-manage'))
             <a href="{{ baseUrl('/settings/roles') }}" class="text-primary"><i class="zmdi zmdi-lock-open"></i>Roles</a>
+        @endif
+        
+        @if($currentUser->can('users-manage') && ('user-roles-manage'))
+            <hr style="margin-bottom:10px">
+            <a href="{{ baseUrl('/git') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-github"></i>GitHub</a>
+            <a href="{{ baseUrl('/trello') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-view-carousel"></i>Trello</a>
         @endif
         
         <hr style="margin-bottom:10px">
