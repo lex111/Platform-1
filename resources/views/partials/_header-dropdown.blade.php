@@ -17,10 +17,10 @@
             <a href="{{ baseUrl('/trello') }}" target="_blank" class="text-primary"><i class="zmdi zmdi-view-carousel"></i>Trello</a>
         @endif
         @if($currentUser->can('users-manage'))
+            <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-accounts"></i>Roles</a>
         @endif
         @if($currentUser->can('user-roles-manage'))
-            <hr style="margin-bottom:10px">
             <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-lock-open"></i>Users</a>
         @endif
         <hr style="margin-bottom:10px">
