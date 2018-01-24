@@ -18,10 +18,10 @@
         @endif
         @if($currentUser->can('users-manage'))
             <hr style="margin-bottom:10px">
-            <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-accounts"></i>Roles</a>
+            <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-accounts"></i>Users</a>
         @endif
         @if($currentUser->can('user-roles-manage'))
-            <a href="{{ baseUrl('/settings/users') }}" class="text-primary"><i class="zmdi zmdi-lock-open"></i>Users</a>
+            <a href="{{ baseUrl('/settings/roles') }}" class="text-primary"><i class="zmdi zmdi-lock-open"></i>Roles</a>
         @endif
         <hr style="margin-bottom:10px">
         <li>
